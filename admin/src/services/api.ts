@@ -22,7 +22,7 @@ import { API_CONFIG } from '@shared/constants/config';
  * 创建axios实例
  */
 const apiClient = axios.create({
-  baseURL: API_CONFIG.BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL || API_CONFIG.BASE_URL,
   timeout: API_CONFIG.TIMEOUT,
   headers: {
     'Content-Type': 'application/json',

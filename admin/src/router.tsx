@@ -8,6 +8,7 @@ import App from './App';
 import Login from './pages/Login';
 import HotelEdit from './pages/HotelEdit';
 import AuditList from './pages/AuditList';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <App />,
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
@@ -28,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'hotels/audit',
-        element: <AuditList />,
+        element: (
+          <ProtectedRoute requireAdmin>
+            <AuditList />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
