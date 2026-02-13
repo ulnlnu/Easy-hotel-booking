@@ -1,0 +1,266 @@
+/**
+ * shared/components/Calendar/index.scss
+ * 日历组件样式
+ */
+
+.calendar-container {
+  background: var(--bg-white, #fff);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    .month-selector {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+
+      .month-btn {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #f5f5f5;
+        transition: all 0.3s;
+
+        &:active {
+          background: #e0e0e0;
+        }
+
+        &.disabled {
+          opacity: 0.3;
+        }
+      }
+
+      .month-text {
+        font-size: 28px;
+        font-weight: 600;
+        color: #333;
+        min-width: 140px;
+        text-align: center;
+      }
+    }
+
+    .header-actions {
+      .today-btn {
+        padding: 12px 24px;
+        background: var(--primary-color, #1890ff);
+        color: #fff;
+        border-radius: 20px;
+        font-size: 26px;
+      }
+    }
+  }
+
+  .selected-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    margin-bottom: 24px;
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .info-label {
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 8px;
+      }
+
+      .info-date {
+        font-size: 32px;
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+
+    .info-nights {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 16px 24px;
+      border-radius: 8px;
+
+      .nights-count {
+        font-size: 44px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+      }
+
+      .nights-text {
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
+
+  .select-tip {
+    text-align: center;
+    padding: 24px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-size: 28px;
+    color: var(--text-color-secondary, #666);
+  }
+
+  .calendar-body {
+    margin-bottom: 24px;
+  }
+
+  .calendar-footer {
+    .footer-btns {
+      display: flex;
+      gap: 16px;
+
+      .footer-btn {
+        flex: 1;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-size: 28px;
+
+        &.clear {
+          background: #f5f5f5;
+          color: var(--text-color, #333);
+        }
+
+        &.confirm {
+          background: var(--primary-color, #1890ff);
+          color: #fff;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+/* DatePanel样式 */
+.date-panel {
+  .week-header {
+    display: flex;
+    margin-bottom: 12px;
+
+    .week-day {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 24px;
+      color: var(--text-color-light, #999);
+      font-weight: 500;
+    }
+  }
+
+  .date-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    .date-cell {
+      width: 14.28%;
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 4px;
+      position: relative;
+      border-radius: 4px;
+      transition: all 0.2s;
+
+      .date-number {
+        font-size: 26px;
+        color: var(--text-color, #333);
+        margin-bottom: 4px;
+      }
+
+      .date-price {
+        font-size: 20px;
+        color: var(--primary-color, #1890ff);
+        font-weight: 600;
+      }
+
+      .sold-out-tag {
+        position: absolute;
+        bottom: 4px;
+        font-size: 18px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      /* 其他月份 */
+      &.other-month {
+        opacity: 0.3;
+      }
+
+      /* 今天 */
+      &.today {
+        background: #e6f7ff;
+        .date-number {
+          color: var(--primary-color, #1890ff);
+          font-weight: 600;
+        }
+      }
+
+      /* 入住日期 */
+      &.checkIn {
+        background: var(--primary-color, #1890ff);
+        border-radius: 8px 8px 0 0;
+        .date-number {
+          color: #fff;
+        }
+        .date-price {
+          color: #fff;
+        }
+      }
+
+      /* 离店日期 */
+      &.checkOut {
+        background: var(--primary-color, #1890ff);
+        border-radius: 0 0 8px 8px;
+        .date-number {
+          color: #fff;
+        }
+        .date-price {
+          color: #fff;
+        }
+      }
+
+      /* 范围内 */
+      &.in-range {
+        background: #f0f8ff;
+        .date-number {
+          color: var(--primary-color, #1890ff);
+        }
+      }
+
+      /* 已售罄 */
+      &.sold-out {
+        opacity: 0.5;
+        .date-number {
+          text-decoration: line-through;
+        }
+        .date-price {
+          color: var(--text-color-light, #999);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,272 @@
+# 易宿酒店预订平台
+
+> 前端训练营两周小组作业 - 3人团队项目
+
+## 项目简介
+
+基于 Taro 跨端框架的酒店预订平台，包含移动端（用户端）、PC 管理端（后台）和 Express 后端 API。
+
+### 技术亮点
+
+| 亮点类别 | 具体内容 | 对应评分 |
+|---------|----------|---------|
+| **跨端技术** | 使用 Taro 实现 H5+微信小程序双端发布 | 项目创新性 |
+| **性能优化** | 虚拟滚动解决长列表渲染卡顿 | 技术复杂度 |
+| **用户体验** | 自定义日历组件支持入住/离店联动选择 | 用户体验 |
+| **LBS 定位** | 获取用户当前位置，支持"距我最近"排序 | 项目创新性 |
+| **代码质量** | TypeScript 全覆盖，规范的 Git 提交 | 代码质量 |
+
+---
+
+## 技术栈
+
+| 端 | 技术方案 |
+|---|---|
+| **移动端（用户端）** | Taro + React + TypeScript + NutUI + Zustand |
+| **PC 管理端** | React + Vite + Ant Design + TypeScript + Zustand |
+| **后端 API** | Express + TypeScript + JSON 文件存储 |
+
+---
+
+## 项目结构
+
+```
+Trip/
+├── mini-app/              # 移动端（Taro 跨端项目）
+│   ├── src/
+│   │   ├── components/    # 公共组件
+│   │   ├── pages/         # 页面（home, list, detail）
+│   │   ├── services/      # API服务（mockApi.ts + api.ts）
+│   │   ├── hooks/         # 自定义hooks（useLocation, useVirtualList）
+│   │   ├── store/         # Zustand状态管理
+│   │   └── utils/         # 工具函数（日期、距离计算）
+│   ├── project.h5.json    # H5端配置
+│   └── package.json
+│
+├── admin/                 # PC 管理端（React + Vite）
+│   ├── src/
+│   │   ├── components/    # 公共组件（Layout）
+│   │   ├── pages/         # 页面（Login, HotelEdit, AuditList）
+│   │   ├── services/      # API服务（mockApi.ts + api.ts）
+│   │   ├── store/         # Zustand状态管理
+│   │   └── router.tsx     # 路由配置
+│   └── package.json
+│
+├── server/                # Node.js 后端
+│   ├── src/
+│   │   ├── routes/        # API路由（auth, hotels）
+│   │   ├── controllers/   # 控制器层
+│   │   ├── services/      # 业务逻辑层
+│   │   ├── middleware/    # 中间件（auth, cors, error）
+│   │   ├── utils/         # 工具函数
+│   │   └── data/         # JSON 数据存储
+│   └── package.json
+│
+├── shared/                # 共享代码
+│   ├── types/            # TypeScript 类型定义
+│   ├── constants/        # 通用配置（API地址、端口等）
+│   └── components/       # 共享组件（Calendar 日历组件）
+│
+├── .gitignore
+├── .eslintrc.js
+├── .prettierrc
+├── package.json          # 根 Monorepo 配置
+└── README.md
+```
+
+---
+
+## 快速开始
+
+### 1. 安装依赖
+
+```bash
+# 根目录（安装所有依赖）
+npm install
+
+# 或单独安装
+cd server && npm install
+cd ../admin && npm install
+cd ../mini-app && npm install
+```
+
+### 2. 启动开发服务器
+
+```bash
+# 后端（端口 3000）
+cd server && npm run dev
+
+# 移动端 H5（端口 10086）
+cd mini-app && npm run dev:h5
+
+# PC 管理端（端口 5173）
+cd admin && npm run dev
+```
+
+### 3. 访问应用
+
+| 端 | URL | 说明 |
+|---|-----|------|
+| 移动端 H5 | http://localhost:10086 | 用户端 |
+| PC 管理端 | http://localhost:5173 | 管理后台 |
+| 后端 API | http://localhost:3000 | API 服务 |
+| 健康检查 | http://localhost:3000/api/health | 检查后端状态 |
+
+### 4. 演示账号
+
+| 角色 | 用户名 | 密码 |
+|-----|--------|------|
+| 管理员 | admin | password123 |
+| 酒店管理员 | hoteladmin | password123 |
+
+---
+
+## 开发规范
+
+### Git 提交规范
+
+使用 Conventional Commits 规范：
+
+```bash
+# 新功能
+git commit -m "feat(hotel): 实现酒店列表页面"
+git commit -m "feat(list): 实现虚拟滚动优化"
+
+# Bug修复
+git commit -m "fix: 修复日期选择bug"
+
+# 性能优化
+git commit -m "perf: 优化图片加载性能"
+
+# 代码重构
+git commit -m "refactor: 将Mock API替换为真实API"
+
+# 测试
+git commit -m "test: 完成H5端功能测试"
+
+# 文档更新
+git commit -m "docs: 更新README文档"
+```
+
+### 分支策略
+
+- `main` - 主分支
+- `feature/xxx` - 功能分支
+- `bugfix/xxx` - Bug 修复分支
+
+---
+
+## 开发模式
+
+### Mock 模式（Day 1-3）
+
+前端使用 `services/mockApi.ts` 中的 Mock 数据进行开发：
+
+```typescript
+// 前端导入 Mock API
+import { searchHotelsApi } from './services/mockApi';
+```
+
+### 真实 API 模式（Day 4 起）
+
+切换为真实后端 API：
+
+```typescript
+// 切换导入
+import { searchHotelsApi } from './services/api';
+```
+
+---
+
+## API 文档
+
+### 认证相关
+
+```
+POST /api/auth/register  # 用户注册
+POST /api/auth/login     # 用户登录
+GET  /api/auth/me        # 获取当前用户信息
+```
+
+### 酒店相关
+
+```
+GET    /api/hotels              # 获取酒店列表（支持分页、筛选、排序）
+GET    /api/hotels/nearby       # 获取附近酒店（LBS定位）
+GET    /api/hotels/:id          # 获取酒店详情
+POST   /api/hotels              # 创建酒店（需要认证）
+PUT    /api/hotels/:id          # 更新酒店（需要认证）
+POST   /api/hotels/:id/audit    # 审核酒店（需要管理员权限）
+POST   /api/hotels/:id/status   # 更新酒店状态（需要认证）
+DELETE /api/hotels/:id          # 删除酒店（需要认证）
+```
+
+### 健康检查
+
+```
+GET /api/health  # 服务器健康检查
+```
+
+---
+
+## 创新功能实现
+
+### 1. 虚拟滚动（Day 8-9）
+
+- 使用 `@tarojs/components/virtual-list` 实现长列表优化
+- 只渲染可视区域的酒店列表项
+- 配合骨架屏提升加载体验
+
+### 2. 自定义日历组件（共享组件）
+
+- 支持入住/离店日期联动选择
+- 自动计算入住间夜
+- 标记已售罄日期
+- 价格日历视图
+
+### 3. LBS 定位搜索（Day 10-11）
+
+- H5 端使用浏览器 Geolocation API
+- 小程序端使用 Taro.getLocation()
+- "距我最近"排序选项
+- 显示距离用户的公里数
+
+---
+
+## Taro 多端发布
+
+### H5 网页版
+
+```bash
+npm run dev:h5      # 开发
+npm run build:h5    # 构建
+```
+
+### 微信小程序
+
+```bash
+npm run dev:weapp    # 开发
+npm run build:weapp  # 构建
+```
+
+---
+
+## 团队成员
+
+| 成员 | 负责模块 |
+|-----|---------|
+| 成员 A | 移动端（Taro）、虚拟滚动、LBS 定位 |
+| 成员 B | PC 管理端（React + Ant Design） |
+| 成员 C | 后端（Express）、日历组件、联调 |
+
+---
+
+## 许可证
+
+MIT
+
+---
+
+> **版本**: v1.0.0
+> **创建日期**: 2025-02-13
+> **状态**: 开发中

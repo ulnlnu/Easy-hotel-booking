@@ -1,0 +1,106 @@
+.hotel-card {
+  background: var(--bg-white);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  .hotel-image {
+    width: 100%;
+    height: 400px;
+    display: block;
+  }
+
+  .hotel-info {
+    padding: 24px;
+
+    .hotel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+
+      .hotel-name {
+        font-size: 32px;
+        font-weight: 600;
+        color: var(--text-color);
+        flex: 1;
+        padding-right: 16px;
+      }
+
+      .distance {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-color-secondary);
+        font-size: 24px;
+      }
+    }
+
+    .hotel-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+
+      .rating-text {
+        font-size: 28px;
+        font-weight: 600;
+        color: #FFC107;
+      }
+
+      .review-count {
+        font-size: 24px;
+        color: var(--text-color-light);
+      }
+    }
+
+    .hotel-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+
+      .tag {
+        padding: 8px 16px;
+        background: #f0f8ff;
+        color: var(--primary-color);
+        border-radius: 4px;
+        font-size: 24px;
+      }
+    }
+
+    .hotel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      .price-section {
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+
+        .price {
+          font-size: 44px;
+          font-weight: 700;
+          color: #ff4d4f;
+        }
+
+        .price-unit {
+          font-size: 24px;
+          color: var(--text-color-secondary);
+        }
+      }
+
+      .address {
+        font-size: 24px;
+        color: var(--text-color-light);
+        flex: 1;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}

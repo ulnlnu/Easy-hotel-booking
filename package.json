@@ -1,0 +1,31 @@
+{
+  "name": "trip-hotel-booking",
+  "version": "1.0.0",
+  "description": "易宿酒店预订平台 - 包含移动端、PC管理端和后端",
+  "private": true,
+  "workspaces": [
+    "server",
+    "admin",
+    "mini-app"
+  ],
+  "scripts": {
+    "install:all": "npm install && cd server && npm install && cd ../admin && npm install && cd ../mini-app && npm install",
+    "dev:server": "cd server && npm run dev",
+    "dev:admin": "cd admin && npm run dev",
+    "dev:mini-app:h5": "cd mini-app && npm run dev:h5",
+    "dev:mini-app:weapp": "cd mini-app && npm run dev:weapp",
+    "dev": "npm-run-all --parallel dev:*",
+    "build:server": "cd server && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "build:mini-app:h5": "cd mini-app && npm run build:h5",
+    "build:mini-app:weapp": "cd mini-app && npm run build:weapp",
+    "build": "npm run build:server && npm run build:admin && npm run build:mini-app:h5"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

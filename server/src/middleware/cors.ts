@@ -1,0 +1,34 @@
+/**
+ * server/src/middleware/cors.ts
+ * CORS配置中间件
+ */
+
+import cors from 'cors';
+
+/**
+ * CORS配置
+ */
+export const corsConfig = cors({
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:5173', // PC管理端
+      'http://localhost:10086', // 移动端H5
+      'http://127.0.0.1:5173',
+      'http://127.0.0.1:10086',
+    ];
+
+    // 允许没有origin的请求（如移动应用、Postman等）
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('不允许的跨域请求来源'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+});
+
+export default corsConfig;

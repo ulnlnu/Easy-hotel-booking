@@ -1,0 +1,22 @@
+.list-page {
+  min-height: 100vh;
+  background: var(--bg-color);
+
+  .hotel-list {
+    padding: 24px;
+
+    .no-more {
+      text-align: center;
+      padding: 32px 0;
+      color: var(--text-color-light);
+      font-size: 24px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 120px 0;
+      color: var(--text-color-light);
+      font-size: 28px;
+    }
+  }
+}

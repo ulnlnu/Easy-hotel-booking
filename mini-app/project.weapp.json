@@ -1,0 +1,12 @@
+{
+  "projectname": "trip-mini-app",
+  "description": "易宿酒店预订平台微信小程序",
+  "appid": "",
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "postcss": true,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

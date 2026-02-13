@@ -1,0 +1,37 @@
+/**
+ * mini-app/src/app.config.ts
+ * Taro应用配置
+ */
+
+import Pages from './app.config.pages';
+
+export default {
+  pages: Pages,
+  window: {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: '易宿酒店',
+    navigationBarTextStyle: 'black',
+    enablePullDownRefresh: false,
+  },
+  tabBar: {
+    color: '#666',
+    selectedColor: '#1890ff',
+    backgroundColor: '#fafafa',
+    borderStyle: 'black',
+    list: [
+      {
+        pagePath: 'pages/home/index',
+        text: '首页',
+        iconPath: 'assets/icons/home.png',
+        selectedIconPath: 'assets/icons/home-active.png',
+      },
+      {
+        pagePath: 'pages/list/index',
+        text: '列表',
+        iconPath: 'assets/icons/list.png',
+        selectedIconPath: 'assets/icons/list-active.png',
+      },
+    ],
+  },
+};

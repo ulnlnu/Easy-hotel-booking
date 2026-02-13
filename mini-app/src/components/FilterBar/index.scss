@@ -1,0 +1,27 @@
+.filter-bar {
+  display: flex;
+  background: var(--bg-white);
+  padding: 24px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  gap: 24px;
+
+  .filter-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    color: var(--text-color-secondary);
+    font-size: 28px;
+    transition: all 0.3s;
+
+    &.active {
+      background: var(--primary-color);
+      color: #fff;
+    }
+  }
+}
