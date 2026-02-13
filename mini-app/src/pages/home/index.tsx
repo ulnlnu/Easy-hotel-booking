@@ -112,9 +112,9 @@ function Home() {
                       ? Math.max(
                           1,
                           Math.floor(
-                            (new Date(searchParams.checkOut).getTime() -
+                            ((new Date(searchParams.checkOut).getTime() -
                               new Date(searchParams.checkIn).getTime()) /
-                              (1000 * 60 * 60 * 24)
+                              (1000 * 60 * 60 * 24))
                           )
                         )
                       : 1}

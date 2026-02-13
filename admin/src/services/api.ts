@@ -18,6 +18,7 @@ import type {
   HotelListResponse,
   Hotel,
   SafeUser,
+  RegisterRequest,
 } from '@shared/types';
 import { API_CONFIG } from '@shared/constants/config';
 
@@ -88,7 +89,7 @@ export const loginApi = async (data: LoginRequest): Promise<LoginResponse> => {
   return apiClient.post('/auth/login', data);
 };
 
-export const registerApi = async (data: any): Promise<any> => {
+export const registerApi = async (data: RegisterRequest): Promise<ApiSuccess<SafeUser>> => {
   return apiClient.post('/auth/register', data);
 };
 

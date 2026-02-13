@@ -11,6 +11,10 @@ import type {
   HotelQueryParams,
   HotelListResponse,
   ApiResponse,
+  ApiSuccess,
+  Hotel,
+  RegisterRequest,
+  SafeUser,
 } from '@shared/types';
 import { API_CONFIG } from '@shared/constants/config';
 
@@ -44,7 +48,10 @@ const request = async <T = any>(
 /**
  * 搜索酒店
  */
-export const searchHotelsApi = async (params: HotelQueryParams): Promise<HotelListResponse> => {
+export const searchHotelsApi = async (
+  params: HotelQueryParams
+): Promise<HotelListResponse> => {
+  // Taro.request: GET请求参数自动拼接到URL
   return request<HotelListResponse>('/hotels', {
     method: 'GET',
     data: params,
@@ -54,10 +61,10 @@ export const searchHotelsApi = async (params: HotelQueryParams): Promise<HotelLi
 /**
  * 获取酒店详情
  */
-export const getHotelDetailApi = async (id: string) => {
+export const getHotelDetailApi = async (id: string): Promise<ApiSuccess<Hotel>> => {
   return request(`/hotels/${id}`, {
     method: 'GET',
-  });
+  }) as Promise<ApiSuccess<Hotel>>;
 };
 
 /**
@@ -118,7 +125,10 @@ export const getLocationApi = async (): Promise<{
 /**
  * 获取附近酒店
  */
-export const getNearbyHotelsApi = async (location: { lat: number; lng: number }, radius = 10) => {
+export const getNearbyHotelsApi = async (
+  location: { lat: number; lng: number },
+  radius = 10
+): Promise<HotelListResponse> => {
   return request('/hotels/nearby', {
     method: 'GET',
     data: {
@@ -126,5 +136,5 @@ export const getNearbyHotelsApi = async (location: { lat: number; lng: number },
       lng: location.lng,
       radius,
     },
-  });
+  }) as Promise<HotelListResponse>;
 };
