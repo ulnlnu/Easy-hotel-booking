@@ -8,9 +8,7 @@ import { Form, Input, Button, Tabs, Card, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/useAuthStore';
-import { loginApi } from '@/services/mockApi';
-// Day 4后切换为真实API：
-// import { loginApi } from '@/services/api';
+import { loginApi } from '@/services/api';
 import type { LoginRequest } from '@shared/types/user';
 import type { UserRole } from '@shared/types/user';
 import './index.scss';
@@ -93,8 +91,8 @@ function Login() {
                   </Form.Item>
                   <div className="demo-accounts">
                     <p>演示账号：</p>
-                    <p>管理员：admin / password123</p>
-                    <p>酒店管理员：hoteladmin / password123</p>
+                    <p>管理员：admin / admin123</p>
+                    <p>酒店管理员：hoteladmin / admin123</p>
                   </div>
                 </Form>
               ),

@@ -7,9 +7,7 @@ import { useState, useEffect } from 'react';
 import { View, ScrollView, Text } from '@tarojs/components';
 import Taro, { useReachBottom, usePullDownRefresh } from '@tarojs/taro';
 import { useHotelStore } from '@/store/useHotelStore';
-import { searchHotelsApi } from '@/services/mockApi';
-// Day 4后切换为真实API：
-// import { searchHotelsApi } from '@/services/api';
+import { searchHotelsApi } from '@/services/api';
 import FilterBar from '@/components/FilterBar';
 import HotelCard from '@/components/HotelCard';
 import Skeleton from '@/components/Skeleton';

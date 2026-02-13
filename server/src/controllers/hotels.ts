@@ -23,6 +23,16 @@ export const hotelController = {
    */
   getList: async (req: Request, res: Response, next: NextFunction) => {
     try {
+      // 处理tags参数：支持逗号分隔字符串或数组格式
+      let tags: string[] | undefined = undefined;
+      if (req.query.tags) {
+        if (typeof req.query.tags === 'string') {
+          tags = (req.query.tags as string).split(',');
+        } else if (Array.isArray(req.query.tags)) {
+          tags = req.query.tags as string[];
+        }
+      }
+
       const query: HotelQueryParams = {
         keyword: req.query.keyword as string,
         city: req.query.city as string,
@@ -30,7 +40,7 @@ export const hotelController = {
         checkOut: req.query.checkOut as string,
         minPrice: req.query.minPrice ? Number(req.query.minPrice) : undefined,
         maxPrice: req.query.maxPrice ? Number(req.query.maxPrice) : undefined,
-        tags: req.query.tags ? (req.query.tags as string).split(',') : undefined,
+        tags,
         sortBy: req.query.sortBy as any,
         order: req.query.order as 'asc' | 'desc',
         page: Number(req.query.page) || 1,

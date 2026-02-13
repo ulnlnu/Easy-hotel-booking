@@ -92,7 +92,7 @@ admin/
 | 用户名 | 密码 | 角色 | 说明 |
 |--------|------|------|------|
 | admin | admin123 | admin | 系统管理员 |
-| manager | admin123 | hotel_admin | 酒店管理员 |
+| hoteladmin | admin123 | hotel_admin | 酒店管理员 |
 
 ---
 

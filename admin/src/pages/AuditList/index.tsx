@@ -6,9 +6,7 @@
 import { useState, useEffect } from 'react';
 import { Table, Button, Space, Tag, Modal, Form, Input, message, Tabs } from 'antd';
 import { CheckOutlined, CloseOutlined, StopOutlined } from '@ant-design/icons';
-import { getHotelListApi, auditHotelApi, updateHotelStatusApi } from '@/services/mockApi';
-// Day 4后切换为真实API：
-// import { getHotelListApi, auditHotelApi, updateHotelStatusApi } from '@/services/api';
+import { getHotelListApi, auditHotelApi, updateHotelStatusApi } from '@/services/api';
 import type { Hotel } from '@shared/types/hotel';
 import { HotelStatus } from '@shared/types/hotel';
 import './index.scss';

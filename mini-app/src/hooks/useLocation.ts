@@ -5,9 +5,7 @@
 
 import { useState, useCallback } from 'react';
 import { useLocationStore } from '@/store/useLocationStore';
-import { getLocationApi } from '@/services/mockApi';
-// Day 4后切换为真实API：
-// import { getLocationApi } from '@/services/api';
+import { getLocationApi } from '@/services/api';
 
 /**
  * 定位Hook

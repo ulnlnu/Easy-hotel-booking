@@ -11,10 +11,13 @@ import type {
   LoginRequest,
   LoginResponse,
   ApiResponse,
+  ApiSuccess,
   HotelQueryParams,
   CreateHotelRequest,
   UpdateHotelRequest,
   HotelListResponse,
+  Hotel,
+  SafeUser,
 } from '@shared/types';
 import { API_CONFIG } from '@shared/constants/config';
 
@@ -89,7 +92,7 @@ export const registerApi = async (data: any): Promise<any> => {
   return apiClient.post('/auth/register', data);
 };
 
-export const getUserInfoApi = async (): Promise<any> => {
+export const getUserInfoApi = async (): Promise<ApiSuccess<SafeUser>> => {
   return apiClient.get('/auth/me');
 };
 
@@ -100,19 +103,19 @@ export const getHotelListApi = async (params: HotelQueryParams): Promise<HotelLi
   return apiClient.get('/hotels', { params });
 };
 
-export const getHotelDetailApi = async (id: string): Promise<any> => {
+export const getHotelDetailApi = async (id: string): Promise<ApiSuccess<Hotel>> => {
   return apiClient.get(`/hotels/${id}`);
 };
 
-export const createHotelApi = async (data: CreateHotelRequest): Promise<any> => {
+export const createHotelApi = async (data: CreateHotelRequest): Promise<ApiSuccess<Hotel>> => {
   return apiClient.post('/hotels', data);
 };
 
-export const updateHotelApi = async (id: string, data: UpdateHotelRequest): Promise<any> => {
+export const updateHotelApi = async (id: string, data: UpdateHotelRequest): Promise<ApiSuccess<Hotel>> => {
   return apiClient.put(`/hotels/${id}`, data);
 };
 
-export const deleteHotelApi = async (id: string): Promise<any> => {
+export const deleteHotelApi = async (id: string): Promise<ApiSuccess<void>> => {
   return apiClient.delete(`/hotels/${id}`);
 };
 
@@ -120,10 +123,13 @@ export const auditHotelApi = async (
   id: string,
   action: 'approve' | 'reject',
   reason?: string
-): Promise<any> => {
+): Promise<ApiSuccess<{ message: string }>> => {
   return apiClient.post(`/hotels/${id}/audit`, { action, reason });
 };
 
-export const updateHotelStatusApi = async (id: string, status: 'online' | 'offline'): Promise<any> => {
+export const updateHotelStatusApi = async (
+  id: string,
+  status: 'online' | 'offline'
+): Promise<ApiSuccess<{ message: string }>> => {
   return apiClient.post(`/hotels/${id}/status`, { status });
 };

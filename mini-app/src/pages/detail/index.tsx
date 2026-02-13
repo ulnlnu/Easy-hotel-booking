@@ -7,9 +7,7 @@ import { useState, useEffect } from 'react';
 import { View, Swiper, SwiperItem, Image, Text, Button } from '@tarojs/components';
 import Taro, { useRouter, useShareAppMessage } from '@tarojs/taro';
 import { Star, Phone, Location, ChevronLeft } from '@nutui/icons-react-taro';
-import { getHotelDetailApi } from '@/services/mockApi';
-// Day 4后切换为真实API：
-// import { getHotelDetailApi } from '@/services/api';
+import { getHotelDetailApi } from '@/services/api';
 import type { Hotel } from '@shared/types/hotel';
 import './index.scss';
 

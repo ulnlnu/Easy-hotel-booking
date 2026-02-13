@@ -16,9 +16,7 @@ import {
 } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useHotelStore } from '@/store/useHotelStore';
-import { getHotelListApi, createHotelApi, updateHotelApi, deleteHotelApi } from '@/services/mockApi';
-// Day 4后切换为真实API：
-// import { getHotelListApi, createHotelApi, updateHotelApi, deleteHotelApi } from '@/services/api';
+import { getHotelListApi, createHotelApi, updateHotelApi, deleteHotelApi } from '@/services/api';
 import type { Hotel, CreateHotelRequest } from '@shared/types/hotel';
 import './index.scss';
 
