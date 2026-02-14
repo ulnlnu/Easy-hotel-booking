@@ -1,9 +1,40 @@
 /**
- * mini-app/src/app.scss
- * 全局样式
+ * =============================================
+ * Mini-app - 全局样式入口
+ * =============================================
+ *
+ * 本文件为 mini-app 端的全局样式入口，包含：
+ * 1. NutUI 主题样式
+ * 2. 设计令牌引入（统一的颜色、间距、字体等 CSS 变量）
+ * 3. 全局样式重置
+ * 4. CSS 变量定义（兼容原有代码）
+ * 5. 通用工具类
+ * 6. 安全区域适配
+ *
+ * 注意：所有组件和页面都应使用 CSS 变量，确保样式一致性。
+ * 详细规范请参考：shared/styles/README.md
  */
 
+/* ============================================
+ * 1. NutUI 主题样式
+ * ============================================ */
 @import '~@nutui/nutui-react-taro/dist/styles/themes/default.scss';
+
+/* ============================================
+ * 2. 引入设计令牌（CSS 变量）
+ * ============================================
+ * 定义了项目的设计规范，包括：
+ * - 颜色系统：--color-primary, --color-text-primary 等
+ * - 间距系统：--spacing-4 ~ --spacing-48
+ * - 字体系统：--font-size-*, --font-weight-*
+ * - 圆角系统：--radius-*
+ * - 阴影系统：--shadow-*
+ */
+@import '../../shared/styles/variables.css';
+
+/* ============================================
+ * 3. 全局样式重置
+ * ============================================ */
 
 * {
   margin: 0;
@@ -19,21 +50,36 @@ page {
   background-color: #f5f5f5;
 }
 
-/* 自定义样式变量 */
+/* ============================================
+ * 4. CSS 变量定义（兼容原有代码）
+ * ============================================
+ * 注意：这些变量与 shared/styles/variables.css 中的定义保持一致
+ * 新代码推荐直接使用 --color-*、--spacing-* 等统一命名
+ */
 :root {
+  /* 主色调 */
   --primary-color: #1890ff;
+  /* 功能色 */
   --success-color: #52c41a;
   --warning-color: #faad14;
   --error-color: #f5222d;
+  /* 文本颜色 */
   --text-color: #333;
   --text-color-secondary: #666;
   --text-color-light: #999;
+  /* 边框和背景 */
   --border-color: #e8e8e8;
   --bg-color: #f5f5f5;
   --bg-white: #fff;
 }
 
-/* 通用类 */
+/* ============================================
+ * 5. 通用工具类
+ * ============================================
+ * 提供常用的布局和样式类，减少重复代码
+ */
+
+/* 容器类 */
 .container {
   min-height: 100vh;
   background-color: var(--bg-color);
@@ -52,6 +98,7 @@ page {
   margin-bottom: 24px;
 }
 
+/* Flex 布局类 */
 .flex {
   display: flex;
 }
@@ -68,7 +115,11 @@ page {
   justify-content: space-between;
 }
 
-/* 安全区域适配 */
+/* ============================================
+ * 6. 安全区域适配
+ * ============================================
+ * 适配 iPhone X 及以上机型的底部安全区域
+ */
 .safe-area-bottom {
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);

@@ -1,0 +1,274 @@
+/**
+ * DateRangePicker 组件样式（基于 Taro 内置组件）
+ */
+
+.daterangepicker-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  z-index: 1000;
+}
+
+.daterangepicker-content {
+  width: 100%;
+  max-height: 85vh;
+  background-color: #fff;
+  border-radius: 24px 24px 0 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* 顶部标题 */
+.daterangepicker-header {
+  text-align: center;
+  margin-bottom: 16px;
+
+  .daterangepicker-title {
+    display: block;
+    font-size: 36px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .daterangepicker-selected {
+    display: block;
+    font-size: 28px;
+    color: #1890ff;
+    font-weight: 500;
+  }
+}
+
+/* 步骤指示器 */
+.daterangepicker-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #f5f5f5;
+      color: #999;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .step-text {
+      font-size: 12px;
+      color: #999;
+      transition: all 0.2s;
+    }
+
+    &.active {
+      .step-number {
+        background-color: #1890ff;
+        color: #fff;
+      }
+
+      .step-text {
+        color: #1890ff;
+        font-weight: 500;
+      }
+    }
+
+    &.completed {
+      .step-number {
+        background-color: #52c41a;
+        color: #fff;
+      }
+
+      .step-text {
+        color: #52c41a;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .step-line {
+    width: 40px;
+    height: 2px;
+    background-color: #f5f5f5;
+    margin: 0 4px;
+  }
+}
+
+/* 日历区域 */
+.daterangepicker-calendar {
+  flex: 1;
+  min-height: 500px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.calendar-month {
+  margin-bottom: 24px;
+}
+
+.calendar-month-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.calendar-weekdays {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.calendar-weekday {
+  width: 14.28%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: #666;
+}
+
+.calendar-days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar-day {
+  width: 14.28%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  border-radius: 8px;
+  margin-bottom: 2px;
+  background: #fff;
+  transition: all 0.2s;
+
+  &.empty {
+    background: transparent;
+  }
+
+  &.today {
+    color: #1890ff;
+    font-weight: 600;
+    border: 2px solid #1890ff;
+  }
+
+  // 入住日期选中样式（浅蓝色背景，深蓝色文字）
+  &.checkin-selected {
+    background-color: #e6f7ff !important;
+    color: #1890ff !important;
+    font-weight: 600;
+    border: 2px solid #1890ff;
+  }
+
+  // 离店日期选中样式（绿色背景，白色文字）
+  &.checkout-selected {
+    background-color: #52c41a !important;
+    color: #fff !important;
+    font-weight: 600;
+  }
+
+  // 通用选中样式（作为后备，不应该单独使用）
+  &:not(.checkin-selected):not(.checkout-selected).selected {
+    background-color: #1890ff !important;
+    color: #fff !important;
+  }
+
+  &.disabled {
+    color: #ccc !important;
+    background-color: #f5f5f5 !important;
+    cursor: not-allowed;
+  }
+
+  .day-number {
+    font-size: 28px;
+  }
+}
+
+/* 底部操作栏 */
+.daterangepicker-footer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  .reset-btn,
+  .cancel-btn,
+  .confirm-btn {
+    flex: 1;
+    height: 88px;
+    border-radius: 8px;
+    font-size: 28px;
+  }
+
+  .reset-btn,
+  .cancel-btn {
+    background-color: #f5f5f5;
+    border: none;
+    color: #666;
+
+    &:active {
+      background-color: #e8e8e8;
+    }
+  }
+
+  .confirm-btn {
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+
+    &[disabled] {
+      background-color: #ccc;
+      color: #fff;
+    }
+
+    &:active:not([disabled]) {
+      background-color: #096dd9;
+    }
+  }
+}
+
+/* 提示信息 */
+.daterangepicker-tip {
+  text-align: center;
+  margin-top: 8px;
+
+  .tip-text {
+    font-size: 24px;
+    color: #999;
+  }
+}

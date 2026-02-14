@@ -3,16 +3,13 @@
  * 通用配置（前后端共用）
  */
 
-// 声明 process 为全局变量（兼容 Node.js 环境）
-declare const process: any | undefined;
-
 /**
  * API配置
  */
 export const API_CONFIG = {
   BASE_URL: (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'production')
-    ? 'https://api.yisu.com'
-    : 'http://localhost:3000',
+    ? 'https://api.yisu.com/api'
+    : 'http://localhost:3000/api',
   TIMEOUT: 10000,
   DEFAULT_PAGE: 1,
   DEFAULT_PAGE_SIZE: 10,

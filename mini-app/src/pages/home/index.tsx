@@ -9,6 +9,8 @@ import Taro from '@tarojs/taro';
 import { Search, Location, Clock } from '@nutui/icons-react-taro';
 import { useHotelStore } from '@/store/useHotelStore';
 import { useLocation } from '@/hooks/useLocation';
+import DateRangePicker from '@/components/DateRangePicker';
+import { formatDate, calculateNights } from '@/utils/date';
 import './index.scss';
 
 function Home() {
@@ -64,6 +66,24 @@ function Home() {
     setShowCalendar(true);
   };
 
+  /**
+   * 日期范围确认
+   */
+  const handleDateConfirm = (data: { checkIn: string; checkOut: string; nights: number }) => {
+    setSearchParams({
+      checkIn: data.checkIn,
+      checkOut: data.checkOut,
+    });
+    setShowCalendar(false);
+  };
+
+  /**
+   * 日期选择取消
+   */
+  const handleDateCancel = () => {
+    setShowCalendar(false);
+  };
+
   return (
     <View className="home-page">
       {/* 头部背景 */}
@@ -95,17 +115,34 @@ function Home() {
           </View>
         </View>
 
-        {/* 入住/离店日期 */}
+        {/* 入住日期 */}
         <View className="form-item" onClick={handleSelectDate}>
           <View className="item-label">
             <Clock size="16" />
-            <Text>入住离店</Text>
+            <Text>入住日期</Text>
           </View>
           <View className="item-input">
             <Text className="date-text">
               {searchParams.checkIn ? (
+                searchParams.checkIn
+              ) : (
+                <Text className="placeholder">选择入住日期</Text>
+              )}
+            </Text>
+          </View>
+        </View>
+
+        {/* 离店日期 */}
+        <View className="form-item" onClick={handleSelectDate}>
+          <View className="item-label">
+            <Clock size="16" />
+            <Text>离店日期</Text>
+          </View>
+          <View className="item-input">
+            <Text className="date-text">
+              {searchParams.checkOut ? (
                 <>
-                  {searchParams.checkIn} 至 {searchParams.checkOut}
+                  {searchParams.checkOut}
                   {'\n'}
                   <Text className="nights">
                     {searchParams.checkOut && searchParams.checkIn
@@ -122,7 +159,7 @@ function Home() {
                   </Text>
                 </>
               ) : (
-                <Text className="placeholder">选择入住和离店日期</Text>
+                <Text className="placeholder">选择离店日期</Text>
               )}
             </Text>
           </View>
@@ -170,6 +207,21 @@ function Home() {
           ))}
         </View>
       </View>
+
+      {/* 日期选择器 */}
+      <DateRangePicker
+        visible={showCalendar}
+        value={
+          searchParams.checkIn && searchParams.checkOut
+            ? {
+                checkIn: searchParams.checkIn,
+                checkOut: searchParams.checkOut,
+              }
+            : undefined
+        }
+        onConfirm={handleDateConfirm}
+        onCancel={handleDateCancel}
+      />
     </View>
   );
 }

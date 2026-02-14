@@ -4,24 +4,19 @@
  */
 
 import express from 'express';
-import cors from 'cors';
 import helmet from 'helmet';
 import routes from './routes';
 import { errorHandler } from './middleware/error';
 import { ApiError } from './utils/errors';
+import corsConfig from './middleware/cors';
 
 const app = express();
 
 // 安全中间件
 app.use(helmet());
 
-// CORS配置
-app.use(
-  cors({
-    origin: ['http://localhost:5173', 'http://localhost:10086'], // PC端和移动端H5
-    credentials: true,
-  })
-);
+// CORS配置 - 使用统一的CORS配置
+app.use(corsConfig);
 
 // 解析JSON请求体
 app.use(express.json());
