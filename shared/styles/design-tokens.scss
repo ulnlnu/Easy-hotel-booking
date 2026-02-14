@@ -1,0 +1,278 @@
+/**
+ * =============================================
+ * 易宿酒店预订平台 - 设计令牌 (Design Tokens)
+ * =============================================
+ *
+ * 本文件定义了整个项目的设计规范，包括颜色、间距、字体、圆角等。
+ * 所有端（admin、mini-app）都应遵循这些规范，确保视觉一致性。
+ *
+ * 使用方式：
+ *   - SCSS 文件中: @import '@shared/styles/design-tokens.scss';
+ *   - 使用变量: color: $color-primary;
+ *
+ * 修改规范前请与团队确认，避免影响其他页面。
+ */
+
+// ============================================
+// 颜色系统 (Colors)
+// ============================================
+
+// 品牌色 (Brand Colors)
+$color-primary: #1890ff;        // 主色 - 用于主要操作、强调
+$color-primary-hover: #40a9ff;  // 主色悬停
+$color-primary-active: #096dd9;  // 主色激活
+$color-primary-light: #e6f7ff;  // 主色浅色背景
+
+$color-success: #52c41a;        // 成功色
+$color-success-light: #f6ffed;  // 成功浅色背景
+
+$color-warning: #faad14;        // 警告色
+$color-warning-light: #fffbe6;  // 警告浅色背景
+
+$color-error: #f5222d;          // 错误色
+$color-error-light: #fff1f0;    // 错误浅色背景
+
+$color-info: #1890ff;           // 信息色（复用主色）
+
+// 中性色 (Neutral Colors)
+$color-text-primary: #333333;     // 主要文本
+$color-text-secondary: #666666;   // 次要文本
+$color-text-tertiary: #999999;    // 辅助文本
+$color-text-placeholder: #bfbfbf; // 占位符文本
+
+$color-border-base: #e8e8e8;      // 基础边框
+$color-border-light: #f0f0f0;     // 浅色边框
+$color-border-dark: #d9d9d9;      // 深色边框
+
+$color-bg-page: #f5f5f5;          // 页面背景
+$color-bg-container: #ffffff;     // 容器背景
+$color-bg-hover: #f5f5f5;         // 悬停背景
+$color-bg-active: #e6f7ff;         // 激活背景
+
+// 功能色 (Functional Colors)
+$color-link: $color-primary;
+$color-price: #ff4d4f;            // 价格色
+$color-rating: #ffc107;           // 评分星级
+
+// 禁用状态
+$color-disabled-bg: #f5f5f5;
+$color-disabled-border: #d9d9d9;
+$color-disabled-text: #bfbfbf;
+
+// ============================================
+// 间距系统 (Spacing)
+// ============================================
+// 使用 4px 基础单位的倍数，保持一致的视觉韵律
+
+$spacing-0: 0;
+$spacing-4: 4px;    // 0.25rem - 极小间距
+$spacing-8: 8px;    // 0.5rem  - 小间距
+$spacing-12: 12px;  // 0.75rem - 中小间距
+$spacing-16: 16px;  // 1rem    - 标准间距
+$spacing-20: 20px;  // 1.25rem - 中大间距
+$spacing-24: 24px;  // 1.5rem  - 大间距
+$spacing-32: 32px;  // 2rem    - 超大间距
+$spacing-40: 40px;  // 2.5rem  - 特大间距
+$spacing-48: 48px;  // 3rem    - 区块间距
+
+// 语义化间距别名
+$spacing-xs: $spacing-4;
+$spacing-sm: $spacing-8;
+$spacing-md: $spacing-12;
+$spacing-base: $spacing-16;
+$spacing-lg: $spacing-24;
+$spacing-xl: $spacing-32;
+
+// 组件内边距
+$padding-card: $spacing-24;       // 卡片内边距
+$padding-button: $spacing-12 $spacing-16; // 按钮内边距
+$padding-input: $spacing-8 $spacing-12;    // 输入框内边距
+
+// ============================================
+// 字体系统 (Typography)
+// ============================================
+
+// 字体族
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'Noto Color Emoji';
+$font-family-code: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+// 字号 (PC端)
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+
+// 字重
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// 行高
+$line-height-xs: 1.25;
+$line-height-sm: 1.5;
+$line-height-base: 1.5714; // 22/16 ≈ 1.37，Ant Design 默认
+$line-height-lg: 1.6;
+
+// 字号 (移动端 - 750px 设计稿标准)
+// 注意：移动端使用 Taro 的 pxtransform 转换，以下值对应设计稿尺寸
+$font-size-mobile-xs: 20px;   // 转换后约为 10px
+$font-size-mobile-sm: 24px;   // 转换后约为 12px
+$font-size-mobile-base: 28px; // 转换后约为 14px
+$font-size-mobile-lg: 32px;   // 转换后约为 16px
+$font-size-mobile-xl: 36px;   // 转换后约为 18px
+$font-size-mobile-xxl: 44px;  // 转换后约为 22px
+
+// ============================================
+// 圆角系统 (Border Radius)
+// ============================================
+
+$radius-xs: 2px;
+$radius-sm: 4px;
+$radius-base: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-round: 50%;
+
+// ============================================
+// 阴影系统 (Shadows)
+// ============================================
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
+$shadow-base: 0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.16);
+
+// ============================================
+// 层级控制 (Z-Index)
+// ============================================
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// ============================================
+// 过渡动画 (Transitions)
+// ============================================
+
+$transition-base: all 0.2s ease-in-out;
+$transition-fast: all 0.15s ease-in-out;
+$transition-slow: all 0.3s ease-in-out;
+
+// ============================================
+// 断点 (Breakpoints) - PC端响应式
+// ============================================
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1600px;
+
+// ============================================
+// 组件特定尺寸
+// ============================================
+
+// 侧边栏
+$sidebar-width: 240px;
+$sidebar-collapsed-width: 64px;
+$sidebar-header-height: 64px;
+
+// Header
+$header-height: 64px;
+
+// 卡片
+$card-padding: $spacing-24;
+$card-radius: $spacing-lg; // 12px
+
+// 按钮高度
+$button-height-sm: 28px;
+$button-height-base: 36px;
+$button-height-lg: 44px;
+
+// 输入框高度
+$input-height-sm: 28px;
+$input-height-base: 36px;
+$input-height-lg: 44px;
+
+// ============================================
+// 混合宏 (Mixins)
+// ============================================
+
+// 文本溢出省略
+@mixin text-ellipsis($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// Flexbox 居中
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox 两端对齐
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 清除浮动
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// 响应式断点
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+}
+
+// 滚动条样式（PC端）
+@mixin custom-scrollbar($width: 8px, $track-color: #f1f1f1, $thumb-color: #c1c1c1) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $radius-sm;
+    &:hover {
+      background: darken($thumb-color, 10%);
+    }
+  }
+}

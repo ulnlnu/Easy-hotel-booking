@@ -1,0 +1,11 @@
+{
+  "name": "@shared/types",
+  "version": "1.0.0",
+  "description": "易宿酒店预订平台 - 共享类型、常量和样式规范（源文件，直接通过路径别名引用）",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./styles/design-tokens.scss": "./styles/design-tokens.scss",
+    "./styles/variables.css": "./styles/variables.css"
+  }
+}

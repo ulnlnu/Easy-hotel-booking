@@ -1,0 +1,125 @@
+/**
+ * =============================================
+ * 易宿酒店预订平台 - CSS 变量定义
+ * =============================================
+ *
+ * 本文件定义了 CSS 自定义属性（Custom Properties / CSS Variables）
+ * 用于需要使用 CSS 变量的场景（如 mini-app 的 :root 变量）
+ *
+ * 使用方式：
+ *   - 在 CSS/SCSS 文件中引入: @import '@shared/styles/variables.css';
+ *   - 使用变量: color: var(--color-primary);
+ *
+ * 注意：这些变量与 design-tokens.scss 中的变量保持一致。
+ */
+
+:root {
+  /* ============================================
+   * 颜色系统 (Colors)
+   * ============================================ */
+
+  /* 品牌色 */
+  --color-primary: #1890ff;
+  --color-primary-hover: #40a9ff;
+  --color-primary-active: #096dd9;
+  --color-primary-light: #e6f7ff;
+
+  --color-success: #52c41a;
+  --color-success-light: #f6ffed;
+
+  --color-warning: #faad14;
+  --color-warning-light: #fffbe6;
+
+  --color-error: #f5222d;
+  --color-error-light: #fff1f0;
+
+  --color-info: #1890ff;
+
+  /* 中性色 */
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-text-tertiary: #999999;
+  --color-text-placeholder: #bfbfbf;
+
+  --color-border-base: #e8e8e8;
+  --color-border-light: #f0f0f0;
+  --color-border-dark: #d9d9d9;
+
+  --color-bg-page: #f5f5f5;
+  --color-bg-container: #ffffff;
+  --color-bg-hover: #f5f5f5;
+  --color-bg-active: #e6f7ff;
+
+  /* 功能色 */
+  --color-link: #1890ff;
+  --color-price: #ff4d4f;
+  --color-rating: #ffc107;
+
+  /* 禁用状态 */
+  --color-disabled-bg: #f5f5f5;
+  --color-disabled-border: #d9d9d9;
+  --color-disabled-text: #bfbfbf;
+
+  /* ============================================
+   * 间距系统 (Spacing)
+   * ============================================ */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+
+  /* ============================================
+   * 字体系统 (Typography)
+   * ============================================ */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-xs: 1.25;
+  --line-height-sm: 1.5;
+  --line-height-base: 1.5714;
+  --line-height-lg: 1.6;
+
+  /* ============================================
+   * 圆角系统 (Border Radius)
+   * ============================================ */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-base: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-round: 50%;
+
+  /* ============================================
+   * 阴影系统 (Shadows)
+   * ============================================ */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-base: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.16);
+
+  /* ============================================
+   * 过渡动画 (Transitions)
+   * ============================================ */
+  --transition-base: all 0.2s ease-in-out;
+  --transition-fast: all 0.15s ease-in-out;
+  --transition-slow: all 0.3s ease-in-out;
+}
