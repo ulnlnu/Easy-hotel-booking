@@ -12,9 +12,13 @@ export const corsConfig = cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
       'http://localhost:5173', // PC管理端
+      'http://localhost:5174', // PC管理端备用端口
+      'http://localhost:5175', // PC管理端备用端口
       'http://localhost:10086', // 移动端H5（Taro配置）
       'http://localhost:1565', // 移动端H5（Python服务器）
       'http://127.0.0.1:5173',
+      'http://127.0.0.1:5174',
+      'http://127.0.0.1:5175',
       'http://127.0.0.1:10086',
       'http://127.0.0.1:1565',
     ];
