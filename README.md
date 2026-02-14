@@ -15,7 +15,7 @@
 - [ ] **启动前端**：
   - [ ] 移动端：`pnpm dev:mini-app:h5`
   - [ ] PC端：`pnpm dev:admin`
-- [ ] **验证运行**：访问 http://localhost:10086（移动端）或 http://localhost:5173（PC端）
+- [ ] **验证运行**：访问移动端显示的端口（通常是 10086，如被占用可能自动切换到其他端口如 1565）或 http://localhost:5173（PC端）
 
 ---
 
@@ -164,7 +164,7 @@ cd admin && pnpm dev
 
 | 端 | URL | 说明 |
 |---|-----|------|
-| 移动端 H5 | http://localhost:10086 | 用户端（Taro H5） |
+| 移动端 H5 | http://localhost:10086 （如被占用可能自动切换） | 用户端（Taro H5） - **查看控制台输出的实际端口** |
 | 移动端小程序 | 微信开发者工具导入 `mini-app/project.config.json` | 微信小程序 |
 | PC 管理端 | http://localhost:5173 | 管理后台 |
 | 后端 API | http://localhost:3000 | API 服务 |
@@ -196,8 +196,8 @@ cp admin/.env.example admin/.env
 curl http://localhost:3000/api/health
 
 # 解决方案 2：检查 CORS 配置是否包含前端端口
-# 编辑 server/.env
-CORS_ORIGINS=http://localhost:5173,http://localhost:10086,http://localhost:1565
+# 编辑 server/.env，添加所有可能的端口（Taro 可能自动切换）
+CORS_ORIGINS=http://localhost:5173,http://localhost:10086,http://localhost:1565,http://localhost:8080
 
 # 解决方案 3：检查 shared/constants/config.ts 中 BASE_URL 是否正确
 BASE_URL=http://localhost:3000/api  # 注意 /api 后缀
@@ -205,17 +205,26 @@ BASE_URL=http://localhost:3000/api  # 注意 /api 后缀
 
 #### 问题：移动端 H5 端口不是 10086
 ```bash
-# 说明：Taro 可能自动选择其他端口（如 1565）
-# 查看实际启动端口的控制台输出
-# 如需固定端口，编辑 mini-app/config/index.ts 添加：
-export default defineConfig({
+# 说明：Taro 可能因端口被占用自动选择其他端口（如 1565）
+# 当前配置的端口：mini-app/config/index.ts 第 42 行
+# 实际运行端口：查看控制台输出的 "App running at: http://localhost:XXXX"
+
+# 解决方案 1：使用自动分配的端口（推荐）
+# 优点：无需手动解决端口冲突，Taro 自动选择可用端口
+# 操作：直接使用控制台输出的实际端口访问即可
+
+# 解决方案 2：固定端口为 10086
+# 步骤 1：确保端口未被占用（Windows 使用 netstat -ano | findstr :10086）
+# 步骤 2：编辑 mini-app/config/index.ts，确认 h5.port 配置正确
+# 步骤 3：重启开发服务器
+pnpm dev:mini-app:h5
+
+# 解决方案 3：固定端口为其他值
+# 编辑 mini-app/config/index.ts，修改第 42 行：
+h5: {
+  port: 8080  # 改为其他端口
   // ...
-  h5: {
-    devServer: {
-      port: 10086
-    }
-  }
-})
+}
 ```
 
 #### 问题：shared 模块找不到
