@@ -5,13 +5,16 @@
 
 import { useState, useEffect } from 'react';
 import { Table, Button, Space, Tag, Modal, Form, Input, message, Tabs, Radio } from 'antd';
-import { CheckOutlined, CloseOutlined, StopOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined, StopOutlined, EyeOutlined } from '@ant-design/icons';
 import { getHotelListApi, auditHotelApi, updateHotelStatusApi } from '@/services/api';
+import { useAuthStore } from '@/store/useAuthStore';
 import type { Hotel } from '@shared/types/hotel';
+import { UserRole } from '@shared/types/user';
 import { HotelStatus } from '@shared/types/hotel';
 import './index.scss';
 
 function AuditList() {
+  const { user } = useAuthStore(); // ✅ 获取当前登录用户
   const [loading, setLoading] = useState(false);
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [activeTab, setActiveTab] = useState('pending');
@@ -19,6 +22,10 @@ function AuditList() {
   const [auditModalVisible, setAuditModalVisible] = useState(false);
   const [currentHotel, setCurrentHotel] = useState<Hotel | null>(null);
   const [auditForm] = Form.useForm();
+
+  // ✅ 查看拒绝原因的 Modal
+  const [reasonModalVisible, setReasonModalVisible] = useState(false);
+  const [currentReason, setCurrentReason] = useState<string>('');
 
   useEffect(() => {
     fetchHotels();
@@ -34,11 +41,18 @@ function AuditList() {
         offline: HotelStatus.OFFLINE,
       };
 
-      const response = await getHotelListApi({
+      const params: any = {
         page: 1,
         pageSize: 100,
-        includeAll: true, // ✅ 添加：包含所有状态（管理端需要查看 pending, approved, rejected, offline）
-      });
+        includeAll: true,
+      };
+
+      // ✅ 酒店管理员只能看到自己创建的酒店
+      if (user?.role === UserRole.HOTEL_ADMIN) {
+        params.createdBy = user.id;
+      }
+
+      const response = await getHotelListApi(params);
 
       if (response.success) {
         // 根据当前标签页筛选
@@ -79,6 +93,11 @@ function AuditList() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleViewReason = (hotel: Hotel) => {
+    setCurrentReason(hotel.rejectionReason || '无拒绝原因');
+    setReasonModalVisible(true);
   };
 
   const handleStatusChange = async (hotel: Hotel, status: 'online' | 'offline') => {
@@ -167,7 +186,16 @@ function AuditList() {
             </Button>
           )}
           {record.status === HotelStatus.REJECTED && (
-            <Tag color="red">已拒绝</Tag>
+            <>
+              <Tag color="red">已拒绝</Tag>
+              <Button
+                type="link"
+                icon={<EyeOutlined />}
+                onClick={() => handleViewReason(record)}
+              >
+                查看拒绝原因
+              </Button>
+            </>
           )}
         </Space>
       ),
@@ -257,6 +285,22 @@ function AuditList() {
             </Form>
           </div>
         )}
+      </Modal>
+
+      {/* ✅ 查看拒绝原因的 Modal */}
+      <Modal
+        title="拒绝原因"
+        open={reasonModalVisible}
+        onCancel={() => setReasonModalVisible(false)}
+        footer={[
+          <Button key="close" onClick={() => setReasonModalVisible(false)}>
+            关闭
+          </Button>,
+        ]}
+      >
+        <p style={{ fontSize: 16, lineHeight: 1.8 }}>
+          {currentReason}
+        </p>
       </Modal>
     </div>
   );

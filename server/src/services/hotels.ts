@@ -137,6 +137,11 @@ export const hotelService = {
       hotels = hotels.filter(h => h.status === HotelStatus.APPROVED);
     }
 
+    // ✅ 创建者筛选（酒店管理员只能看到自己创建的酒店）
+    if (params.createdBy) {
+      hotels = hotels.filter(h => h.createdBy === params.createdBy);
+    }
+
     // 排序
     if (params.sortBy === 'price') {
       // 按最低价格排序
@@ -273,10 +278,19 @@ export const hotelService = {
         }))
       : hotels[index].roomTypes;
 
+    // ✅ 如果酒店状态是 approved 或 rejected，编辑后重置为 pending（需要重新审核）
+    const updatedStatus =
+      hotels[index].status === HotelStatus.APPROVED ||
+      hotels[index].status === HotelStatus.REJECTED
+        ? HotelStatus.PENDING
+        : hotels[index].status;
+
     hotels[index] = {
       ...hotels[index],
       ...data,
       roomTypes,
+      status: updatedStatus,
+      ...(updatedStatus === HotelStatus.PENDING ? { rejectionReason: undefined } : {}), // 移除拒绝原因
       updatedAt: new Date().toISOString(),
     } as Hotel;
 
@@ -296,7 +310,15 @@ export const hotelService = {
       throw new Error('酒店不存在');
     }
 
-    hotels[index].status = action === 'approve' ? HotelStatus.APPROVED : HotelStatus.REJECTED;
+    // ✅ 设置审核状态和拒绝原因
+    if (action === 'approve') {
+      hotels[index].status = HotelStatus.APPROVED;
+      delete hotels[index].rejectionReason; // 移除拒绝原因
+    } else {
+      hotels[index].status = HotelStatus.REJECTED;
+      hotels[index].rejectionReason = reason || ''; // 保存拒绝原因
+    }
+
     hotels[index].updatedAt = new Date().toISOString();
 
     await writeHotels(hotels);

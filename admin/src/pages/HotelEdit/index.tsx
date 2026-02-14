@@ -13,16 +13,20 @@ import {
   Modal,
   message,
   Popconfirm,
+  Tag,
 } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useHotelStore } from '@/store/useHotelStore';
+import { useAuthStore } from '@/store/useAuthStore';
 import { getHotelListApi, createHotelApi, updateHotelApi, deleteHotelApi } from '@/services/api';
 import type { Hotel, CreateHotelRequest } from '@shared/types/hotel';
+import { UserRole } from '@shared/types/user';
 import './index.scss';
 
 function HotelEdit() {
   const { hotels, total, loading, setHotels, setLoading, addHotel, updateHotel, removeHotel } =
     useHotelStore();
+  const { user } = useAuthStore(); // ✅ 获取当前登录用户
 
   const [form] = Form.useForm();
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -35,12 +39,19 @@ function HotelEdit() {
   const fetchHotels = async () => {
     setLoading(true);
     try {
-      // [管理端] 添加 includeAll: true 以查看所有状态的酒店
-      const response = await getHotelListApi({
+      // ✅ 根据用户角色决定是否过滤酒店
+      const params: any = {
         page: 1,
         pageSize: 100,
         includeAll: true, // 包含所有状态：pending, approved, rejected, offline
-      });
+      };
+
+      // 酒店管理员只能看到自己创建的酒店
+      if (user?.role === UserRole.HOTEL_ADMIN) {
+        params.createdBy = user.id;
+      }
+
+      const response = await getHotelListApi(params);
       if (response.success) {
         setHotels(response.data, response.total);
       }
@@ -125,6 +136,12 @@ function HotelEdit() {
   };
 
   const handleDelete = async (id: string) => {
+    // ✅ 权限检查：只有系统管理员可以删除酒店
+    if (user?.role !== UserRole.ADMIN) {
+      message.error('只有系统管理员可以删除酒店');
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await deleteHotelApi(id);
@@ -175,8 +192,17 @@ function HotelEdit() {
           offline: { text: '已下线', color: 'gray' },
         };
         const s = statusMap[status] || { text: status, color: 'default' };
-        return <span style={{ color: s.color }}>{s.text}</span>;
+        return <Tag color={s.color}>{s.text}</Tag>;
       },
+    },
+    {
+      title: '创建者',
+      dataIndex: 'createdBy',
+      key: 'createdBy',
+      width: 150,
+      render: (createdBy: string) => (
+        <span>{createdBy === user?.id ? '我' : createdBy}</span>
+      ),
     },
     {
       title: '操作',
@@ -191,16 +217,19 @@ function HotelEdit() {
           >
             编辑
           </Button>
-          <Popconfirm
-            title="确定要删除这个酒店吗？"
-            onConfirm={() => handleDelete(record.id)}
-            okText="确定"
-            cancelText="取消"
-          >
-            <Button type="link" danger icon={<DeleteOutlined />}>
-              删除
-            </Button>
-          </Popconfirm>
+          {/* ✅ 只有系统管理员可以删除酒店 */}
+          {user?.role === UserRole.ADMIN && (
+            <Popconfirm
+              title="确定要删除这个酒店吗？"
+              onConfirm={() => handleDelete(record.id)}
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button type="link" danger icon={<DeleteOutlined />}>
+                删除
+              </Button>
+            </Popconfirm>
+          )}
         </Space>
       ),
     },

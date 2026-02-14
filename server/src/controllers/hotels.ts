@@ -33,6 +33,9 @@ export const hotelController = {
         }
       }
 
+      // ✅ 处理 includeAll 参数（将字符串转换为布尔值）
+      const includeAll = req.query.includeAll === 'true' || req.query.includeAll === true;
+
       const query: HotelQueryParams = {
         keyword: req.query.keyword as string,
         city: req.query.city as string,
@@ -42,7 +45,8 @@ export const hotelController = {
         maxPrice: req.query.maxPrice ? Number(req.query.maxPrice) : undefined,
         tags,
         status: req.query.status as string,  // 支持状态筛选
-        includeAll: req.query.includeAll === 'true' || req.query.includeAll === true,  // 支持包含所有状态
+        includeAll,  // ✅ 使用转换后的布尔值
+        createdBy: req.query.createdBy as string,  // ✅ 支持创建者筛选（酒店管理员只能看到自己创建的酒店）
         sortBy: req.query.sortBy as any,
         order: req.query.order as 'asc' | 'desc',
         page: Number(req.query.page) || 1,
@@ -165,8 +169,8 @@ export const hotelController = {
       // [调试日志 4] 捕获并详细打印错误信息
       console.log('[创建酒店 - Controller] 捕获到错误:');
       console.log('[创建酒店 - Controller] 错误名称:', error?.constructor?.name);
-      console.log('[创建酒店 - Controller] 错误消息:', error?.message);
-      console.log('[创建酒店 - Controller] 错误堆栈:', error?.stack);
+      console.log('[创建酒店 - Controller] 错误消息:', (error as any)?.message);
+      console.log('[创建酒店 - Controller] 错误堆栈:', (error as any)?.stack);
       next(error);
     }
   },

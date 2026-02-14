@@ -35,6 +35,7 @@ export interface Hotel {
   facilities: string[]; // 设施列表（如"WiFi"、"空调"）
   roomTypes: RoomType[]; // 房型列表
   status: HotelStatus; // 审核状态
+  rejectionReason?: string; // 拒绝原因（仅当 status 为 'rejected' 时存在）
   createdBy: string; // 创建者ID
   createdAt: string; // 创建时间（ISO 8601）
   updatedAt: string; // 更新时间（ISO 8601）
@@ -53,6 +54,7 @@ export interface HotelQueryParams {
   tags?: string[]; // 标签筛选
   status?: string; // 状态筛选（如 "pending", "approved"）
   includeAll?: boolean; // 是否包含所有状态（管理端使用）
+  createdBy?: string; // 创建者筛选（酒店管理员只能看到自己创建的酒店）
   location?: {
     // 定位搜索
     lat: number;
