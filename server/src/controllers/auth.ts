@@ -140,6 +140,44 @@ export const authController = {
   },
 
   /**
+   * 更新当前用户信息
+   */
+  updateMe: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = (req as any).userId;
+      const { realName, phone, email } = req.body;
+
+      if (!userId) {
+        throw new ApiError(401, '未授权');
+      }
+
+      const user = await authService.findById(userId);
+      if (!user) {
+        throw new ApiError(404, '用户不存在');
+      }
+
+      // 更新允许修改的字段
+      const updates: any = {};
+      if (realName) updates.realName = realName;
+      if (phone) updates.phone = phone;
+      if (email !== undefined) updates.email = email;
+
+      await authService.update(userId, updates);
+
+      const updatedUser = await authService.findById(userId);
+      const { password, ...safeUser } = updatedUser!;
+
+      res.json({
+        success: true,
+        data: safeUser,
+        message: '个人信息更新成功',
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  /**
    * 修改密码
    */
   changePassword: async (req: Request, res: Response, next: NextFunction) => {
@@ -272,6 +310,41 @@ export const authController = {
       res.json({
         success: true,
         message: '用户删除成功',
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  /**
+   * 注销账号（需要密码确认）
+   */
+  deleteAccount: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = (req as any).userId;
+      const { password } = req.body;
+
+      if (!password) {
+        throw new ApiError(400, '请输入密码确认');
+      }
+
+      const user = await authService.findById(userId);
+      if (!user) {
+        throw new ApiError(404, '用户不存在');
+      }
+
+      // 验证密码
+      const isValidPassword = await comparePassword(password, user.password);
+      if (!isValidPassword) {
+        throw new ApiError(401, '密码错误');
+      }
+
+      // 删除用户账号
+      await authService.delete(userId);
+
+      res.json({
+        success: true,
+        message: '账号已注销',
       });
     } catch (error) {
       next(error);

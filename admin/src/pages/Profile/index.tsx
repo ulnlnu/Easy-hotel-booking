@@ -8,13 +8,13 @@ import { Card, Descriptions, Button, Space, message, Modal, Form, Input, Popconf
 import { UserOutlined, EditOutlined, LockOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/useAuthStore';
-import { getUserInfoApi, deleteAccountApi } from '@/services/api';
+import { getUserInfoApi, updateProfileApi, deleteAccountApi } from '@/services/api';
 import type { SafeUser } from '@shared/types/user';
 import './index.scss';
 
 function Profile() {
   const navigate = useNavigate();
-  const { user, logout } = useAuthStore();
+  const { user, logout, setUser } = useAuthStore();
   const [loading, setLoading] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -31,7 +31,11 @@ function Profile() {
   const handleEditProfile = async (values: { realName: string; phone: string; email?: string }) => {
     setLoading(true);
     try {
-      // TODO: 调用更新个人信息API
+      const res = await updateProfileApi(values);
+
+      // 更新本地用户信息
+      setUser(res.data);
+
       message.success('个人信息更新成功');
       setIsEditModalOpen(false);
     } catch (error: any) {
@@ -175,7 +179,6 @@ function Profile() {
           setIsDeleteModalOpen(false);
           setDeletePassword('');
         }}
-        footer={null}
       >
         <div style={{ textAlign: 'center', padding: '20px 0' }}>
           <p style={{ marginBottom: '16px' }}>
@@ -185,17 +188,26 @@ function Profile() {
             <ExclamationCircleOutlined style={{ marginRight: '8px' }} />
             注销后账号将被<strong>永久删除</strong>，无法恢复
           </p>
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: '请输入密码' }]}
-          >
-            <Input.Password
-              placeholder="请输入密码确认"
-              value={deletePassword}
-              onChange={(e) => setDeletePassword(e.target.value)}
-              onPressEnter={() => handleDeleteAccount()}
-            />
-          </Form.Item>
+          <Input.Password
+            placeholder="请输入密码确认"
+            value={deletePassword}
+            onChange={(e) => setDeletePassword(e.target.value)}
+            onPressEnter={() => handleDeleteAccount()}
+            style={{ marginBottom: '16px' }}
+          />
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <Space>
+            <Button onClick={() => {
+              setIsDeleteModalOpen(false);
+              setDeletePassword('');
+            }}>
+              取消
+            </Button>
+            <Button danger type="primary" loading={loading} onClick={() => handleDeleteAccount()}>
+              确认注销
+            </Button>
+          </Space>
         </div>
       </Modal>
     </div>

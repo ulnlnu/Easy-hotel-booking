@@ -97,6 +97,21 @@ export const getUserInfoApi = async (): Promise<ApiSuccess<SafeUser>> => {
   return apiClient.get('/auth/me');
 };
 
+export const changePasswordApi = async (data: {
+  oldPassword: string;
+  newPassword: string;
+}): Promise<ApiSuccess<{ message: string }>> => {
+  return apiClient.post('/auth/change-password', data);
+};
+
+export const updateProfileApi = async (data: {
+  realName: string;
+  phone: string;
+  email?: string;
+}): Promise<ApiSuccess<SafeUser>> => {
+  return apiClient.put('/auth/me', data);
+};
+
 /**
  * 酒店相关API
  */
