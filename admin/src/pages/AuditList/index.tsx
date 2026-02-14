@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Table, Button, Space, Tag, Modal, Form, Input, message, Tabs } from 'antd';
+import { Table, Button, Space, Tag, Modal, Form, Input, message, Tabs, Radio } from 'antd';
 import { CheckOutlined, CloseOutlined, StopOutlined } from '@ant-design/icons';
 import { getHotelListApi, auditHotelApi, updateHotelStatusApi } from '@/services/api';
 import type { Hotel } from '@shared/types/hotel';
@@ -37,6 +37,7 @@ function AuditList() {
       const response = await getHotelListApi({
         page: 1,
         pageSize: 100,
+        includeAll: true, // ✅ 添加：包含所有状态（管理端需要查看 pending, approved, rejected, offline）
       });
 
       if (response.success) {
@@ -236,28 +237,17 @@ function AuditList() {
                 label="审核结果"
                 rules={[{ required: true, message: '请选择审核结果' }]}
               >
-                <Button.Group>
-                  <Button
-                    value="approve"
-                    onClick={() => auditForm.setFieldValue('action', 'approve')}
-                    type={auditForm.getFieldValue('action') === 'approve' ? 'primary' : 'default'}
-                    icon={<CheckOutlined />}
-                  >
-                    通过
-                  </Button>
-                  <Button
-                    value="reject"
-                    onClick={() => auditForm.setFieldValue('action', 'reject')}
-                    type={auditForm.getFieldValue('action') === 'reject' ? 'primary' : 'default'}
-                    danger
-                    icon={<CloseOutlined />}
-                  >
-                    拒绝
-                  </Button>
-                </Button.Group>
+                <Radio.Group>
+                  <Radio value="approve">通过</Radio>
+                  <Radio value="reject">拒绝</Radio>
+                </Radio.Group>
               </Form.Item>
 
-              <Form.Item name="reason" label="拒绝原因（可选）">
+              <Form.Item
+                name="reason"
+                label="拒绝原因（可选）"
+                dependencies={['action']}
+              >
                 <Input.TextArea
                   placeholder="请输入拒绝原因"
                   rows={3}

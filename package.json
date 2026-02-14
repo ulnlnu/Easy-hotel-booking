@@ -6,26 +6,28 @@
   "workspaces": [
     "server",
     "admin",
-    "mini-app"
+    "mini-app",
+    "shared"
   ],
   "scripts": {
-    "install:all": "npm install && cd server && npm install && cd ../admin && npm install && cd ../mini-app && npm install",
-    "dev:server": "cd server && npm run dev",
-    "dev:admin": "cd admin && npm run dev",
-    "dev:mini-app:h5": "cd mini-app && npm run dev:h5",
-    "dev:mini-app:weapp": "cd mini-app && npm run dev:weapp",
-    "dev": "npm-run-all --parallel dev:*",
-    "build:server": "cd server && npm run build",
-    "build:admin": "cd admin && npm run build",
-    "build:mini-app:h5": "cd mini-app && npm run build:h5",
-    "build:mini-app:weapp": "cd mini-app && npm run build:weapp",
-    "build": "npm run build:server && npm run build:admin && npm run build:mini-app:h5"
+    "dev:server": "pnpm --filter server dev",
+    "dev:admin": "pnpm --filter admin dev",
+    "dev:mini-app:h5": "pnpm --filter mini-app dev:h5",
+    "dev:mini-app:weapp": "pnpm --filter mini-app dev:weapp",
+    "dev": "pnpm -r --parallel run dev",
+    "build:shared": "pnpm --filter shared build",
+    "build:server": "pnpm --filter server build",
+    "build:admin": "pnpm --filter admin build",
+    "build:mini-app:h5": "pnpm --filter mini-app build:h5",
+    "build:mini-app:weapp": "pnpm --filter mini-app build:weapp",
+    "build": "pnpm build:shared && pnpm build:server && pnpm build:admin && pnpm build:mini-app:h5"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"
   },
   "engines": {
     "node": ">=16.0.0",
-    "npm": ">=8.0.0"
-  }
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
 }

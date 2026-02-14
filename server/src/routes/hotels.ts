@@ -31,7 +31,12 @@ router.get('/:id', hotelController.getDetail);
  * POST /api/hotels
  * 创建酒店（需要认证）
  */
-router.post('/', authenticate, hotelController.create);
+router.post('/', (req, res, next) => {
+  // [调试日志 - 路由层] 记录 POST 请求到达
+  console.log('[路由层] POST /api/hotels 请求到达');
+  console.log('[路由层] 请求体:', JSON.stringify(req.body, null, 2));
+  next();
+}, authenticate, hotelController.create);
 
 /**
  * PUT /api/hotels/:id

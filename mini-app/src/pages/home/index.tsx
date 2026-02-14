@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import { View, Text, Input, Button } from '@tarojs/components';
 import Taro from '@tarojs/taro';
-import { Search, Location, Calendar } from '@nutui/icons-react-taro';
+import { Search, Location, Clock } from '@nutui/icons-react-taro';
 import { useHotelStore } from '@/store/useHotelStore';
 import { useLocation } from '@/hooks/useLocation';
 import './index.scss';
@@ -98,7 +98,7 @@ function Home() {
         {/* 入住/离店日期 */}
         <View className="form-item" onClick={handleSelectDate}>
           <View className="item-label">
-            <Calendar size="16" />
+            <Clock size="16" />
             <Text>入住离店</Text>
           </View>
           <View className="item-input">

@@ -127,8 +127,15 @@ export const hotelService = {
       hotels = hotels.filter(h => params.tags!.some(tag => h.tags.includes(tag)));
     }
 
-    // 状态筛选（只返回已通过的酒店）
-    hotels = hotels.filter(h => h.status === HotelStatus.APPROVED);
+    // 状态筛选
+    // - 如果指定了 status 参数，按指定状态筛选
+    // - 如果 includeAll 为 true，不进行状态筛选（管理端使用）
+    // - 否则只返回已通过的酒店（移动端默认行为）
+    if (params.status) {
+      hotels = hotels.filter(h => h.status === params.status);
+    } else if (!params.includeAll) {
+      hotels = hotels.filter(h => h.status === HotelStatus.APPROVED);
+    }
 
     // 排序
     if (params.sortBy === 'price') {
@@ -183,13 +190,38 @@ export const hotelService = {
 
   /**
    * 创建酒店
+   *
+   * 调试日志说明：
+   * 1. 入参日志 - 检查接收到的创建请求和创建者ID
+   * 2. 枚举值日志 - 确认 HotelStatus 枚举是否正确导入
+   * 3. 酒店对象日志 - 打印即将保存的完整酒店数据
+   * 4. 文件操作日志 - 追踪数据读写过程
    */
   create: async (data: CreateHotelRequest, createdBy: string): Promise<Hotel> => {
+    // [调试日志 1] 打印服务层接收到的参数
+    console.log('[创建酒店 - Service] create 方法被调用');
+    console.log('[创建酒店 - Service] createdBy (创建者ID):', createdBy);
+    console.log('[创建酒店 - Service] 酒店名称:', data.name);
+    console.log('[创建酒店 - Service] 酒店地址:', data.address);
+    console.log('[创建酒店 - Service] 酒店城市:', data.city);
+
+    // [调试日志 2] 检查 HotelStatus 枚举是否正确导入
+    console.log('[创建酒店 - Service] 检查 HotelStatus 枚举...');
+    console.log('[创建酒店 - Service] HotelStatus 对象:', HotelStatus);
+    console.log('[创建酒店 - Service] HotelStatus.PENDING 值:', HotelStatus.PENDING);
+    console.log('[创建酒店 - Service] HotelStatus 类型:', typeof HotelStatus);
+
     const hotels = await readHotels();
+    console.log('[创建酒店 - Service] 当前酒店总数:', hotels.length);
 
     const now = new Date().toISOString();
+    const newHotelId = generateId();
+    console.log('[创建酒店 - Service] 生成的新酒店ID:', newHotelId);
+
+    // [调试日志 3] 构建新酒店对象，准备详细日志
+    console.log('[创建酒店 - Service] 构建新酒店对象...');
     const newHotel: Hotel = {
-      id: generateId(),
+      id: newHotelId,
       ...data,
       rating: 0,
       reviewCount: 0,
@@ -204,8 +236,20 @@ export const hotelService = {
       })),
     };
 
+    console.log('[创建酒店 - Service] 新酒店对象构建完成');
+    console.log('[创建酒店 - Service] 新酒店状态 (status):', newHotel.status);
+    console.log('[创建酒店 - Service] 房型数量:', newHotel.roomTypes.length);
+
+    // [调试日志 4] 打印完整的新酒店对象（用于调试）
+    console.log('[创建酒店 - Service] 完整新酒店对象:', JSON.stringify(newHotel, null, 2));
+
+    // 添加到数组并保存
     hotels.push(newHotel);
+    console.log('[创建酒店 - Service] 酒店已添加到数组，准备保存到文件...');
+
     await writeHotels(hotels);
+    console.log('[创建酒店 - Service] 酒店数据已保存到文件');
+    console.log('[创建酒店 - Service] 创建成功，返回酒店对象');
 
     return newHotel;
   },

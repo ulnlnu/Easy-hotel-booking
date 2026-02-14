@@ -41,6 +41,8 @@ export const hotelController = {
         minPrice: req.query.minPrice ? Number(req.query.minPrice) : undefined,
         maxPrice: req.query.maxPrice ? Number(req.query.maxPrice) : undefined,
         tags,
+        status: req.query.status as string,  // 支持状态筛选
+        includeAll: req.query.includeAll === 'true' || req.query.includeAll === true,  // 支持包含所有状态
         sortBy: req.query.sortBy as any,
         order: req.query.order as 'asc' | 'desc',
         page: Number(req.query.page) || 1,
@@ -118,24 +120,53 @@ export const hotelController = {
 
   /**
    * 创建酒店
+   *
+   * 调试日志说明：
+   * 1. 请求体验证日志 - 检查接收到的数据结构
+   * 2. 用户认证日志 - 确认 userId 是否正确提取
+   * 3. 服务调用日志 - 追踪调用前后的状态
+   * 4. 错误捕获日志 - 记录任何异常信息
    */
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
+      // [调试日志 1] 打印接收到的请求体，检查数据结构是否正确
+      console.log('[创建酒店 - Controller] 请求体:', JSON.stringify(req.body, null, 2));
+
       const body: CreateHotelRequest = req.body;
       const userId = (req as any).userId;
 
+      // [调试日志 2] 打印从认证中间件提取的用户ID
+      console.log('[创建酒店 - Controller] 用户ID:', userId);
+      console.log('[创建酒店 - Controller] 用户ID类型:', typeof userId);
+
       // 验证输入
+      console.log('[创建酒店 - Controller] 开始验证必填字段...');
       if (!body.name || !body.address || !body.city || !body.location) {
+        console.log('[创建酒店 - Controller] 验证失败 - 缺少必填字段');
+        console.log('[创建酒店 - Controller] name:', !!body.name);
+        console.log('[创建酒店 - Controller] address:', !!body.address);
+        console.log('[创建酒店 - Controller] city:', !!body.city);
+        console.log('[创建酒店 - Controller] location:', !!body.location);
         throw new ApiError(400, '缺少必填字段');
       }
+      console.log('[创建酒店 - Controller] 必填字段验证通过');
 
+      // [调试日志 3] 调用服务层前打印
+      console.log('[创建酒店 - Controller] 准备调用 hotelService.create...');
       const hotel = await hotelService.create(body, userId);
+      console.log('[创建酒店 - Controller] hotelService.create 调用成功');
+      console.log('[创建酒店 - Controller] 返回的酒店ID:', hotel.id);
 
       res.status(201).json({
         success: true,
         data: hotel,
       });
     } catch (error) {
+      // [调试日志 4] 捕获并详细打印错误信息
+      console.log('[创建酒店 - Controller] 捕获到错误:');
+      console.log('[创建酒店 - Controller] 错误名称:', error?.constructor?.name);
+      console.log('[创建酒店 - Controller] 错误消息:', error?.message);
+      console.log('[创建酒店 - Controller] 错误堆栈:', error?.stack);
       next(error);
     }
   },

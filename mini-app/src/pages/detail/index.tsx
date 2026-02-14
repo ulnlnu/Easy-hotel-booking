@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 import { View, Swiper, SwiperItem, Image, Text, Button } from '@tarojs/components';
 import Taro, { useRouter, useShareAppMessage } from '@tarojs/taro';
-import { Star, Phone, Location, ChevronLeft } from '@nutui/icons-react-taro';
+import { Star, Phone, Location, ArrowLeft } from '@nutui/icons-react-taro';
 import { getHotelDetailApi } from '@/services/api';
 import type { Hotel } from '@shared/types/hotel';
 import './index.scss';
@@ -100,7 +100,7 @@ function Detail() {
       {/* 导航栏 */}
       <View className="nav-bar">
         <View className="nav-back" onClick={handleBack}>
-          <ChevronLeft size="20" />
+          <ArrowLeft size="20" />
         </View>
         <View className="nav-share">
           <Text>分享</Text>

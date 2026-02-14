@@ -35,9 +35,11 @@ function HotelEdit() {
   const fetchHotels = async () => {
     setLoading(true);
     try {
+      // [管理端] 添加 includeAll: true 以查看所有状态的酒店
       const response = await getHotelListApi({
         page: 1,
         pageSize: 100,
+        includeAll: true, // 包含所有状态：pending, approved, rejected, offline
       });
       if (response.success) {
         setHotels(response.data, response.total);
@@ -54,8 +56,35 @@ function HotelEdit() {
       const values = await form.validateFields();
       setLoading(true);
 
+      // [数据转换] 将表单字符串格式转换为 API 需要的格式
+      const formattedValues = {
+        ...values,
+        // 将逗号分隔的字符串转换为数组
+        tags: typeof values.tags === 'string' ? values.tags.split(',').map(t => t.trim()).filter(Boolean) : values.tags || [],
+        images: typeof values.images === 'string' ? values.images.split('\n').map(i => i.trim()).filter(Boolean) : values.images || [],
+        facilities: typeof values.facilities === 'string' ? values.facilities.split(',').map(f => f.trim()).filter(Boolean) : values.facilities || [],
+        // 从独立的经纬度输入框构建 location 对象
+        location: {
+          lat: values.locationLat,
+          lng: values.locationLng,
+        },
+        // 添加默认房型信息（表单暂未实现房型录入）
+        roomTypes: [
+          {
+            name: '标准间',
+            price: 200,
+            area: 25,
+            beds: '大床 1.8m',
+            maxOccupancy: 2,
+            amenities: ['WiFi', '空调'],
+          },
+        ],
+      };
+
+      console.log('[前端调试] 格式化后的数据:', JSON.stringify(formattedValues, null, 2));
+
       if (editingId) {
-        const response = await updateHotelApi(editingId, values);
+        const response = await updateHotelApi(editingId, formattedValues);
         if (response.success) {
           message.success('更新成功');
           updateHotel(editingId, response.data);
@@ -64,7 +93,7 @@ function HotelEdit() {
           setEditingId(null);
         }
       } else {
-        const response = await createHotelApi(values as CreateHotelRequest);
+        const response = await createHotelApi(formattedValues as CreateHotelRequest);
         if (response.success) {
           message.success('创建成功');
           addHotel(response.data);
@@ -81,7 +110,17 @@ function HotelEdit() {
 
   const handleEdit = (record: Hotel) => {
     setEditingId(record.id);
-    form.setFieldsValue(record);
+
+    // 将 location 对象拆分为 locationLat 和 locationLng，以便在独立输入框中显示
+    const formValue = {
+      ...record,
+      locationLat: record.location?.lat,
+      locationLng: record.location?.lng,
+      // 移除原有的 location 字段，避免冲突
+      location: undefined,
+    };
+
+    form.setFieldsValue(formValue);
     setIsModalOpen(true);
   };
 
@@ -271,13 +310,38 @@ function HotelEdit() {
             </p>
           </div>
 
-          <Form.Item
-            name="location"
-            label="经纬度"
-            rules={[{ required: true, message: '请输入经纬度' }]}
-          >
-            <Input placeholder="格式: {&quot;lat&quot;: 39.9042, &quot;lng&quot;: 116.4074}" />
-          </Form.Item>
+          <Space style={{ width: '100%' }}>
+            <Form.Item
+              name="locationLat"
+              label="纬度"
+              rules={[{ required: true, message: '请输入纬度' }]}
+              tooltip="请输入数字，如：39.9042"
+            >
+              <Input
+                placeholder="请输入纬度"
+                type="number"
+                step="0.0001"
+                min={-90}
+                max={90}
+                style={{ width: '100%' }}
+              />
+            </Form.Item>
+            <Form.Item
+              name="locationLng"
+              label="经度"
+              rules={[{ required: true, message: '请输入经度' }]}
+              tooltip="请输入数字，如：116.4074"
+            >
+              <Input
+                placeholder="请输入经度"
+                type="number"
+                step="0.0001"
+                min={-180}
+                max={180}
+                style={{ width: '100%' }}
+              />
+            </Form.Item>
+          </Space>
         </Form>
       </Modal>
     </div>

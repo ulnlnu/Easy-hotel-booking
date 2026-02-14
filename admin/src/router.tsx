@@ -3,7 +3,7 @@
  * 路由配置
  */
 
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import App from './App';
 import Login from './pages/Login';
 import HotelEdit from './pages/HotelEdit';
@@ -43,4 +43,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default router;
+function Router() {
+  return <RouterProvider router={router} />;
+}
+
+export default Router;

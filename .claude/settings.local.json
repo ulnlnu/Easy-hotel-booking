@@ -20,7 +20,31 @@
       "Bash(git remote add:*)",
       "Bash(git push:*)",
       "Bash(git remote remove:*)",
-      "Bash(git remote set-url:*)"
+      "Bash(git remote set-url:*)",
+      "Bash(npm install:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(tasklist:*)",
+      "Bash(taskkill:*)",
+      "Bash(wmic:*)",
+      "Bash(npx -y kill-port:*)",
+      "Bash(npm show:*)",
+      "Bash(del .npmrc)",
+      "Bash(pnpm run dev:h5:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(pnpm config get:*)",
+      "Bash(pnpm config set:*)",
+      "Bash(xxd:*)",
+      "Bash(npx taro build:*)",
+      "Bash(timeout /t 15)",
+      "Bash(ping:*)",
+      "Bash(pnpm list:*)",
+      "Bash(cd:*)",
+      "Bash(git -C \"D:\\\\000Code\\\\000program\\\\Trip\" status)",
+      "Bash(git -C \"D:\\\\000Code\\\\000program\\\\Trip\" add .)",
+      "Bash(git -C \"D:\\\\000Code\\\\000program\\\\Trip\" rm:*)",
+      "Bash(git -C \"D:\\\\000Code\\\\000program\\\\Trip\" rm --cached \"nul\")",
+      "Bash(git -C \"D:\\\\000Code\\\\000program\\\\Trip\" add -u)"
     ]
   }
 }

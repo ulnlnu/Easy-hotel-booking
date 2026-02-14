@@ -1,8 +1,7 @@
 /**
  * mini-app/src/app.config.ts
- * Taro应用配置
+ * Taro应用配置文件
  */
-
 import Pages from './app.config.pages';
 
 export default {
@@ -23,14 +22,10 @@ export default {
       {
         pagePath: 'pages/home/index',
         text: '首页',
-        iconPath: 'assets/icons/home.png',
-        selectedIconPath: 'assets/icons/home-active.png',
       },
       {
         pagePath: 'pages/list/index',
         text: '列表',
-        iconPath: 'assets/icons/list.png',
-        selectedIconPath: 'assets/icons/list-active.png',
       },
     ],
   },
