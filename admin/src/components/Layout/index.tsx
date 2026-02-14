@@ -6,23 +6,21 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Layout as AntLayout, Menu, Avatar, Dropdown } from 'antd';
 import {
-  HomeOutlined,
   PlusSquareOutlined,
   AuditOutlined,
   UserOutlined,
   LogoutOutlined,
+  TeamOutlined,
 } from '@ant-design/icons';
 import { useAuthStore } from '@/store/useAuthStore';
+import type { UserRole } from '@shared/types/user';
 import './index.scss';
 
 const { Header, Sider, Content } = AntLayout;
 
-function Layout() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { user, logout } = useAuthStore();
-
-  const menuItems = [
+// 根据用户角色生成菜单项
+const getMenuItems = (role: UserRole | null) => {
+  const commonItems = [
     {
       key: '/hotels/edit',
       icon: <PlusSquareOutlined />,
@@ -34,6 +32,40 @@ function Layout() {
       label: '审核管理',
     },
   ];
+
+  // 个人中心菜单
+  const profileItems = [
+    {
+      type: 'divider' as const,
+    },
+    {
+      key: '/profile',
+      icon: <UserOutlined />,
+      label: '个人中心',
+    },
+  ];
+
+  // 系统管理员专属账号管理菜单
+  const adminItems =
+    role === 'admin'
+      ? [
+          {
+            key: '/users',
+            icon: <TeamOutlined />,
+            label: '账号管理',
+          },
+        ]
+      : [];
+
+  return [...commonItems, ...profileItems, ...adminItems];
+};
+
+function Layout() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user, logout } = useAuthStore();
+
+  const menuItems = getMenuItems(user?.role || null);
 
   const handleMenuClick = ({ key }: { key: string }) => {
     navigate(key);

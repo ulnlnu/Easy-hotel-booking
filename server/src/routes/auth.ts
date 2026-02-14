@@ -32,4 +32,22 @@ router.get('/me', authController.me);
  */
 router.post('/change-password', authController.changePassword);
 
+/**
+ * GET /api/auth/users
+ * 获取所有用户（需要认证+系统管理员权限）
+ */
+router.get('/users', authController.getAllUsers);
+
+/**
+ * PUT /api/auth/users/:id
+ * 更新用户（需要认证+系统管理员权限）
+ */
+router.put('/users/:id', authController.updateUser);
+
+/**
+ * DELETE /api/auth/users/:id
+ * 删除用户（需要认证+系统管理员权限）
+ */
+router.delete('/users/:id', authController.deleteUser);
+
 export default router;

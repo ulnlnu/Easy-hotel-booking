@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 import { authService } from '../services/auth';
 import { ApiError } from '../utils/errors';
 import { hashPassword, comparePassword } from '../utils/password';
-import type { LoginRequest, RegisterRequest } from '../../../shared/types/user';
+import type { LoginRequest, RegisterRequest, UserRole } from '../../../shared/types/user';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 const JWT_EXPIRES_IN = '7d';
@@ -171,6 +171,107 @@ export const authController = {
       res.json({
         success: true,
         message: '密码修改成功',
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  /**
+   * 获取所有用户（仅系统管理员）
+   */
+  getAllUsers: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const requestingUser = await authService.findById((req as any).userId);
+
+      if (!requestingUser || requestingUser.role !== 'admin') {
+        throw new ApiError(403, '无权访问');
+      }
+
+      const users = await authService.findAll();
+
+      // 移除密码后返回
+      const safeUsers = users.map(({ password, ...user }) => user);
+
+      res.json({
+        success: true,
+        data: safeUsers,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  /**
+   * 更新用户（仅系统管理员）
+   */
+  updateUser: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const requestingUser = await authService.findById((req as any).userId);
+
+      if (!requestingUser || requestingUser.role !== 'admin') {
+        throw new ApiError(403, '无权访问');
+      }
+
+      const { id } = req.params;
+      const updates = req.body;
+
+      if (!id) {
+        throw new ApiError(400, '缺少用户ID');
+      }
+
+      const targetUser = await authService.findById(id as string);
+      if (!targetUser) {
+        throw new ApiError(404, '用户不存在');
+      }
+
+      // 如果更新密码，需要加密
+      if (updates.password) {
+        updates.password = await hashPassword(updates.password);
+      }
+
+      await authService.update(id as string, updates);
+
+      const updatedUser = await authService.findById(id as string);
+      const { password, ...safeUser } = updatedUser!;
+
+      res.json({
+        success: true,
+        data: safeUser,
+        message: '用户更新成功',
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  /**
+   * 删除用户（仅系统管理员）
+   */
+  deleteUser: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const requestingUser = await authService.findById((req as any).userId);
+
+      if (!requestingUser || requestingUser.role !== 'admin') {
+        throw new ApiError(403, '无权访问');
+      }
+
+      const { id } = req.params;
+
+      if (!id) {
+        throw new ApiError(400, '缺少用户ID');
+      }
+
+      // 不允许删除自己
+      if (id === (req as any).userId) {
+        throw new ApiError(400, '不能删除当前登录用户');
+      }
+
+      await authService.delete(id as string);
+
+      res.json({
+        success: true,
+        message: '用户删除成功',
       });
     } catch (error) {
       next(error);

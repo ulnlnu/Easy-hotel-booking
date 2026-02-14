@@ -134,3 +134,22 @@ export const updateHotelStatusApi = async (
 ): Promise<ApiSuccess<{ message: string }>> => {
   return apiClient.post(`/hotels/${id}/status`, { status });
 };
+
+/**
+ * 用户管理API（仅系统管理员）
+ */
+export const getAllUsersApi = async (): Promise<ApiSuccess<SafeUser[]>> => {
+  return apiClient.get('/auth/users');
+};
+
+export const updateUserApi = async (
+  id: string,
+  data: RegisterRequest
+): Promise<ApiSuccess<SafeUser>> => {
+  return apiClient.put(`/auth/users/${id}`, data);
+};
+
+export const deleteUserApi = async (id: string): Promise<ApiSuccess<{ message: string }>> => {
+  return apiClient.delete(`/auth/users/${id}`);
+};
+

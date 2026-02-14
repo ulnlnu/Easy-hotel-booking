@@ -8,6 +8,9 @@ import App from './App';
 import Login from './pages/Login';
 import HotelEdit from './pages/HotelEdit';
 import AuditList from './pages/AuditList';
+import Profile from './pages/Profile';
+import ChangePassword from './pages/ChangePassword';
+import Users from './pages/Users';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
@@ -36,6 +39,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute requireAdmin>
             <AuditList />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
+      },
+      {
+        path: 'change-password',
+        element: <ChangePassword />,
+      },
+      {
+        path: 'users',
+        element: (
+          <ProtectedRoute requireAdmin>
+            <Users />
           </ProtectedRoute>
         ),
       },

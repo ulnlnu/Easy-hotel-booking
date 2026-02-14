@@ -114,4 +114,25 @@ export const authService = {
 
     await writeUsers(users);
   },
+
+  /**
+   * 获取所有用户（仅系统管理员）
+   */
+  findAll: async (): Promise<User[]> => {
+    return await readUsers();
+  },
+
+  /**
+   * 删除用户（仅系统管理员）
+   */
+  delete: async (id: string): Promise<void> => {
+    const users = await readUsers();
+    const filteredUsers = users.filter(u => u.id !== id);
+
+    if (users.length === filteredUsers.length) {
+      throw new Error('用户不存在');
+    }
+
+    await writeUsers(filteredUsers);
+  },
 };
