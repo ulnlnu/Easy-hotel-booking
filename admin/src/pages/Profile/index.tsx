@@ -4,19 +4,21 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Card, Descriptions, Button, Space, message, Modal, Form, Input } from 'antd';
-import { UserOutlined, EditOutlined, LockOutlined } from '@ant-design/icons';
+import { Card, Descriptions, Button, Space, message, Modal, Form, Input, Popconfirm } from 'antd';
+import { UserOutlined, EditOutlined, LockOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/useAuthStore';
-import { getUserInfoApi } from '@/services/api';
+import { getUserInfoApi, deleteAccountApi } from '@/services/api';
 import type { SafeUser } from '@shared/types/user';
 import './index.scss';
 
 function Profile() {
   const navigate = useNavigate();
-  const { user } = useAuthStore();
+  const { user, logout } = useAuthStore();
   const [loading, setLoading] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deletePassword, setDeletePassword] = useState('');
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -34,6 +36,30 @@ function Profile() {
       setIsEditModalOpen(false);
     } catch (error: any) {
       message.error(error.message || '更新失败');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!deletePassword) {
+      message.warning('请输入密码确认注销');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await deleteAccountApi(deletePassword);
+
+      message.success('账号已注销');
+
+      // 清除认证状态并跳转登录页
+      logout();
+      setIsDeleteModalOpen(false);
+      setDeletePassword('');
+      navigate('/login');
+    } catch (error: any) {
+      message.error(error.message || '注销失败');
     } finally {
       setLoading(false);
     }
@@ -83,6 +109,19 @@ function Profile() {
             <Button icon={<LockOutlined />} onClick={() => navigate('/change-password')}>
               修改密码
             </Button>
+            <Popconfirm
+              title="注销账号"
+              description="注销后账号将被永久删除，无法恢复。是否继续？"
+              icon={<ExclamationCircleOutlined style={{ color: 'red' }} />}
+              okText="确认注销"
+              cancelText="取消"
+              okButtonProps={{ danger: true }}
+              onConfirm={() => setIsDeleteModalOpen(true)}
+            >
+              <Button danger icon={<ExclamationCircleOutlined />}>
+                注销账号
+              </Button>
+            </Popconfirm>
           </Space>
         </div>
       </Card>
@@ -127,6 +166,37 @@ function Profile() {
             </Space>
           </Form.Item>
         </Form>
+      </Modal>
+
+      <Modal
+        title="确认注销账号"
+        open={isDeleteModalOpen}
+        onCancel={() => {
+          setIsDeleteModalOpen(false);
+          setDeletePassword('');
+        }}
+        footer={null}
+      >
+        <div style={{ textAlign: 'center', padding: '20px 0' }}>
+          <p style={{ marginBottom: '16px' }}>
+            请输入密码以确认注销账号
+          </p>
+          <p style={{ color: '#ff4d4f', fontSize: '14px', marginBottom: '16px' }}>
+            <ExclamationCircleOutlined style={{ marginRight: '8px' }} />
+            注销后账号将被<strong>永久删除</strong>，无法恢复
+          </p>
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: '请输入密码' }]}
+          >
+            <Input.Password
+              placeholder="请输入密码确认"
+              value={deletePassword}
+              onChange={(e) => setDeletePassword(e.target.value)}
+              onPressEnter={() => handleDeleteAccount()}
+            />
+          </Form.Item>
+        </div>
       </Modal>
     </div>
   );

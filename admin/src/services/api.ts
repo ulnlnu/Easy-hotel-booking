@@ -153,3 +153,6 @@ export const deleteUserApi = async (id: string): Promise<ApiSuccess<{ message: s
   return apiClient.delete(`/auth/users/${id}`);
 };
 
+export const deleteAccountApi = async (password: string): Promise<ApiSuccess<{ message: string }>> => {
+  return apiClient.delete('/auth/account', { data: { password } });
+};
