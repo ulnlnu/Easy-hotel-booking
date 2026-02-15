@@ -5,6 +5,7 @@
 
 import fs from 'fs/promises';
 import path from 'path';
+import { hashPassword } from '../utils/password';
 import type { User, RegisterRequest } from '../../../shared/types/user';
 
 const DATA_DIR = path.join(process.cwd(), 'src/data');
@@ -28,11 +29,41 @@ async function readUsers(): Promise<User[]> {
   await ensureDataDir();
   try {
     const data = await fs.readFile(USERS_FILE, 'utf-8');
-    return JSON.parse(data);
+    const users = JSON.parse(data);
+
+    // 如果文件存在但为空数组，初始化默认管理员
+    if (users.length === 0) {
+      return await initializeDefaultAdmin();
+    }
+
+    return users;
   } catch (error) {
-    // 文件不存在，返回空数组
-    return [];
+    // 文件不存在，初始化默认管理员
+    return await initializeDefaultAdmin();
   }
+}
+
+/**
+ * 初始化默认管理员账号
+ */
+async function initializeDefaultAdmin(): Promise<User[]> {
+  const hashedPassword = await hashPassword('admin123');
+
+  const adminUser: User = {
+    id: generateId(),
+    username: 'admin',
+    password: hashedPassword,
+    realName: '系统管理员',
+    role: 'admin',
+    phone: '13800138000',
+    email: 'admin@example.com',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
+  await writeUsers([adminUser]);
+  console.log('✅ 已初始化默认管理员账号: admin / admin123');
+  return [adminUser];
 }
 
 /**

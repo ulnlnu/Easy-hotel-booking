@@ -38,9 +38,10 @@ lerna-debug.log*
 # 小程序
 mini-project/
 
-# 数据文件（保留结构，忽略内容变更）
+# 数据文件（保留结构，但允许共享用户数据）
 server/src/data/*.json
 !server/src/data/.gitkeep
+!server/src/data/users.json
 
 # 测试覆盖率
 coverage/
