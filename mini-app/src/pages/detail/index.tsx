@@ -8,7 +8,9 @@ import { View, Swiper, SwiperItem, Image, Text, Button } from '@tarojs/component
 import Taro, { useRouter, useShareAppMessage } from '@tarojs/taro';
 import { Star, Phone, Location, ArrowLeft } from '@nutui/icons-react-taro';
 import { getHotelDetailApi } from '@/services/api';
-import type { Hotel } from '@shared/types/hotel';
+//import type { Hotel } from '@shared/types/hotel';
+// 改为这种普通导入方式
+import { Hotel } from '@shared/types/hotel';
 import './index.scss';
 
 function Detail() {
@@ -37,12 +39,19 @@ function Detail() {
           title: response.data.name,
         });
       }
-    } catch (error: any) {
+    } /*catch (error: any) {
       Taro.showToast({
         title: error.message || '加载失败',
         icon: 'error',
       });
-    } finally {
+    }*/catch (error) {
+        const err = error instanceof Error ? error : new Error('加载失败');
+        Taro.showToast({
+            title: err.message,
+            icon: 'error',
+        });
+    }
+    finally {
       setLoading(false);
     }
   };
@@ -171,10 +180,10 @@ function Detail() {
             <View key={room.id} className="room-item">
               <View className="room-info">
                 <Text className="room-name">{room.name}</Text>
-                <Text className="room-area">{room.area}</Text>
+                <Text className="room-area">{typeof room.area === 'number' ? `${room.area}㎡` : (room.area || '-')}</Text>
                 <View className="room-bed">
-                  <Text>{room.bedType}</Text>
-                  <Text className="max-guests">最多{room.maxGuests}人</Text>
+                  <Text>{room.bedType || room.beds || '-'}</Text>
+                  <Text className="max-guests">最多{room.maxGuests ?? room.maxOccupancy ?? 2}人</Text>
                 </View>
               </View>
               <View className="room-action">
