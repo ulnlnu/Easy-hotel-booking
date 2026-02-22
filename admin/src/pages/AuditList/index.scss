@@ -6,6 +6,29 @@
       margin: 0;
       font-size: 20px;
       font-weight: 600;
+      color: #1e293b;
     }
+  }
+
+  .ant-tabs-tab {
+    font-weight: 500;
+  }
+
+  .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #2563eb !important;
+  }
+
+  .ant-tabs-ink-bar {
+    background: #2563eb !important;
+  }
+
+  .ant-table-thead > tr > th {
+    background: #f8fafc !important;
+    color: #334155;
+    font-weight: 600;
+  }
+
+  .ant-table-tbody > tr:hover > td {
+    background: #f8fafc !important;
   }
 }
