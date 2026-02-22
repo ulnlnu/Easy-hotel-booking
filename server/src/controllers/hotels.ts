@@ -153,6 +153,12 @@ export const hotelController = {
         console.log('[创建酒店 - Controller] location:', !!body.location);
         throw new ApiError(400, '缺少必填字段');
       }
+
+      // 验证酒店星级（1-5）
+      if (body.starLevel !== undefined && (body.starLevel < 1 || body.starLevel > 5)) {
+        throw new ApiError(400, '酒店星级必须在1-5之间');
+      }
+
       console.log('[创建酒店 - Controller] 必填字段验证通过');
 
       // [调试日志 3] 调用服务层前打印
@@ -186,6 +192,11 @@ export const hotelController = {
       const hotel = await hotelService.getById(id);
       if (!hotel) {
         throw new ApiError(404, '酒店不存在');
+      }
+
+      // 验证酒店星级（1-5）
+      if (body.starLevel !== undefined && (body.starLevel < 1 || body.starLevel > 5)) {
+        throw new ApiError(400, '酒店星级必须在1-5之间');
       }
 
       const updatedHotel = await hotelService.update(id, body);

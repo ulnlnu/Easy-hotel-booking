@@ -7,7 +7,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { authService } from '../services/auth';
 import { ApiError } from '../utils/errors';
-import { hashPassword, comparePassword } from '../utils/password';
+import { hashPassword, comparePassword, validatePasswordStrength } from '../utils/password';
 import type { LoginRequest, RegisterRequest, UserRole } from '../../../shared/types/user';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
@@ -39,6 +39,12 @@ export const authController = {
       // 系统管理员仅能由现有管理员在「账号管理」中创建，不允许公开注册
       if (body.role === 'admin') {
         throw new ApiError(403, '系统管理员账号仅能由现有管理员在账号管理中创建');
+      }
+
+      // 验证密码强度
+      const passwordStrength = validatePasswordStrength(body.password);
+      if (!passwordStrength.valid) {
+        throw new ApiError(400, passwordStrength.message);
       }
 
       // 检查用户名是否已存在
@@ -205,6 +211,12 @@ export const authController = {
         throw new ApiError(401, '原密码错误');
       }
 
+      // 验证新密码强度
+      const passwordStrength = validatePasswordStrength(newPassword);
+      if (!passwordStrength.valid) {
+        throw new ApiError(400, passwordStrength.message);
+      }
+
       // 加密新密码
       const hashedPassword = await hashPassword(newPassword);
 
@@ -268,8 +280,12 @@ export const authController = {
         throw new ApiError(404, '用户不存在');
       }
 
-      // 如果更新密码，需要加密
+      // 如果更新密码，需要验证强度并加密
       if (updates.password) {
+        const passwordStrength = validatePasswordStrength(updates.password);
+        if (!passwordStrength.valid) {
+          throw new ApiError(400, passwordStrength.message);
+        }
         updates.password = await hashPassword(updates.password);
       }
 
