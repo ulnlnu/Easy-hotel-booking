@@ -9,6 +9,21 @@
       margin: 0;
       font-size: 20px;
       font-weight: 600;
+      color: #1e293b;
     }
+
+    .ant-btn-primary {
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    }
+  }
+
+  .ant-table-thead > tr > th {
+    background: #f8fafc !important;
+    color: #334155;
+    font-weight: 600;
+  }
+
+  .ant-table-tbody > tr:hover > td {
+    background: #f8fafc !important;
   }
 }
