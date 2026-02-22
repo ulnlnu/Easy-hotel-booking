@@ -12,6 +12,7 @@ import type {
   HotelQueryParams,
 } from '../../../shared/types/hotel';
 import { HotelStatus } from '../../../shared/types/hotel';
+import { authService } from './auth';
 
 const DATA_DIR = path.join(process.cwd(), 'src/data');
 const HOTELS_FILE = path.join(DATA_DIR, 'hotels.json');
@@ -175,9 +176,20 @@ export const hotelService = {
     const end = start + params.pageSize;
     const pageData = hotels.slice(start, end);
 
+    // 附加创建者名称
+    const hotelsWithCreator = await Promise.all(
+      pageData.map(async (hotel) => {
+        const creator = await authService.findById(hotel.createdBy);
+        return {
+          ...hotel,
+          createdByName: creator?.realName || creator?.username || '未知用户',
+        };
+      })
+    );
+
     return {
       success: true,
-      data: pageData,
+      data: hotelsWithCreator,
       total: hotels.length,
       page: params.page,
       pageSize: params.pageSize,
@@ -190,7 +202,15 @@ export const hotelService = {
    */
   getById: async (id: string): Promise<Hotel | null> => {
     const hotels = await readHotels();
-    return hotels.find(h => h.id === id) || null;
+    const hotel = hotels.find(h => h.id === id);
+    if (!hotel) return null;
+
+    // 附加创建者名称
+    const creator = await authService.findById(hotel.createdBy);
+    return {
+      ...hotel,
+      createdByName: creator?.realName || creator?.username || '未知用户',
+    };
   },
 
   /**

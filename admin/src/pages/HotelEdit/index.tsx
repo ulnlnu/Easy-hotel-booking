@@ -251,11 +251,11 @@ function HotelEdit() {
     },
     {
       title: '创建者',
-      dataIndex: 'createdBy',
-      key: 'createdBy',
+      dataIndex: 'createdByName',
+      key: 'createdByName',
       width: 150,
-      render: (createdBy: string) => (
-        <span>{createdBy === user?.id ? '我' : createdBy}</span>
+      render: (createdByName: string, record: Hotel) => (
+        <span>{record.createdBy === user?.id ? '我' : (createdByName || '未知用户')}</span>
       ),
     },
     {

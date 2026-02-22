@@ -39,6 +39,7 @@ export interface Hotel {
   openingDate?: string; // 开业时间（ISO 8601 日期）
   starLevel?: number; // 酒店星级（1-5星）
   createdBy: string; // 创建者ID
+  createdByName?: string; // 创建者名称（后端查询时附加）
   createdAt: string; // 创建时间（ISO 8601）
   updatedAt: string; // 更新时间（ISO 8601）
 }
