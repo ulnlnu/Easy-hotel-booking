@@ -4,8 +4,8 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Table, Button, Space, Tag, Modal, Form, Input, message, Tabs, Radio } from 'antd';
-import { CheckOutlined, CloseOutlined, StopOutlined, EyeOutlined } from '@ant-design/icons';
+import { Table, Button, Space, Tag, Modal, Form, Input, message, Tabs, Radio, Tooltip } from 'antd';
+import { CheckOutlined, StopOutlined, EyeOutlined } from '@ant-design/icons';
 import { getHotelListApi, auditHotelApi, updateHotelStatusApi } from '@/services/api';
 import { useAuthStore } from '@/store/useAuthStore';
 import type { Hotel } from '@shared/types/hotel';
@@ -17,11 +17,13 @@ function AuditList() {
   const { user } = useAuthStore(); // ✅ 获取当前登录用户
   const [loading, setLoading] = useState(false);
   const [hotels, setHotels] = useState<Hotel[]>([]);
+  const [allHotels, setAllHotels] = useState<Hotel[]>([]);
   const [activeTab, setActiveTab] = useState('pending');
 
   const [auditModalVisible, setAuditModalVisible] = useState(false);
   const [currentHotel, setCurrentHotel] = useState<Hotel | null>(null);
   const [auditForm] = Form.useForm();
+  const auditAction = Form.useWatch('action', auditForm);
 
   // ✅ 查看拒绝原因的 Modal
   const [reasonModalVisible, setReasonModalVisible] = useState(false);
@@ -55,7 +57,10 @@ function AuditList() {
       const response = await getHotelListApi(params);
 
       if (response.success) {
-        // 根据当前标签页筛选
+        // 保存完整列表用于统计各状态数量
+        setAllHotels(response.data);
+
+        // 根据当前标签页筛选展示数据
         const filtered = response.data.filter(h => h.status === statusMap[activeTab]);
         setHotels(filtered);
       }
@@ -123,6 +128,20 @@ function AuditList() {
       width: 200,
     },
     {
+      title: '星级',
+      dataIndex: 'starLevel',
+      key: 'starLevel',
+      width: 70,
+      render: (v: number) => v ? `${v}星` : '-',
+    },
+    {
+      title: '开业时间',
+      dataIndex: 'openingDate',
+      key: 'openingDate',
+      width: 110,
+      render: (v: string) => v ? new Date(v).toLocaleDateString('zh-CN') : '-',
+    },
+    {
       title: '地址',
       dataIndex: 'address',
       key: 'address',
@@ -135,11 +154,15 @@ function AuditList() {
       width: 100,
     },
     {
-      title: '房型数量',
+      title: '房型/价格',
       dataIndex: 'roomTypes',
       key: 'roomTypes',
-      width: 100,
-      render: (roomTypes: any[]) => roomTypes?.length || 0,
+      width: 140,
+      render: (roomTypes: any[]) => {
+        if (!roomTypes?.length) return '-';
+        const prices = roomTypes.map((r: any) => r.price);
+        return `${roomTypes.length}种 · ¥${Math.min(...prices)}起`;
+      },
     },
     {
       title: '创建时间',
@@ -167,23 +190,27 @@ function AuditList() {
             </>
           )}
           {record.status === HotelStatus.APPROVED && (
-            <Button
-              type="link"
-              danger
-              icon={<StopOutlined />}
-              onClick={() => handleStatusChange(record, 'offline')}
-            >
-              下线
-            </Button>
+            <Tooltip title="下线仅隐藏展示，不删除数据，可随时在「已下线」中恢复上线">
+              <Button
+                type="link"
+                danger
+                icon={<StopOutlined />}
+                onClick={() => handleStatusChange(record, 'offline')}
+              >
+                下线
+              </Button>
+            </Tooltip>
           )}
           {record.status === HotelStatus.OFFLINE && (
-            <Button
-              type="link"
-              icon={<CheckOutlined />}
-              onClick={() => handleStatusChange(record, 'online')}
-            >
-              上线
-            </Button>
+            <Tooltip title="恢复展示，酒店将重新对用户可见">
+              <Button
+                type="link"
+                icon={<CheckOutlined />}
+                onClick={() => handleStatusChange(record, 'online')}
+              >
+                上线
+              </Button>
+            </Tooltip>
           )}
           {record.status === HotelStatus.REJECTED && (
             <>
@@ -203,10 +230,10 @@ function AuditList() {
   ];
 
   const tabItems = [
-    { key: 'pending', label: `待审核 (${hotels.filter(h => h.status === HotelStatus.PENDING).length})` },
-    { key: 'approved', label: `已通过 (${hotels.filter(h => h.status === HotelStatus.APPROVED).length})` },
-    { key: 'rejected', label: `已拒绝 (${hotels.filter(h => h.status === HotelStatus.REJECTED).length})` },
-    { key: 'offline', label: `已下线 (${hotels.filter(h => h.status === HotelStatus.OFFLINE).length})` },
+    { key: 'pending', label: `待审核 (${allHotels.filter(h => h.status === HotelStatus.PENDING).length})` },
+    { key: 'approved', label: `已通过 (${allHotels.filter(h => h.status === HotelStatus.APPROVED).length})` },
+    { key: 'rejected', label: `已拒绝 (${allHotels.filter(h => h.status === HotelStatus.REJECTED).length})` },
+    { key: 'offline', label: `已下线 (${allHotels.filter(h => h.status === HotelStatus.OFFLINE).length})` },
   ];
 
   return (
@@ -214,12 +241,15 @@ function AuditList() {
       <div className="page-header">
         <h2>审核管理</h2>
       </div>
+      <p style={{ marginBottom: 16, fontSize: 13, color: '#64748b' }}>
+        已通过的酒店可执行「下线」：仅隐藏展示、不删除数据，可随时在「已下线」中恢复「上线」。
+      </p>
 
       <Tabs activeKey={activeTab} items={tabItems} onChange={setActiveTab} />
 
       <Table
         columns={columns}
-        dataSource={hotels.filter(h => {
+        dataSource={allHotels.filter(h => {
           if (activeTab === 'pending') return h.status === HotelStatus.PENDING;
           if (activeTab === 'approved') return h.status === HotelStatus.APPROVED;
           if (activeTab === 'rejected') return h.status === HotelStatus.REJECTED;
@@ -245,18 +275,43 @@ function AuditList() {
         }}
         okText="确定"
         cancelText="取消"
+        width={640}
       >
         {currentHotel && (
           <div>
-            <div style={{ marginBottom: 16 }}>
-              <p>
+            <div style={{ marginBottom: 16, padding: 12, background: '#f8fafc', borderRadius: 8 }}>
+              <p style={{ marginBottom: 8 }}>
                 <strong>酒店名称：</strong>
                 {currentHotel.name}
               </p>
-              <p>
+              <p style={{ marginBottom: 8 }}>
                 <strong>地址：</strong>
                 {currentHotel.address}
               </p>
+              <p style={{ marginBottom: 8 }}>
+                <strong>星级：</strong>
+                {currentHotel.starLevel ? `${currentHotel.starLevel}星` : '未填写'}
+              </p>
+              <p style={{ marginBottom: 8 }}>
+                <strong>开业时间：</strong>
+                {currentHotel.openingDate ? new Date(currentHotel.openingDate).toLocaleDateString('zh-CN') : '未填写'}
+              </p>
+              <p style={{ marginBottom: 0 }}>
+                <strong>房型及价格：</strong>
+              </p>
+              {(currentHotel.roomTypes || []).length > 0 ? (
+                <ul style={{ margin: '8px 0 0 20px', padding: 0 }}>
+                  {currentHotel.roomTypes.map((rt, i) => (
+                    <li key={rt.id || i} style={{ marginBottom: 4 }}>
+                      {rt.name} - ¥{rt.price}/晚
+                      {rt.area && ` · ${typeof rt.area === 'number' ? rt.area : rt.area}㎡`}
+                      {(rt.bedType || rt.beds) && ` · ${rt.bedType || rt.beds}`}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <span style={{ marginLeft: 20, color: '#94a3b8' }}>暂无房型</span>
+              )}
             </div>
 
             <Form form={auditForm} layout="vertical">
@@ -273,13 +328,22 @@ function AuditList() {
 
               <Form.Item
                 name="reason"
-                label="拒绝原因（可选）"
+                label="拒绝原因"
                 dependencies={['action']}
+                rules={[
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (getFieldValue('action') !== 'reject') return Promise.resolve();
+                      if (value && String(value).trim()) return Promise.resolve();
+                      return Promise.reject(new Error('审核不通过时必须填写拒绝理由'));
+                    },
+                  }),
+                ]}
               >
                 <Input.TextArea
-                  placeholder="请输入拒绝原因"
+                  placeholder="请输入拒绝原因（拒绝时必填）"
                   rows={3}
-                  disabled={auditForm.getFieldValue('action') !== 'reject'}
+                  disabled={auditAction !== 'reject'}
                 />
               </Form.Item>
             </Form>
