@@ -201,6 +201,7 @@ export const hotelController = {
 
   /**
    * 审核酒店
+   * 拒绝时必须提供理由
    */
   audit: async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -210,6 +211,11 @@ export const hotelController = {
       const hotel = await hotelService.getById(id);
       if (!hotel) {
         throw new ApiError(404, '酒店不存在');
+      }
+
+      // 拒绝时必须填写理由
+      if (body.action === 'reject' && (!body.reason || !String(body.reason).trim())) {
+        throw new ApiError(400, '审核不通过时必须填写拒绝理由');
       }
 
       await hotelService.audit(id, body.action, body.reason);
