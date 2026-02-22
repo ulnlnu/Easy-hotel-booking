@@ -14,8 +14,11 @@ import {
   message,
   Popconfirm,
   Tag,
+  DatePicker,
+  Select,
 } from 'antd';
-import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined, EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import dayjs from 'dayjs';
 import { useHotelStore } from '@/store/useHotelStore';
 import { useAuthStore } from '@/store/useAuthStore';
 import { getHotelListApi, createHotelApi, updateHotelApi, deleteHotelApi } from '@/services/api';
@@ -67,32 +70,36 @@ function HotelEdit() {
       const values = await form.validateFields();
       setLoading(true);
 
+      // 格式化房型数据
+      const roomTypes = (values.roomTypes || []).map((rt: any) => ({
+        name: rt.name,
+        area: typeof rt.area === 'number' ? rt.area : Number(rt.area) || 0,
+        price: Number(rt.price) || 0,
+        bedType: rt.bedType || rt.beds || '',
+        maxOccupancy: Number(rt.maxOccupancy) || 2,
+        amenities: typeof rt.amenities === 'string' ? rt.amenities.split(',').map((a: string) => a.trim()).filter(Boolean) : rt.amenities || [],
+      }));
+
       // [数据转换] 将表单字符串格式转换为 API 需要的格式
       const formattedValues = {
         ...values,
-        // 将逗号分隔的字符串转换为数组
         tags: typeof values.tags === 'string' ? values.tags.split(',').map(t => t.trim()).filter(Boolean) : values.tags || [],
         images: typeof values.images === 'string' ? values.images.split('\n').map(i => i.trim()).filter(Boolean) : values.images || [],
         facilities: typeof values.facilities === 'string' ? values.facilities.split(',').map(f => f.trim()).filter(Boolean) : values.facilities || [],
-        // 从独立的经纬度输入框构建 location 对象
         location: {
-          lat: values.locationLat,
-          lng: values.locationLng,
+          lat: Number(values.locationLat),
+          lng: Number(values.locationLng),
         },
-        // 添加默认房型信息（表单暂未实现房型录入）
-        roomTypes: [
-          {
-            name: '标准间',
-            price: 200,
-            area: 25,
-            beds: '大床 1.8m',
-            maxOccupancy: 2,
-            amenities: ['WiFi', '空调'],
-          },
+        roomTypes: roomTypes.length > 0 ? roomTypes : [
+          { name: '标准间', price: 200, area: 25, bedType: '大床 1.8m', maxOccupancy: 2, amenities: ['WiFi', '空调'] },
         ],
+        openingDate: values.openingDate ? dayjs(values.openingDate).format('YYYY-MM-DD') : undefined,
+        starLevel: values.starLevel ? Number(values.starLevel) : undefined,
       };
 
-      console.log('[前端调试] 格式化后的数据:', JSON.stringify(formattedValues, null, 2));
+      // 移除表单专用字段
+      delete formattedValues.locationLat;
+      delete formattedValues.locationLng;
 
       if (editingId) {
         const response = await updateHotelApi(editingId, formattedValues);
@@ -122,13 +129,24 @@ function HotelEdit() {
   const handleEdit = (record: Hotel) => {
     setEditingId(record.id);
 
-    // 将 location 对象拆分为 locationLat 和 locationLng，以便在独立输入框中显示
+    // 转换房型数据用于表单
+    const roomTypes = (record.roomTypes || []).map(rt => ({
+      name: rt.name,
+      area: typeof rt.area === 'string' ? parseFloat(rt.area) || 0 : rt.area,
+      price: rt.price,
+      bedType: rt.bedType || rt.beds || '',
+      maxOccupancy: rt.maxOccupancy ?? rt.maxGuests ?? 2,
+      amenities: Array.isArray(rt.amenities) ? rt.amenities.join(', ') : '',
+    }));
+
     const formValue = {
       ...record,
       locationLat: record.location?.lat,
       locationLng: record.location?.lng,
-      // 移除原有的 location 字段，避免冲突
       location: undefined,
+      roomTypes: roomTypes.length > 0 ? roomTypes : [{ name: '标准间', area: 25, price: 200, bedType: '大床 1.8m', maxOccupancy: 2, amenities: 'WiFi, 空调' }],
+      openingDate: record.openingDate ? dayjs(record.openingDate) : undefined,
+      starLevel: record.starLevel,
     };
 
     form.setFieldsValue(formValue);
@@ -159,6 +177,9 @@ function HotelEdit() {
   const handleAdd = () => {
     setEditingId(null);
     form.resetFields();
+    form.setFieldsValue({
+      roomTypes: [{ name: '标准间', area: 25, price: 200, bedType: '大床 1.8m', maxOccupancy: 2, amenities: 'WiFi, 空调' }],
+    });
     setIsModalOpen(true);
   };
 
@@ -167,11 +188,28 @@ function HotelEdit() {
       title: '酒店名称',
       dataIndex: 'name',
       key: 'name',
+      width: 160,
+    },
+    {
+      title: '星级',
+      dataIndex: 'starLevel',
+      key: 'starLevel',
+      width: 80,
+      render: (v: number) => v ? `${v}星` : '-',
+    },
+    {
+      title: '开业时间',
+      dataIndex: 'openingDate',
+      key: 'openingDate',
+      width: 110,
+      render: (v: string) => v ? dayjs(v).format('YYYY-MM-DD') : '-',
     },
     {
       title: '地址',
       dataIndex: 'address',
       key: 'address',
+      width: 200,
+      ellipsis: true,
     },
     {
       title: '城市',
@@ -194,6 +232,22 @@ function HotelEdit() {
         const s = statusMap[status] || { text: status, color: 'default' };
         return <Tag color={s.color}>{s.text}</Tag>;
       },
+    },
+    {
+      title: '拒绝原因',
+      dataIndex: 'rejectionReason',
+      key: 'rejectionReason',
+      width: 200,
+      ellipsis: true,
+      render: (reason: string, record: Hotel) =>
+        record.status === 'rejected' && reason ? (
+          <span title={reason} style={{ color: '#dc2626', fontSize: 12 }}>
+            <ExclamationCircleOutlined style={{ marginRight: 4 }} />
+            {reason}
+          </span>
+        ) : (
+          '-'
+        ),
     },
     {
       title: '创建者',
@@ -249,6 +303,7 @@ function HotelEdit() {
         dataSource={hotels}
         rowKey="id"
         loading={loading}
+        scroll={{ x: 1300 }}
         pagination={{
           total,
           pageSize: 10,
@@ -266,10 +321,34 @@ function HotelEdit() {
           form.resetFields();
           setEditingId(null);
         }}
-        width={800}
+        width={900}
         okText="确定"
         cancelText="取消"
       >
+        {editingId && (() => {
+          const editingHotel = hotels.find(h => h.id === editingId);
+          if (editingHotel?.status === 'rejected' && editingHotel?.rejectionReason) {
+            return (
+              <div
+                style={{
+                  marginBottom: 16,
+                  padding: 12,
+                  background: '#fef2f2',
+                  border: '1px solid #fecaca',
+                  borderRadius: 8,
+                  color: '#dc2626',
+                }}
+              >
+                <div style={{ fontWeight: 600, marginBottom: 4 }}>
+                  <ExclamationCircleOutlined style={{ marginRight: 6 }} />
+                  审核拒绝原因
+                </div>
+                <div style={{ fontSize: 14 }}>{editingHotel.rejectionReason}</div>
+              </div>
+            );
+          }
+          return null;
+        })()}
         <Form form={form} layout="vertical">
           <Form.Item
             name="name"
@@ -332,12 +411,66 @@ function HotelEdit() {
             <Input placeholder="请输入设施，用逗号分隔（如：WiFi,空调,电视）" />
           </Form.Item>
 
-          <div style={{ marginBottom: 16 }}>
-            <h4 style={{ marginBottom: 8 }}>房型信息</h4>
-            <p style={{ color: '#999', fontSize: 12 }}>
-              房型信息将在后续完善，此处暂时跳过
-            </p>
-          </div>
+          <Space style={{ width: '100%' }} size="middle">
+            <Form.Item
+              name="openingDate"
+              label="开业时间"
+            >
+              <DatePicker style={{ width: '100%' }} placeholder="选择开业日期" />
+            </Form.Item>
+            <Form.Item
+              name="starLevel"
+              label="酒店星级"
+              rules={[{ required: true, message: '请选择星级' }]}
+            >
+              <Select placeholder="请选择星级（1-5星）" allowClear>
+                {[1, 2, 3, 4, 5].map(n => (
+                  <Select.Option key={n} value={n}>{n}星</Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </Space>
+
+          <Form.Item
+            label="房型信息"
+            required
+            rules={[{ validator: (_, value) => (value?.length > 0 ? Promise.resolve() : Promise.reject(new Error('请至少添加一个房型'))) }]}
+          >
+            <Form.List name="roomTypes" initialValue={[{ name: '标准间', area: 25, price: 200, bedType: '大床 1.8m', maxOccupancy: 2, amenities: 'WiFi, 空调' }]}>
+              {(fields, { add, remove }) => (
+                <>
+                  {fields.map(({ key, name, ...restField }) => (
+                    <div key={key} style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12, padding: 12, background: '#f8fafc', borderRadius: 8 }}>
+                      <Form.Item {...restField} name={[name, 'name']} rules={[{ required: true, message: '房型' }]} style={{ marginBottom: 0, width: 120 }}>
+                        <Input placeholder="房型名称" />
+                      </Form.Item>
+                      <Form.Item {...restField} name={[name, 'area']} rules={[{ required: true, message: '面积' }]} style={{ marginBottom: 0, width: 80 }}>
+                        <Input type="number" placeholder="面积㎡" min={1} />
+                      </Form.Item>
+                      <Form.Item {...restField} name={[name, 'price']} rules={[{ required: true, message: '价格' }]} style={{ marginBottom: 0, width: 100 }}>
+                        <Input type="number" placeholder="价格元/晚" min={0} />
+                      </Form.Item>
+                      <Form.Item {...restField} name={[name, 'bedType']} style={{ marginBottom: 0, width: 120 }}>
+                        <Input placeholder="床型" />
+                      </Form.Item>
+                      <Form.Item {...restField} name={[name, 'maxOccupancy']} style={{ marginBottom: 0, width: 80 }}>
+                        <Input type="number" placeholder="人数" min={1} />
+                      </Form.Item>
+                      <Form.Item {...restField} name={[name, 'amenities']} style={{ marginBottom: 0, flex: 1, minWidth: 120 }}>
+                        <Input placeholder="设施，逗号分隔" />
+                      </Form.Item>
+                      <Button type="text" danger icon={<DeleteOutlined />} onClick={() => remove(name)} />
+                    </div>
+                  ))}
+                  <Form.Item style={{ marginBottom: 0 }}>
+                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                      添加房型
+                    </Button>
+                  </Form.Item>
+                </>
+              )}
+            </Form.List>
+          </Form.Item>
 
           <Space style={{ width: '100%' }}>
             <Form.Item
