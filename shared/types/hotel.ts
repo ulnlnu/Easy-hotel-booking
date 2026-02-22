@@ -36,6 +36,8 @@ export interface Hotel {
   roomTypes: RoomType[]; // 房型列表
   status: HotelStatus; // 审核状态
   rejectionReason?: string; // 拒绝原因（仅当 status 为 'rejected' 时存在）
+  openingDate?: string; // 开业时间（ISO 8601 日期）
+  starLevel?: number; // 酒店星级（1-5星）
   createdBy: string; // 创建者ID
   createdAt: string; // 创建时间（ISO 8601）
   updatedAt: string; // 更新时间（ISO 8601）
@@ -83,6 +85,8 @@ export interface CreateHotelRequest {
   tags: string[];
   facilities: string[];
   roomTypes: Omit<RoomType, 'id'>[];
+  openingDate?: string; // 开业时间（YYYY-MM-DD）
+  starLevel?: number; // 酒店星级（1-5）
 }
 
 /**
@@ -101,6 +105,8 @@ export interface UpdateHotelRequest {
   tags?: string[];
   facilities?: string[];
   roomTypes?: Omit<RoomType, 'id'>[];
+  openingDate?: string;
+  starLevel?: number;
 }
 
 /**
