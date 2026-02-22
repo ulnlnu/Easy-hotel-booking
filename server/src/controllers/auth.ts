@@ -36,6 +36,11 @@ export const authController = {
         throw new ApiError(400, '缺少必填字段');
       }
 
+      // 系统管理员仅能由现有管理员在「账号管理」中创建，不允许公开注册
+      if (body.role === 'admin') {
+        throw new ApiError(403, '系统管理员账号仅能由现有管理员在账号管理中创建');
+      }
+
       // 检查用户名是否已存在
       const existingUser = await authService.findByUsername(body.username);
       if (existingUser) {
