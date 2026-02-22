@@ -27,13 +27,15 @@ export enum BedType {
 export interface RoomType {
   id: string;
   name: string; // 房型名称（如"标准大床房"）
-  area: string; // 面积（如"25㎡"）
+  area: string | number; // 面积（如"25㎡"或数字25）
   price: number; // 价格（元/晚）
   originalPrice?: number; // 原价
-  bedType: string; // 床型（如"大床1.8m"）
-  maxGuests: number; // 最大入住人数
-  stock: number; // 库存
-  status: RoomStatus; // 状态
+  bedType?: string; // 床型（如"大床1.8m"）
+  beds?: string; // 床型（兼容旧数据）
+  maxGuests?: number; // 最大入住人数
+  maxOccupancy?: number; // 最大入住人数（兼容）
+  stock?: number; // 库存
+  status?: RoomStatus; // 状态
   amenities: string[]; // 设施（如"WiFi"、"空调"）
   images?: string[]; // 房型图片
 }
