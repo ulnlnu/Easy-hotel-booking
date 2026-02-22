@@ -41,6 +41,7 @@ body {
     'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f8fafc;
 }
 
 #root {
@@ -48,9 +49,8 @@ body {
 }
 
 /* ============================================
- * 3. 自定义滚动条样式
+ * 3. 自定义滚动条样式（蓝白主题）
  * ============================================
- * PC 端专用样式，使用设计令牌中的变量
  */
 
 ::-webkit-scrollbar {
@@ -59,14 +59,58 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: #94a3b8;
+}
+
+/* ============================================
+ * 4. 蓝白主题 - 全局组件样式覆盖
+ * ============================================
+ */
+
+.ant-modal-content {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
+}
+
+.ant-modal-header {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px 24px;
+}
+
+.ant-modal-title {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.ant-btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  border: none;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+
+  &:hover {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+  }
+}
+
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1) !important;
+}
+
+.ant-input:hover,
+.ant-input-affix-wrapper:hover {
+  border-color: #93c5fd !important;
 }
