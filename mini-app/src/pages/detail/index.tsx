@@ -8,7 +8,6 @@ import { View, Swiper, SwiperItem, Image, Text, Button } from '@tarojs/component
 import Taro, { useRouter, useShareAppMessage } from '@tarojs/taro';
 import { Star, Phone, Location, ArrowLeft } from '@nutui/icons-react-taro';
 import { getHotelDetailApi } from '@/services/api';
-//import type { Hotel } from '@shared/types/hotel';
 // 改为这种普通导入方式
 import { Hotel } from '@shared/types/hotel';
 import './index.scss';
@@ -39,19 +38,13 @@ function Detail() {
           title: response.data.name,
         });
       }
-    } /*catch (error: any) {
-      Taro.showToast({
-        title: error.message || '加载失败',
-        icon: 'error',
-      });
-    }*/catch (error) {
+    } catch (error) {
         const err = error instanceof Error ? error : new Error('加载失败');
         Taro.showToast({
             title: err.message,
             icon: 'error',
         });
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -89,7 +82,7 @@ function Detail() {
     return {
       title: hotel?.name || '易宿酒店',
       path: `/pages/detail/index?id=${id}`,
-      imageUrl: hotel?.images[0],
+      imageUrl: hotel?.images?.[0] || '',
     };
   });
 
@@ -101,8 +94,13 @@ function Detail() {
     return <View className="detail-page">酒店不存在</View>;
   }
 
-  // 房型按价格排序
-  const sortedRoomTypes = [...hotel.roomTypes].sort((a, b) => a.price - b.price);
+  // 增加安全校验，防止后端返回空数据或 null 导致前端解构崩溃
+  const sortedRoomTypes = hotel?.roomTypes 
+    ? [...hotel.roomTypes].sort((a, b) => a.price - b.price) 
+    : [];
+
+  // 设施标签也增加默认值校验
+  const facilities = hotel?.facilities || [];
 
   return (
     <View className="detail-page">
@@ -128,7 +126,7 @@ function Detail() {
           current={currentImageIndex}
           onChange={e => setCurrentImageIndex(e.detail.current)}
         >
-          {hotel.images.map((image, index) => (
+          {hotel.images?.map((image, index) => (
             <SwiperItem key={index}>
               <Image
                 src={image}
@@ -140,7 +138,7 @@ function Detail() {
           ))}
         </Swiper>
         <View className="image-count">
-          <Text>{currentImageIndex + 1}/{hotel.images.length}</Text>
+          <Text>{currentImageIndex + 1}/{(hotel.images || []).length}</Text>
         </View>
       </View>
 
@@ -162,7 +160,7 @@ function Detail() {
 
         {/* 设施标签 */}
         <View className="facilities">
-          {hotel.facilities.map((facility, index) => (
+          {facilities.map((facility, index) => (
             <View key={index} className="facility-tag">
               <Text>{facility}</Text>
             </View>
