@@ -25,10 +25,21 @@ function Home() {
    */
   const handleGetLocation = async () => {
     await getLocation();
+    // 优化：定位成功后给出反馈，而不是强制直接跳走，提升用户体验
     if (location) {
-      // 定位成功，跳转到列表页
-      Taro.navigateTo({
-        url: '/pages/list/index',
+      Taro.showToast({
+        title: '定位成功',
+        icon: 'success'
+      });
+      // 更新搜索参数中的经纬度，并可考虑调用逆地理编码API获取具体城市名
+      setSearchParams({
+        ...searchParams,
+        location: location 
+      });
+    } else {
+      Taro.showToast({
+        title: '定位失败，请检查权限',
+        icon: 'none'
       });
     }
   };
@@ -41,7 +52,7 @@ function Home() {
       keyword,
       checkIn: searchParams.checkIn,
       checkOut: searchParams.checkOut,
-      location: location || undefined,
+      location: location || searchParams.location, // 确保使用最新的location
     });
 
     Taro.navigateTo({
@@ -173,7 +184,7 @@ function Home() {
             onClick={handleGetLocation}
           >
             <Location size="14" />
-            <Text>获取当前位置</Text>
+            <Text>{location ? '已获取位置' : '获取当前位置'}</Text>
           </Button>
         </View>
 
