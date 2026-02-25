@@ -3,7 +3,7 @@
  * 城市选择器弹窗组件
  */
 
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { View, Text, ScrollView, Input } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { HOT_CITIES, CITY_GROUPS, getAlphabetList, type CityData } from '@/data/cities';

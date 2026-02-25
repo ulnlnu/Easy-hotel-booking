@@ -1,5 +1,8 @@
 import path from 'path';
 
+// 根据编译平台设置不同的输出目录
+const outputRoot = process.env.TARO_ENV === 'h5' ? 'dist/h5' : 'dist/weapp';
+
 const config = {
   projectName: 'trip-mini-app',
   date: '2025-1-1',
@@ -11,7 +14,7 @@ const config = {
     375: 2 / 1
   },
   sourceRoot: 'src',
-  outputRoot: 'dist',
+  outputRoot,
   plugins: [],
   defineConstants: {},
   copy: {
@@ -28,31 +31,67 @@ const config = {
   cache: {
     enable: false
   },
+  // 小程序端：禁用 pxtransform，使用 vw 单位（与 H5 统一）
   mini: {
     postcss: {
       pxtransform: {
-        enable: true,
-        config: {
-          selectorBlackList: [/nut-/]
-        }
-      }
-    }
-  },
-  h5: {
-    port: 10086,
-    publicPath: '/',
-    staticDirectory: 'static',
-    postcss: {
-      pxtransform: {
-        enable: true,
-        config: {
-          selectorBlackList: [/nut-/]
-        }
+        enable: false  // 禁用转换，保留 vw 单位
       }
     },
     webpackChain(chain) {
       chain.resolve.alias.set('@', path.resolve(__dirname, '..', 'src'));
       chain.resolve.alias.set('@shared', path.resolve(__dirname, '../../shared'));
+    }
+  },
+  // H5端：禁用 pxtransform，直接使用标准 CSS 尺寸
+  h5: {
+    port: 10086,
+    publicPath: '/',
+    staticDirectory: 'static',
+    htmlPluginOption: {
+      template: path.join(__dirname, '../src/index.html')
+    },
+    router: {
+      mode: 'browser'
+    },
+    devServer: {
+      port: 10086,
+      host: 'localhost',
+      hot: true,
+      open: false,
+      historyApiFallback: true,  // 支持 SPA 路由刷新
+      client: {
+        overlay: {
+          errors: true,      // 只显示错误
+          warnings: false,   // 隐藏警告
+        }
+      }
+    },
+    esnextModules: ['@nutui'],
+    postcss: {
+      pxtransform: {
+        enable: false  // 禁用 px 转换
+      }
+    },
+    webpackChain(chain) {
+      chain.resolve.alias.set('@', path.resolve(__dirname, '..', 'src'));
+      chain.resolve.alias.set('@shared', path.resolve(__dirname, '../../shared'));
+
+      // 忽略 Taro 框架内部的 webpackExports 警告
+      chain.set('ignoreWarnings', [
+        /webpackExports/,
+        /asset size limit/,
+        /entrypoint size limit/
+      ]);
+
+      // React Refresh 热更新
+      if (process.env.NODE_ENV === 'development') {
+        chain.plugin('reactRefresh').use(require('@pmmmwh/react-refresh-webpack-plugin'), [{
+          overlay: {
+            entry: false,  // 禁用默认 overlay，使用 Taro 的
+          }
+        }]);
+      }
     }
   }
 };

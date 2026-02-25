@@ -3,21 +3,54 @@
  * 酒店详情页
  */
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Swiper, SwiperItem, Image, Text, Button } from '@tarojs/components';
 import Taro, { useRouter, useShareAppMessage } from '@tarojs/taro';
 import { getHotelDetailApi } from '@/services/api';
-// 改为这种普通导入方式
+import { useHotelStore } from '@/store/useHotelStore';
+import DateRangePicker from '@/components/DateRangePicker';
 import { Hotel } from '@shared/types/hotel';
 import './index.scss';
+
+// 获取今天的日期字符串 (YYYY-MM-DD)
+const getTodayStr = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+// 获取明天的日期字符串
+const getTomorrowStr = () => {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const year = tomorrow.getFullYear();
+  const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+  const day = String(tomorrow.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
 
 function Detail() {
   const router = useRouter();
   const { id } = router.params;
+  const { searchParams, setSearchParams } = useHotelStore();
 
   const [hotel, setHotel] = useState<Hotel | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  // 从 store 获取日期，如果没有则使用默认值（今天-明天）
+  const checkIn = searchParams.checkIn || getTodayStr();
+  const checkOut = searchParams.checkOut || getTomorrowStr();
+
+  // 计算入住天数
+  const nights = useMemo(() => {
+    return Math.max(1, Math.floor(
+      (new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24)
+    ));
+  }, [checkIn, checkOut]);
 
   useEffect(() => {
     loadHotelDetail();
@@ -27,6 +60,7 @@ function Detail() {
    * 加载酒店详情
    */
   const loadHotelDetail = async () => {
+    if (!id) return;
     setLoading(true);
     try {
       const response = await getHotelDetailApi(id);
@@ -46,6 +80,14 @@ function Detail() {
     } finally {
       setLoading(false);
     }
+  };
+
+  /**
+   * 日期选择确认
+   */
+  const handleDateConfirm = (data: { checkIn: string; checkOut: string; nights: number }) => {
+    setSearchParams({ checkIn: data.checkIn, checkOut: data.checkOut });
+    setShowCalendar(false);
   };
 
   /**
@@ -94,8 +136,8 @@ function Detail() {
   }
 
   // 增加安全校验，防止后端返回空数据或 null 导致前端解构崩溃
-  const sortedRoomTypes = hotel?.roomTypes 
-    ? [...hotel.roomTypes].sort((a, b) => a.price - b.price) 
+  const sortedRoomTypes = hotel?.roomTypes
+    ? [...hotel.roomTypes].sort((a, b) => a.price - b.price)
     : [];
 
   // 设施标签也增加默认值校验
@@ -107,9 +149,6 @@ function Detail() {
       <View className="nav-bar">
         <View className="nav-back" onClick={handleBack}>
           <Text className="nav-back-icon">←</Text>
-        </View>
-        <View className="nav-share">
-          <Text>分享</Text>
         </View>
       </View>
 
@@ -169,6 +208,29 @@ function Detail() {
         </View>
       </View>
 
+      {/* 日历+间夜 Banner */}
+      <View className="date-banner" onClick={() => setShowCalendar(true)}>
+        <View className="date-banner__left">
+          <View className="date-banner__dates">
+            <View className="date-banner__date-item">
+              <Text className="date-banner__label">入住</Text>
+              <Text className="date-banner__value">{checkIn.slice(5)}</Text>
+            </View>
+            <View className="date-banner__arrow-wrap">
+              <Text className="date-banner__nights">共{nights}晚</Text>
+              <Text className="date-banner__arrow">→</Text>
+            </View>
+            <View className="date-banner__date-item">
+              <Text className="date-banner__label">离店</Text>
+              <Text className="date-banner__value">{checkOut.slice(5)}</Text>
+            </View>
+          </View>
+        </View>
+        <View className="date-banner__edit">
+          <Text>修改</Text>
+        </View>
+      </View>
+
       {/* 房型列表 */}
       <View className="room-section">
         <View className="section-title">
@@ -214,6 +276,14 @@ function Detail() {
           <Text>联系酒店</Text>
         </Button>
       </View>
+
+      {/* 日期选择器 */}
+      <DateRangePicker
+        visible={showCalendar}
+        value={{ checkIn, checkOut }}
+        onConfirm={handleDateConfirm}
+        onCancel={() => setShowCalendar(false)}
+      />
     </View>
   );
 }

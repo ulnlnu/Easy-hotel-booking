@@ -3,7 +3,7 @@
  * 请求Hook - 封装异步请求状态
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 interface UseRequestOptions<T> {
   manual?: boolean; // 是否手动触发

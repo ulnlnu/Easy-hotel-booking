@@ -3,6 +3,7 @@
  * 酒店卡片组件 - 横向布局（优化版）
  */
 
+import React from 'react';
 import { Image, Text, View } from '@tarojs/components';
 import './index.scss';
 

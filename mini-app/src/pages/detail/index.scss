@@ -28,7 +28,6 @@
     height: 15vw;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 4vw;
     z-index: 100;
     background: transparent;
@@ -54,22 +53,6 @@
       .nav-back-icon {
         font-size: 5.5vw;
         font-weight: 600;
-      }
-    }
-
-    .nav-share {
-      padding: 2.5vw 4vw;
-      background: rgba(14, 165, 233, 0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 5vw;
-      color: #fff;
-      font-size: 3.5vw;
-      transition: all 0.15s ease;
-
-      &:active {
-        transform: scale(0.95);
-        background: rgba(14, 165, 233, 0.8);
       }
     }
   }
@@ -201,6 +184,104 @@
         border: 1px solid rgba(14, 165, 233, 0.15);
       }
     }
+  }
+
+  /* ============================================
+   * 日历+间夜 Banner
+   * ============================================ */
+  .date-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 5vw 4vw;
+    margin: 0 0 3vw;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(14, 165, 233, 0.08);
+  }
+
+  .date-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc, #bae6fd);
+  }
+
+  .date-banner__left {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vw;
+  }
+
+  .date-banner__dates {
+    display: flex;
+    align-items: center;
+    gap: 4vw;
+  }
+
+  .date-banner__date-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5vw;
+    background: #f0f9ff;
+    padding: 2.5vw 4vw;
+    border-radius: 2.5vw;
+    min-width: 18vw;
+  }
+
+  .date-banner__label {
+    font-size: 3.2vw;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .date-banner__value {
+    font-size: 5vw;
+    font-weight: 700;
+    color: #0c4a6e;
+  }
+
+  .date-banner__arrow-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+  }
+
+  .date-banner__nights {
+    font-size: 3vw;
+    color: #0ea5e9;
+    font-weight: 600;
+  }
+
+  .date-banner__arrow {
+    font-size: 5vw;
+    color: #0ea5e9;
+    font-weight: 300;
+  }
+
+  .date-banner__edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3vw 5vw;
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    border-radius: 3vw;
+    font-size: 3.8vw;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
+    transition: all 0.15s ease;
+  }
+
+  .date-banner__edit:active {
+    transform: scale(0.96);
+    box-shadow: 0 1px 4px rgba(14, 165, 233, 0.2);
   }
 
   /* ============================================

@@ -3,8 +3,8 @@
  * 首页 - 蓝白简约风（优化版）
  */
 
-import { useState, useEffect, useMemo } from 'react';
-import { View, Text, Input, Button } from '@tarojs/components';
+import React, { useState, useEffect, useMemo } from 'react';
+import { View, Text, Input, Button, Swiper, SwiperItem, Image } from '@tarojs/components';
 import Taro, { useReady } from '@tarojs/taro';
 import { useHotelStore } from '@/store/useHotelStore';
 import { useLocation } from '@/hooks/useLocation';
@@ -13,10 +13,21 @@ import CityPicker from '@/components/CityPicker';
 import { getCityByLocation } from '@/utils/geocoder';
 import { findCityByName, getCityDisplayName } from '@/data/cities';
 import { searchHotelsApi } from '@/services/api';
+import type { Hotel, HotelQueryParams } from '@shared/types/hotel';
 import './index.scss';
 
 // 平台检测
 const isH5 = process.env.TARO_ENV === 'h5';
+
+// 快捷标签选项（从后端酒店 tags 字段中选取常用标签）
+const QUICK_TAGS = [
+  { label: '近地铁', icon: '🚇' },
+  { label: '含早餐', icon: '🍳' },
+  { label: '有泳池', icon: '🏊' },
+  { label: '近景区', icon: '🏞️' },
+  { label: '商务首选', icon: '💼' },
+  { label: '经济实惠', icon: '💰' },
+];
 
 function Home() {
   const { searchParams, setSearchParams, locatedCity, setLocatedCity, setPreloadedHotels } = useHotelStore();
@@ -27,6 +38,26 @@ function Home() {
   const [showCityPicker, setShowCityPicker] = useState(false);
   // 入场动画状态
   const [isEntering, setIsEntering] = useState(true);
+  // 广告酒店列表
+  const [bannerHotels, setBannerHotels] = useState<Hotel[]>([]);
+
+  // 获取广告酒店（approved 状态的前5个）
+  useEffect(() => {
+    const fetchBannerHotels = async () => {
+      try {
+        const response = await searchHotelsApi({
+          page: 1,
+          pageSize: 5,
+        } as any);
+        if (response.success && response.data.length > 0) {
+          setBannerHotels(response.data);
+        }
+      } catch (error) {
+        console.log('Fetch banner hotels failed:', error);
+      }
+    };
+    fetchBannerHotels();
+  }, []);
 
   // 定位成功后自动识别城市并选中
   useEffect(() => {
@@ -87,16 +118,17 @@ function Home() {
 
     // 预加载数据
     try {
-      const cleanParams: Record<string, any> = {};
+      const cleanParams: Partial<HotelQueryParams> = {
+        page: 1,
+        pageSize: 10,
+      };
       Object.entries(newParams).forEach(([key, value]) => {
         if (value !== undefined && value !== '' && value !== null) {
-          cleanParams[key] = value;
+          (cleanParams as Record<string, any>)[key] = value;
         }
       });
-      cleanParams.page = 1;
-      cleanParams.pageSize = 10;
 
-      const response = await searchHotelsApi(cleanParams);
+      const response = await searchHotelsApi(cleanParams as HotelQueryParams);
       if (response.success) {
         setPreloadedHotels(response.data, response.hasMore);
       }
@@ -148,20 +180,73 @@ function Home() {
     Taro.navigateTo({ url: '/pages/list/index' });
   };
 
+  // 快捷标签点击（带标签筛选跳转列表页）
+  const handleTagClick = async (tag: string) => {
+    // 设置标签筛选
+    setSearchParams({ tags: [tag] });
+
+    // 预加载数据
+    try {
+      const response = await searchHotelsApi({
+        tags: [tag],
+        page: 1,
+        pageSize: 10,
+        checkIn: searchParams.checkIn,
+        checkOut: searchParams.checkOut,
+      } as any);
+      if (response.success) {
+        setPreloadedHotels(response.data, response.hasMore);
+      }
+    } catch (error) {
+      console.log('Preload failed:', error);
+    }
+
+    Taro.navigateTo({ url: '/pages/list/index' });
+  };
+
+  // 广告酒店点击
+  const handleBannerClick = (hotelId: string) => {
+    Taro.navigateTo({ url: `/pages/detail/index?id=${hotelId}` });
+  };
+
   return (
     <View className={`home-page ${isEntering ? 'home-page--entering' : 'home-page--entered'}`}>
-      {/* 顶部品牌区 */}
-      <View className="home-page__header">
-        <View className="home-page__brand">
-          <View className="home-page__logo">
-            <View className="home-page__logo-icon">
-              <Text style={{ fontSize: '28px', color: '#fff' }}>易</Text>
-            </View>
-          </View>
-          <Text className="home-page__title">易宿酒店</Text>
-          <Text className="home-page__subtitle">发现美好住宿体验</Text>
+      {/* 广告 Banner - 展示推荐酒店 */}
+      {bannerHotels.length > 0 && (
+        <View className="home-page__banner">
+          <Swiper
+            className="home-page__banner-swiper"
+            indicatorDots
+            autoplay
+            circular
+            interval={4000}
+            duration={500}
+            indicatorColor="rgba(255,255,255,0.5)"
+            indicatorActiveColor="#fff"
+          >
+            {bannerHotels.map((hotel) => (
+              <SwiperItem
+                key={hotel.id}
+                className="home-page__banner-item"
+                onClick={() => handleBannerClick(hotel.id)}
+              >
+                <Image
+                  className="home-page__banner-image"
+                  src={hotel.images?.[0] || ''}
+                  mode="aspectFill"
+                />
+                <View className="home-page__banner-overlay">
+                  <Text className="home-page__banner-name">{hotel.name}</Text>
+                  <View className="home-page__banner-info">
+                    <Text className="home-page__banner-rating">★ {hotel.rating}</Text>
+                    <Text className="home-page__banner-price">¥{hotel.roomTypes?.[0]?.price || '--'}起</Text>
+                  </View>
+                </View>
+              </SwiperItem>
+            ))}
+          </Swiper>
         </View>
-      </View>
+      )}
 
       {/* 搜索卡片 */}
       <View className="home-page__search-card">
@@ -231,6 +316,23 @@ function Home() {
           <Text className="home-page__search-icon">🔍</Text>
           <Text>搜索酒店</Text>
         </Button>
+      </View>
+
+      {/* 快捷标签 */}
+      <View className="home-page__tags-section">
+        <Text className="home-page__section-title">快捷筛选</Text>
+        <View className="home-page__tags-grid">
+          {QUICK_TAGS.map((tag) => (
+            <View
+              key={tag.label}
+              className="home-page__tag-item"
+              onClick={() => handleTagClick(tag.label)}
+            >
+              <Text className="home-page__tag-icon">{tag.icon}</Text>
+              <Text className="home-page__tag-label">{tag.label}</Text>
+            </View>
+          ))}
+        </View>
       </View>
 
       {/* 热门城市 */}

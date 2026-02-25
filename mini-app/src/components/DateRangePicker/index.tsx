@@ -3,7 +3,7 @@
  * 日期范围选择组件 - 单月版本，带年月选择
  */
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Picker } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import dayjs from 'dayjs';
@@ -66,7 +66,7 @@ function DateRangePicker({
     const month = viewDate.getMonth();
     const firstDay = dayjs(viewDate).startOf('month').day();
     const daysInMonth = dayjs(viewDate).daysInMonth();
-    const days = [];
+    const days: Array<{ day: number; month: number; year: number; empty: boolean }> = [];
 
     for (let i = 0; i < firstDay; i++) {
       days.push({ day: 0, month, year, empty: true });
@@ -82,7 +82,7 @@ function DateRangePicker({
 
   // 生成可选的年月列表
   const generateMonthOptions = () => {
-    const options = [];
+    const options: Array<{ value: string; label: string }> = [];
     const start = dayjs(minDate).startOf('month');
     const end = dayjs(maxDate).endOf('month');
     let current = start;

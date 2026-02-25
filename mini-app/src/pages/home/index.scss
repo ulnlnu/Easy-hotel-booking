@@ -14,8 +14,9 @@
   &--entering {
     opacity: 0;
 
-    .home-page__header,
+    .home-page__banner,
     .home-page__search-card,
+    .home-page__tags-section,
     .home-page__hot-section {
       opacity: 0;
       transform: translateY(16px);
@@ -26,7 +27,7 @@
     opacity: 1;
     transition: opacity 0.25s ease-out;
 
-    .home-page__header {
+    .home-page__banner {
       opacity: 1;
       transform: translateY(0);
       transition: opacity 0.25s ease-out, transform 0.25s ease-out;
@@ -36,6 +37,12 @@
       opacity: 1;
       transform: translateY(0);
       transition: opacity 0.25s ease-out 0.08s, transform 0.25s ease-out 0.08s;
+    }
+
+    .home-page__tags-section {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.25s ease-out 0.12s, transform 0.25s ease-out 0.12s;
     }
 
     .home-page__hot-section {
@@ -64,79 +71,6 @@
     &:nth-child(4) { animation: popIn 0.25s ease-out 0.34s forwards; }
     &:nth-child(5) { animation: popIn 0.25s ease-out 0.37s forwards; }
     &:nth-child(6) { animation: popIn 0.25s ease-out 0.4s forwards; }
-  }
-
-  /* ============================================
-   * 顶部品牌区 - Arctic Frost 冰蓝渐变
-   * ============================================ */
-  &__header {
-    position: relative;
-    padding: 8vw 4vw 10vw;
-    background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #7dd3fc 100%);
-
-    // 底部圆角装饰 - 霜雪质感
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      height: 5vw;
-      background: linear-gradient(180deg, var(--frost-start), var(--frost-mid));
-      border-radius: 4vw 4vw 0 0;
-    }
-
-    // 顶部装饰光晕
-    &::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 60%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-      pointer-events: none;
-    }
-  }
-
-  &__brand {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: #fff;
-  }
-
-  &__logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2.5vw;
-  }
-
-  &__logo-icon {
-    width: 11vw;
-    height: 11vw;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 2.5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  &__title {
-    font-size: 6.5vw;
-    font-weight: 700;
-    letter-spacing: 0.5vw;
-    margin-bottom: 1.5vw;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  &__subtitle {
-    font-size: 3.8vw;
-    opacity: 0.95;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   }
 
   /* ============================================
@@ -359,6 +293,114 @@
   &__search-icon {
     font-size: 5vw;
     line-height: 1;
+  }
+
+  /* ============================================
+   * 广告 Banner - 顶部全宽
+   * ============================================ */
+  &__banner {
+    margin: 0 0 4vw;
+    border-radius: 0 0 3vw 3vw;
+    overflow: hidden;
+    box-shadow: 0 1vw 3vw rgba(14, 165, 233, 0.15);
+  }
+
+  &__banner-swiper {
+    height: 50vw;
+  }
+
+  &__banner-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__banner-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__banner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 4vw 4vw;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+  }
+
+  &__banner-name {
+    font-size: 4.5vw;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__banner-info {
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+  }
+
+  &__banner-rating {
+    font-size: 3.4vw;
+    color: #FCD34D;
+    font-weight: 500;
+  }
+
+  &__banner-price {
+    font-size: 3.8vw;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* ============================================
+   * 快捷标签
+   * ============================================ */
+  &__tags-section {
+    padding: 2vw 3vw 1vw;
+  }
+
+  &__tags-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5vw;
+  }
+
+  &__tag-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 14vw;
+    background: var(--bg-card);
+    border-radius: 2.5vw;
+    box-shadow: var(--shadow-card);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(14, 165, 233, 0.08);
+
+    &:active {
+      transform: scale(0.96);
+      background: var(--primary-bg);
+      border-color: var(--primary-color);
+    }
+  }
+
+  &__tag-icon {
+    font-size: 5vw;
+    margin-bottom: 1vw;
+  }
+
+  &__tag-label {
+    font-size: 3.2vw;
+    font-weight: 500;
+    color: var(--text-primary);
   }
 
   /* ============================================
