@@ -8,11 +8,6 @@
  * 注意：小程序无法访问 localhost，需要使用局域网 IP
  */
 const getBaseUrl = () => {
-  // 生产环境
-  if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'production') {
-    return 'https://api.yisu.com/api';
-  }
-
   // 小程序环境使用局域网 IP（微信开发者工具中可识别 TARO_ENV）
   if (typeof process !== 'undefined' && process.env && process.env.TARO_ENV === 'weapp') {
     return 'http://192.168.1.133:3000/api';

@@ -120,9 +120,7 @@ function List() {
         }
       });
 
-      console.log('Request params:', cleanParams);
       const response = await searchHotelsApi(cleanParams as any);
-      console.log('API Response:', response);
 
       if (response.success) {
         if (isLoadMore) {
@@ -179,7 +177,6 @@ function List() {
 
     if (preloadedHotels && preloadedHotels.length > 0) {
       // 使用预加载数据，避免重新请求
-      console.log('Using preloaded data:', preloadedHotels.length, 'hotels');
       setHotels(preloadedHotels);
       setHasMore(preloadedHasMore);
       setIsFirstLoad(false);
@@ -207,7 +204,6 @@ function List() {
 
     // 参数变化了，更新快照并重新加载
     prevParamsSnapshotRef.current = currentSnapshot;
-    console.log('Params changed, reloading...');
 
     // 重置列表状态
     setHotels([]);
@@ -236,12 +232,45 @@ function List() {
     loadHotels(false);
   });
 
+  // H5 环境：使用原生 DOM 事件监听滚动
+  useEffect(() => {
+    if (!IS_H5) return;
+
+    const timer = setTimeout(() => {
+      const container = document.querySelector('.list-page__scroll') as HTMLDivElement;
+      if (!container) return;
+
+      const handleNativeScroll = (e: Event) => {
+        const target = e.target as HTMLDivElement;
+        const { scrollTop, scrollHeight, clientHeight } = target;
+        const distanceToBottom = scrollHeight - scrollTop - clientHeight;
+
+        if (distanceToBottom < 200 && hasMore && !loading) {
+          loadHotels(true);
+        }
+      };
+
+      container.addEventListener('scroll', handleNativeScroll, true);
+      window.addEventListener('scroll', handleNativeScroll, true);
+      (container as any)._scrollHandler = handleNativeScroll;
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      const container = document.querySelector('.list-page__scroll') as HTMLDivElement;
+      if (container && (container as any)._scrollHandler) {
+        container.removeEventListener('scroll', (container as any)._scrollHandler, true);
+        window.removeEventListener('scroll', (container as any)._scrollHandler, true);
+      }
+    };
+  }, [hasMore, loading, loadHotels]);
+
   // 加载更多
   const handleScrollToLower = useCallback(() => {
     if (hasMore && !loading) {
       loadHotels(true);
     }
-  }, [hasMore, loading, loadHotels]);
+  }, [hasMore, loading, loadHotels, hotels.length]);
 
   // 获取当前有效的筛选标签（不包含城市，城市在筛选栏第一位常驻显示）
   const activeFilters = useMemo(() => {
@@ -308,23 +337,6 @@ function List() {
       {/* 筛选栏 */}
       <FilterBar sortBy={sortBy} onSortChange={setSortBy} />
 
-      {/* 筛选标签 */}
-      {activeFilters.length > 0 && (
-        <View className="list-page__filter-tags">
-          <View className="filter-tags__list">
-            {activeFilters.map((filter) => (
-              <View key={filter.key} className="filter-tags__tag" onClick={() => clearFilter(filter.key)}>
-                <Text className="filter-tags__tag-text">{filter.value}</Text>
-                <Text className="filter-tags__close-icon">×</Text>
-              </View>
-            ))}
-          </View>
-          <View className="filter-tags__clear" onClick={clearAllFilters}>
-            <Text>清除全部</Text>
-          </View>
-        </View>
-      )}
-
       {/* 酒店列表 - H5 使用 ScrollView，小程序使用 VirtualList */}
       {isFirstLoad && loading && hotels.length === 0 ? (
         <View className="list-page__skeleton-wrapper">
@@ -340,13 +352,10 @@ function List() {
           )}
         </View>
       ) : IS_H5 ? (
-        // H5 环境：使用 ScrollView 普通滚动
-        <ScrollView
+        // H5 环境：使用原生 div 滚动（Taro ScrollView 在 H5 有兼容性问题）
+        <View
           className="list-page__scroll"
-          scrollY
-          style={{ height: `${listHeight}px` }}
-          onScrollToLower={handleScrollToLower}
-          lowerThreshold={100}
+          style={{ height: `${listHeight}px`, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}
         >
           {hotels.map((hotel) => (
             <View key={hotel.id} className="list-page__item">
@@ -358,7 +367,7 @@ function List() {
               />
             </View>
           ))}
-          {/* 底部加载状态移到 ScrollView 内部 */}
+          {/* 底部加载状态 */}
           {loading && hotels.length > 0 && (
             <View className="list-page__loading-more">
               <Text>加载中...</Text>
@@ -366,10 +375,10 @@ function List() {
           )}
           {!hasMore && hotels.length > 0 && (
             <View className="list-page__no-more">
-              <Text>已经到底啦~</Text>
+              <Text>已经到底啦~（共{hotels.length}家酒店）</Text>
             </View>
           )}
-        </ScrollView>
+        </View>
       ) : (
         // 小程序环境：使用 VirtualList 虚拟滚动
         <VirtualList

@@ -1,47 +1,113 @@
 # 易宿酒店预订平台
 
-> 前端训练营两周小组作业 - 3人团队项目
+> 智慧出行酒店预订平台 - 前端训练营小组作业项目
 
-## 📋 快速启动检查清单
+## 项目概述
 
-克隆项目后，请按顺序完成以下步骤：
+易宿酒店预订平台是一个面向现代旅游出行场景的综合服务体系，旨在为酒店商家与终端消费者之间搭建高效、便捷的信息交互桥梁。本项目分为两部分：
 
-- [ ] **安装 pnpm**（如果尚未安装）：`npm install -g pnpm@8`
-- [ ] **安装依赖**：在根目录运行 `pnpm install`
-- [ ] **配置环境变量**：
-  - [ ] `cp server/.env.example server/.env`
-  - [ ] `cp admin/.env.example admin/.env`
-- [ ] **启动后端**：`pnpm dev:server` 或 `cd server && pnpm dev`
-- [ ] **启动前端**：
-  - [ ] 移动端：`pnpm dev:mini-app:h5`
-  - [ ] PC端：`pnpm dev:admin`
-- [ ] **验证运行**：访问移动端显示的端口（通常是 10086，如被占用可能自动切换到其他端口如 1565）或 http://localhost:5173（PC端）
+- **用户端（移动端）**：酒店预订流程页面，聚焦用户体验优化
+- **商户端（PC 站点）**：酒店信息管理系统，专注于酒店信息管理与运营协作
 
 ---
 
-## 项目简介
+## 功能实现清单
 
-基于 Taro 跨端框架的酒店预订平台，包含移动端（用户端）、PC 管理端（后台）和 Express 后端 API。
+### 一、用户端预订流程（移动端）
 
-### 技术亮点
+| 页面 | 功能说明 | 完成状态 |
+|-----|---------|---------|
+| **酒店查询页（首页）** | 顶部 Banner 广告（点击跳转详情）、定位/关键字搜索、入住日期选择（日历组件）、筛选条件（星级/价格）、快捷标签（亲子/豪华/免费停车等） | ✅ 已完成 |
+| **酒店列表页** | 顶部条件筛选（城市/日期/间夜）、详细筛选区域、酒店列表（上滑自动加载）、虚拟滚动优化 | ✅ 已完成 |
+| **酒店详情页** | 顶部导航、大图 Banner 轮播、酒店基础信息、日历+间夜选择、房型价格列表 | ✅ 已完成 |
 
-| 亮点类别 | 具体内容 | 对应评分 |
-|---------|----------|---------|
-| **跨端技术** | 使用 Taro 实现 H5+微信小程序双端发布 | 项目创新性 |
-| **性能优化** | 虚拟滚动解决长列表渲染卡顿 | 技术复杂度 |
-| **用户体验** | 自定义日历组件支持入住/离店联动选择 | 用户体验 |
-| **LBS 定位** | 获取用户当前位置，支持"距我最近"排序 | 项目创新性 |
-| **代码质量** | TypeScript 全覆盖，规范的 Git 提交 | 代码质量 |
+### 二、管理酒店信息系统（PC 站点）
+
+| 页面 | 功能说明 | 完成状态 |
+|-----|---------|---------|
+| **用户登录/注册页** | 商户和管理员角色区分、角色选择注册、自动识别角色登录 | ✅ 已完成 |
+| **酒店信息录入/编辑页** | 酒店信息录入、编辑、保存，数据实时同步 | ✅ 已完成 |
+| **酒店信息审核/发布/下线页** | 审核状态（通过/不通过/审核中）、显示不通过原因、下线与恢复功能 | ✅ 已完成 |
+
+### 三、酒店数据维度
+
+**必须维度（均已实现）**：
+- 酒店名（中/英显示）、酒店地址、酒店星级
+- 酒店房型、酒店价格、酒店开业时间
+
+**扩展维度（已实现）**：
+- 酒店附近热门景点、交通及商场
+- 酒店设施标签（免费WiFi、停车场、健身房等）
+- 用户评分与评价数
 
 ---
 
-## 技术栈
+## 技术架构
+
+### 技术选型
 
 | 端 | 技术方案 |
 |---|---|
 | **移动端（用户端）** | Taro + React + TypeScript + NutUI + Zustand |
 | **PC 管理端** | React + Vite + Ant Design + TypeScript + Zustand |
-| **后端 API** | Express + TypeScript + JSON 文件存储 |
+| **后端 API** | Express + TypeScript + JWT 认证 |
+
+### 技术亮点
+
+| 亮点 | 说明 |
+|-----|------|
+| **跨端发布** | 基于 Taro 框架，一套代码同时支持 H5 和微信小程序 |
+| **虚拟滚动** | 解决长列表渲染卡顿，提升用户体验 |
+| **LBS 定位** | 获取用户位置，支持"距我最近"排序，显示距离公里数 |
+| **自定义日历** | 支持入住/离店联动选择，自动计算间夜数 |
+| **TypeScript 全覆盖** | 前后端均使用 TypeScript，保证代码质量 |
+
+---
+
+## 快速启动
+
+### 1. 环境要求
+
+- Node.js >= 16
+- pnpm >= 8.0.0
+
+### 2. 安装与启动
+
+```bash
+# 安装 pnpm（如未安装）
+npm install -g pnpm@8
+
+# 安装项目依赖
+pnpm install
+
+# 配置环境变量
+cp server/.env.example server/.env
+cp admin/.env.example admin/.env
+
+# 启动后端（端口 3000）
+pnpm dev:server
+
+# 启动移动端 H5（新终端窗口，端口 10086）
+pnpm dev:mini-app:h5
+
+# 启动 PC 管理端（新终端窗口，端口 5173）
+pnpm dev:admin
+```
+
+### 3. 访问地址
+
+| 端 | 地址 | 说明 |
+|---|-----|------|
+| 移动端 H5 | http://localhost:10086 | 用户端预订流程 |
+| PC 管理端 | http://localhost:5173 | 商户/管理员后台 |
+| 后端 API | http://localhost:3000 | API 服务 |
+
+### 4. 演示账号
+
+| 角色 | 用户名 | 密码 | 权限说明 |
+|-----|--------|------|---------|
+| 管理员 | admin | password123 | 可审核、发布、下线酒店 |
+| 商户 | hoteladmin | password123 | 可录入、编辑酒店信息 |
 
 ---
 
@@ -49,326 +115,67 @@
 
 ```
 Trip/
-├── mini-app/              # 移动端（Taro 跨端项目）
-│   ├── src/
-│   │   ├── components/    # 公共组件
-│   │   ├── pages/         # 页面（home, list, detail）
-│   │   ├── services/      # API服务（mockApi.ts + api.ts）
-│   │   ├── hooks/         # 自定义hooks（useLocation, useVirtualList）
-│   │   ├── store/         # Zustand状态管理
-│   │   └── utils/         # 工具函数（日期、距离计算）
-│   ├── project.h5.json    # H5端配置
-│   └── package.json
+├── mini-app/              # 移动端（Taro 跨端）
+│   ├── src/pages/         # 页面：home, list, detail
+│   ├── src/components/    # 公共组件
+│   └── src/services/      # API 服务
 │
 ├── admin/                 # PC 管理端（React + Vite）
-│   ├── src/
-│   │   ├── components/    # 公共组件（Layout）
-│   │   ├── pages/         # 页面（Login, HotelEdit, AuditList）
-│   │   ├── services/      # API服务（mockApi.ts + api.ts）
-│   │   ├── store/         # Zustand状态管理
-│   │   └── router.tsx     # 路由配置
-│   └── package.json
+│   ├── src/pages/         # 页面：Login, HotelEdit, AuditList
+│   └── src/components/    # 布局组件
 │
 ├── server/                # Node.js 后端
-│   ├── src/
-│   │   ├── routes/        # API路由（auth, hotels）
-│   │   ├── controllers/   # 控制器层
-│   │   ├── services/      # 业务逻辑层
-│   │   ├── middleware/    # 中间件（auth, cors, error）
-│   │   ├── utils/         # 工具函数
-│   │   └── data/         # JSON 数据存储
-│   └── package.json
+│   ├── src/routes/        # API 路由
+│   ├── src/controllers/   # 控制器
+│   └── src/data/          # 数据存储
 │
-├── shared/                # 共享代码
-│   ├── types/            # TypeScript 类型定义
-│   ├── constants/        # 通用配置（API地址、端口等）
-│   └── components/       # 共享组件（Calendar 日历组件）
-│
-├── .gitignore
-├── .eslintrc.js
-├── .prettierrc
-├── package.json          # 根 Monorepo 配置
-└── README.md
+└── shared/                # 共享代码
+    ├── types/             # TypeScript 类型
+    └── components/        # 共享组件（日历）
 ```
 
 ---
 
-## 快速开始
-
-### 1. 安装依赖
-
-> **重要**：本项目使用 **pnpm** 作为包管理器，不支持 npm 或 yarn
-
-```bash
-# 安装 pnpm（如果尚未安装）
-npm install -g pnpm@8
-
-# 根目录（安装所有依赖，包括 monorepo）
-pnpm install
-
-# 验证安装
-pnpm --version  # 应显示 >= 8.0.0
-```
-
-### 2. 配置环境变量
-
-```bash
-# 复制环境变量模板
-cp server/.env.example server/.env
-cp admin/.env.example admin/.env
-
-# server/.env 配置说明：
-# - PORT: 后端端口（默认 3000）
-# - JWT_SECRET: JWT 签名密钥（生产环境请修改）
-# - CORS_ORIGINS: 允许的跨域来源（添加前端地址）
-```
-
-### 3. 初始化数据文件
-
-```bash
-# 确保 server/src/data 目录存在并有初始数据
-# 项目已包含 gitkeep 文件，首次启动会自动创建 JSON 文件
-```
-
-### 4. 启动开发服务器
-
-> **启动顺序**：必须先启动后端（server），再启动前端
-
-#### 方式一：使用根目录命令（推荐）
-
-```bash
-# 启动后端
-pnpm dev:server
-
-# 启动移动端 H5（新终端窗口）
-pnpm dev:mini-app:h5
-
-# 启动 PC 管理端（新终端窗口）
-pnpm dev:admin
-```
-
-#### 方式二：进入子目录启动
-
-```bash
-# 后端（端口 3000）
-cd server && pnpm dev
-
-# 移动端 H5（端口 10086）
-cd mini-app && pnpm dev:h5
-
-# PC 管理端（端口 5173）
-cd admin && pnpm dev
-```
-
-### 5. 访问应用
-
-| 端 | URL | 说明 |
-|---|-----|------|
-| 移动端 H5 | http://localhost:10086 （如被占用可能自动切换） | 用户端（Taro H5） - **查看控制台输出的实际端口** |
-| 移动端小程序 | 微信开发者工具导入 `mini-app/project.config.json` | 微信小程序 |
-| PC 管理端 | http://localhost:5173 | 管理后台 |
-| 后端 API | http://localhost:3000 | API 服务 |
-| 健康检查 | http://localhost:3000/api/health | 检查后端状态 |
-
-### 6. 故障排除
-
-#### 问题：pnpm install 失败
-```bash
-# 解决方案：确保 pnpm 版本 >= 8.0.0
-pnpm install -g pnpm@8
-
-# 清理缓存后重试
-pnpm store prune
-rm -rf node_modules
-pnpm install
-```
-
-#### 问题：后端启动失败（.env 不存在）
-```bash
-# 解决方案：复制环境变量模板
-cp server/.env.example server/.env
-cp admin/.env.example admin/.env
-```
-
-#### 问题：前端 API 请求 404/CORS 错误
-```bash
-# 解决方案 1：检查后端是否运行
-curl http://localhost:3000/api/health
-
-# 解决方案 2：检查 CORS 配置是否包含前端端口
-# 编辑 server/.env，添加所有可能的端口（Taro 可能自动切换）
-CORS_ORIGINS=http://localhost:5173,http://localhost:10086,http://localhost:1565,http://localhost:8080
-
-# 解决方案 3：检查 shared/constants/config.ts 中 BASE_URL 是否正确
-BASE_URL=http://localhost:3000/api  # 注意 /api 后缀
-```
-
-#### 问题：移动端 H5 端口不是 10086
-```bash
-# 说明：Taro 可能因端口被占用自动选择其他端口（如 1565）
-# 当前配置的端口：mini-app/config/index.ts 第 42 行
-# 实际运行端口：查看控制台输出的 "App running at: http://localhost:XXXX"
-
-# 解决方案 1：使用自动分配的端口（推荐）
-# 优点：无需手动解决端口冲突，Taro 自动选择可用端口
-# 操作：直接使用控制台输出的实际端口访问即可
-
-# 解决方案 2：固定端口为 10086
-# 步骤 1：确保端口未被占用（Windows 使用 netstat -ano | findstr :10086）
-# 步骤 2：编辑 mini-app/config/index.ts，确认 h5.port 配置正确
-# 步骤 3：重启开发服务器
-pnpm dev:mini-app:h5
-
-# 解决方案 3：固定端口为其他值
-# 编辑 mini-app/config/index.ts，修改第 42 行：
-h5: {
-  port: 8080  # 改为其他端口
-  // ...
-}
-```
-
-#### 问题：shared 模块找不到
-```bash
-# 说明：pnpm workspace 链接问题，确保在根目录运行
-pnpm install  # 必须在 Trip/ 根目录运行
-```
-
-### 4. 演示账号
-
-| 角色 | 用户名 | 密码 |
-|-----|--------|------|
-| 管理员 | admin | password123 |
-| 酒店管理员 | hoteladmin | password123 |
-
----
-
-## 开发规范
-
-### Git 提交规范
-
-使用 Conventional Commits 规范：
-
-```bash
-# 新功能
-git commit -m "feat(hotel): 实现酒店列表页面"
-git commit -m "feat(list): 实现虚拟滚动优化"
-
-# Bug修复
-git commit -m "fix: 修复日期选择bug"
-
-# 性能优化
-git commit -m "perf: 优化图片加载性能"
-
-# 代码重构
-git commit -m "refactor: 将Mock API替换为真实API"
-
-# 测试
-git commit -m "test: 完成H5端功能测试"
-
-# 文档更新
-git commit -m "docs: 更新README文档"
-```
-
-### 分支策略
-
-- `main` - 主分支
-- `feature/xxx` - 功能分支
-- `bugfix/xxx` - Bug 修复分支
-
----
-
-## 开发模式
-
-### Mock 模式（Day 1-3）
-
-前端使用 `services/mockApi.ts` 中的 Mock 数据进行开发：
-
-```typescript
-// 前端导入 Mock API
-import { searchHotelsApi } from './services/mockApi';
-```
-
-### 真实 API 模式（Day 4 起）
-
-切换为真实后端 API：
-
-```typescript
-// 切换导入
-import { searchHotelsApi } from './services/api';
-```
-
----
-
-## API 文档
-
-### 认证相关
-
-```
-POST /api/auth/register  # 用户注册
-POST /api/auth/login     # 用户登录
-GET  /api/auth/me        # 获取当前用户信息
-```
-
-### 酒店相关
-
-```
-GET    /api/hotels              # 获取酒店列表（支持分页、筛选、排序）
-GET    /api/hotels/nearby       # 获取附近酒店（LBS定位）
-GET    /api/hotels/:id          # 获取酒店详情
-POST   /api/hotels              # 创建酒店（需要认证）
-PUT    /api/hotels/:id          # 更新酒店（需要认证）
-POST   /api/hotels/:id/audit    # 审核酒店（需要管理员权限）
-POST   /api/hotels/:id/status   # 更新酒店状态（需要认证）
-DELETE /api/hotels/:id          # 删除酒店（需要认证）
-```
-
-### 健康检查
-
-```
-GET /api/health  # 服务器健康检查
-```
-
----
-
-## 创新功能实现
-
-### 1. 虚拟滚动（Day 8-9）
-
-- 使用 `@tarojs/components/virtual-list` 实现长列表优化
-- 只渲染可视区域的酒店列表项
-- 配合骨架屏提升加载体验
-
-### 2. 自定义日历组件（共享组件）
-
-- 支持入住/离店日期联动选择
-- 自动计算入住间夜
-- 标记已售罄日期
-- 价格日历视图
-
-### 3. LBS 定位搜索（Day 10-11）
-
-- H5 端使用浏览器 Geolocation API
-- 小程序端使用 Taro.getLocation()
-- "距我最近"排序选项
-- 显示距离用户的公里数
-
----
-
-## Taro 多端发布
-
-### H5 网页版
-
-```bash
-npm run dev:h5      # 开发
-npm run build:h5    # 构建
-```
-
-### 微信小程序
-
-```bash
-npm run dev:weapp    # 开发
-npm run build:weapp  # 构建
-```
+## 页面预览
+
+### 移动端
+
+#### 酒店查询页（首页）
+- Banner 广告轮播
+- 城市/定位选择
+- 入住/离店日期选择
+- 关键字搜索
+- 星级/价格筛选
+- 快捷标签筛选
+
+#### 酒店列表页
+- 多维筛选条件
+- 酒店卡片展示（图片、名称、评分、地址、价格）
+- 无限滚动加载
+- "距我最近"排序
+
+#### 酒店详情页
+- 图片轮播展示
+- 酒店基础信息
+- 设施标签展示
+- 房型价格列表
+
+### PC 管理端
+
+#### 登录/注册页
+- 角色选择（商户/管理员）
+- 表单验证
+
+#### 酒店信息录入/编辑页
+- 完整的酒店信息表单
+- 图片上传
+- 设施多选
+
+#### 审核管理页
+- 酒店列表展示
+- 审核状态筛选
+- 审核通过/拒绝操作
+- 发布/下线操作
 
 ---
 
@@ -390,4 +197,4 @@ MIT
 
 > **版本**: v1.0.0
 > **创建日期**: 2025-02-13
-> **状态**: 开发中
+> **状态**: 已完成

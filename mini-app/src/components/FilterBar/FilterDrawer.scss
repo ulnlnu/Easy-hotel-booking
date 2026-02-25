@@ -25,17 +25,17 @@
 
 .filter-drawer__content {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   background: #FFFFFF;
-  border-radius: 5vw 5vw 0 0;
+  border-radius: 0 0 5vw 5vw;
   max-height: 80vh;
   display: flex;
   flex-direction: column;
-  animation: slideUp 0.3s ease;
+  animation: slideDown 0.3s ease;
   overflow: hidden;
-  border-top: 3px solid;
+  border-bottom: 3px solid;
   border-image: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc, #bae6fd) 1;
 }
 
@@ -83,6 +83,13 @@
   border-bottom: none;
 }
 
+.filter-drawer__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3vw;
+}
+
 .filter-drawer__section-title {
   font-size: 4vw;
   font-weight: 600;
@@ -91,6 +98,53 @@
   padding-left: 3vw;
   border-left: 3px solid;
   border-image: linear-gradient(180deg, #0ea5e9, #38bdf8) 1;
+}
+
+.filter-drawer__section-header .filter-drawer__section-title {
+  margin-bottom: 0;
+}
+
+.filter-drawer__section-hint {
+  font-size: 3.2vw;
+  color: #94a3b8;
+}
+
+/* 已选筛选标签区域 */
+.filter-drawer__active-tags {
+  background: linear-gradient(180deg, #f0f9ff, #FFFFFF);
+  border-bottom: 0.3vw solid #bae6fd;
+}
+
+.filter-drawer__active-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+
+.filter-drawer__active-tag {
+  display: flex;
+  align-items: center;
+  padding: 2vw 3vw;
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  border-radius: 2vw;
+  gap: 1.5vw;
+}
+
+.filter-drawer__active-tag:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.filter-drawer__active-tag-text {
+  font-size: 3.5vw;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.filter-drawer__active-tag-close {
+  font-size: 4vw;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
 }
 
 /* 星级选项 */
@@ -152,7 +206,7 @@
   display: flex;
   gap: 3vw;
   padding: 4vw 5vw;
-  padding-bottom: calc(4vw + 13vw + env(safe-area-inset-bottom));
+  padding-bottom: calc(4vw + env(safe-area-inset-bottom));
   border-top: 0.2vw solid #e0f2fe;
   background: #FFFFFF;
   flex-shrink: 0;
@@ -184,9 +238,9 @@
   color: #FFFFFF;
 }
 
-@keyframes slideUp {
+@keyframes slideDown {
   from {
-    transform: translateY(100%);
+    transform: translateY(-100%);
   }
   to {
     transform: translateY(0);

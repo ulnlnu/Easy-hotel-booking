@@ -11,7 +11,7 @@
   bottom: 0;
   z-index: 1000;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .citypicker-mask {
@@ -30,17 +30,17 @@
   width: 100%;
   height: 85vh;
   background-color: #fff;
-  border-radius: 6.4vw 6.4vw 0 0;
+  border-radius: 0 0 6.4vw 6.4vw;
   display: flex;
   flex-direction: column;
-  animation: slideUp 0.3s ease-out;
+  animation: slideDown 0.3s ease-out;
   overflow: hidden;
 
-  // 顶部装饰线
-  &::before {
+  // 底部装饰线
+  &::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
     height: 3px;
@@ -49,8 +49,8 @@
   }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(100%); }
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
   to { transform: translateY(0); }
 }
 
@@ -61,7 +61,6 @@
   justify-content: space-between;
   padding: 4vw;
   background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #7dd3fc 100%);
-  border-radius: 6.4vw 6.4vw 0 0;
   flex-shrink: 0;
 }
 
@@ -224,6 +223,19 @@
     border-color: rgba(14, 165, 233, 0.2);
   }
 
+  &.nationwide {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #b45309;
+    font-weight: 600;
+    border-color: rgba(180, 83, 9, 0.2);
+
+    &.active {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #fff;
+      box-shadow: 0 1vw 3vw rgba(245, 158, 11, 0.3);
+    }
+  }
+
   &.active {
     background: linear-gradient(135deg, #0ea5e9, #38bdf8);
     color: #fff;
@@ -273,7 +285,7 @@
 
 /* 右侧字母索引 */
 .citypicker-alphabet {
-  position: fixed;
+  position: absolute;
   right: 1.33vw;
   top: 50%;
   transform: translateY(-50%);

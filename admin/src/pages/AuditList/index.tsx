@@ -248,6 +248,7 @@ function AuditList() {
       <Tabs activeKey={activeTab} items={tabItems} onChange={setActiveTab} />
 
       <Table
+        key={activeTab}
         columns={columns}
         dataSource={allHotels.filter(h => {
           if (activeTab === 'pending') return h.status === HotelStatus.PENDING;
@@ -260,7 +261,6 @@ function AuditList() {
         loading={loading}
         pagination={{
           pageSize: 10,
-          showSizeChanger: true,
         }}
         scroll={{ x: 1200 }}
       />

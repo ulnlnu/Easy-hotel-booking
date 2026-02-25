@@ -162,23 +162,31 @@ function CityPicker({ visible, value, locatedCity, onSelect, onClose }: CityPick
           {/* 无搜索时显示完整列表 */}
           {!searchKeyword.trim() && (
             <>
-              {/* 定位城市 */}
-              {locatedCityDisplay && (
-                <View className="citypicker-section">
-                  <View className="citypicker-section-title">
-                    <Text className="citypicker-location-icon">📍</Text>
-                    <Text>当前定位</Text>
-                  </View>
-                  <View className="citypicker-city-list">
+              {/* 定位城市 + 全国选项 */}
+              <View className="citypicker-section">
+                <View className="citypicker-section-title">
+                  <Text className="citypicker-location-icon">📍</Text>
+                  <Text>当前定位</Text>
+                </View>
+                <View className="citypicker-city-list citypicker-location-list">
+                  {/* 定位城市 */}
+                  {locatedCityDisplay && (
                     <View
                       className={`citypicker-city-item located ${value === locatedCityName ? 'active' : ''}`}
                       onClick={() => handleSelectCity(locatedCityName!)}
                     >
                       <Text>{locatedCityDisplay}</Text>
                     </View>
+                  )}
+                  {/* 全国选项 */}
+                  <View
+                    className={`citypicker-city-item nationwide ${value === '' || value === '全国' ? 'active' : ''}`}
+                    onClick={() => handleSelectCity('')}
+                  >
+                    <Text>全国</Text>
                   </View>
                 </View>
-              )}
+              </View>
 
               {/* 热门城市 */}
               <View className="citypicker-section">

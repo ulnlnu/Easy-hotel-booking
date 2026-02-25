@@ -28,7 +28,7 @@ import { UserRole } from '@shared/types/user';
 import './index.scss';
 
 function HotelEdit() {
-  const { hotels, total, loading, setHotels, setLoading, addHotel, updateHotel, removeHotel } =
+  const { hotels, total, loading, setHotels, setTotal, setLoading, addHotel, updateHotel, removeHotel } =
     useHotelStore();
   const { user } = useAuthStore(); // ✅ 获取当前登录用户
 
@@ -57,7 +57,8 @@ function HotelEdit() {
 
       const response = await getHotelListApi(params);
       if (response.success) {
-        setHotels(response.data, response.total);
+        setHotels(response.data);
+        setTotal(response.total); // 使用服务端返回的总数
       }
     } catch (error: any) {
       message.error(error.message || '获取酒店列表失败');
@@ -310,7 +311,6 @@ function HotelEdit() {
         pagination={{
           total,
           pageSize: 10,
-          showSizeChanger: true,
           showTotal: total => `共 ${total} 条`,
         }}
       />

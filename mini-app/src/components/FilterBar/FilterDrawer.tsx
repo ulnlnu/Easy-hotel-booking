@@ -1,6 +1,6 @@
 /**
  * mini-app/src/components/FilterBar/FilterDrawer.tsx
- * 筛选抽屉组件 - 排序 + 高级筛选面板（星级、设施、特色标签）
+ * 筛选抽屉组件 - 排序 + 高级筛选面板（星级、设施、特色标签）+ 已选筛选显示
  */
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -107,6 +107,30 @@ function FilterDrawer({ visible, sortBy, onSortChange, onClose }: FilterDrawerPr
     }));
   };
 
+  // 移除单个已选筛选（本地状态）
+  const removeLocalFilter = (type: string, value?: string) => {
+    switch (type) {
+      case 'starLevel':
+        setLocalFilters(prev => ({ ...prev, starLevel: undefined }));
+        break;
+      case 'facility':
+        setLocalFilters(prev => ({
+          ...prev,
+          facilities: prev.facilities.filter(f => f !== value),
+        }));
+        break;
+      case 'tag':
+        setLocalFilters(prev => ({
+          ...prev,
+          tags: prev.tags.filter(t => t !== value),
+        }));
+        break;
+      case 'sort':
+        setLocalSortBy('');
+        break;
+    }
+  };
+
   // 重置筛选
   const handleReset = () => {
     setLocalFilters({
@@ -139,6 +163,37 @@ function FilterDrawer({ visible, sortBy, onSortChange, onClose }: FilterDrawerPr
     );
   }, [localSortBy, localFilters]);
 
+  // 获取已选筛选标签列表（用于显示）
+  const activeFilterTags = useMemo(() => {
+    const tags: { type: string; label: string; value?: string }[] = [];
+
+    // 排序
+    if (localSortBy) {
+      const sortOption = SORT_OPTIONS.find(o => o.value === localSortBy);
+      if (sortOption) {
+        tags.push({ type: 'sort', label: sortOption.label });
+      }
+    }
+
+    // 星级
+    if (localFilters.starLevel) {
+      const stars = '★'.repeat(localFilters.starLevel);
+      tags.push({ type: 'starLevel', label: stars });
+    }
+
+    // 设施
+    localFilters.facilities.forEach(facility => {
+      tags.push({ type: 'facility', label: facility, value: facility });
+    });
+
+    // 特色标签
+    localFilters.tags.forEach(tag => {
+      tags.push({ type: 'tag', label: tag, value: tag });
+    });
+
+    return tags;
+  }, [localSortBy, localFilters]);
+
   if (!visible) return null;
 
   return (
@@ -160,6 +215,28 @@ function FilterDrawer({ visible, sortBy, onSortChange, onClose }: FilterDrawerPr
 
         {/* 可滚动内容区域 */}
         <View className="filter-drawer__scroll">
+          {/* 已选筛选标签 */}
+          {activeFilterTags.length > 0 && (
+            <View className="filter-drawer__section filter-drawer__active-tags">
+              <View className="filter-drawer__section-header">
+                <Text className="filter-drawer__section-title">已选筛选</Text>
+                <Text className="filter-drawer__section-hint">点击移除</Text>
+              </View>
+              <View className="filter-drawer__active-tags-list">
+                {activeFilterTags.map((tag, index) => (
+                  <View
+                    key={`${tag.type}-${tag.value || index}`}
+                    className="filter-drawer__active-tag"
+                    onClick={() => removeLocalFilter(tag.type, tag.value)}
+                  >
+                    <Text className="filter-drawer__active-tag-text">{tag.label}</Text>
+                    <Text className="filter-drawer__active-tag-close">×</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          )}
+
           {/* 排序方式 */}
           <View className="filter-drawer__section">
             <Text className="filter-drawer__section-title">排序方式</Text>
