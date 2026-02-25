@@ -1,0 +1,158 @@
+/**
+ * FilterDrawer - 筛选抽屉
+ * vw 统一方案 - 使用具体颜色值确保小程序兼容
+ * 价格筛选已移至顶部 FilterBar 价格下拉菜单
+ */
+
+.filter-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  &__mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FFFFFF;
+    border-radius: 5vw 5vw 0 0;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4vw 5vw;
+    border-bottom: 0.2vw solid #F3F4F6;
+    background: #FFFFFF;
+  }
+
+  &__title {
+    font-size: 5vw;
+    font-weight: 600;
+    color: #1A1A1A;
+  }
+
+  &__reset {
+    font-size: 4vw;
+    color: #2563EB;
+  }
+
+  &__section {
+    padding: 4vw 5vw;
+    border-bottom: 0.2vw solid #F3F4F6;
+    background: #FFFFFF;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  &__section-title {
+    font-size: 4vw;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 3vw;
+  }
+
+  // 星级选项
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+  }
+
+  &__option-btn {
+    padding: 2.5vw 5vw;
+    border: 0.2vw solid #E5E7EB;
+    border-radius: 2vw;
+    font-size: 3.8vw;
+    color: #6B7280;
+    background: #FFFFFF;
+
+    &--active {
+      border-color: #2563EB;
+      color: #2563EB;
+      background: #EFF6FF;
+    }
+  }
+
+  // 标签样式
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+  }
+
+  &__tag {
+    padding: 2.5vw 4vw;
+    border: 0.2vw solid #E5E7EB;
+    border-radius: 2vw;
+    font-size: 3.8vw;
+    color: #6B7280;
+    background: #FFFFFF;
+    transition: all 0.2s;
+
+    &--active {
+      border-color: #2563EB;
+      color: #2563EB;
+      background: #EFF6FF;
+    }
+  }
+
+  // 底部按钮
+  &__footer {
+    display: flex;
+    gap: 3vw;
+    padding: 4vw 5vw;
+    padding-bottom: calc(4vw + env(safe-area-inset-bottom));
+    border-top: 0.2vw solid #F3F4F6;
+    background: #FFFFFF;
+  }
+
+  &__btn {
+    flex: 1;
+    height: 13vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2vw;
+    font-size: 4.5vw;
+    font-weight: 500;
+
+    &--cancel {
+      background: #F7F9FC;
+      color: #6B7280;
+      border: 0.2vw solid #E5E7EB;
+    }
+
+    &--confirm {
+      background: #2563EB;
+      color: #FFFFFF;
+    }
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
