@@ -5,25 +5,28 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { View, Text, Input, Button } from '@tarojs/components';
-import Taro from '@tarojs/taro';
+import Taro, { useReady } from '@tarojs/taro';
 import { useHotelStore } from '@/store/useHotelStore';
 import { useLocation } from '@/hooks/useLocation';
 import DateRangePicker from '@/components/DateRangePicker';
 import CityPicker from '@/components/CityPicker';
 import { getCityByLocation } from '@/utils/geocoder';
 import { findCityByName, getCityDisplayName } from '@/data/cities';
+import { searchHotelsApi } from '@/services/api';
 import './index.scss';
 
 // 平台检测
 const isH5 = process.env.TARO_ENV === 'h5';
 
 function Home() {
-  const { searchParams, setSearchParams, locatedCity, setLocatedCity } = useHotelStore();
+  const { searchParams, setSearchParams, locatedCity, setLocatedCity, setPreloadedHotels } = useHotelStore();
   const { location, getLocation, loading: locationLoading } = useLocation();
 
   const [keyword, setKeyword] = useState('');
   const [showCalendar, setShowCalendar] = useState(false);
   const [showCityPicker, setShowCityPicker] = useState(false);
+  // 入场动画状态
+  const [isEntering, setIsEntering] = useState(true);
 
   // 定位成功后自动识别城市并选中
   useEffect(() => {
@@ -36,6 +39,14 @@ function Home() {
       }
     }
   }, [location]);
+
+  // 页面入场动画
+  useReady(() => {
+    // 延迟关闭入场动画，让页面平滑过渡
+    setTimeout(() => {
+      setIsEntering(false);
+    }, 50);
+  });
 
   // 获取选中城市的显示名称（省份+城市格式）
   const selectedCityDisplay = useMemo(() => {
@@ -60,17 +71,40 @@ function Home() {
     // location 状态更新是异步的，这里用返回值判断
   };
 
-  // 搜索酒店
-  const handleSearch = () => {
+  // 搜索酒店（带预加载）
+  const handleSearch = async () => {
     // 如果有关键词，使用关键词搜索（清除城市筛选）
     // 如果没有关键词但有城市，使用城市搜索
-    setSearchParams({
+    const newParams = {
       keyword: keyword || undefined,
       checkIn: searchParams.checkIn,
       checkOut: searchParams.checkOut,
       location: location || searchParams.location,
       city: keyword ? undefined : searchParams.city,
-    });
+    };
+
+    setSearchParams(newParams);
+
+    // 预加载数据
+    try {
+      const cleanParams: Record<string, any> = {};
+      Object.entries(newParams).forEach(([key, value]) => {
+        if (value !== undefined && value !== '' && value !== null) {
+          cleanParams[key] = value;
+        }
+      });
+      cleanParams.page = 1;
+      cleanParams.pageSize = 10;
+
+      const response = await searchHotelsApi(cleanParams);
+      if (response.success) {
+        setPreloadedHotels(response.data, response.hasMore);
+      }
+    } catch (error) {
+      // 预加载失败不影响跳转，列表页会重新加载
+      console.log('Preload failed:', error);
+    }
+
     Taro.navigateTo({ url: '/pages/list/index' });
   };
 
@@ -91,14 +125,31 @@ function Home() {
     setShowCalendar(false);
   };
 
-  // 热门城市点击
-  const handleCityClick = (city: string) => {
+  // 热门城市点击（带预加载）
+  const handleCityClick = async (city: string) => {
     handleCitySelect(city);
+
+    // 预加载数据
+    try {
+      const response = await searchHotelsApi({
+        city,
+        page: 1,
+        pageSize: 10,
+        checkIn: searchParams.checkIn,
+        checkOut: searchParams.checkOut,
+      });
+      if (response.success) {
+        setPreloadedHotels(response.data, response.hasMore);
+      }
+    } catch (error) {
+      console.log('Preload failed:', error);
+    }
+
     Taro.navigateTo({ url: '/pages/list/index' });
   };
 
   return (
-    <View className="home-page">
+    <View className={`home-page ${isEntering ? 'home-page--entering' : 'home-page--entered'}`}>
       {/* 顶部品牌区 */}
       <View className="home-page__header">
         <View className="home-page__brand">
@@ -114,11 +165,11 @@ function Home() {
 
       {/* 搜索卡片 */}
       <View className="home-page__search-card">
-        {/* 目的地输入 */}
+        {/* 酒店位置输入 */}
         <View className="home-page__form-item">
           <View className="home-page__label">
             <Text className="home-page__icon">📍</Text>
-            <Text>目的地</Text>
+            <Text>酒店位置</Text>
           </View>
           <View className="home-page__input-wrap">
             {isH5 ? (

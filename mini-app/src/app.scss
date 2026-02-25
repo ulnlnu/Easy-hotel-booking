@@ -1,7 +1,12 @@
 /**
  * =============================================
- * Mini-app - 全局样式入口（蓝白简约风）
+ * Mini-app - 全局样式入口
  * =============================================
+ * Arctic Frost Theme - 北极霜雪主题
+ *
+ * 适配平台：H5 + 微信小程序
+ * 使用 vw 单位实现等比缩放
+ * 交互使用 :active 代替 :hover（触摸适配）
  */
 
 /* 注意：不导入 variables.css，因为其中 :root 选择器不兼容小程序 */
@@ -16,49 +21,77 @@ page {
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #F7F9FC;
-  color: #1A1A1A;
+  background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 50%, #ffffff 100%);
+  color: #0c4a6e;
 
-  /* 主色系 - 海洋蓝 */
-  /* 主色系 - 海洋蓝 */
-  --primary-color: #2563EB;
-  --primary-light: #3B82F6;
-  --primary-lighter: #60A5FA;
-  --primary-bg: #EFF6FF;
+  /* ============================================
+   * Arctic Frost 颜色系统 - 冰蓝色系
+   * ============================================ */
+
+  /* 主色系 - 冰蓝渐变 */
+  --primary-color: #0ea5e9;           /* sky-500 - 主色 */
+  --primary-light: #38bdf8;           /* sky-400 - 悬停色 */
+  --primary-lighter: #7dd3fc;         /* sky-300 - 更浅 */
+  --primary-lightest: #bae6fd;        /* sky-200 - 最浅 */
+  --primary-bg: #f0f9ff;              /* sky-50 - 浅色背景 */
+  --primary-border: #e0f2fe;          /* sky-100 - 边框色 */
+
+  /* Arctic Frost 渐变色 */
+  --frost-start: #e0f2fe;             /* 霜雪渐变起点 */
+  --frost-mid: #f0f9ff;               /* 霜雪渐变中点 */
+  --frost-end: #ffffff;               /* 霜雪渐变终点 */
+
+  /* 强调色系 */
+  --accent-cyan: #22d3ee;             /* cyan-400 - 青色强调 */
+  --accent-teal: #2dd4bf;             /* teal-400 - 青绿强调 */
 
   /* 功能色 */
-  --success-color: #10B981;
-  --warning-color: #F59E0B;
-  --error-color: #EF4444;
+  --success-color: #10B981;           /* emerald-500 */
+  --success-bg: #d1fae5;              /* emerald-100 */
+  --warning-color: #F59E0B;           /* amber-500 */
+  --warning-bg: #fef3c7;              /* amber-100 */
+  --error-color: #EF4444;             /* red-500 */
+  --error-bg: #fee2e2;                /* red-100 */
 
-  /* 文本色 */
-  --text-primary: #1A1A1A;
-  --text-secondary: #6B7280;
-  --text-placeholder: #9CA3AF;
-  --text-light: #D1D5DB;
+  /* 文本色 - 冷色调 */
+  --text-primary: #0c4a6e;            /* sky-900 - 主要文本 */
+  --text-secondary: #0369a1;          /* sky-700 - 次要文本 */
+  --text-tertiary: #64748b;           /* slate-500 - 辅助文本 */
+  --text-placeholder: #94a3b8;        /* slate-400 - 占位符 */
+  --text-light: #cbd5e1;              /* slate-300 - 最浅 */
 
-  /* 边框和背景 */
-  --border-color: #E5E7EB;
-  --border-light: #F3F4F6;
-  --bg-page: #F7F9FC;
-  --bg-card: #FFFFFF;
-  --bg-hover: #F3F4F6;
+  /* 边框 */
+  --border-color: #e0f2fe;            /* sky-100 */
+  --border-light: #f0f9ff;            /* sky-50 */
+  --border-dark: #bae6fd;             /* sky-200 */
 
-  /* 阴影 */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+  /* 背景 */
+  --bg-page: #f0f9ff;                 /* 页面背景 */
+  --bg-card: #FFFFFF;                 /* 卡片背景 */
+  --bg-hover: #f0f9ff;                /* 悬停背景 */
+  --bg-active: #e0f2fe;               /* 激活背景 */
+  --bg-frosted: rgba(255, 255, 255, 0.95); /* 毛玻璃背景 */
+
+  /* 阴影 - 冰蓝色调 */
+  --shadow-sm: 0 1px 2px rgba(14, 165, 233, 0.03);
+  --shadow-card: 0 4px 20px rgba(14, 165, 233, 0.06);
+  --shadow-md: 0 4px 12px rgba(14, 165, 233, 0.08);
+  --shadow-lg: 0 8px 24px rgba(14, 165, 233, 0.12);
+  --shadow-xl: 0 12px 32px rgba(14, 165, 233, 0.16);
 
   /* 圆角 */
-  --radius-sm: 6px;
-  --radius-md: 10px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-xl: 20px;
 
   /* 间距 */
   --spacing-xs: 8px;
   --spacing-sm: 12px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
+  --spacing-xl: 32px;
 
   /* 兼容旧变量 */
   --text-color: var(--text-primary);
@@ -73,6 +106,249 @@ view, text, image, button, input, textarea, scroll-view {
   box-sizing: border-box;
 }
 
+/* 触摸优化 - 禁用 300ms 点击延迟 */
+button, view, text, image {
+  touch-action: manipulation;
+}
+
+/* ============================================
+ * Arctic Frost 动画定义
+ * ============================================ */
+
+/* 霜雪淡入动画 - 简化版（移除 blur 提升小程序性能） */
+@keyframes frostReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 淡入上滑动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 页面切换动画 - 从右滑入 */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 缩放淡入动画 */
+@keyframes pageScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 列表项依次出现 */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 脉冲发光动画 */
+@keyframes frostPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(14, 165, 233, 0);
+  }
+}
+
+/* 渐变流动动画 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* 流光扫过动画 */
+@keyframes sweepLight {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+/* 卡片按压反馈动画 */
+@keyframes cardPress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 涟漪扩散动画 */
+@keyframes touchRipple {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 骨架屏闪烁 */
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* 下拉动画 */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-2vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 从左侧滑入 */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 弹入动画（用于网格项） */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================
+ * 动画类
+ * ============================================ */
+
+.animate-frost-reveal {
+  animation: frostReveal 0.3s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.page-transition-enter {
+  animation: pageEnter 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.page-transition-scale {
+  animation: pageScaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-frost-pulse {
+  animation: frostPulse 2s ease-in-out infinite;
+}
+
+/* 页面入场动画 - 从右侧滑入 */
+.page-enter {
+  opacity: 0;
+  animation: pageEnter 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 页面入场动画 - 缩放淡入 */
+.page-scale-enter {
+  opacity: 0;
+  animation: pageScaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 页面入场动画 - 从底部滑入 */
+.page-slide-up {
+  opacity: 0;
+  animation: fadeInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 列表项依次出现 */
+.stagger-item {
+  opacity: 0;
+  animation: staggerFadeIn 0.3s ease-out forwards;
+}
+
+/* 生成 1-20 的交错延迟 - 优化版（缩短总时长） */
+.stagger-item:nth-child(1) { animation-delay: 0.03s; }
+.stagger-item:nth-child(2) { animation-delay: 0.06s; }
+.stagger-item:nth-child(3) { animation-delay: 0.09s; }
+.stagger-item:nth-child(4) { animation-delay: 0.12s; }
+.stagger-item:nth-child(5) { animation-delay: 0.15s; }
+.stagger-item:nth-child(6) { animation-delay: 0.18s; }
+.stagger-item:nth-child(7) { animation-delay: 0.21s; }
+.stagger-item:nth-child(8) { animation-delay: 0.24s; }
+.stagger-item:nth-child(9) { animation-delay: 0.27s; }
+.stagger-item:nth-child(10) { animation-delay: 0.3s; }
+.stagger-item:nth-child(11) { animation-delay: 0.33s; }
+.stagger-item:nth-child(12) { animation-delay: 0.36s; }
+.stagger-item:nth-child(13) { animation-delay: 0.39s; }
+.stagger-item:nth-child(14) { animation-delay: 0.42s; }
+.stagger-item:nth-child(15) { animation-delay: 0.45s; }
+.stagger-item:nth-child(16) { animation-delay: 0.48s; }
+.stagger-item:nth-child(17) { animation-delay: 0.5s; }
+.stagger-item:nth-child(18) { animation-delay: 0.5s; }
+.stagger-item:nth-child(19) { animation-delay: 0.5s; }
+.stagger-item:nth-child(20) { animation-delay: 0.5s; }
+
 /* ============================================
  * 通用组件样式
  * ============================================ */
@@ -80,15 +356,29 @@ view, text, image, button, input, textarea, scroll-view {
 /* 页面容器 */
 .page-container {
   min-height: 100vh;
-  background: var(--bg-page);
+  background: linear-gradient(180deg, var(--frost-start) 0%, var(--frost-mid) 50%, var(--frost-end) 100%);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* 卡片基础样式 */
+/* 卡片基础样式 - Arctic Frost */
 .card {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
+  border: 1px solid rgba(14, 165, 233, 0.1);
+  position: relative;
+  overflow: hidden;
+
+  /* 顶部装饰线 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc, #bae6fd);
+  }
 }
 
 /* 安全区域 */
@@ -99,12 +389,7 @@ view, text, image, button, input, textarea, scroll-view {
 
 /* 动画过渡 */
 .fade-in {
-  animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  animation: fadeInUp 0.3s ease-out;
 }
 
 /* 价格文本 */
@@ -113,15 +398,17 @@ view, text, image, button, input, textarea, scroll-view {
   font-weight: 700;
 }
 
-/* 标签样式 */
+/* 标签样式 - Arctic Frost */
 .tag {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
   background: var(--primary-bg);
   color: var(--primary-color);
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 12px;
+  border: none;
+  font-weight: 500;
 }
 
 /* 分割线 */
@@ -129,4 +416,61 @@ view, text, image, button, input, textarea, scroll-view {
   height: 1px;
   background: var(--border-light);
   margin: var(--spacing-md) 0;
+}
+
+/* ============================================
+ * 交互反馈 - 移动端按压效果
+ * ============================================ */
+
+/* 可点击元素 - 缩放反馈 */
+.touchable {
+  transition: transform 0.15s ease;
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* 按钮按压效果 */
+.btn-press {
+  transition: all 0.15s ease;
+
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+}
+
+/* 卡片按压效果 */
+.card-press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+/* ============================================
+ * 毛玻璃效果
+ * ============================================ */
+
+.frosted-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ============================================
+ * 响应式媒体查询 - prefers-reduced-motion
+ * ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

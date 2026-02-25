@@ -1,6 +1,8 @@
 /**
  * FilterBar - 筛选栏
  * vw 统一方案 - H5 和小程序共用
+ * Arctic Frost Theme - 北极霜雪主题
+ * 注意：避免使用复杂 SCSS 嵌套，确保小程序兼容
  */
 
 .filter-bar {
@@ -8,179 +10,199 @@
   top: 0;
   z-index: 100;
   background: #FFFFFF;
-  border-bottom: 0.3vw solid #F3F4F6;
+  border-bottom: 0.3vw solid #f0f9ff;
+}
 
-  &__inner {
-    display: flex;
-    align-items: center;
-    height: 14vw;
-    padding: 0 3vw;
-  }
+.filter-bar__inner {
+  display: flex;
+  align-items: center;
+  height: 14vw;
+  padding: 0 2vw;
+}
 
-  &__item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5vw;
-    height: 100%;
-    position: relative;
-    transition: all 0.2s;
+.filter-bar__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vw;
+  height: 100%;
+  position: relative;
+  flex: 1;
+  transition: all 0.15s ease;
+}
 
-    &:active {
-      opacity: 0.7;
-    }
-  }
+.filter-bar__item:active {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
 
-  &__label {
-    font-size: 4.5vw;
-    color: #6B7280;
-    transition: color 0.2s;
+.filter-bar__item--city {
+  flex: 1.3;
+  min-width: 0;
+}
 
-    &--active {
-      color: #2563EB;
-      font-weight: 600;
-    }
-  }
+.filter-bar__location-icon {
+  font-size: 4.5vw;
+  color: #0ea5e9;
+}
 
-  &__arrow {
-    font-size: 3vw;
-    color: #9CA3AF;
-    transition: transform 0.2s;
+.filter-bar__label {
+  font-size: 4.5vw;
+  color: #0369a1;
+  transition: color 0.15s ease;
+  max-width: 18vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-    &--up {
-      transform: rotate(180deg);
-    }
-  }
+.filter-bar__label--active {
+  color: #0ea5e9;
+  font-weight: 600;
+}
 
-  &__icon {
-    font-size: 5vw;
-    color: #9CA3AF;
-  }
+.filter-bar__arrow {
+  font-size: 3vw;
+  color: #94a3b8;
+  transition: transform 0.2s ease;
+}
 
-  &__badge {
-    position: absolute;
-    top: 2vw;
-    right: 15%;
-    min-width: 5vw;
-    height: 5vw;
-    background: #2563EB;
-    border-radius: 2.5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1.5vw;
-  }
+.filter-bar__arrow--up {
+  transform: rotate(180deg);
+}
 
-  &__badge-text {
-    font-size: 3vw;
-    color: #FFFFFF;
-    font-weight: 600;
-  }
+.filter-bar__icon {
+  font-size: 5vw;
+  color: #94a3b8;
+}
 
-  // 遮罩层
-  &__mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 99;
-  }
+.filter-bar__badge {
+  position: absolute;
+  top: 2vw;
+  right: 15%;
+  min-width: 5vw;
+  height: 5vw;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  border-radius: 2.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5vw;
+}
 
-  // 下拉菜单
-  &__dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #FFFFFF;
-    box-shadow: 0 2vw 6vw rgba(0, 0, 0, 0.15);
-    z-index: 100;
-    animation: slideDown 0.2s ease;
-  }
+.filter-bar__badge-text {
+  font-size: 3vw;
+  color: #FFFFFF;
+  font-weight: 600;
+}
 
-  &__option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4vw 5vw;
-    font-size: 4.2vw;
-    color: #1A1A1A;
-    background: #FFFFFF;
-    border-bottom: 0.2vw solid #F3F4F6;
+/* 遮罩层 */
+.filter-bar__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
 
-    &:last-child {
-      border-bottom: none;
-    }
+/* 下拉菜单 */
+.filter-bar__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  box-shadow: 0 2vw 6vw rgba(14, 165, 233, 0.15);
+  z-index: 100;
+  animation: slideDown 0.2s ease;
+  border-radius: 0 0 3vw 3vw;
+  overflow: hidden;
+}
 
-    &:active {
-      background: #F7F9FC;
-    }
+.filter-bar__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vw 5vw;
+  font-size: 4.2vw;
+  color: #0c4a6e;
+  background: #FFFFFF;
+  border-bottom: 0.2vw solid #f0f9ff;
+  transition: all 0.15s ease;
+}
 
-    &--active {
-      color: #2563EB;
-      font-weight: 600;
-    }
-  }
+.filter-bar__option:last-child {
+  border-bottom: none;
+}
 
-  &__check {
-    color: #2563EB;
-    font-size: 4.5vw;
-  }
+.filter-bar__option:active {
+  background: #f0f9ff;
+}
 
-  // 自定义价格输入区域
-  &__custom-price {
-    padding: 4vw 5vw;
-    border-top: 0.2vw solid #F3F4F6;
-    background: #FFFFFF;
-  }
+.filter-bar__option--active {
+  color: #0ea5e9;
+  font-weight: 600;
+  background: #f0f9ff;
+}
 
-  &__custom-price-label {
-    font-size: 4vw;
-    color: #6B7280;
-    margin-bottom: 3vw;
-  }
+.filter-bar__check {
+  color: #0ea5e9;
+  font-size: 4.5vw;
+}
 
-  &__custom-price-inputs {
-    display: flex;
-    align-items: center;
-    gap: 2vw;
-    margin-bottom: 3vw;
-  }
+/* 自定义价格输入区域 */
+.filter-bar__custom-price {
+  padding: 4vw 5vw;
+  border-top: 0.2vw solid #f0f9ff;
+  background: #FFFFFF;
+}
 
-  &__custom-input {
-    flex: 1;
-    height: 10vw;
-    padding: 0 3vw;
-    border: 0.2vw solid #E5E7EB;
-    border-radius: 2vw;
-    font-size: 4vw;
-    color: #1A1A1A;
-    background: #F7F9FC;
-  }
+.filter-bar__custom-price-label {
+  font-size: 4vw;
+  color: #0369a1;
+  margin-bottom: 3vw;
+}
 
-  &__custom-separator {
-    font-size: 4vw;
-    color: #9CA3AF;
-  }
+.filter-bar__custom-price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  margin-bottom: 3vw;
+}
 
-  &__custom-price-btn {
-    height: 10vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #2563EB;
-    border-radius: 2vw;
-    font-size: 4vw;
-    color: #FFFFFF;
-    font-weight: 500;
+.filter-bar__custom-input {
+  flex: 1;
+  height: 10vw;
+  padding: 0 3vw;
+  border: 0.2vw solid #e0f2fe;
+  border-radius: 2vw;
+  font-size: 4vw;
+  color: #0c4a6e;
+  background: #f0f9ff;
+}
 
-    &:active {
-      opacity: 0.8;
-    }
-  }
+.filter-bar__custom-separator {
+  font-size: 4vw;
+  color: #94a3b8;
+}
+
+.filter-bar__custom-price-btn {
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  border-radius: 2vw;
+  font-size: 4vw;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.filter-bar__custom-price-btn:active {
+  opacity: 0.9;
+  transform: scale(0.98);
 }
 
 @keyframes slideDown {

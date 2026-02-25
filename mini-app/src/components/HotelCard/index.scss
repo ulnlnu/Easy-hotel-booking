@@ -1,23 +1,45 @@
 /**
  * HotelCard - 横向布局样式
  * 针对 iPhone 14 Pro Max (430px) 优化 - 大字体、易读性优先
+ * Arctic Frost Theme - 北极霜雪主题
  */
 
 .hotel-card {
   display: flex;
   flex-direction: row;
   background: var(--bg-card);
-  border-radius: 3vw;
+  border-radius: 3.5vw;
   overflow: hidden;
-  box-shadow: 0 0.5vw 2vw rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(14, 165, 233, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+
+  // 顶部装饰线
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc, #bae6fd);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
 
   &:active {
     transform: scale(0.98);
-    box-shadow: 0 0.3vw 1vw rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-sm);
+
+    &::before {
+      opacity: 1;
+    }
   }
 
-  /* 左侧图片区域 - 增大比例 */
+  /* ============================================
+   * 左侧图片区域
+   * ============================================ */
   &__image-wrap {
     position: relative;
     width: 38vw;
@@ -41,9 +63,12 @@
     font-size: 3.5vw;
     border-radius: 1vw;
     font-weight: 600;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
   }
 
-  /* 右侧信息区域 - 增大内边距 */
+  /* ============================================
+   * 右侧信息区域
+   * ============================================ */
   &__info {
     flex: 1;
     display: flex;
@@ -64,7 +89,9 @@
     margin-bottom: 1.5vw;
   }
 
-  /* 评分区域 */
+  /* ============================================
+   * 评分区域
+   * ============================================ */
   &__meta {
     margin-bottom: 1.5vw;
   }
@@ -94,7 +121,9 @@
     margin-left: 0.5vw;
   }
 
-  /* 地址/距离 */
+  /* ============================================
+   * 地址/距离
+   * ============================================ */
   &__location {
     margin-bottom: 1.5vw;
   }
@@ -110,6 +139,7 @@
   &__location-icon {
     font-size: 4vw;
     line-height: 1;
+    color: var(--primary-color);
   }
 
   &__address {
@@ -120,7 +150,9 @@
     white-space: nowrap;
   }
 
-  /* 标签 */
+  /* ============================================
+   * 标签 - Arctic Frost
+   * ============================================ */
   &__tags {
     display: flex;
     flex-wrap: wrap;
@@ -134,9 +166,13 @@
     color: var(--primary-color);
     border-radius: 1vw;
     font-size: 3.5vw;
+    font-weight: 500;
+    border: 1px solid rgba(14, 165, 233, 0.15);
   }
 
-  /* 底部价格 - 大字体突出 */
+  /* ============================================
+   * 底部价格 - 大字体突出
+   * ============================================ */
   &__footer {
     display: flex;
     justify-content: flex-end;

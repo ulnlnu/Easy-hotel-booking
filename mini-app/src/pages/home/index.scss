@@ -1,19 +1,80 @@
 /**
  * 首页样式 - vw 统一方案
  * H5 和小程序共用，针对大屏手机优化
+ * Arctic Frost Theme - 北极霜雪主题
  */
 
 .home-page {
   min-height: 100vh;
-  background: var(--bg-page);
+  background: linear-gradient(180deg, var(--frost-start) 0%, var(--frost-mid) 50%, var(--frost-end) 100%);
 
-  /* 顶部品牌区 */
+  /* ============================================
+   * 入场动画状态
+   * ============================================ */
+  &--entering {
+    opacity: 0;
+
+    .home-page__header,
+    .home-page__search-card,
+    .home-page__hot-section {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+
+  &--entered {
+    opacity: 1;
+    transition: opacity 0.25s ease-out;
+
+    .home-page__header {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    }
+
+    .home-page__search-card {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.25s ease-out 0.08s, transform 0.25s ease-out 0.08s;
+    }
+
+    .home-page__hot-section {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.25s ease-out 0.15s, transform 0.25s ease-out 0.15s;
+
+      .home-page__section-title {
+        opacity: 0;
+        transform: translateX(-8px);
+        animation: slideInLeft 0.25s ease-out 0.2s forwards;
+      }
+
+      .home-page__hot-item {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  /* 热门城市项目交错动画 */
+  &--entered .home-page__hot-item {
+    &:nth-child(1) { animation: popIn 0.25s ease-out 0.25s forwards; }
+    &:nth-child(2) { animation: popIn 0.25s ease-out 0.28s forwards; }
+    &:nth-child(3) { animation: popIn 0.25s ease-out 0.31s forwards; }
+    &:nth-child(4) { animation: popIn 0.25s ease-out 0.34s forwards; }
+    &:nth-child(5) { animation: popIn 0.25s ease-out 0.37s forwards; }
+    &:nth-child(6) { animation: popIn 0.25s ease-out 0.4s forwards; }
+  }
+
+  /* ============================================
+   * 顶部品牌区 - Arctic Frost 冰蓝渐变
+   * ============================================ */
   &__header {
     position: relative;
     padding: 8vw 4vw 10vw;
-    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #7dd3fc 100%);
 
-    // 底部圆角装饰
+    // 底部圆角装饰 - 霜雪质感
     &::after {
       content: '';
       position: absolute;
@@ -21,8 +82,20 @@
       left: 0;
       right: 0;
       height: 5vw;
-      background: var(--bg-page);
+      background: linear-gradient(180deg, var(--frost-start), var(--frost-mid));
       border-radius: 4vw 4vw 0 0;
+    }
+
+    // 顶部装饰光晕
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      pointer-events: none;
     }
   }
 
@@ -43,11 +116,13 @@
   &__logo-icon {
     width: 11vw;
     height: 11vw;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
     border-radius: 2.5vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   &__title {
@@ -55,26 +130,49 @@
     font-weight: 700;
     letter-spacing: 0.5vw;
     margin-bottom: 1.5vw;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   &__subtitle {
     font-size: 3.8vw;
-    opacity: 0.9;
+    opacity: 0.95;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   }
 
-  /* 搜索卡片 */
+  /* ============================================
+   * 搜索卡片 - 毛玻璃效果
+   * ============================================ */
   &__search-card {
     position: relative;
     margin: 0 3vw 4vw;
-    background: var(--bg-card);
-    border-radius: 3vw;
+    background: var(--bg-frosted);
+    border-radius: 3.5vw;
     padding: 4vw;
-    box-shadow: 0 0.8vw 3vw rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 1vw 4vw rgba(14, 165, 233, 0.1),
+      0 0 0 1px rgba(14, 165, 233, 0.08);
     z-index: 10;
-    margin-top: 2vw; // 正向间距，不重叠
+    margin-top: 2vw;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    // 顶部装饰线
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 4vw;
+      right: 4vw;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #0ea5e9, #38bdf8, transparent);
+      border-radius: 2px;
+    }
   }
 
-  /* 表单项 */
+  /* ============================================
+   * 表单项
+   * ============================================ */
   &__form-item {
     margin-bottom: 4vw;
   }
@@ -92,6 +190,7 @@
   &__icon {
     font-size: 4vw;
     line-height: 1;
+    color: var(--primary-color);
   }
 
   &__input-wrap {
@@ -102,12 +201,13 @@
     padding: 0 3vw;
     background: var(--bg-page);
     border: 0.27vw solid var(--border-color);
-    border-radius: 2vw;
-    transition: all 0.2s;
+    border-radius: 2.5vw;
+    transition: all 0.2s ease;
 
     &:focus-within {
       border-color: var(--primary-color);
       background: #fff;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
     }
   }
 
@@ -158,12 +258,18 @@
     padding: 0 3vw;
     background: var(--primary-bg);
     color: var(--primary-color);
-    border-radius: 1.5vw;
+    border-radius: 2vw;
     font-size: 3.5vw;
     font-weight: 600;
     flex-shrink: 0;
     white-space: nowrap;
     margin-left: 2vw;
+    transition: all 0.15s ease;
+
+    &:active {
+      transform: scale(0.96);
+      background: var(--bg-active);
+    }
   }
 
   &__date-text {
@@ -184,7 +290,9 @@
     font-weight: 600;
   }
 
-  /* 按钮样式 */
+  /* ============================================
+   * 按钮样式 - Arctic Frost
+   * ============================================ */
   &__location-btn,
   &__search-btn {
     display: flex;
@@ -193,10 +301,10 @@
     width: 100%;
     height: 13vw;
     border: none;
-    border-radius: 2vw;
+    border-radius: 2.5vw;
     font-size: 4.2vw;
     font-weight: 600;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
   }
 
   &__location-btn {
@@ -205,9 +313,11 @@
     color: var(--text-secondary);
     margin-top: 3vw;
     margin-bottom: 3vw;
+    border: 1px solid var(--border-color);
 
     &:active {
-      background: var(--bg-hover);
+      transform: scale(0.98);
+      background: var(--bg-active);
     }
   }
 
@@ -218,13 +328,31 @@
 
   &__search-btn {
     gap: 2vw;
-    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
     color: #fff;
-    box-shadow: 0 0.8vw 3vw rgba(37, 99, 235, 0.3);
+    box-shadow: 0 1vw 4vw rgba(14, 165, 233, 0.3);
+    position: relative;
+    overflow: hidden;
+
+    // 流光效果
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
 
     &:active {
       transform: scale(0.98);
-      box-shadow: 0 0.5vw 2vw rgba(37, 99, 235, 0.25);
+      box-shadow: 0 0.5vw 2vw rgba(14, 165, 233, 0.25);
+
+      &::before {
+        left: 100%;
+      }
     }
   }
 
@@ -233,7 +361,9 @@
     line-height: 1;
   }
 
-  /* 热门城市 */
+  /* ============================================
+   * 热门城市
+   * ============================================ */
   &__hot-section {
     padding: 2vw 3vw 5vw;
   }
@@ -243,6 +373,21 @@
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 3vw;
+    position: relative;
+    padding-left: 3vw;
+
+    // 左侧装饰条
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 5vw;
+      background: linear-gradient(180deg, #0ea5e9, #38bdf8);
+      border-radius: 2px;
+    }
   }
 
   &__hot-grid {
@@ -257,17 +402,19 @@
     justify-content: center;
     height: 12vw;
     background: var(--bg-card);
-    border-radius: 2vw;
-    box-shadow: 0 0.3vw 1.5vw rgba(0, 0, 0, 0.06);
+    border-radius: 2.5vw;
+    box-shadow: var(--shadow-card);
     font-size: 4.2vw;
     font-weight: 500;
     color: var(--text-primary);
-    transition: all 0.2s;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(14, 165, 233, 0.08);
 
     &:active {
       transform: scale(0.96);
       background: var(--primary-bg);
       color: var(--primary-color);
+      border-color: var(--primary-color);
     }
   }
 }

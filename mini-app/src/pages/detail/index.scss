@@ -1,11 +1,12 @@
 /**
  * 详情页样式 - vw 等比缩放方案
  * 优化：增大尺寸以适应大屏手机（iPhone 14 Pro Max）
+ * Arctic Frost Theme - 北极霜雪主题
  */
 
 .detail-page {
   min-height: 100vh;
-  background: var(--bg-page);
+  background: linear-gradient(180deg, var(--frost-start) 0%, var(--frost-mid) 50%, var(--frost-end) 100%);
   padding-bottom: 32vw;
 
   &.loading {
@@ -16,6 +17,9 @@
     color: var(--text-placeholder);
   }
 
+  /* ============================================
+   * 导航栏 - 毛玻璃效果
+   * ============================================ */
   .nav-bar {
     position: fixed;
     top: 0;
@@ -32,12 +36,20 @@
     .nav-back {
       width: 11vw;
       height: 11vw;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(14, 165, 233, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
+      transition: all 0.15s ease;
+
+      &:active {
+        transform: scale(0.95);
+        background: rgba(14, 165, 233, 0.8);
+      }
 
       .nav-back-icon {
         font-size: 5.5vw;
@@ -47,13 +59,24 @@
 
     .nav-share {
       padding: 2.5vw 4vw;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(14, 165, 233, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 5vw;
       color: #fff;
       font-size: 3.5vw;
+      transition: all 0.15s ease;
+
+      &:active {
+        transform: scale(0.95);
+        background: rgba(14, 165, 233, 0.8);
+      }
     }
   }
 
+  /* ============================================
+   * 图片轮播
+   * ============================================ */
   .image-swiper {
     position: relative;
     width: 100%;
@@ -82,19 +105,38 @@
       position: absolute;
       bottom: 4vw;
       right: 4vw;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(14, 165, 233, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: #fff;
       padding: 1.5vw 3vw;
       border-radius: 3.5vw;
       font-size: 3.2vw;
       z-index: 10;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
   }
 
+  /* ============================================
+   * 酒店信息卡片 - Arctic Frost
+   * ============================================ */
   .hotel-info {
     background: var(--bg-card);
     padding: 5vw 4vw;
     margin-bottom: 3vw;
+    position: relative;
+    overflow: hidden;
+
+    // 顶部装饰线
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc, #bae6fd);
+    }
 
     .hotel-header {
       margin-bottom: 3vw;
@@ -113,13 +155,13 @@
 
         .rating-star {
           font-size: 4.2vw;
-          color: #FFC107;
+          color: #F59E0B;
         }
 
         .rating-text {
           font-size: 4.2vw;
           font-weight: 600;
-          color: #FFC107;
+          color: #F59E0B;
         }
 
         .review-count {
@@ -140,6 +182,7 @@
       .address-icon {
         font-size: 4.2vw;
         line-height: 1;
+        color: var(--primary-color);
       }
     }
 
@@ -154,20 +197,53 @@
         border-radius: 1.5vw;
         font-size: 3.2vw;
         color: var(--primary-color);
+        font-weight: 500;
+        border: 1px solid rgba(14, 165, 233, 0.15);
       }
     }
   }
 
+  /* ============================================
+   * 房型区域 - Arctic Frost
+   * ============================================ */
   .room-section {
     background: var(--bg-card);
     padding: 5vw 4vw;
     margin-bottom: 3vw;
+    position: relative;
+    overflow: hidden;
+
+    // 顶部装饰线
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc, #bae6fd);
+    }
 
     .section-title {
       font-size: 4.5vw;
       font-weight: 600;
       color: var(--text-primary);
       margin-bottom: 4vw;
+      position: relative;
+      padding-left: 3vw;
+
+      // 左侧装饰条
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 4vw;
+        background: linear-gradient(180deg, #0ea5e9, #38bdf8);
+        border-radius: 2px;
+      }
     }
 
     .room-list {
@@ -210,6 +286,7 @@
               background: var(--primary-bg);
               color: var(--primary-color);
               border-radius: 1.2vw;
+              font-weight: 500;
             }
           }
         }
@@ -243,22 +320,38 @@
             width: 20vw;
             height: 9vw;
             font-size: 3.5vw;
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: #fff;
+            border: none;
+            border-radius: 2vw;
+            font-weight: 500;
+            transition: all 0.15s ease;
+
+            &:active {
+              transform: scale(0.96);
+            }
           }
         }
       }
     }
   }
 
+  /* ============================================
+   * 底部操作栏 - 毛玻璃效果
+   * ============================================ */
   .bottom-bar {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 3vw 4vw;
-    background: var(--bg-card);
-    box-shadow: 0 -0.5vw 2vw rgba(0, 0, 0, 0.1);
+    background: var(--bg-frosted);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 -0.5vw 2vw rgba(14, 165, 233, 0.1);
     display: flex;
     gap: 3vw;
+    border-top: 1px solid rgba(14, 165, 233, 0.1);
 
     .contact-btn {
       flex: 1;
@@ -269,6 +362,16 @@
       align-items: center;
       justify-content: center;
       gap: 1.5vw;
+      background: var(--primary-bg);
+      color: var(--primary-color);
+      border: 1px solid rgba(14, 165, 233, 0.2);
+      border-radius: 2.5vw;
+      transition: all 0.15s ease;
+
+      &:active {
+        transform: scale(0.98);
+        background: var(--bg-active);
+      }
 
       .contact-icon {
         font-size: 4.5vw;
