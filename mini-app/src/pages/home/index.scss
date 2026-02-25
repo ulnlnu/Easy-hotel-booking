@@ -1,155 +1,273 @@
+/**
+ * 首页样式 - vw 统一方案
+ * H5 和小程序共用，针对大屏手机优化
+ */
+
 .home-page {
   min-height: 100vh;
-  background: var(--bg-color);
+  background: var(--bg-page);
 
-  .home-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    height: 400px;
+  /* 顶部品牌区 */
+  &__header {
+    position: relative;
+    padding: 8vw 4vw 10vw;
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+
+    // 底部圆角装饰
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 5vw;
+      background: var(--bg-page);
+      border-radius: 4vw 4vw 0 0;
+    }
+  }
+
+  &__brand {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+  }
+
+  &__logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 48px;
+    margin-bottom: 2.5vw;
+  }
 
-    .header-content {
-      text-align: center;
-      color: #fff;
+  &__logo-icon {
+    width: 11vw;
+    height: 11vw;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-      .title {
-        font-size: 56px;
-        font-weight: 700;
-        margin-bottom: 16px;
-      }
+  &__title {
+    font-size: 6.5vw;
+    font-weight: 700;
+    letter-spacing: 0.5vw;
+    margin-bottom: 1.5vw;
+  }
 
-      .subtitle {
-        font-size: 28px;
-        opacity: 0.9;
-      }
+  &__subtitle {
+    font-size: 3.8vw;
+    opacity: 0.9;
+  }
+
+  /* 搜索卡片 */
+  &__search-card {
+    position: relative;
+    margin: 0 3vw 4vw;
+    background: var(--bg-card);
+    border-radius: 3vw;
+    padding: 4vw;
+    box-shadow: 0 0.8vw 3vw rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    margin-top: 2vw; // 正向间距，不重叠
+  }
+
+  /* 表单项 */
+  &__form-item {
+    margin-bottom: 4vw;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 1.5vw;
+    margin-bottom: 2.5vw;
+    font-size: 3.8vw;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &__icon {
+    font-size: 4vw;
+    line-height: 1;
+  }
+
+  &__input-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 12vw;
+    padding: 0 3vw;
+    background: var(--bg-page);
+    border: 0.27vw solid var(--border-color);
+    border-radius: 2vw;
+    transition: all 0.2s;
+
+    &:focus-within {
+      border-color: var(--primary-color);
+      background: #fff;
     }
   }
 
-  .search-form {
-    margin: -80px 24px 0;
-    background: var(--bg-white);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  // 小程序 Input
+  &__input {
+    flex: 1;
+    min-width: 0;
+  }
 
-    .form-item {
-      margin-bottom: 24px;
+  // H5 原生 input
+  &__native-input {
+    flex: 1;
+    min-width: 0;
+    height: 12vw;
+    line-height: 12vw;
+    font-size: 4vw;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
 
-      .item-label {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 12px;
-        color: var(--text-color);
-        font-size: 28px;
-      }
-
-      .item-input {
-        display: flex;
-        align-items: center;
-        border: 2px solid var(--border-color);
-        border-radius: 8px;
-        padding: 0 24px;
-        height: 88px;
-        background: var(--bg-color);
-
-        input {
-          flex: 1;
-          height: 100%;
-        }
-
-        .input-placeholder {
-          color: var(--text-color-light);
-        }
-
-        .city-btn {
-          padding: 16px 24px;
-          background: var(--primary-color);
-          color: #fff;
-          border-radius: 6px;
-          font-size: 28px;
-        }
-      }
-
-      .date-text {
-        flex: 1;
-        color: var(--text-color);
-        font-size: 28px;
-        line-height: 1.4;
-
-        .placeholder {
-          color: var(--text-color-light);
-        }
-
-        .nights {
-          color: var(--text-color-light);
-          font-size: 24px;
-        }
-      }
+    &::placeholder {
+      color: var(--text-placeholder);
+      font-size: 4vw;
     }
 
-    .location-section {
-      margin-bottom: 24px;
-
-      .location-btn {
-        width: 100%;
-        height: 72px;
-        background: #f5f5f5;
-        color: var(--text-color);
-        border: none;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-      }
-    }
-
-    .search-btn {
-      width: 100%;
-      height: 96px;
-      font-size: 32px;
-      font-weight: 600;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+    &:focus {
+      outline: none;
     }
   }
 
-  .hot-section {
-    margin: 32px 24px;
+  // 小程序占位符
+  &__placeholder {
+    color: var(--text-placeholder);
+    font-size: 4vw;
+  }
 
-    .section-header {
-      margin-bottom: 24px;
+  &__city-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8vw;
+    padding: 0 3vw;
+    background: var(--primary-bg);
+    color: var(--primary-color);
+    border-radius: 1.5vw;
+    font-size: 3.5vw;
+    font-weight: 600;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-left: 2vw;
+  }
 
-      .section-title {
-        font-size: 32px;
-        font-weight: 600;
-        color: var(--text-color);
-      }
+  &__date-text {
+    flex: 1;
+    height: 12vw;
+    line-height: 12vw;
+    font-size: 4vw;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__nights {
+    font-size: 3.5vw;
+    color: var(--primary-color);
+    margin-left: 1.5vw;
+    font-weight: 600;
+  }
+
+  /* 按钮样式 */
+  &__location-btn,
+  &__search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 13vw;
+    border: none;
+    border-radius: 2vw;
+    font-size: 4.2vw;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  &__location-btn {
+    gap: 1.5vw;
+    background: var(--bg-page);
+    color: var(--text-secondary);
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+
+    &:active {
+      background: var(--bg-hover);
     }
+  }
 
-    .hot-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+  &__btn-icon {
+    font-size: 4.5vw;
+    line-height: 1;
+  }
 
-      .hot-item {
-        width: calc(33.33% - 12px);
-        height: 88px;
-        background: var(--bg-white);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        color: var(--text-color);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      }
+  &__search-btn {
+    gap: 2vw;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    color: #fff;
+    box-shadow: 0 0.8vw 3vw rgba(37, 99, 235, 0.3);
+
+    &:active {
+      transform: scale(0.98);
+      box-shadow: 0 0.5vw 2vw rgba(37, 99, 235, 0.25);
+    }
+  }
+
+  &__search-icon {
+    font-size: 5vw;
+    line-height: 1;
+  }
+
+  /* 热门城市 */
+  &__hot-section {
+    padding: 2vw 3vw 5vw;
+  }
+
+  &__section-title {
+    font-size: 5vw;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3vw;
+  }
+
+  &__hot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5vw;
+  }
+
+  &__hot-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12vw;
+    background: var(--bg-card);
+    border-radius: 2vw;
+    box-shadow: 0 0.3vw 1.5vw rgba(0, 0, 0, 0.06);
+    font-size: 4.2vw;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: all 0.2s;
+
+    &:active {
+      transform: scale(0.96);
+      background: var(--primary-bg);
+      color: var(--primary-color);
     }
   }
 }

@@ -1,10 +1,9 @@
 /**
  * mini-app/src/components/HotelCard/index.tsx
- * 酒店卡片组件
+ * 酒店卡片组件 - 横向布局（优化版）
  */
 
 import { Image, Text, View } from '@tarojs/components';
-import { Star, Location, Tag } from '@nutui/icons-react-taro';
 import './index.scss';
 
 interface HotelCardProps {
@@ -12,11 +11,13 @@ interface HotelCardProps {
     id: string;
     name: string;
     address: string;
+    city?: string;
     images: string[];
     rating: number;
     reviewCount: number;
     tags: string[];
     distance?: number;
+    starLevel?: number;
     roomTypes: Array<{ price: number; originalPrice?: number }>;
   };
   onClick?: (id: string) => void;
@@ -31,44 +32,63 @@ function HotelCard({ hotel, onClick }: HotelCardProps) {
 
   return (
     <View className="hotel-card" onClick={handleClick}>
-      <Image
-        className="hotel-image"
-        src={hotel.images[0]}
-        mode="aspectFill"
-        lazyLoad
-      />
+      {/* 左侧图片 */}
+      <View className="hotel-card__image-wrap">
+        <Image
+          className="hotel-card__image"
+          src={hotel.images[0]}
+          mode="aspectFill"
+          lazyLoad
+        />
+        {hotel.starLevel && hotel.starLevel >= 4 && (
+          <View className="hotel-card__star-badge">
+            {hotel.starLevel}星
+          </View>
+        )}
+      </View>
 
-      <View className="hotel-info">
-        <View className="hotel-header">
-          <Text className="hotel-name">{hotel.name}</Text>
-          {hotel.distance !== undefined && (
-            <View className="distance">
-              <Location size="12" />
+      {/* 右侧信息 */}
+      <View className="hotel-card__info">
+        {/* 酒店名称 */}
+        <Text className="hotel-card__name">{hotel.name}</Text>
+
+        {/* 评分和地址 */}
+        <View className="hotel-card__meta">
+          <View className="hotel-card__rating">
+            <Text className="hotel-card__star-icon">★</Text>
+            <Text className="hotel-card__rating-num">{hotel.rating}</Text>
+            <Text className="hotel-card__review-count">{hotel.reviewCount}条评价</Text>
+          </View>
+        </View>
+
+        {/* 地址/距离 */}
+        <View className="hotel-card__location">
+          {hotel.distance !== undefined ? (
+            <View className="hotel-card__distance">
+              <Text className="hotel-card__location-icon">📍</Text>
               <Text>{hotel.distance < 1 ? `${Math.round(hotel.distance * 1000)}m` : `${hotel.distance.toFixed(1)}km`}</Text>
             </View>
+          ) : (
+            <Text className="hotel-card__address">{hotel.address}</Text>
           )}
         </View>
 
-        <View className="hotel-rating">
-          <Star size="12" fill="#FFC107" />
-          <Text className="rating-text">{hotel.rating}</Text>
-          <Text className="review-count">({hotel.reviewCount}条评价)</Text>
-        </View>
-
-        <View className="hotel-tags">
-          {hotel.tags.slice(0, 3).map((tag, index) => (
-            <View key={index} className="tag">
+        {/* 标签 */}
+        <View className="hotel-card__tags">
+          {hotel.tags.slice(0, 2).map((tag, index) => (
+            <View key={index} className="hotel-card__tag">
               {tag}
             </View>
           ))}
         </View>
 
-        <View className="hotel-footer">
-          <View className="price-section">
-            <Text className="price">¥{minPrice}</Text>
-            <Text className="price-unit">起/晚</Text>
+        {/* 底部价格 */}
+        <View className="hotel-card__footer">
+          <View className="hotel-card__price">
+            <Text className="hotel-card__price-symbol">¥</Text>
+            <Text className="hotel-card__price-num">{minPrice}</Text>
+            <Text className="hotel-card__price-unit">起</Text>
           </View>
-          <Text className="address">{hotel.address}</Text>
         </View>
       </View>
     </View>

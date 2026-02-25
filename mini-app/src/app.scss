@@ -1,126 +1,132 @@
 /**
  * =============================================
- * Mini-app - 全局样式入口
+ * Mini-app - 全局样式入口（蓝白简约风）
  * =============================================
- *
- * 本文件为 mini-app 端的全局样式入口，包含：
- * 1. NutUI 主题样式
- * 2. 设计令牌引入（统一的颜色、间距、字体等 CSS 变量）
- * 3. 全局样式重置
- * 4. CSS 变量定义（兼容原有代码）
- * 5. 通用工具类
- * 6. 安全区域适配
- *
- * 注意：所有组件和页面都应使用 CSS 变量，确保样式一致性。
- * 详细规范请参考：shared/styles/README.md
  */
 
+/* 注意：不导入 variables.css，因为其中 :root 选择器不兼容小程序 */
+
 /* ============================================
- * 1. NutUI 主题样式
+ * 全局样式重置 + 设计系统变量
+ * 小程序用 page 代替 :root 和 * 选择器
  * ============================================ */
-@import '~@nutui/nutui-react-taro/dist/styles/themes/default.scss';
-
-/* ============================================
- * 2. 引入设计令牌（CSS 变量）
- * ============================================
- * 定义了项目的设计规范，包括：
- * - 颜色系统：--color-primary, --color-text-primary 等
- * - 间距系统：--spacing-4 ~ --spacing-48
- * - 字体系统：--font-size-*, --font-weight-*
- * - 圆角系统：--radius-*
- * - 阴影系统：--shadow-*
- */
-@import '../../shared/styles/variables.css';
-
-/* ============================================
- * 3. 全局样式重置
- * ============================================ */
-
-* {
+page {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-page {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
-}
+  background-color: #F7F9FC;
+  color: #1A1A1A;
 
-/* ============================================
- * 4. CSS 变量定义（兼容原有代码）
- * ============================================
- * 注意：这些变量与 shared/styles/variables.css 中的定义保持一致
- * 新代码推荐直接使用 --color-*、--spacing-* 等统一命名
- */
-:root {
-  /* 主色调 */
-  --primary-color: #1890ff;
+  /* 主色系 - 海洋蓝 */
+  /* 主色系 - 海洋蓝 */
+  --primary-color: #2563EB;
+  --primary-light: #3B82F6;
+  --primary-lighter: #60A5FA;
+  --primary-bg: #EFF6FF;
+
   /* 功能色 */
-  --success-color: #52c41a;
-  --warning-color: #faad14;
-  --error-color: #f5222d;
-  /* 文本颜色 */
-  --text-color: #333;
-  --text-color-secondary: #666;
-  --text-color-light: #999;
+  --success-color: #10B981;
+  --warning-color: #F59E0B;
+  --error-color: #EF4444;
+
+  /* 文本色 */
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B7280;
+  --text-placeholder: #9CA3AF;
+  --text-light: #D1D5DB;
+
   /* 边框和背景 */
-  --border-color: #e8e8e8;
-  --bg-color: #f5f5f5;
-  --bg-white: #fff;
+  --border-color: #E5E7EB;
+  --border-light: #F3F4F6;
+  --bg-page: #F7F9FC;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F3F4F6;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+  /* 圆角 */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* 间距 */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+
+  /* 兼容旧变量 */
+  --text-color: var(--text-primary);
+  --text-color-secondary: var(--text-secondary);
+  --text-color-light: var(--text-placeholder);
+  --bg-color: var(--bg-page);
+  --bg-white: var(--bg-card);
+}
+
+/* 兼容旧版 view 元素的 box-sizing */
+view, text, image, button, input, textarea, scroll-view {
+  box-sizing: border-box;
 }
 
 /* ============================================
- * 5. 通用工具类
- * ============================================
- * 提供常用的布局和样式类，减少重复代码
- */
+ * 通用组件样式
+ * ============================================ */
 
-/* 容器类 */
-.container {
+/* 页面容器 */
+.page-container {
   min-height: 100vh;
-  background-color: var(--bg-color);
+  background: var(--bg-page);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-.page {
-  min-height: 100vh;
-  background-color: var(--bg-color);
-  padding-bottom: 32px;
-}
-
+/* 卡片基础样式 */
 .card {
-  background: var(--bg-white);
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 24px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
 }
 
-/* Flex 布局类 */
-.flex {
-  display: flex;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* ============================================
- * 6. 安全区域适配
- * ============================================
- * 适配 iPhone X 及以上机型的底部安全区域
- */
+/* 安全区域 */
 .safe-area-bottom {
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 动画过渡 */
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 价格文本 */
+.price-text {
+  color: var(--error-color);
+  font-weight: 700;
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background: var(--primary-bg);
+  color: var(--primary-color);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* 分割线 */
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: var(--spacing-md) 0;
 }

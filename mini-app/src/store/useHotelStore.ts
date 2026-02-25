@@ -45,6 +45,15 @@ export const useHotelStore = create<HotelState>()(
     }),
     {
       name: 'hotel-storage',
+      // 迁移旧版本数据，清除无效的城市筛选
+      migrate: (persistedState: any) => {
+        if (persistedState?.state?.searchParams?.city) {
+          // 清除旧的城市筛选
+          persistedState.state.searchParams.city = undefined;
+        }
+        return persistedState;
+      },
+      version: 1,
     }
   )
 );

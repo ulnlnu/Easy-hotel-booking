@@ -1,27 +1,58 @@
-.filter-bar {
-  display: flex;
-  background: var(--bg-white);
-  padding: 24px;
-  margin-bottom: 24px;
-  border-radius: 12px;
-  gap: 24px;
+/**
+ * FilterBar - 筛选栏
+ * vw 统一方案 - H5 和小程序共用
+ */
 
-  .filter-item {
-    flex: 1;
+.filter-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-card);
+  padding: 0 3vw;
+  border-bottom: 0.3vw solid var(--border-light);
+
+  &__inner {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 16px;
-    border-radius: 8px;
-    background: #f5f5f5;
-    color: var(--text-color-secondary);
-    font-size: 28px;
-    transition: all 0.3s;
+    height: 14vw;
+  }
 
-    &.active {
-      background: var(--primary-color);
-      color: #fff;
+  &__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    transition: all 0.2s;
+
+    &:active {
+      opacity: 0.7;
     }
+
+    &--active {
+      .filter-bar__label {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__label {
+    font-size: 4.5vw;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+
+  &__indicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8vw;
+    height: 1.2vw;
+    background: var(--primary-color);
+    border-radius: 0.8vw 0.8vw 0 0;
   }
 }

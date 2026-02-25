@@ -2,6 +2,7 @@
  * =============================================
  * 易宿酒店预订平台 - 设计令牌 (Design Tokens)
  * =============================================
+ * Arctic Frost Theme - 北极霜雪主题
  *
  * 本文件定义了整个项目的设计规范，包括颜色、间距、字体、圆角等。
  * 所有端（admin、mini-app）都应遵循这些规范，确保视觉一致性。
@@ -14,50 +15,62 @@
  */
 
 // ============================================
-// 颜色系统 (Colors)
+// 颜色系统 (Colors) - Arctic Frost Theme
 // ============================================
 
-// 品牌色 (Brand Colors)
-$color-primary: #1890ff;        // 主色 - 用于主要操作、强调
-$color-primary-hover: #40a9ff;  // 主色悬停
-$color-primary-active: #096dd9;  // 主色激活
-$color-primary-light: #e6f7ff;  // 主色浅色背景
+// 品牌色 (Brand Colors) - 冰蓝色系
+$color-primary: #0ea5e9;           // 主色 - 天蓝色 (sky-500)
+$color-primary-hover: #38bdf8;     // 主色悬停 - 浅天蓝 (sky-400)
+$color-primary-active: #0284c7;    // 主色激活 - 深天蓝 (sky-600)
+$color-primary-light: #f0f9ff;     // 主色浅色背景 (sky-50)
+$color-primary-lighter: #e0f2fe;   // 更浅背景 (sky-100)
+$color-primary-lightest: #bae6fd;  // 最浅背景 (sky-200)
 
-$color-success: #52c41a;        // 成功色
-$color-success-light: #f6ffed;  // 成功浅色背景
+// Arctic Frost 渐变色
+$color-frost-start: #e0f2fe;       // 霜雪渐变起点 (sky-100)
+$color-frost-mid: #f0f9ff;         // 霜雪渐变中点 (sky-50)
+$color-frost-end: #ffffff;         // 霜雪渐变终点
 
-$color-warning: #faad14;        // 警告色
-$color-warning-light: #fffbe6;  // 警告浅色背景
+// 强调色系
+$color-accent-cyan: #22d3ee;       // 青色强调 (cyan-400)
+$color-accent-blue: #60a5fa;       // 蓝色强调 (blue-400)
+$color-accent-teal: #2dd4bf;       // 青绿强调 (teal-400)
 
-$color-error: #f5222d;          // 错误色
-$color-error-light: #fff1f0;    // 错误浅色背景
+$color-success: #10b981;           // 成功色 - 翠绿 (emerald-500)
+$color-success-light: #d1fae5;     // 成功浅色背景 (emerald-100)
 
-$color-info: #1890ff;           // 信息色（复用主色）
+$color-warning: #f59e0b;           // 警告色 - 琥珀 (amber-500)
+$color-warning-light: #fef3c7;     // 警告浅色背景 (amber-100)
 
-// 中性色 (Neutral Colors)
-$color-text-primary: #333333;     // 主要文本
-$color-text-secondary: #666666;   // 次要文本
-$color-text-tertiary: #999999;    // 辅助文本
-$color-text-placeholder: #bfbfbf; // 占位符文本
+$color-error: #ef4444;             // 错误色 - 红色 (red-500)
+$color-error-light: #fee2e2;       // 错误浅色背景 (red-100)
 
-$color-border-base: #e8e8e8;      // 基础边框
-$color-border-light: #f0f0f0;     // 浅色边框
-$color-border-dark: #d9d9d9;      // 深色边框
+$color-info: #0ea5e9;              // 信息色（复用主色）
 
-$color-bg-page: #f5f5f5;          // 页面背景
-$color-bg-container: #ffffff;     // 容器背景
-$color-bg-hover: #f5f5f5;         // 悬停背景
-$color-bg-active: #e6f7ff;         // 激活背景
+// 中性色 (Neutral Colors) - 冷色调
+$color-text-primary: #0c4a6e;      // 主要文本 - 深蓝 (sky-900)
+$color-text-secondary: #0369a1;    // 次要文本 - 中蓝 (sky-700)
+$color-text-tertiary: #64748b;     // 辅助文本 (slate-500)
+$color-text-placeholder: #94a3b8;  // 占位符文本 (slate-400)
+
+$color-border-base: #e0f2fe;       // 基础边框 (sky-100)
+$color-border-light: #f0f9ff;      // 浅色边框 (sky-50)
+$color-border-dark: #bae6fd;       // 深色边框 (sky-200)
+
+$color-bg-page: #f0f9ff;           // 页面背景 (sky-50)
+$color-bg-container: #ffffff;      // 容器背景
+$color-bg-hover: #f0f9ff;          // 悬停背景 (sky-50)
+$color-bg-active: #e0f2fe;         // 激活背景 (sky-100)
 
 // 功能色 (Functional Colors)
 $color-link: $color-primary;
-$color-price: #ff4d4f;            // 价格色
-$color-rating: #ffc107;           // 评分星级
+$color-price: #ef4444;             // 价格色 - 红色
+$color-rating: #f59e0b;            // 评分星级 - 琥珀色
 
 // 禁用状态
-$color-disabled-bg: #f5f5f5;
-$color-disabled-border: #d9d9d9;
-$color-disabled-text: #bfbfbf;
+$color-disabled-bg: #f1f5f9;       // (slate-100)
+$color-disabled-border: #e2e8f0;   // (slate-200)
+$color-disabled-text: #94a3b8;     // (slate-400)
 
 // ============================================
 // 间距系统 (Spacing)

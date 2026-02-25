@@ -1,22 +1,135 @@
+/**
+ * 列表页样式 - vw 等比缩放方案
+ * 针对 iPhone 14 Pro Max (430px) 优化
+ */
+
 .list-page {
-  min-height: 100vh;
-  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-page);
 
-  .hotel-list {
-    padding: 24px;
+  /* 滚动区域 */
+  &__scroll {
+    flex: 1;
+    height: 0;
+  }
 
-    .no-more {
-      text-align: center;
-      padding: 32px 0;
-      color: var(--text-color-light);
-      font-size: 24px;
+  /* 列表容器 */
+  &__list {
+    padding: 2vw 0;
+  }
+
+  /* 列表项 - 最小化间距 */
+  &__item {
+    padding: 0 3vw;
+    margin-bottom: 1.5vw;
+
+    &:last-child {
+      margin-bottom: 0;
     }
+  }
 
-    .empty {
-      text-align: center;
-      padding: 120px 0;
-      color: var(--text-color-light);
-      font-size: 28px;
+  /* 筛选标签 */
+  &__filter-tags {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2vw 3vw;
+    background: var(--bg-card);
+    border-bottom: 0.2vw solid var(--border-light);
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20vw 5vw;
+  }
+
+  &__empty-text {
+    font-size: 4.5vw;
+    color: var(--text-placeholder);
+    margin-bottom: 3vw;
+  }
+
+  &__empty-hint {
+    font-size: 4vw;
+    color: var(--primary-color);
+    padding: 2.5vw 5vw;
+    background: var(--primary-bg);
+    border-radius: 3vw;
+    font-weight: 500;
+  }
+
+  &__loading-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+    color: var(--text-secondary);
+    font-size: 4vw;
+  }
+
+  &__no-more {
+    text-align: center;
+    padding: 4vw;
+    color: var(--text-placeholder);
+    font-size: 3.8vw;
+  }
+}
+
+/* 筛选标签组件 */
+.filter-tags {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5vw;
+    flex: 1;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 1vw;
+    padding: 1.5vw 2.5vw;
+    background: var(--primary-bg);
+    border-radius: 3vw;
+    font-size: 3.8vw;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: all 0.2s;
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+
+  &__close-icon {
+    font-size: 4vw;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-left: 0.5vw;
+  }
+
+  &__tag-text {
+    max-width: 25vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__clear {
+    font-size: 3.8vw;
+    color: var(--text-secondary);
+    padding: 1.5vw 2vw;
+    flex-shrink: 0;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:active {
+      color: var(--primary-color);
     }
   }
 }

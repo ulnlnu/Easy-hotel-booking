@@ -6,7 +6,6 @@
 import { useState, useEffect } from 'react';
 import { View, Swiper, SwiperItem, Image, Text, Button } from '@tarojs/components';
 import Taro, { useRouter, useShareAppMessage } from '@tarojs/taro';
-import { Star, Phone, Location, ArrowLeft } from '@nutui/icons-react-taro';
 import { getHotelDetailApi } from '@/services/api';
 // 改为这种普通导入方式
 import { Hotel } from '@shared/types/hotel';
@@ -107,7 +106,7 @@ function Detail() {
       {/* 导航栏 */}
       <View className="nav-bar">
         <View className="nav-back" onClick={handleBack}>
-          <ArrowLeft size="20" />
+          <Text className="nav-back-icon">←</Text>
         </View>
         <View className="nav-share">
           <Text>分享</Text>
@@ -117,6 +116,7 @@ function Detail() {
       {/* 图片轮播 */}
       <View className="image-swiper">
         <Swiper
+          className="swiper"
           indicatorColor="#fff"
           indicatorActiveColor="#1890ff"
           circular
@@ -125,9 +125,10 @@ function Detail() {
           interval={3000}
           current={currentImageIndex}
           onChange={e => setCurrentImageIndex(e.detail.current)}
+          style={{ height: '75vw' }}
         >
           {hotel.images?.map((image, index) => (
-            <SwiperItem key={index}>
+            <SwiperItem key={index} className="swiper-item">
               <Image
                 src={image}
                 mode="aspectFill"
@@ -147,14 +148,14 @@ function Detail() {
         <View className="hotel-header">
           <Text className="hotel-name">{hotel.name}</Text>
           <View className="rating">
-            <Star size="14" fill="#FFC107" />
+            <Text className="rating-star">★</Text>
             <Text className="rating-text">{hotel.rating}</Text>
             <Text className="review-count">({hotel.reviewCount}条评价)</Text>
           </View>
         </View>
 
         <View className="address">
-          <Location size="14" />
+          <Text className="address-icon">📍</Text>
           <Text>{hotel.address}</Text>
         </View>
 
@@ -209,7 +210,7 @@ function Detail() {
       {/* 底部操作栏 */}
       <View className="bottom-bar">
         <Button className="contact-btn" onClick={handleContact}>
-          <Phone size="18" />
+          <Text className="contact-icon">📞</Text>
           <Text>联系酒店</Text>
         </Button>
       </View>

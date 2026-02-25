@@ -1,10 +1,9 @@
 /**
  * mini-app/src/components/FilterBar/index.tsx
- * 筛选栏组件
+ * 筛选栏组件 - 紧凑型（优化版）
  */
 
 import { View, Text } from '@tarojs/components';
-import { Filter } from '@nutui/icons-react-taro';
 import './index.scss';
 
 interface SortOption {
@@ -19,10 +18,10 @@ interface FilterBarProps {
 }
 
 const defaultSortOptions: SortOption[] = [
-  { label: '默认排序', value: '' },
-  { label: '价格优先', value: 'price' },
-  { label: '距我最近', value: 'distance' },
-  { label: '评分最高', value: 'rating' },
+  { label: '综合', value: '' },
+  { label: '价格', value: 'price' },
+  { label: '距离', value: 'distance' },
+  { label: '评分', value: 'rating' },
 ];
 
 function FilterBar({
@@ -32,16 +31,18 @@ function FilterBar({
 }: FilterBarProps) {
   return (
     <View className="filter-bar">
-      {sortOptions.map(option => (
-        <View
-          key={option.value}
-          className={`filter-item ${sortBy === option.value ? 'active' : ''}`}
-          onClick={() => onSortChange(option.value)}
-        >
-          <Filter size="14" />
-          <Text>{option.label}</Text>
-        </View>
-      ))}
+      <View className="filter-bar__inner">
+        {sortOptions.map(option => (
+          <View
+            key={option.value}
+            className={`filter-bar__item ${sortBy === option.value ? 'filter-bar__item--active' : ''}`}
+            onClick={() => onSortChange(option.value)}
+          >
+            <Text className="filter-bar__label">{option.label}</Text>
+            {sortBy === option.value && <View className="filter-bar__indicator" />}
+          </View>
+        ))}
+      </View>
     </View>
   );
 }

@@ -1,14 +1,19 @@
+/**
+ * 详情页样式 - vw 等比缩放方案
+ * 优化：增大尺寸以适应大屏手机（iPhone 14 Pro Max）
+ */
+
 .detail-page {
   min-height: 100vh;
-  background: var(--bg-color);
-  padding-bottom: 120px;
+  background: var(--bg-page);
+  padding-bottom: 32vw;
 
   &.loading {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
-    color: var(--text-color-light);
+    font-size: 4.2vw;
+    color: var(--text-placeholder);
   }
 
   .nav-bar {
@@ -16,84 +21,110 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 88px;
+    height: 15vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 24px;
+    padding: 0 4vw;
     z-index: 100;
     background: transparent;
 
     .nav-back {
-      width: 64px;
-      height: 64px;
+      width: 11vw;
+      height: 11vw;
       background: rgba(0, 0, 0, 0.5);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
+
+      .nav-back-icon {
+        font-size: 5.5vw;
+        font-weight: 600;
+      }
     }
 
     .nav-share {
-      padding: 16px 24px;
+      padding: 2.5vw 4vw;
       background: rgba(0, 0, 0, 0.5);
-      border-radius: 32px;
+      border-radius: 5vw;
       color: #fff;
-      font-size: 24px;
+      font-size: 3.5vw;
     }
   }
 
   .image-swiper {
     position: relative;
-    height: 600px;
+    width: 100%;
+    height: 75vw;  /* 4:3 比例，适合酒店图片 */
 
-    .swiper-image {
+    /* 修复 Swiper 组件样式 */
+    .swiper {
       width: 100%;
       height: 100%;
     }
 
+    /* 修复 SwiperItem 样式 */
+    .swiper-item {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .swiper-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
     .image-count {
       position: absolute;
-      bottom: 24px;
-      right: 24px;
+      bottom: 4vw;
+      right: 4vw;
       background: rgba(0, 0, 0, 0.6);
       color: #fff;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 24px;
+      padding: 1.5vw 3vw;
+      border-radius: 3.5vw;
+      font-size: 3.2vw;
+      z-index: 10;
     }
   }
 
   .hotel-info {
-    background: var(--bg-white);
-    padding: 32px 24px;
-    margin-bottom: 24px;
+    background: var(--bg-card);
+    padding: 5vw 4vw;
+    margin-bottom: 3vw;
 
     .hotel-header {
-      margin-bottom: 16px;
+      margin-bottom: 3vw;
 
       .hotel-name {
-        font-size: 36px;
+        font-size: 5vw;
         font-weight: 600;
-        color: var(--text-color);
-        margin-bottom: 12px;
+        color: var(--text-primary);
+        margin-bottom: 2vw;
       }
 
       .rating {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 1.5vw;
+
+        .rating-star {
+          font-size: 4.2vw;
+          color: #FFC107;
+        }
 
         .rating-text {
-          font-size: 28px;
+          font-size: 4.2vw;
           font-weight: 600;
           color: #FFC107;
         }
 
         .review-count {
-          font-size: 24px;
-          color: var(--text-color-light);
+          font-size: 3.5vw;
+          color: var(--text-placeholder);
         }
       }
     }
@@ -101,37 +132,42 @@
     .address {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 26px;
-      color: var(--text-color-secondary);
-      margin-bottom: 24px;
+      gap: 1.5vw;
+      font-size: 3.8vw;
+      color: var(--text-secondary);
+      margin-bottom: 4vw;
+
+      .address-icon {
+        font-size: 4.2vw;
+        line-height: 1;
+      }
     }
 
     .facilities {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 2vw;
 
       .facility-tag {
-        padding: 8px 16px;
-        background: #f5f5f5;
-        border-radius: 4px;
-        font-size: 24px;
-        color: var(--text-color-secondary);
+        padding: 1.5vw 3vw;
+        background: var(--primary-bg);
+        border-radius: 1.5vw;
+        font-size: 3.2vw;
+        color: var(--primary-color);
       }
     }
   }
 
   .room-section {
-    background: var(--bg-white);
-    padding: 32px 24px;
-    margin-bottom: 24px;
+    background: var(--bg-card);
+    padding: 5vw 4vw;
+    margin-bottom: 3vw;
 
     .section-title {
-      font-size: 32px;
+      font-size: 4.5vw;
       font-weight: 600;
-      color: var(--text-color);
-      margin-bottom: 24px;
+      color: var(--text-primary);
+      margin-bottom: 4vw;
     }
 
     .room-list {
@@ -139,8 +175,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 24px 0;
-        border-bottom: 1px solid var(--border-color);
+        padding: 4vw 0;
+        border-bottom: 0.3vw solid var(--border-light);
 
         &:last-child {
           border-bottom: none;
@@ -150,30 +186,30 @@
           flex: 1;
 
           .room-name {
-            font-size: 30px;
+            font-size: 4.2vw;
             font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 8px;
+            color: var(--text-primary);
+            margin-bottom: 1.5vw;
           }
 
           .room-area {
-            font-size: 24px;
-            color: var(--text-color-light);
-            margin-bottom: 8px;
+            font-size: 3.5vw;
+            color: var(--text-placeholder);
+            margin-bottom: 1.5vw;
           }
 
           .room-bed {
             display: flex;
             align-items: center;
-            gap: 16px;
-            font-size: 24px;
-            color: var(--text-color-secondary);
+            gap: 2.5vw;
+            font-size: 3.5vw;
+            color: var(--text-secondary);
 
             .max-guests {
-              padding: 4px 12px;
-              background: #f0f8ff;
+              padding: 0.8vw 2vw;
+              background: var(--primary-bg);
               color: var(--primary-color);
-              border-radius: 4px;
+              border-radius: 1.2vw;
             }
           }
         }
@@ -182,31 +218,31 @@
           text-align: right;
 
           .price-section {
-            margin-bottom: 12px;
+            margin-bottom: 2vw;
 
             .price {
-              font-size: 44px;
+              font-size: 6vw;
               font-weight: 700;
-              color: #ff4d4f;
+              color: var(--error-color);
             }
 
             .original-price {
-              font-size: 24px;
-              color: var(--text-color-light);
+              font-size: 3.2vw;
+              color: var(--text-placeholder);
               text-decoration: line-through;
-              margin-left: 8px;
+              margin-left: 1.5vw;
             }
 
             .unit {
-              font-size: 24px;
-              color: var(--text-color-secondary);
+              font-size: 3.2vw;
+              color: var(--text-secondary);
             }
           }
 
           .book-btn {
-            width: 120px;
-            height: 64px;
-            font-size: 26px;
+            width: 20vw;
+            height: 9vw;
+            font-size: 3.5vw;
           }
         }
       }
@@ -218,21 +254,26 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 16px 24px;
-    background: var(--bg-white);
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    padding: 3vw 4vw;
+    background: var(--bg-card);
+    box-shadow: 0 -0.5vw 2vw rgba(0, 0, 0, 0.1);
     display: flex;
-    gap: 16px;
+    gap: 3vw;
 
     .contact-btn {
       flex: 1;
-      height: 88px;
-      font-size: 30px;
+      height: 12vw;
+      font-size: 4vw;
       font-weight: 600;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 1.5vw;
+
+      .contact-icon {
+        font-size: 4.5vw;
+        line-height: 1;
+      }
     }
   }
 }
