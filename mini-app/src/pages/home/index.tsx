@@ -3,23 +3,49 @@
  * 首页 - 蓝白简约风（优化版）
  */
 
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { View, Text, Input, Button } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useHotelStore } from '@/store/useHotelStore';
 import { useLocation } from '@/hooks/useLocation';
 import DateRangePicker from '@/components/DateRangePicker';
+import CityPicker from '@/components/CityPicker';
+import { getCityByLocation } from '@/utils/geocoder';
+import { findCityByName, getCityDisplayName } from '@/data/cities';
 import './index.scss';
 
 // 平台检测
 const isH5 = process.env.TARO_ENV === 'h5';
 
 function Home() {
-  const { searchParams, setSearchParams } = useHotelStore();
+  const { searchParams, setSearchParams, locatedCity, setLocatedCity } = useHotelStore();
   const { location, getLocation, loading: locationLoading } = useLocation();
 
   const [keyword, setKeyword] = useState('');
   const [showCalendar, setShowCalendar] = useState(false);
+  const [showCityPicker, setShowCityPicker] = useState(false);
+
+  // 定位成功后自动识别城市并选中
+  useEffect(() => {
+    if (location) {
+      const result = getCityByLocation(location.lat, location.lng);
+      if (result) {
+        setLocatedCity(result);
+        // 自动选中定位城市
+        setSearchParams({ city: result.city });
+      }
+    }
+  }, [location]);
+
+  // 获取选中城市的显示名称（省份+城市格式）
+  const selectedCityDisplay = useMemo(() => {
+    if (!searchParams.city) return '全国';
+    const cityData = findCityByName(searchParams.city);
+    if (cityData) {
+      return getCityDisplayName(cityData.name, cityData.province);
+    }
+    return searchParams.city;
+  }, [searchParams.city]);
 
   // 计算入住天数
   const nights = searchParams.checkIn && searchParams.checkOut
@@ -31,29 +57,32 @@ function Home() {
   // 获取定位
   const handleGetLocation = async () => {
     await getLocation();
-    if (location) {
-      Taro.showToast({ title: '定位成功', icon: 'success' });
-      setSearchParams({ ...searchParams, location });
-    } else {
-      Taro.showToast({ title: '定位失败，请检查权限', icon: 'none' });
-    }
+    // location 状态更新是异步的，这里用返回值判断
   };
 
-  // 搜索酒店（清除之前的城市筛选）
+  // 搜索酒店
   const handleSearch = () => {
+    // 如果有关键词，使用关键词搜索（清除城市筛选）
+    // 如果没有关键词但有城市，使用城市搜索
     setSearchParams({
-      keyword,
+      keyword: keyword || undefined,
       checkIn: searchParams.checkIn,
       checkOut: searchParams.checkOut,
       location: location || searchParams.location,
-      city: undefined, // 清除城市筛选，使用关键词搜索
+      city: keyword ? undefined : searchParams.city,
     });
     Taro.navigateTo({ url: '/pages/list/index' });
   };
 
-  // 选择城市
+  // 选择城市（打开城市选择器）
   const handleSelectCity = () => {
-    Taro.showToast({ title: '城市选择功能开发中', icon: 'none' });
+    setShowCityPicker(true);
+  };
+
+  // 城市选择回调
+  const handleCitySelect = (city: string) => {
+    setSearchParams({ city });
+    setKeyword(''); // 清空关键词搜索
   };
 
   // 日期选择
@@ -64,8 +93,7 @@ function Home() {
 
   // 热门城市点击
   const handleCityClick = (city: string) => {
-    setSearchParams({ city });
-    setKeyword('');
+    handleCitySelect(city);
     Taro.navigateTo({ url: '/pages/list/index' });
   };
 
@@ -112,7 +140,7 @@ function Home() {
               />
             )}
             <View className="home-page__city-btn" onClick={handleSelectCity}>
-              <Text>{searchParams.city || '全国'}</Text>
+              <Text>{selectedCityDisplay}</Text>
             </View>
           </View>
         </View>
@@ -144,7 +172,7 @@ function Home() {
           onClick={handleGetLocation}
         >
           <Text className="home-page__btn-icon">📍</Text>
-          <Text>{location ? '已获取位置' : '获取当前位置'}</Text>
+          <Text>{locatedCity ? locatedCity.displayName : location ? '已获取位置' : '获取当前位置'}</Text>
         </Button>
 
         {/* 搜索按钮 */}
@@ -180,6 +208,15 @@ function Home() {
         }
         onConfirm={handleDateConfirm}
         onCancel={() => setShowCalendar(false)}
+      />
+
+      {/* 城市选择器 */}
+      <CityPicker
+        visible={showCityPicker}
+        value={searchParams.city}
+        locatedCity={locatedCity}
+        onSelect={handleCitySelect}
+        onClose={() => setShowCityPicker(false)}
       />
     </View>
   );

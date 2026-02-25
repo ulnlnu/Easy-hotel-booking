@@ -1,0 +1,268 @@
+/**
+ * CityPicker 组件样式 - vw 等比缩放方案
+ */
+
+.citypicker-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.citypicker-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.citypicker-content {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  background-color: #fff;
+  border-radius: 6.4vw 6.4vw 0 0;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* 顶部栏 */
+.citypicker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vw;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  border-radius: 6.4vw 6.4vw 0 0;
+  flex-shrink: 0;
+}
+
+.citypicker-title {
+  font-size: 4.8vw;
+  font-weight: 700;
+  color: #fff;
+}
+
+.citypicker-close {
+  width: 8vw;
+  height: 8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-size: 5.33vw;
+  color: #fff;
+  font-weight: 300;
+
+  &:active {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* 搜索框 */
+.citypicker-search {
+  display: flex;
+  align-items: center;
+  margin: 3vw 4vw;
+  padding: 0 3vw;
+  height: 10.67vw;
+  background: #f5f7fa;
+  border-radius: 5.33vw;
+  flex-shrink: 0;
+}
+
+.citypicker-search-icon {
+  font-size: 4vw;
+  margin-right: 2vw;
+  opacity: 0.6;
+}
+
+.citypicker-search-input {
+  flex: 1;
+  height: 100%;
+  font-size: 3.73vw;
+  color: #333;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.citypicker-search-placeholder {
+  color: #999;
+}
+
+.citypicker-search-clear {
+  width: 5.33vw;
+  height: 5.33vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d1d5db;
+  border-radius: 50%;
+  font-size: 3.47vw;
+  color: #fff;
+
+  &:active {
+    background: #9ca3af;
+  }
+}
+
+/* 内容区域 */
+.citypicker-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: calc(2.67vw + env(safe-area-inset-bottom));
+}
+
+/* 分区 */
+.citypicker-section {
+  padding: 0 4vw;
+  margin-bottom: 3vw;
+}
+
+.citypicker-section-title {
+  display: flex;
+  align-items: center;
+  padding: 2.67vw 0;
+  font-size: 3.47vw;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.citypicker-location-icon {
+  margin-right: 1.33vw;
+  font-size: 3.73vw;
+}
+
+.citypicker-letter-title {
+  padding: 2vw 3vw;
+  margin-bottom: 1.33vw;
+  background: #f5f7fa;
+  border-radius: 1.33vw;
+  color: #2563EB;
+  font-weight: 700;
+}
+
+/* 城市列表 */
+.citypicker-city-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+
+.citypicker-city-item {
+  min-width: 20vw;
+  padding: 2.4vw 3.2vw;
+  background: #f5f7fa;
+  border-radius: 2.13vw;
+  font-size: 3.47vw;
+  color: #333;
+  text-align: center;
+  transition: all 0.2s;
+
+  &:active {
+    background: #e5e7eb;
+    transform: scale(0.98);
+  }
+
+  &.located {
+    background: #EFF6FF;
+    color: #2563EB;
+    font-weight: 600;
+  }
+
+  &.active {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+/* 热门城市网格 */
+.citypicker-hot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+
+.citypicker-hot-item {
+  width: calc(25% - 1.5vw);
+  padding: 2.67vw 0;
+  background: #f5f7fa;
+  border-radius: 2.13vw;
+  font-size: 3.47vw;
+  color: #333;
+  text-align: center;
+  transition: all 0.2s;
+
+  &:active {
+    background: #e5e7eb;
+    transform: scale(0.98);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+/* 空状态 */
+.citypicker-empty {
+  width: 100%;
+  padding: 6vw 0;
+  text-align: center;
+  color: #999;
+  font-size: 3.47vw;
+}
+
+/* 右侧字母索引 */
+.citypicker-alphabet {
+  position: fixed;
+  right: 1.33vw;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.33vw 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 3vw;
+  box-shadow: 0 0.53vw 2.13vw rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.citypicker-alphabet-item {
+  width: 6vw;
+  height: 5.33vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.93vw;
+  font-weight: 600;
+  color: #2563EB;
+
+  &:active {
+    background: #EFF6FF;
+    border-radius: 50%;
+  }
+}
