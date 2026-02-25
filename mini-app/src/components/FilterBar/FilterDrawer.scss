@@ -28,8 +28,10 @@
     right: 0;
     background: #FFFFFF;
     border-radius: 5vw 5vw 0 0;
-    max-height: 85vh;
-    overflow-y: auto;
+    // 减小最大高度，避免被 tabBar 遮挡
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
     animation: slideUp 0.3s ease;
   }
 
@@ -40,6 +42,14 @@
     padding: 4vw 5vw;
     border-bottom: 0.2vw solid #F3F4F6;
     background: #FFFFFF;
+    flex-shrink: 0;
+  }
+
+  // 可滚动内容区域
+  &__scroll {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   &__title {
@@ -115,14 +125,16 @@
     }
   }
 
-  // 底部按钮
+  // 底部按钮 - 增加底部导航栏高度适配
   &__footer {
     display: flex;
     gap: 3vw;
     padding: 4vw 5vw;
-    padding-bottom: calc(4vw + env(safe-area-inset-bottom));
+    // 底部安全区域 + tabBar 高度（约 13vw）+ 额外间距
+    padding-bottom: calc(4vw + 13vw + env(safe-area-inset-bottom));
     border-top: 0.2vw solid #F3F4F6;
     background: #FFFFFF;
+    flex-shrink: 0;
   }
 
   &__btn {
