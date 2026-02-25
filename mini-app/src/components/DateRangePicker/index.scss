@@ -1,5 +1,6 @@
 /**
- * DateRangePicker 组件样式（基于 Taro 内置组件）
+ * DateRangePicker 组件样式 - vw 等比缩放方案
+ * 优化：增大尺寸、添加返回按钮、更清晰的界面
  */
 
 .daterangepicker-container {
@@ -8,51 +9,91 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
   display: flex;
   align-items: flex-end;
-  z-index: 1000;
+}
+
+.daterangepicker-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .daterangepicker-content {
+  position: relative;
   width: 100%;
-  max-height: 85vh;
+  max-height: 90vh;
   background-color: #fff;
-  border-radius: 24px 24px 0 0;
-  padding: 24px;
+  border-radius: 6.4vw 6.4vw 0 0;
   display: flex;
   flex-direction: column;
   animation: slideUp 0.3s ease-out;
+  overflow: hidden;
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(100%);
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* 顶部栏 */
+.daterangepicker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vw;
+  border-bottom: 0.3vw solid transparent;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  border-radius: 6.4vw 6.4vw 0 0;
+  flex-shrink: 0;
+}
+
+.daterangepicker-back {
+  width: 10.67vw;
+  height: 10.67vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+
+  .back-icon {
+    font-size: 5.33vw;
+    color: #fff;
+    font-weight: 600;
   }
-  to {
-    transform: translateY(0);
+
+  &:active {
+    background: rgba(255, 255, 255, 0.3);
   }
 }
 
-/* 顶部标题 */
-.daterangepicker-header {
+.daterangepicker-header-center {
+  flex: 1;
   text-align: center;
-  margin-bottom: 16px;
+}
 
-  .daterangepicker-title {
-    display: block;
-    font-size: 36px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 8px;
-  }
+.daterangepicker-header-right {
+  width: 10.67vw;
+}
 
-  .daterangepicker-selected {
-    display: block;
-    font-size: 28px;
-    color: #1890ff;
-    font-weight: 500;
-  }
+.daterangepicker-title {
+  display: block;
+  font-size: 4.8vw;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.07vw;
+}
+
+.daterangepicker-selected {
+  display: block;
+  font-size: 3.47vw;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
 }
 
 /* 步骤指示器 */
@@ -60,22 +101,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  padding: 0 20px;
+  padding: 3vw 4vw;
+  background: #fff;
+  border-bottom: 0.3vw solid #f0f0f0;
+  flex-shrink: 0;
 
   .step {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 1.07vw;
 
     .step-number {
-      width: 28px;
-      height: 28px;
+      width: 8vw;
+      height: 8vw;
       border-radius: 50%;
       background-color: #f5f5f5;
       color: #999;
-      font-size: 14px;
+      font-size: 3.73vw;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -84,81 +127,170 @@
     }
 
     .step-text {
-      font-size: 12px;
+      font-size: 3.2vw;
       color: #999;
       transition: all 0.2s;
     }
 
     &.active {
       .step-number {
-        background-color: #1890ff;
+        background-color: #2563EB;
         color: #fff;
       }
-
       .step-text {
-        color: #1890ff;
-        font-weight: 500;
+        color: #2563EB;
+        font-weight: 600;
       }
     }
 
     &.completed {
       .step-number {
-        background-color: #52c41a;
+        background-color: #10B981;
         color: #fff;
       }
-
       .step-text {
-        color: #52c41a;
-        font-weight: 500;
+        color: #10B981;
+        font-weight: 600;
       }
     }
   }
 
   .step-line {
-    width: 40px;
-    height: 2px;
-    background-color: #f5f5f5;
-    margin: 0 4px;
+    width: 10.67vw;
+    height: 0.53vw;
+    background-color: #e5e7eb;
+    margin: 0 2.67vw;
+    margin-bottom: 5.33vw;
   }
 }
 
 /* 日历区域 */
 .daterangepicker-calendar {
   flex: 1;
-  min-height: 500px;
+  min-height: 0;
   overflow-y: auto;
-  margin-bottom: 16px;
+  padding: 2.67vw;
+  background: #f7f9fc;
+}
+
+/* 月份导航 */
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3vw 4vw;
   background: #fff;
-  border-radius: 12px;
-  padding: 16px;
+  border-bottom: 0.27vw solid #f0f0f0;
+  flex-shrink: 0;
+  position: relative;
+
+  &__btn {
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6vw;
+    color: #2563EB;
+    font-weight: 300;
+    border-radius: 50%;
+    transition: all 0.2s;
+
+    &:active {
+      background: #f0f0f0;
+    }
+
+    &.disabled {
+      color: #d1d5db;
+      pointer-events: none;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    font-size: 4.2vw;
+    font-weight: 700;
+    color: #1a1a1a;
+    padding: 2vw 4vw;
+    border-radius: 2vw;
+    transition: background 0.2s;
+
+    &:active {
+      background: #f5f5f5;
+    }
+  }
+
+  &__arrow {
+    font-size: 2.5vw;
+    color: #6b7280;
+  }
+}
+
+/* 年月下拉选择 */
+.calendar-month-dropdown {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 38vw;
+  width: 60vw;
+  max-height: 50vw;
+  background: #fff;
+  border-radius: 2vw;
+  box-shadow: 0 1vw 4vw rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  overflow: hidden;
+
+  &__list {
+    max-height: 45vw;
+  }
+
+  &__item {
+    padding: 3vw 4vw;
+    font-size: 3.8vw;
+    color: #333;
+    text-align: center;
+    border-bottom: 0.13vw solid #f0f0f0;
+    transition: all 0.2s;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:active {
+      background: #f5f5f5;
+    }
+
+    &.active {
+      color: #2563EB;
+      font-weight: 600;
+      background: #EFF6FF;
+    }
+  }
 }
 
 .calendar-month {
-  margin-bottom: 24px;
-}
-
-.calendar-month-title {
-  font-size: 32px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 16px;
-  text-align: center;
+  margin-bottom: 4vw;
+  background: #fff;
+  border-radius: 2.67vw;
+  padding: 2.67vw;
+  box-shadow: 0 0.53vw 2.13vw rgba(0, 0, 0, 0.05);
 }
 
 .calendar-weekdays {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 2vw;
+  padding: 1.33vw 0;
 }
 
 .calendar-weekday {
-  width: 14.28%;
+  width: 12%;
   text-align: center;
-  font-size: 24px;
-  font-weight: 500;
-  color: #666;
+  font-size: 3.2vw;
+  font-weight: 600;
+  color: #6b7280;
 }
 
 .calendar-days {
@@ -172,9 +304,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  border-radius: 8px;
-  margin-bottom: 2px;
+  font-size: 3.73vw;
+  border-radius: 2vw;
+  margin-bottom: 0.53vw;
   background: #fff;
   transition: all 0.2s;
 
@@ -183,92 +315,96 @@
   }
 
   &.today {
-    color: #1890ff;
-    font-weight: 600;
-    border: 2px solid #1890ff;
+    color: #2563EB;
+    font-weight: 700;
+    border: 0.53vw solid #2563EB;
   }
 
-  // 入住日期选中样式（浅蓝色背景，深蓝色文字）
   &.checkin-selected {
-    background-color: #e6f7ff !important;
-    color: #1890ff !important;
-    font-weight: 600;
-    border: 2px solid #1890ff;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
+    color: #fff !important;
+    font-weight: 700;
+    transform: scale(1.05);
+    box-shadow: 0 0.53vw 2.13vw rgba(37, 99, 235, 0.3);
+    border-radius: 2vw 0 0 2vw;
   }
 
-  // 离店日期选中样式（绿色背景，白色文字）
   &.checkout-selected {
-    background-color: #52c41a !important;
+    background: linear-gradient(135deg, #10B981, #059669) !important;
     color: #fff !important;
-    font-weight: 600;
+    font-weight: 700;
+    transform: scale(1.05);
+    box-shadow: 0 0.53vw 2.13vw rgba(16, 185, 129, 0.3);
+    border-radius: 0 2vw 2vw 0;
   }
 
-  // 通用选中样式（作为后备，不应该单独使用）
-  &:not(.checkin-selected):not(.checkout-selected).selected {
-    background-color: #1890ff !important;
-    color: #fff !important;
+  &.in-range {
+    background: #EFF6FF !important;
+    color: #2563EB !important;
   }
 
   &.disabled {
-    color: #ccc !important;
-    background-color: #f5f5f5 !important;
-    cursor: not-allowed;
+    color: #d1d5db !important;
+    background-color: #f9fafb !important;
   }
 
   .day-number {
-    font-size: 28px;
+    font-size: 3.73vw;
   }
 }
 
-/* 底部操作栏 */
+/* 底部操作栏 - 修复定位问题 */
 .daterangepicker-footer {
   display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.67vw;
+  padding: 2.67vw 4vw;
+  padding-bottom: calc(2.67vw + env(safe-area-inset-bottom));
+  background: #fff;
+  border-top: 0.3vw solid #f0f0f0;
+  flex-shrink: 0;
 
-  .reset-btn,
-  .cancel-btn,
-  .confirm-btn {
+  &__btn {
     flex: 1;
-    height: 88px;
-    border-radius: 8px;
-    font-size: 28px;
+    height: 12vw;
+    line-height: 12vw;
+    border-radius: 2.13vw;
+    font-size: 3.73vw;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
   }
 
-  .reset-btn,
-  .cancel-btn {
-    background-color: #f5f5f5;
-    border: none;
-    color: #666;
+  &__reset {
+    background-color: #f3f4f6;
+    color: #6b7280;
 
     &:active {
-      background-color: #e8e8e8;
+      background-color: #e5e7eb;
+      transform: scale(0.98);
     }
   }
 
-  .confirm-btn {
-    background-color: #1890ff;
+  &__confirm {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
     color: #fff;
-    border: none;
+    box-shadow: 0 0.53vw 2.13vw rgba(37, 99, 235, 0.3);
 
-    &[disabled] {
-      background-color: #ccc;
-      color: #fff;
+    &:active {
+      transform: scale(0.98);
     }
 
-    &:active:not([disabled]) {
-      background-color: #096dd9;
+    &.disabled {
+      background: #d1d5db;
+      box-shadow: none;
+      opacity: 0.7;
+      pointer-events: none;
     }
-  }
-}
-
-/* 提示信息 */
-.daterangepicker-tip {
-  text-align: center;
-  margin-top: 8px;
-
-  .tip-text {
-    font-size: 24px;
-    color: #999;
   }
 }
