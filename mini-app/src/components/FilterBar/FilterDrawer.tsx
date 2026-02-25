@@ -3,7 +3,7 @@
  * 筛选抽屉组件 - 排序 + 高级筛选面板（星级、设施、特色标签）
  */
 
-import { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Text } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useHotelStore } from '@/store/useHotelStore';

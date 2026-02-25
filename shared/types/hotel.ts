@@ -54,6 +54,9 @@ export interface HotelQueryParams {
   checkOut?: string; // 离店日期（YYYY-MM-DD）
   minPrice?: number; // 最低价格
   maxPrice?: number; // 最高价格
+  minRating?: number; // 最低评分（0-5）
+  starLevel?: number; // 酒店星级（1-5）
+  facilities?: string[]; // 设施筛选（如 ["WiFi", "泳池"]）
   tags?: string[]; // 标签筛选
   status?: string; // 状态筛选（如 "pending", "approved"）
   includeAll?: boolean; // 是否包含所有状态（管理端使用）

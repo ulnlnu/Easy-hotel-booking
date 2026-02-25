@@ -5,7 +5,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { HotelQueryParams } from '@shared/types/hotel';
+import type { HotelQueryParams, Hotel } from '@shared/types/hotel';
 
 interface HotelState {
   // 搜索参数
@@ -21,11 +21,20 @@ interface HotelState {
     displayName: string; // 显示名称（如"北京市"或"广东·深圳"）
   } | null;
 
+  // 预加载的酒店数据（用于页面跳转优化）
+  preloadedHotels: Hotel[] | null;
+  preloadedHasMore: boolean;
+
   // 操作
   setSearchParams: (params: Partial<HotelQueryParams>) => void;
+  clearFilters: () => void;  // 清除筛选条件（保留关键词、城市、日期）
+  resetAll: () => void;      // 重置所有搜索参数
   addViewedHotel: (hotelId: string) => void;
   clearViewedHotels: () => void;
   setLocatedCity: (city: { city: string; province: string; displayName: string } | null) => void;
+  // 预加载相关
+  setPreloadedHotels: (hotels: Hotel[] | null, hasMore?: boolean) => void;
+  clearPreloadedHotels: () => void;
 }
 
 const defaultSearchParams: HotelQueryParams = {
@@ -39,11 +48,29 @@ export const useHotelStore = create<HotelState>()(
       searchParams: defaultSearchParams,
       viewedHotels: [],
       locatedCity: null,
+      preloadedHotels: null,
+      preloadedHasMore: true,
 
       setSearchParams: params =>
         set(state => ({
           searchParams: { ...state.searchParams, ...params },
         })),
+
+      // 清除筛选条件（保留关键词、城市、日期、定位）
+      clearFilters: () =>
+        set(state => ({
+          searchParams: {
+            ...defaultSearchParams,
+            keyword: state.searchParams.keyword,
+            city: state.searchParams.city,
+            checkIn: state.searchParams.checkIn,
+            checkOut: state.searchParams.checkOut,
+            location: state.searchParams.location,
+          },
+        })),
+
+      // 重置所有搜索参数
+      resetAll: () => set({ searchParams: defaultSearchParams }),
 
       addViewedHotel: hotelId =>
         set(state => ({
@@ -53,6 +80,20 @@ export const useHotelStore = create<HotelState>()(
       clearViewedHotels: () => set({ viewedHotels: [] }),
 
       setLocatedCity: city => set({ locatedCity: city }),
+
+      // 设置预加载的酒店数据
+      setPreloadedHotels: (hotels, hasMore = true) =>
+        set({
+          preloadedHotels: hotels,
+          preloadedHasMore: hasMore,
+        }),
+
+      // 清除预加载数据
+      clearPreloadedHotels: () =>
+        set({
+          preloadedHotels: null,
+          preloadedHasMore: true,
+        }),
     }),
     {
       name: 'hotel-storage',

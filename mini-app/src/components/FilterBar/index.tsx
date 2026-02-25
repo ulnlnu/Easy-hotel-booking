@@ -3,7 +3,7 @@
  * 筛选栏组件 - 城市选择 + 价格快捷选择（含排序） + 高级筛选抽屉
  */
 
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { View, Text, Input } from '@tarojs/components';
 import { useHotelStore } from '@/store/useHotelStore';
 import FilterDrawer from './FilterDrawer';

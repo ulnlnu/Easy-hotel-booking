@@ -33,6 +33,16 @@ export const hotelController = {
         }
       }
 
+      // 处理facilities参数：支持逗号分隔字符串或数组格式
+      let facilities: string[] | undefined = undefined;
+      if (req.query.facilities) {
+        if (typeof req.query.facilities === 'string') {
+          facilities = (req.query.facilities as string).split(',');
+        } else if (Array.isArray(req.query.facilities)) {
+          facilities = req.query.facilities as string[];
+        }
+      }
+
       // ✅ 处理 includeAll 参数（将字符串转换为布尔值）
       const includeAll = req.query.includeAll === 'true' || req.query.includeAll === true;
 
@@ -43,6 +53,9 @@ export const hotelController = {
         checkOut: req.query.checkOut as string,
         minPrice: req.query.minPrice ? Number(req.query.minPrice) : undefined,
         maxPrice: req.query.maxPrice ? Number(req.query.maxPrice) : undefined,
+        minRating: req.query.minRating ? Number(req.query.minRating) : undefined,
+        starLevel: req.query.starLevel ? Number(req.query.starLevel) : undefined,
+        facilities,
         tags,
         status: req.query.status as string,  // 支持状态筛选
         includeAll,  // ✅ 使用转换后的布尔值
