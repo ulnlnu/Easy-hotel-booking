@@ -8,7 +8,7 @@
     "email": "admin@yisu.com",
     "phone": "13800138000",
     "createdAt": "2025-01-01T00:00:00.000Z",
-    "updatedAt": "2025-01-01T00:00:00.000Z"
+    "updatedAt": "2026-02-25T03:14:45.395Z"
   },
   {
     "id": "user-hoteladmin001",
@@ -20,5 +20,15 @@
     "phone": "13800138001",
     "createdAt": "2025-01-01T00:00:00.000Z",
     "updatedAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "1771745408242-v173quq3w",
+    "username": "2_22test",
+    "password": "$2b$10$5SIUy361Qg6NbJJ252.gMeH0iULkUueiod68PsSNkh3BuEuBAbqkG",
+    "realName": "ulnlnu",
+    "role": "hotel_admin",
+    "phone": "13799160011",
+    "createdAt": "2026-02-22T07:30:08.242Z",
+    "updatedAt": "2026-02-22T07:30:08.242Z"
   }
 ]

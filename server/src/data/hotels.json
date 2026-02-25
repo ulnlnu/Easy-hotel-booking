@@ -5,7 +5,10 @@
     "address": "北京市东城区王府井大街255号",
     "city": "北京",
     "province": "北京",
-    "location": { "lat": 39.9139, "lng": 116.4103 },
+    "location": {
+      "lat": 39.9139,
+      "lng": 116.4103
+    },
     "images": [
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
       "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
@@ -13,12 +16,67 @@
     ],
     "rating": 4.8,
     "reviewCount": 1256,
-    "tags": ["近地铁", "含早餐", "有泳池", "五星级"],
-    "facilities": ["WiFi", "空调", "电视", "迷你吧", "保险箱", "泳池", "健身房", "SPA", "餐厅", "停车场"],
+    "tags": [
+      "近地铁",
+      "含早餐",
+      "有泳池",
+      "五星级"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "迷你吧",
+      "保险箱",
+      "泳池",
+      "健身房",
+      "SPA",
+      "餐厅",
+      "停车场"
+    ],
     "roomTypes": [
-      { "id": "room-001-1", "name": "豪华大床房", "area": 45, "price": 1288, "bedType": "大床 2.0m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "迷你吧", "保险箱"] },
-      { "id": "room-001-2", "name": "行政套房", "area": 75, "price": 2388, "bedType": "大床 2.0m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "迷你吧", "保险箱", "行政酒廊"] },
-      { "id": "room-001-3", "name": "家庭房", "area": 55, "price": 1688, "bedType": "双床 1.35m×2", "maxOccupancy": 4, "amenities": ["WiFi", "空调", "迷你吧"] }
+      {
+        "id": "room-001-1",
+        "name": "豪华大床房",
+        "area": 45,
+        "price": 1288,
+        "bedType": "大床 2.0m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "迷你吧",
+          "保险箱"
+        ]
+      },
+      {
+        "id": "room-001-2",
+        "name": "行政套房",
+        "area": 75,
+        "price": 2388,
+        "bedType": "大床 2.0m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "迷你吧",
+          "保险箱",
+          "行政酒廊"
+        ]
+      },
+      {
+        "id": "room-001-3",
+        "name": "家庭房",
+        "area": 55,
+        "price": 1688,
+        "bedType": "双床 1.35m×2",
+        "maxOccupancy": 4,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "迷你吧"
+        ]
+      }
     ],
     "status": "approved",
     "openingDate": "2018-06-01",
@@ -33,18 +91,62 @@
     "address": "上海市黄浦区外滩66号",
     "city": "上海",
     "province": "上海",
-    "location": { "lat": 31.2397, "lng": 121.4909 },
+    "location": {
+      "lat": 31.2397,
+      "lng": 121.4909
+    },
     "images": [
       "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
       "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800"
     ],
     "rating": 4.6,
     "reviewCount": 892,
-    "tags": ["江景房", "近商圈", "网红打卡", "五星级"],
-    "facilities": ["WiFi", "空调", "电视", "酒吧", "健身房", "餐厅", "会议室", "停车场"],
+    "tags": [
+      "江景房",
+      "近商圈",
+      "网红打卡",
+      "五星级"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "酒吧",
+      "健身房",
+      "餐厅",
+      "会议室",
+      "停车场"
+    ],
     "roomTypes": [
-      { "id": "room-002-1", "name": "奇妙客房", "area": 48, "price": 1588, "bedType": "大床 2.0m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视", "迷你吧"] },
-      { "id": "room-002-2", "name": "外滩景观套房", "area": 88, "price": 3888, "bedType": "大床 2.2m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视", "迷你吧", "江景阳台"] }
+      {
+        "id": "room-002-1",
+        "name": "奇妙客房",
+        "area": 48,
+        "price": 1588,
+        "bedType": "大床 2.0m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧"
+        ]
+      },
+      {
+        "id": "room-002-2",
+        "name": "外滩景观套房",
+        "area": 88,
+        "price": 3888,
+        "bedType": "大床 2.2m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "江景阳台"
+        ]
+      }
     ],
     "status": "approved",
     "openingDate": "2020-03-15",
@@ -59,26 +161,83 @@
     "address": "杭州市西湖区杨公堤18号",
     "city": "杭州",
     "province": "浙江",
-    "location": { "lat": 30.2592, "lng": 120.1494 },
+    "location": {
+      "lat": 30.2592,
+      "lng": 120.1494
+    },
     "images": [
       "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
       "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800"
     ],
     "rating": 4.9,
     "reviewCount": 2341,
-    "tags": ["湖景房", "近景区", "园林风格", "五星级"],
-    "facilities": ["WiFi", "空调", "电视", "茶室", "健身房", "中餐厅", "西餐厅", "停车场", "花园"],
-    "roomTypes": [
-      { "id": "room-003-1", "name": "湖景大床房", "area": 52, "price": 1688, "bedType": "大床 2.0m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视", "湖景阳台"] },
-      { "id": "room-003-2", "name": "园景双床房", "area": 48, "price": 1388, "bedType": "双床 1.2m×2", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视"] },
-      { "id": "room-003-3", "name": "总统套房", "area": 200, "price": 8888, "bedType": "大床 2.2m", "maxOccupancy": 4, "amenities": ["WiFi", "空调", "电视", "独立书房", "私人管家"] }
+    "tags": [
+      "湖景房",
+      "近景区",
+      "园林风格",
+      "五星级"
     ],
-    "status": "approved",
-    "openingDate": "1953-01-01",
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "茶室",
+      "健身房",
+      "中餐厅",
+      "西餐厅",
+      "停车场",
+      "花园"
+    ],
+    "roomTypes": [
+      {
+        "name": "湖景大床房",
+        "area": 52,
+        "price": 1688,
+        "bedType": "大床 2.0m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "湖景阳台"
+        ],
+        "id": "room-003-1"
+      },
+      {
+        "name": "园景双床房",
+        "area": 48,
+        "price": 1388,
+        "bedType": "双床 1.2m×2",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视"
+        ],
+        "id": "room-003-2"
+      },
+      {
+        "name": "总统套房",
+        "area": 200,
+        "price": 8888,
+        "bedType": "大床 2.2m",
+        "maxOccupancy": 4,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "独立书房",
+          "私人管家"
+        ],
+        "id": "room-003-3"
+      }
+    ],
+    "status": "pending",
+    "openingDate": "2001-01-01",
     "starLevel": 5,
     "createdBy": "1771745408242-v173quq3w",
     "createdAt": "2025-02-01T09:00:00.000Z",
-    "updatedAt": "2025-02-01T09:00:00.000Z"
+    "updatedAt": "2026-02-25T03:05:20.767Z"
   },
   {
     "id": "hotel-004",
@@ -86,18 +245,70 @@
     "address": "成都市青羊区长顺上街88号",
     "city": "成都",
     "province": "四川",
-    "location": { "lat": 30.6722, "lng": 104.0576 },
+    "location": {
+      "lat": 30.6722,
+      "lng": 104.0576
+    },
     "images": [
       "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
     ],
     "rating": 4.5,
     "reviewCount": 567,
-    "tags": ["近景区", "文化主题", "含早餐", "四星级"],
-    "facilities": ["WiFi", "空调", "电视", "书吧", "餐厅", "停车场"],
+    "tags": [
+      "近景区",
+      "文化主题",
+      "含早餐",
+      "四星级"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "书吧",
+      "餐厅",
+      "停车场"
+    ],
     "roomTypes": [
-      { "id": "room-004-1", "name": "几木大床房", "area": 35, "price": 458, "bedType": "大床 1.8m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视"] },
-      { "id": "room-004-2", "name": "几木双床房", "area": 38, "price": 498, "bedType": "双床 1.2m×2", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视"] },
-      { "id": "room-004-3", "name": "SA亲子房", "area": 45, "price": 628, "bedType": "大床 1.8m + 单床 1.2m", "maxOccupancy": 3, "amenities": ["WiFi", "空调", "电视", "儿童设施"] }
+      {
+        "id": "room-004-1",
+        "name": "几木大床房",
+        "area": 35,
+        "price": 458,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视"
+        ]
+      },
+      {
+        "id": "room-004-2",
+        "name": "几木双床房",
+        "area": 38,
+        "price": 498,
+        "bedType": "双床 1.2m×2",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视"
+        ]
+      },
+      {
+        "id": "room-004-3",
+        "name": "SA亲子房",
+        "area": 45,
+        "price": 628,
+        "bedType": "大床 1.8m + 单床 1.2m",
+        "maxOccupancy": 3,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "儿童设施"
+        ]
+      }
     ],
     "status": "approved",
     "openingDate": "2021-05-20",
@@ -112,19 +323,79 @@
     "address": "三亚市吉阳区亚龙湾国家旅游度假区",
     "city": "三亚",
     "province": "海南",
-    "location": { "lat": 18.1912, "lng": 109.6428 },
+    "location": {
+      "lat": 18.1912,
+      "lng": 109.6428
+    },
     "images": [
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
       "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800"
     ],
     "rating": 4.7,
     "reviewCount": 1876,
-    "tags": ["海景房", "私人沙滩", "泳池别墅", "五星级"],
-    "facilities": ["WiFi", "空调", "电视", "私人沙滩", "泳池", "SPA", "健身房", "多风格餐厅", "停车场", "水上运动"],
+    "tags": [
+      "海景房",
+      "私人沙滩",
+      "泳池别墅",
+      "五星级"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "私人沙滩",
+      "泳池",
+      "SPA",
+      "健身房",
+      "多风格餐厅",
+      "停车场",
+      "水上运动"
+    ],
     "roomTypes": [
-      { "id": "room-005-1", "name": "海景豪华房", "area": 68, "price": 2888, "bedType": "大床 2.0m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视", "海景阳台"] },
-      { "id": "room-005-2", "name": "泳池别墅", "area": 180, "price": 8888, "bedType": "大床 2.2m", "maxOccupancy": 4, "amenities": ["WiFi", "空调", "电视", "私人泳池", "花园"] },
-      { "id": "room-005-3", "name": "家庭海景套房", "area": 120, "price": 5688, "bedType": "大床 1.8m + 双床 1.2m×2", "maxOccupancy": 4, "amenities": ["WiFi", "空调", "电视", "海景阳台", "客厅"] }
+      {
+        "id": "room-005-1",
+        "name": "海景豪华房",
+        "area": 68,
+        "price": 2888,
+        "bedType": "大床 2.0m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "海景阳台"
+        ]
+      },
+      {
+        "id": "room-005-2",
+        "name": "泳池别墅",
+        "area": 180,
+        "price": 8888,
+        "bedType": "大床 2.2m",
+        "maxOccupancy": 4,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "私人泳池",
+          "花园"
+        ]
+      },
+      {
+        "id": "room-005-3",
+        "name": "家庭海景套房",
+        "area": 120,
+        "price": 5688,
+        "bedType": "大床 1.8m + 双床 1.2m×2",
+        "maxOccupancy": 4,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "海景阳台",
+          "客厅"
+        ]
+      }
     ],
     "status": "approved",
     "openingDate": "2016-11-08",
@@ -139,17 +410,55 @@
     "address": "西安市莲湖区西大街126号",
     "city": "西安",
     "province": "陕西",
-    "location": { "lat": 34.2609, "lng": 108.9486 },
+    "location": {
+      "lat": 34.2609,
+      "lng": 108.9486
+    },
     "images": [
       "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800"
     ],
     "rating": 4.3,
     "reviewCount": 423,
-    "tags": ["近钟楼", "法式风格", "近地铁", "四星级"],
-    "facilities": ["WiFi", "空调", "电视", "餐厅", "停车场"],
+    "tags": [
+      "近钟楼",
+      "法式风格",
+      "近地铁",
+      "四星级"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "餐厅",
+      "停车场"
+    ],
     "roomTypes": [
-      { "id": "room-006-1", "name": "高级大床房", "area": 32, "price": 388, "bedType": "大床 1.8m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视"] },
-      { "id": "room-006-2", "name": "豪华双床房", "area": 36, "price": 428, "bedType": "双床 1.2m×2", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视"] }
+      {
+        "id": "room-006-1",
+        "name": "高级大床房",
+        "area": 32,
+        "price": 388,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视"
+        ]
+      },
+      {
+        "id": "room-006-2",
+        "name": "豪华双床房",
+        "area": 36,
+        "price": 428,
+        "bedType": "双床 1.2m×2",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视"
+        ]
+      }
     ],
     "status": "pending",
     "openingDate": "2022-09-01",
@@ -164,17 +473,56 @@
     "address": "厦门市思明区鼓浪屿龙头路1号",
     "city": "厦门",
     "province": "福建",
-    "location": { "lat": 24.4478, "lng": 118.0709 },
+    "location": {
+      "lat": 24.4478,
+      "lng": 118.0709
+    },
     "images": [
       "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800"
     ],
     "rating": 4.4,
     "reviewCount": 312,
-    "tags": ["海岛风情", "历史建筑", "近景区", "精品酒店"],
-    "facilities": ["WiFi", "空调", "电视", "咖啡厅", "花园"],
+    "tags": [
+      "海岛风情",
+      "历史建筑",
+      "近景区",
+      "精品酒店"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "咖啡厅",
+      "花园"
+    ],
     "roomTypes": [
-      { "id": "room-007-1", "name": "园景大床房", "area": 28, "price": 568, "bedType": "大床 1.8m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视"] },
-      { "id": "room-007-2", "name": "海景阳台房", "area": 35, "price": 788, "bedType": "大床 1.8m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视", "海景阳台"] }
+      {
+        "id": "room-007-1",
+        "name": "园景大床房",
+        "area": 28,
+        "price": 568,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视"
+        ]
+      },
+      {
+        "id": "room-007-2",
+        "name": "海景阳台房",
+        "area": 35,
+        "price": 788,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "海景阳台"
+        ]
+      }
     ],
     "status": "pending",
     "openingDate": "2019-04-15",
@@ -189,17 +537,62 @@
     "address": "广州市天河区天河路228号",
     "city": "广州",
     "province": "广东",
-    "location": { "lat": 23.1291, "lng": 113.3229 },
+    "location": {
+      "lat": 23.1291,
+      "lng": 113.3229
+    },
     "images": [
       "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
     ],
     "rating": 4.5,
     "reviewCount": 1089,
-    "tags": ["近商圈", "商务首选", "近地铁", "五星级"],
-    "facilities": ["WiFi", "空调", "电视", "行政酒廊", "健身房", "泳池", "多风格餐厅", "会议室", "停车场"],
+    "tags": [
+      "近商圈",
+      "商务首选",
+      "近地铁",
+      "五星级"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "行政酒廊",
+      "健身房",
+      "泳池",
+      "多风格餐厅",
+      "会议室",
+      "停车场"
+    ],
     "roomTypes": [
-      { "id": "room-008-1", "name": "豪华大床房", "area": 42, "price": 1188, "bedType": "大床 2.0m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视", "办公桌"] },
-      { "id": "room-008-2", "name": "行政套房", "area": 85, "price": 2588, "bedType": "大床 2.0m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视", "行政酒廊", "客厅"] }
+      {
+        "id": "room-008-1",
+        "name": "豪华大床房",
+        "area": 42,
+        "price": 1188,
+        "bedType": "大床 2.0m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "办公桌"
+        ]
+      },
+      {
+        "id": "room-008-2",
+        "name": "行政套房",
+        "area": 85,
+        "price": 2588,
+        "bedType": "大床 2.0m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "行政酒廊",
+          "客厅"
+        ]
+      }
     ],
     "status": "rejected",
     "rejectionReason": "酒店资质证明文件不全，请补充营业执照和特种行业许可证后重新提交。",
@@ -215,17 +608,55 @@
     "address": "丽江市古城区五一街文治巷85号",
     "city": "丽江",
     "province": "云南",
-    "location": { "lat": 26.8721, "lng": 100.2333 },
+    "location": {
+      "lat": 26.8721,
+      "lng": 100.2333
+    },
     "images": [
       "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800"
     ],
     "rating": 4.6,
     "reviewCount": 678,
-    "tags": ["古城内", "纳西风格", "庭院", "精品民宿"],
-    "facilities": ["WiFi", "空调", "茶室", "书吧", "花园"],
+    "tags": [
+      "古城内",
+      "纳西风格",
+      "庭院",
+      "精品民宿"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "茶室",
+      "书吧",
+      "花园"
+    ],
     "roomTypes": [
-      { "id": "room-009-1", "name": "纳西风情大床房", "area": 25, "price": 468, "bedType": "大床 1.8m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "纳西装饰"] },
-      { "id": "room-009-2", "name": "庭院景观房", "area": 35, "price": 688, "bedType": "大床 1.8m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "庭院景观"] }
+      {
+        "id": "room-009-1",
+        "name": "纳西风情大床房",
+        "area": 25,
+        "price": 468,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "纳西装饰"
+        ]
+      },
+      {
+        "id": "room-009-2",
+        "name": "庭院景观房",
+        "area": 35,
+        "price": 688,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "庭院景观"
+        ]
+      }
     ],
     "status": "offline",
     "openingDate": "2017-03-08",
@@ -240,18 +671,68 @@
     "address": "深圳市南山区科技园南区高新南四道",
     "city": "深圳",
     "province": "广东",
-    "location": { "lat": 22.5316, "lng": 113.9489 },
+    "location": {
+      "lat": 22.5316,
+      "lng": 113.9489
+    },
     "images": [
       "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 2341,
-    "tags": ["近科技园", "经济实惠", "近地铁", "商务出差"],
-    "facilities": ["WiFi", "空调", "电视", "停车场"],
+    "tags": [
+      "近科技园",
+      "经济实惠",
+      "近地铁",
+      "商务出差"
+    ],
+    "facilities": [
+      "WiFi",
+      "空调",
+      "电视",
+      "停车场"
+    ],
     "roomTypes": [
-      { "id": "room-010-1", "name": "标准大床房", "area": 22, "price": 268, "bedType": "大床 1.5m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视"] },
-      { "id": "room-010-2", "name": "标准双床房", "area": 25, "price": 298, "bedType": "双床 1.2m×2", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视"] },
-      { "id": "room-010-3", "name": "商务大床房", "area": 30, "price": 358, "bedType": "大床 1.8m", "maxOccupancy": 2, "amenities": ["WiFi", "空调", "电视", "办公桌"] }
+      {
+        "id": "room-010-1",
+        "name": "标准大床房",
+        "area": 22,
+        "price": 268,
+        "bedType": "大床 1.5m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视"
+        ]
+      },
+      {
+        "id": "room-010-2",
+        "name": "标准双床房",
+        "area": 25,
+        "price": 298,
+        "bedType": "双床 1.2m×2",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视"
+        ]
+      },
+      {
+        "id": "room-010-3",
+        "name": "商务大床房",
+        "area": 30,
+        "price": 358,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "办公桌"
+        ]
+      }
     ],
     "status": "approved",
     "openingDate": "2023-01-10",
