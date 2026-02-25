@@ -1,12 +1,21 @@
+/**
+ * PageHeader 组件样式
+ * Arctic Frost Theme - 北极霜雪主题
+ */
+
 .page-header-wrapper {
   margin-bottom: 24px;
 
+  // 面包屑
   .ant-breadcrumb {
+    margin-bottom: 12px;
+
     .ant-breadcrumb-link {
       color: #64748b;
+      transition: all 0.3s ease;
 
       &:hover {
-        color: #2563eb;
+        color: #0ea5e9;
       }
     }
 
@@ -15,12 +24,26 @@
     }
   }
 
+  // 页面头部
   .page-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding-bottom: 16px;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+    position: relative;
+
+    // 底部装饰线
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+      border-radius: 1px;
+    }
 
     .page-header-left {
       flex: 1;
@@ -30,11 +53,11 @@
           margin: 0;
           font-size: 20px;
           font-weight: 600;
-          color: #1e293b;
+          color: #0c4a6e;
         }
 
         .page-header-subtitle {
-          margin: 4px 0 0;
+          margin: 6px 0 0;
           font-size: 14px;
           color: #64748b;
         }
@@ -43,6 +66,10 @@
 
     .page-header-right {
       margin-left: auto;
+
+      .ant-btn-primary {
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+      }
     }
   }
 }

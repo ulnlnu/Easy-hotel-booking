@@ -1,29 +1,227 @@
 /**
- * admin/src/pages/Users/index.scss
- * 账号管理页面样式
+ * Users 页面样式
+ * Arctic Frost Theme - 北极霜雪主题
  */
 
 .users-page {
   .ant-card {
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border-radius: 20px;
+    border: 1px solid rgba(14, 165, 233, 0.1);
+    box-shadow:
+      0 4px 20px rgba(14, 165, 233, 0.06),
+      0 0 0 1px rgba(14, 165, 233, 0.05);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc, #bae6fd);
+      z-index: 1;
+    }
   }
 
   .ant-card-head {
-    background: #f8fafc;
-    border-bottom: 1px solid #e2e8f0;
+    background: linear-gradient(180deg, rgba(224, 242, 254, 0.5), transparent);
+    border-bottom: 1px solid rgba(14, 165, 233, 0.1);
     font-weight: 600;
-    color: #1e293b;
+    color: #0c4a6e;
+    position: relative;
+    z-index: 0;
   }
 
+  // 表格样式
   .ant-table-thead > tr > th {
-    background: #f8fafc !important;
-    color: #334155;
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.06), rgba(255, 255, 255, 0)) !important;
+    color: #0c4a6e;
     font-weight: 600;
+    border-bottom: 2px solid rgba(14, 165, 233, 0.1);
   }
 
-  .ant-table-tbody > tr:hover > td {
-    background: #f8fafc !important;
+  .ant-table-tbody > tr {
+    transition: all 0.3s ease;
+
+    &:hover > td {
+      background: rgba(14, 165, 233, 0.04) !important;
+    }
+  }
+
+  // 角色标签
+  .ant-tag {
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+  }
+}
+
+// ============================================
+// 用户模态框样式
+// ============================================
+
+.user-modal {
+  .ant-modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .ant-modal-header {
+    background: linear-gradient(180deg, rgba(224, 242, 254, 0.6), transparent);
+    border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+    padding: 20px 24px;
+  }
+
+  .ant-modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0c4a6e;
+  }
+
+  .ant-modal-body {
+    padding: 24px;
+  }
+
+  .ant-modal-footer {
+    display: none;
+  }
+}
+
+// ============================================
+// 用户表单样式
+// ============================================
+
+.user-form {
+  // 表单分组 - 冰蓝色背景卡片
+  .form-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(240, 249, 255, 0.9), rgba(224, 242, 254, 0.5));
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+
+    // 顶部装饰线
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc);
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .form-section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0c4a6e;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 16px;
+      background: linear-gradient(180deg, #0ea5e9, #38bdf8);
+      border-radius: 2px;
+    }
+  }
+
+  .form-section-content {
+    padding-left: 4px;
+  }
+
+  // 表单行（两列布局）
+  .form-row {
+    display: flex;
+    gap: 16px;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  .form-item-half {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // 表单项标签样式
+  .ant-form-item-label > label {
+    color: #334155;
+    font-weight: 500;
+    font-size: 13px;
+
+    &.ant-form-item-required::before {
+      color: #0ea5e9;
+    }
+  }
+
+  // 输入框样式
+  .ant-input,
+  .ant-input-affix-wrapper,
+  .ant-select-selector {
+    border-radius: 10px;
+    border-color: #e0f2fe;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: #bae6fd;
+    }
+  }
+
+  .ant-input:focus,
+  .ant-input-affix-wrapper-focused,
+  .ant-select-focused .ant-select-selector {
+    border-color: #0ea5e9 !important;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1) !important;
+  }
+}
+
+// 操作按钮区域
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(14, 165, 233, 0.1);
+
+  .ant-btn-default {
+    border-radius: 10px;
+    border-color: rgba(14, 165, 233, 0.2);
+    color: #64748b;
+    font-weight: 500;
+    min-width: 80px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: #0ea5e9;
+      color: #0ea5e9;
+      background: rgba(14, 165, 233, 0.04);
+    }
+  }
+
+  .ant-btn-primary {
+    min-width: 100px;
+    border-radius: 10px;
+    font-weight: 500;
   }
 }

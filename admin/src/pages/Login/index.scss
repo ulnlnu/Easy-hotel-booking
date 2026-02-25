@@ -1,47 +1,116 @@
+/**
+ * Login 页面样式
+ * Arctic Frost Theme - 北极霜雪主题
+ */
+
 .login-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+  background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 50%, #ffffff 100%);
   position: relative;
   overflow: hidden;
 
+  // 背景装饰 - 渐变光晕
   &::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 30%, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
+    top: -30%;
+    left: -20%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
     pointer-events: none;
+    animation: float 8s ease-in-out infinite;
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(20px, -20px);
+    }
+  }
+
+  // 雪花粒子容器
+  .snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .snowflake {
+    position: absolute;
+    top: -10px;
+    color: #bae6fd;
+    font-size: 12px;
+    opacity: 0;
+    animation: snowfall linear infinite;
+  }
+
+  // 登录卡片
   .login-card {
     width: 420px;
-    box-shadow: 0 4px 24px rgba(37, 99, 235, 0.12);
-    border-radius: 16px;
-    border: 1px solid rgba(37, 99, 235, 0.1);
+    box-shadow:
+      0 8px 32px rgba(14, 165, 233, 0.12),
+      0 0 0 1px rgba(14, 165, 233, 0.08);
+    border-radius: 24px;
+    border: 1px solid rgba(14, 165, 233, 0.1);
     position: relative;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    animation: fadeInUp 0.6s ease-out;
 
-    .ant-card-body {
-      padding: 32px 40px;
+    // 顶部渐变条
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc, #bae6fd);
     }
 
+    .ant-card-body {
+      padding: 40px 48px;
+    }
+
+    // Logo 区域
     .logo {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
+      animation: frostReveal 0.8s ease-out;
 
       h1 {
-        font-size: 26px;
+        font-size: 28px;
         font-weight: 600;
-        background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #0ea5e9 100%);
+        background-size: 200% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         margin-bottom: 8px;
+        animation: shimmer 4s ease-in-out infinite;
       }
 
       p {
@@ -51,26 +120,74 @@
       }
     }
 
-    .ant-tabs-tab {
+    // Tabs 样式
+    .ant-tabs {
+      .ant-tabs-nav {
+        margin-bottom: 24px;
+
+        &::before {
+          border-bottom-color: rgba(14, 165, 233, 0.1);
+        }
+      }
+
+      .ant-tabs-tab {
+        font-weight: 500;
+        padding: 12px 0;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: #0ea5e9;
+        }
+      }
+
+      .ant-tabs-tab-active .ant-tabs-tab-btn {
+        color: #0ea5e9 !important;
+        font-weight: 600;
+      }
+
+      .ant-tabs-ink-bar {
+        background: linear-gradient(90deg, #0ea5e9, #38bdf8) !important;
+        height: 3px;
+        border-radius: 2px;
+      }
+    }
+
+    // 表单样式
+    .ant-form-item {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .ant-form-item-label > label {
+      color: #0c4a6e;
       font-weight: 500;
     }
 
-    .ant-tabs-tab-active .ant-tabs-tab-btn {
-      color: #2563eb !important;
-    }
-
-    .ant-tabs-ink-bar {
-      background: #2563eb !important;
-    }
-
+    // 注册角色提示
     .register-role-tip {
-      padding: 14px 16px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(56, 189, 248, 0.04));
+      border: 1px solid rgba(14, 165, 233, 0.15);
+      border-radius: 12px;
       font-size: 13px;
-      color: #2563eb;
+      color: #0369a1;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, #0ea5e9, #38bdf8);
+        border-radius: 12px 0 0 12px;
+      }
 
       p {
         margin: 0;
@@ -78,18 +195,65 @@
       }
     }
 
+    // 演示账号提示
     .demo-accounts {
-      margin-top: 16px;
-      padding: 14px 16px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, rgba(241, 245, 249, 0.8), rgba(248, 250, 252, 0.6));
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 12px;
       font-size: 12px;
       color: #64748b;
+      position: relative;
+
+      &::before {
+        content: '💡';
+        position: absolute;
+        top: -8px;
+        left: 16px;
+        background: white;
+        padding: 0 6px;
+        font-size: 14px;
+      }
 
       p {
         margin: 0;
         line-height: 1.8;
+      }
+
+      strong {
+        color: #475569;
+        font-weight: 500;
+      }
+    }
+
+    // 提交按钮
+    .ant-btn-primary {
+      width: 100%;
+      height: 44px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 12px;
+      margin-top: 8px;
+    }
+  }
+}
+
+// 响应式
+@media (max-width: 480px) {
+  .login-page {
+    padding: 20px;
+
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+
+      .ant-card-body {
+        padding: 32px 24px;
+      }
+
+      .logo h1 {
+        font-size: 24px;
       }
     }
   }

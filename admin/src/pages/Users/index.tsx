@@ -242,95 +242,119 @@ function Users() {
           form.resetFields();
         }}
         footer={null}
-        width={600}
+        width={640}
+        className="user-modal"
       >
-        <Form form={form} layout="vertical" onFinish={handleCreateOrUpdate}>
-          <Form.Item
-            name="username"
-            label="用户名"
-            rules={[
-              { required: true, message: '请输入用户名' },
-              { min: 3, max: 20, message: '用户名长度为3-20个字符' },
-              { pattern: /^[a-zA-Z0-9_]+$/, message: '用户名只能包含字母、数字和下划线' },
-            ]}
-          >
-            <Input disabled={!!editingUser} placeholder="用户名（3-20个字符）" />
-          </Form.Item>
+        <Form form={form} layout="vertical" onFinish={handleCreateOrUpdate} className="user-form">
+          {/* 账号信息 */}
+          <div className="form-section">
+            <div className="form-section-title">账号信息</div>
+            <div className="form-section-content">
+              <div className="form-row">
+                <Form.Item
+                  name="username"
+                  label="用户名"
+                  rules={[
+                    { required: true, message: '请输入用户名' },
+                    { min: 3, max: 20, message: '用户名长度为3-20个字符' },
+                    { pattern: /^[a-zA-Z0-9_]+$/, message: '用户名只能包含字母、数字和下划线' },
+                  ]}
+                  className="form-item-half"
+                >
+                  <Input disabled={!!editingUser} placeholder="用户名（3-20个字符）" />
+                </Form.Item>
 
-          <Form.Item
-            name="password"
-            label="密码"
-            rules={[
-              { required: !editingUser, message: '请输入密码' },
-              { min: 6, max: 20, message: '密码长度为6-20个字符' },
-            ].filter(rule => editingUser || rule.required)}
-          >
-            <Input.Password
-              placeholder={editingUser ? '留空则不修改密码' : '密码（6-20个字符）'}
-            />
-          </Form.Item>
+                <Form.Item
+                  name="password"
+                  label="密码"
+                  rules={[
+                    { required: !editingUser, message: '请输入密码' },
+                    { min: 6, max: 20, message: '密码长度为6-20个字符' },
+                  ].filter(rule => editingUser || rule.required)}
+                  className="form-item-half"
+                >
+                  <Input.Password
+                    placeholder={editingUser ? '留空则不修改密码' : '密码（6-20个字符）'}
+                  />
+                </Form.Item>
+              </div>
+            </div>
+          </div>
 
-          <Form.Item
-            name="realName"
-            label="真实姓名"
-            rules={[
-              { required: true, message: '请输入真实姓名' },
-              { min: 2, max: 20, message: '姓名长度为2-20个字符' },
-            ]}
-          >
-            <Input placeholder="真实姓名" />
-          </Form.Item>
+          {/* 个人信息 */}
+          <div className="form-section">
+            <div className="form-section-title">个人信息</div>
+            <div className="form-section-content">
+              <div className="form-row">
+                <Form.Item
+                  name="realName"
+                  label="真实姓名"
+                  rules={[
+                    { required: true, message: '请输入真实姓名' },
+                    { min: 2, max: 20, message: '姓名长度为2-20个字符' },
+                  ]}
+                  className="form-item-half"
+                >
+                  <Input placeholder="真实姓名" />
+                </Form.Item>
 
-          <Form.Item
-            name="role"
-            label="角色"
-            rules={[{ required: true, message: '请选择角色' }]}
-          >
-            <Select
-              placeholder="请选择角色"
-              options={[
-                { label: '系统管理员', value: 'admin' },
-                { label: '酒店管理员', value: 'hotel_admin' },
-                { label: '普通用户', value: 'user' },
-              ]}
-            />
-          </Form.Item>
+                <Form.Item
+                  name="role"
+                  label="角色"
+                  rules={[{ required: true, message: '请选择角色' }]}
+                  className="form-item-half"
+                >
+                  <Select
+                    placeholder="请选择角色"
+                    options={[
+                      { label: '系统管理员', value: 'admin' },
+                      { label: '酒店管理员', value: 'hotel_admin' },
+                      { label: '普通用户', value: 'user' },
+                    ]}
+                  />
+                </Form.Item>
+              </div>
 
-          <Form.Item
-            name="phone"
-            label="手机号"
-            rules={[
-              { required: true, message: '请输入手机号' },
-              { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的手机号' },
-            ]}
-          >
-            <Input placeholder="手机号" />
-          </Form.Item>
+              <div className="form-row">
+                <Form.Item
+                  name="phone"
+                  label="手机号"
+                  rules={[
+                    { required: true, message: '请输入手机号' },
+                    { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的手机号' },
+                  ]}
+                  className="form-item-half"
+                >
+                  <Input placeholder="手机号" />
+                </Form.Item>
 
-          <Form.Item
-            name="email"
-            label="邮箱"
-            rules={[{ type: 'email', message: '请输入正确的邮箱地址' }]}
-          >
-            <Input placeholder="邮箱（可选）" />
-          </Form.Item>
+                <Form.Item
+                  name="email"
+                  label="邮箱"
+                  rules={[{ type: 'email', message: '请输入正确的邮箱地址' }]}
+                  className="form-item-half"
+                >
+                  <Input placeholder="邮箱（可选）" />
+                </Form.Item>
+              </div>
+            </div>
+          </div>
 
-          <Form.Item>
-            <Space>
-              <Button type="primary" htmlType="submit" loading={loading}>
-                {editingUser ? '更新' : '创建'}
-              </Button>
-              <Button
-                onClick={() => {
-                  setIsModalOpen(false);
-                  setEditingUser(null);
-                  form.resetFields();
-                }}
-              >
-                取消
-              </Button>
-            </Space>
-          </Form.Item>
+          {/* 操作按钮 */}
+          <div className="form-actions">
+            <Button
+              onClick={() => {
+                setIsModalOpen(false);
+                setEditingUser(null);
+                form.resetFields();
+              }}
+            >
+              取消
+            </Button>
+            <Button type="primary" htmlType="submit" loading={loading}>
+              {editingUser ? '更新' : '创建'}
+            </Button>
+          </div>
         </Form>
       </Modal>
     </div>

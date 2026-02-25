@@ -16,6 +16,7 @@ import {
   Tag,
   DatePicker,
   Select,
+  Tooltip,
 } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
@@ -241,10 +242,12 @@ function HotelEdit() {
       ellipsis: true,
       render: (reason: string, record: Hotel) =>
         record.status === 'rejected' && reason ? (
-          <span title={reason} style={{ color: '#dc2626', fontSize: 12 }}>
-            <ExclamationCircleOutlined style={{ marginRight: 4 }} />
-            {reason}
-          </span>
+          <Tooltip title={reason} placement="topLeft">
+            <span style={{ color: '#dc2626', fontSize: 12, cursor: 'pointer' }}>
+              <ExclamationCircleOutlined style={{ marginRight: 4 }} />
+              {reason}
+            </span>
+          </Tooltip>
         ) : (
           '-'
         ),
@@ -329,181 +332,211 @@ function HotelEdit() {
           const editingHotel = hotels.find(h => h.id === editingId);
           if (editingHotel?.status === 'rejected' && editingHotel?.rejectionReason) {
             return (
-              <div
-                style={{
-                  marginBottom: 16,
-                  padding: 12,
-                  background: '#fef2f2',
-                  border: '1px solid #fecaca',
-                  borderRadius: 8,
-                  color: '#dc2626',
-                }}
-              >
-                <div style={{ fontWeight: 600, marginBottom: 4 }}>
+              <div className="form-rejection-notice">
+                <div className="form-rejection-title">
                   <ExclamationCircleOutlined style={{ marginRight: 6 }} />
                   审核拒绝原因
                 </div>
-                <div style={{ fontSize: 14 }}>{editingHotel.rejectionReason}</div>
+                <div className="form-rejection-content">{editingHotel.rejectionReason}</div>
               </div>
             );
           }
           return null;
         })()}
-        <Form form={form} layout="vertical">
-          <Form.Item
-            name="name"
-            label="酒店名称"
-            rules={[{ required: true, message: '请输入酒店名称' }]}
-          >
-            <Input placeholder="请输入酒店名称" />
-          </Form.Item>
+        <Form form={form} layout="vertical" className="hotel-form">
+          {/* 基本信息 */}
+          <div className="form-section">
+            <div className="form-section-title">基本信息</div>
+            <div className="form-section-content">
+              <Form.Item
+                name="name"
+                label="酒店名称"
+                rules={[{ required: true, message: '请输入酒店名称' }]}
+              >
+                <Input placeholder="请输入酒店名称" />
+              </Form.Item>
 
-          <Form.Item
-            name="address"
-            label="详细地址"
-            rules={[{ required: true, message: '请输入详细地址' }]}
-          >
-            <Input placeholder="请输入详细地址" />
-          </Form.Item>
+              <Form.Item
+                name="address"
+                label="详细地址"
+                rules={[{ required: true, message: '请输入详细地址' }]}
+              >
+                <Input placeholder="请输入详细地址" />
+              </Form.Item>
 
-          <Space style={{ width: '100%' }}>
-            <Form.Item
-              name="province"
-              label="省份"
-              rules={[{ required: true, message: '请输入省份' }]}
-            >
-              <Input placeholder="请输入省份" />
-            </Form.Item>
+              <div className="form-row">
+                <Form.Item
+                  name="province"
+                  label="省份"
+                  rules={[{ required: true, message: '请输入省份' }]}
+                  className="form-item-half"
+                >
+                  <Input placeholder="请输入省份" />
+                </Form.Item>
 
-            <Form.Item
-              name="city"
-              label="城市"
-              rules={[{ required: true, message: '请输入城市' }]}
-            >
-              <Input placeholder="请输入城市" />
-            </Form.Item>
-          </Space>
+                <Form.Item
+                  name="city"
+                  label="城市"
+                  rules={[{ required: true, message: '请输入城市' }]}
+                  className="form-item-half"
+                >
+                  <Input placeholder="请输入城市" />
+                </Form.Item>
+              </div>
+            </div>
+          </div>
 
-          <Form.Item
-            name="tags"
-            label="标签"
-            rules={[{ required: true, message: '请输入标签' }]}
-          >
-            <Input placeholder="请输入标签，用逗号分隔（如：近地铁,含早餐）" />
-          </Form.Item>
+          {/* 设施服务 */}
+          <div className="form-section">
+            <div className="form-section-title">设施服务</div>
+            <div className="form-section-content">
+              <Form.Item
+                name="tags"
+                label="标签"
+                rules={[{ required: true, message: '请输入标签' }]}
+              >
+                <Input placeholder="请输入标签，用逗号分隔（如：近地铁,含早餐）" />
+              </Form.Item>
 
-          <Form.Item
-            name="images"
-            label="图片URL"
-            rules={[{ required: true, message: '请输入图片URL' }]}
-          >
-            <Input.TextArea
-              placeholder="请输入图片URL，多个用换行分隔"
-              rows={3}
-            />
-          </Form.Item>
+              <Form.Item
+                name="images"
+                label="图片URL"
+                rules={[{ required: true, message: '请输入图片URL' }]}
+              >
+                <Input.TextArea
+                  placeholder="请输入图片URL，多个用换行分隔"
+                  rows={3}
+                />
+              </Form.Item>
 
-          <Form.Item
-            name="facilities"
-            label="设施"
-            rules={[{ required: true, message: '请输入设施' }]}
-          >
-            <Input placeholder="请输入设施，用逗号分隔（如：WiFi,空调,电视）" />
-          </Form.Item>
+              <Form.Item
+                name="facilities"
+                label="设施"
+                rules={[{ required: true, message: '请输入设施' }]}
+              >
+                <Input placeholder="请输入设施，用逗号分隔（如：WiFi,空调,电视）" />
+              </Form.Item>
 
-          <Space style={{ width: '100%' }} size="middle">
-            <Form.Item
-              name="openingDate"
-              label="开业时间"
-            >
-              <DatePicker style={{ width: '100%' }} placeholder="选择开业日期" />
-            </Form.Item>
-            <Form.Item
-              name="starLevel"
-              label="酒店星级"
-              rules={[{ required: true, message: '请选择星级' }]}
-            >
-              <Select placeholder="请选择星级（1-5星）" allowClear>
-                {[1, 2, 3, 4, 5].map(n => (
-                  <Select.Option key={n} value={n}>{n}星</Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Space>
+              <div className="form-row">
+                <Form.Item
+                  name="openingDate"
+                  label="开业时间"
+                  className="form-item-half"
+                >
+                  <DatePicker style={{ width: '100%' }} placeholder="选择开业日期" />
+                </Form.Item>
+                <Form.Item
+                  name="starLevel"
+                  label="酒店星级"
+                  rules={[{ required: true, message: '请选择星级' }]}
+                  className="form-item-half"
+                >
+                  <Select placeholder="请选择星级（1-5星）" allowClear>
+                    {[1, 2, 3, 4, 5].map(n => (
+                      <Select.Option key={n} value={n}>{n}星</Select.Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </div>
+            </div>
+          </div>
 
-          <Form.Item
-            label="房型信息"
-            required
-            rules={[{ validator: (_, value) => (value?.length > 0 ? Promise.resolve() : Promise.reject(new Error('请至少添加一个房型'))) }]}
-          >
-            <Form.List name="roomTypes" initialValue={[{ name: '标准间', area: 25, price: 200, bedType: '大床 1.8m', maxOccupancy: 2, amenities: 'WiFi, 空调' }]}>
-              {(fields, { add, remove }) => (
-                <>
-                  {fields.map(({ key, name, ...restField }) => (
-                    <div key={key} style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12, padding: 12, background: '#f8fafc', borderRadius: 8 }}>
-                      <Form.Item {...restField} name={[name, 'name']} rules={[{ required: true, message: '房型' }]} style={{ marginBottom: 0, width: 120 }}>
-                        <Input placeholder="房型名称" />
-                      </Form.Item>
-                      <Form.Item {...restField} name={[name, 'area']} rules={[{ required: true, message: '面积' }]} style={{ marginBottom: 0, width: 80 }}>
-                        <Input type="number" placeholder="面积㎡" min={1} />
-                      </Form.Item>
-                      <Form.Item {...restField} name={[name, 'price']} rules={[{ required: true, message: '价格' }]} style={{ marginBottom: 0, width: 100 }}>
-                        <Input type="number" placeholder="价格元/晚" min={0} />
-                      </Form.Item>
-                      <Form.Item {...restField} name={[name, 'bedType']} style={{ marginBottom: 0, width: 120 }}>
-                        <Input placeholder="床型" />
-                      </Form.Item>
-                      <Form.Item {...restField} name={[name, 'maxOccupancy']} style={{ marginBottom: 0, width: 80 }}>
-                        <Input type="number" placeholder="人数" min={1} />
-                      </Form.Item>
-                      <Form.Item {...restField} name={[name, 'amenities']} style={{ marginBottom: 0, flex: 1, minWidth: 120 }}>
-                        <Input placeholder="设施，逗号分隔" />
-                      </Form.Item>
-                      <Button type="text" danger icon={<DeleteOutlined />} onClick={() => remove(name)} />
-                    </div>
-                  ))}
-                  <Form.Item style={{ marginBottom: 0 }}>
-                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                      添加房型
-                    </Button>
-                  </Form.Item>
-                </>
-              )}
-            </Form.List>
-          </Form.Item>
+          {/* 房型配置 */}
+          <div className="form-section">
+            <div className="form-section-title">房型配置</div>
+            <div className="form-section-content">
+              <Form.Item
+                label="房型列表"
+                required
+                rules={[{ validator: (_, value) => (value?.length > 0 ? Promise.resolve() : Promise.reject(new Error('请至少添加一个房型'))) }]}
+              >
+                <Form.List name="roomTypes" initialValue={[{ name: '标准间', area: 25, price: 200, bedType: '大床 1.8m', maxOccupancy: 2, amenities: 'WiFi, 空调' }]}>
+                  {(fields, { add, remove }) => (
+                    <>
+                      <div className="room-type-list">
+                        {fields.map(({ key, name, ...restField }, index) => (
+                          <div key={key} className="room-type-card">
+                            <div className="room-type-header">
+                              <span className="room-type-index">房型 {index + 1}</span>
+                              <Button
+                                type="text"
+                                danger
+                                icon={<DeleteOutlined />}
+                                onClick={() => remove(name)}
+                                className="room-type-delete"
+                              />
+                            </div>
+                            <div className="room-type-fields">
+                              <Form.Item {...restField} name={[name, 'name']} label="房型名称" rules={[{ required: true, message: '请输入房型' }]} className="room-type-field room-type-field-name">
+                                <Input placeholder="如：大床房" />
+                              </Form.Item>
+                              <Form.Item {...restField} name={[name, 'area']} label="面积(㎡)" rules={[{ required: true, message: '请输入面积' }]} className="room-type-field room-type-field-small">
+                                <Input type="number" placeholder="25" min={1} />
+                              </Form.Item>
+                              <Form.Item {...restField} name={[name, 'price']} label="价格(元/晚)" rules={[{ required: true, message: '请输入价格' }]} className="room-type-field room-type-field-small">
+                                <Input type="number" placeholder="299" min={0} />
+                              </Form.Item>
+                              <Form.Item {...restField} name={[name, 'bedType']} label="床型" className="room-type-field room-type-field-bed">
+                                <Input placeholder="如：大床1.8m" />
+                              </Form.Item>
+                              <Form.Item {...restField} name={[name, 'maxOccupancy']} label="入住人数" className="room-type-field room-type-field-small">
+                                <Input type="number" placeholder="2" min={1} />
+                              </Form.Item>
+                              <Form.Item {...restField} name={[name, 'amenities']} label="房间设施" className="room-type-field room-type-field-flex">
+                                <Input placeholder="WiFi, 空调..." />
+                              </Form.Item>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />} className="room-type-add">
+                        添加房型
+                      </Button>
+                    </>
+                  )}
+                </Form.List>
+              </Form.Item>
+            </div>
+          </div>
 
-          <Space style={{ width: '100%' }}>
-            <Form.Item
-              name="locationLat"
-              label="纬度"
-              rules={[{ required: true, message: '请输入纬度' }]}
-              tooltip="请输入数字，如：39.9042"
-            >
-              <Input
-                placeholder="请输入纬度"
-                type="number"
-                step="0.0001"
-                min={-90}
-                max={90}
-                style={{ width: '100%' }}
-              />
-            </Form.Item>
-            <Form.Item
-              name="locationLng"
-              label="经度"
-              rules={[{ required: true, message: '请输入经度' }]}
-              tooltip="请输入数字，如：116.4074"
-            >
-              <Input
-                placeholder="请输入经度"
-                type="number"
-                step="0.0001"
-                min={-180}
-                max={180}
-                style={{ width: '100%' }}
-              />
-            </Form.Item>
-          </Space>
+          {/* 位置坐标 */}
+          <div className="form-section">
+            <div className="form-section-title">位置坐标</div>
+            <div className="form-section-content">
+              <div className="form-row">
+                <Form.Item
+                  name="locationLat"
+                  label="纬度"
+                  rules={[{ required: true, message: '请输入纬度' }]}
+                  tooltip="请输入数字，如：39.9042"
+                  className="form-item-half"
+                >
+                  <Input
+                    placeholder="请输入纬度"
+                    type="number"
+                    step="0.0001"
+                    min={-90}
+                    max={90}
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="locationLng"
+                  label="经度"
+                  rules={[{ required: true, message: '请输入经度' }]}
+                  tooltip="请输入数字，如：116.4074"
+                  className="form-item-half"
+                >
+                  <Input
+                    placeholder="请输入经度"
+                    type="number"
+                    step="0.0001"
+                    min={-180}
+                    max={180}
+                  />
+                </Form.Item>
+              </div>
+            </div>
+          </div>
         </Form>
       </Modal>
     </div>

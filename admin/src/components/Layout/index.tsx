@@ -18,6 +18,15 @@ import './index.scss';
 
 const { Header, Sider, Content } = AntLayout;
 
+// 页面过渡动画组件
+function PageTransition({ children, pathname }: { children: React.ReactNode; pathname: string }) {
+  return (
+    <div key={pathname} className="page-transition-slide">
+      {children}
+    </div>
+  );
+}
+
 // 根据用户角色生成菜单项
 const getMenuItems = (role: UserRole | null) => {
   const commonItems = [
@@ -25,11 +34,6 @@ const getMenuItems = (role: UserRole | null) => {
       key: '/hotels/edit',
       icon: <PlusSquareOutlined />,
       label: '酒店录入',
-    },
-    {
-      key: '/hotels/audit',
-      icon: <AuditOutlined />,
-      label: '审核管理',
     },
   ];
 
@@ -45,10 +49,15 @@ const getMenuItems = (role: UserRole | null) => {
     },
   ];
 
-  // 系统管理员专属账号管理菜单
+  // 系统管理员专属菜单：审核管理、账号管理
   const adminItems =
     role === 'admin'
       ? [
+          {
+            key: '/hotels/audit',
+            icon: <AuditOutlined />,
+            label: '审核管理',
+          },
           {
             key: '/users',
             icon: <TeamOutlined />,
@@ -57,7 +66,7 @@ const getMenuItems = (role: UserRole | null) => {
         ]
       : [];
 
-  return [...commonItems, ...profileItems, ...adminItems];
+  return [...commonItems, ...adminItems, ...profileItems];
 };
 
 function Layout() {
@@ -115,7 +124,9 @@ function Layout() {
           </div>
         </Header>
         <Content className="content">
-          <Outlet />
+          <PageTransition pathname={location.pathname}>
+            <Outlet />
+          </PageTransition>
         </Content>
       </AntLayout>
     </AntLayout>

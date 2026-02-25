@@ -275,78 +275,98 @@ function AuditList() {
         }}
         okText="确定"
         cancelText="取消"
-        width={640}
+        width={680}
+        className="audit-modal"
       >
         {currentHotel && (
-          <div>
-            <div style={{ marginBottom: 16, padding: 12, background: '#f8fafc', borderRadius: 8 }}>
-              <p style={{ marginBottom: 8 }}>
-                <strong>酒店名称：</strong>
-                {currentHotel.name}
-              </p>
-              <p style={{ marginBottom: 8 }}>
-                <strong>地址：</strong>
-                {currentHotel.address}
-              </p>
-              <p style={{ marginBottom: 8 }}>
-                <strong>星级：</strong>
-                {currentHotel.starLevel ? `${currentHotel.starLevel}星` : '未填写'}
-              </p>
-              <p style={{ marginBottom: 8 }}>
-                <strong>开业时间：</strong>
-                {currentHotel.openingDate ? new Date(currentHotel.openingDate).toLocaleDateString('zh-CN') : '未填写'}
-              </p>
-              <p style={{ marginBottom: 0 }}>
-                <strong>房型及价格：</strong>
-              </p>
-              {(currentHotel.roomTypes || []).length > 0 ? (
-                <ul style={{ margin: '8px 0 0 20px', padding: 0 }}>
-                  {currentHotel.roomTypes.map((rt, i) => (
-                    <li key={rt.id || i} style={{ marginBottom: 4 }}>
-                      {rt.name} - ¥{rt.price}/晚
-                      {rt.area && ` · ${typeof rt.area === 'number' ? rt.area : rt.area}㎡`}
-                      {(rt.bedType || rt.beds) && ` · ${rt.bedType || rt.beds}`}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <span style={{ marginLeft: 20, color: '#94a3b8' }}>暂无房型</span>
-              )}
+          <div className="audit-modal-content">
+            {/* 酒店信息卡片 */}
+            <div className="audit-hotel-info">
+              <div className="audit-hotel-header">
+                <div className="audit-hotel-name">{currentHotel.name}</div>
+                {currentHotel.starLevel && (
+                  <Tag color="gold" className="audit-hotel-star">{currentHotel.starLevel}星级酒店</Tag>
+                )}
+              </div>
+
+              <div className="audit-hotel-details">
+                <div className="audit-detail-item">
+                  <span className="audit-detail-label">地址</span>
+                  <span className="audit-detail-value">{currentHotel.address}</span>
+                </div>
+                <div className="audit-detail-row">
+                  <div className="audit-detail-item audit-detail-half">
+                    <span className="audit-detail-label">开业时间</span>
+                    <span className="audit-detail-value">
+                      {currentHotel.openingDate ? new Date(currentHotel.openingDate).toLocaleDateString('zh-CN') : '未填写'}
+                    </span>
+                  </div>
+                  <div className="audit-detail-item audit-detail-half">
+                    <span className="audit-detail-label">所在城市</span>
+                    <span className="audit-detail-value">{currentHotel.city || '未填写'}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 房型信息 */}
+              <div className="audit-room-section">
+                <div className="audit-room-title">房型及价格</div>
+                {(currentHotel.roomTypes || []).length > 0 ? (
+                  <div className="audit-room-list">
+                    {currentHotel.roomTypes.map((rt, i) => (
+                      <div key={rt.id || i} className="audit-room-item">
+                        <div className="audit-room-name">{rt.name}</div>
+                        <div className="audit-room-info">
+                          <span className="audit-room-price">¥{rt.price}/晚</span>
+                          {rt.area && <span className="audit-room-area">{typeof rt.area === 'number' ? rt.area : rt.area}㎡</span>}
+                          {(rt.bedType || rt.beds) && <span className="audit-room-bed">{rt.bedType || rt.beds}</span>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="audit-room-empty">暂无房型信息</div>
+                )}
+              </div>
             </div>
 
-            <Form form={auditForm} layout="vertical">
-              <Form.Item
-                name="action"
-                label="审核结果"
-                rules={[{ required: true, message: '请选择审核结果' }]}
-              >
-                <Radio.Group>
-                  <Radio value="approve">通过</Radio>
-                  <Radio value="reject">拒绝</Radio>
-                </Radio.Group>
-              </Form.Item>
+            {/* 审核表单 */}
+            <div className="audit-form-section">
+              <Form form={auditForm} layout="vertical">
+                <Form.Item
+                  name="action"
+                  label="审核结果"
+                  rules={[{ required: true, message: '请选择审核结果' }]}
+                >
+                  <Radio.Group className="audit-radio-group">
+                    <Radio value="approve" className="audit-radio-approve">通过</Radio>
+                    <Radio value="reject" className="audit-radio-reject">拒绝</Radio>
+                  </Radio.Group>
+                </Form.Item>
 
-              <Form.Item
-                name="reason"
-                label="拒绝原因"
-                dependencies={['action']}
-                rules={[
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (getFieldValue('action') !== 'reject') return Promise.resolve();
-                      if (value && String(value).trim()) return Promise.resolve();
-                      return Promise.reject(new Error('审核不通过时必须填写拒绝理由'));
-                    },
-                  }),
-                ]}
-              >
-                <Input.TextArea
-                  placeholder="请输入拒绝原因（拒绝时必填）"
-                  rows={3}
-                  disabled={auditAction !== 'reject'}
-                />
-              </Form.Item>
-            </Form>
+                <Form.Item
+                  name="reason"
+                  label="拒绝原因"
+                  dependencies={['action']}
+                  rules={[
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (getFieldValue('action') !== 'reject') return Promise.resolve();
+                        if (value && String(value).trim()) return Promise.resolve();
+                        return Promise.reject(new Error('审核不通过时必须填写拒绝理由'));
+                      },
+                    }),
+                  ]}
+                >
+                  <Input.TextArea
+                    placeholder="请输入拒绝原因（拒绝时必填）"
+                    rows={3}
+                    disabled={auditAction !== 'reject'}
+                    className="audit-reason-input"
+                  />
+                </Form.Item>
+              </Form>
+            </div>
           </div>
         )}
       </Modal>

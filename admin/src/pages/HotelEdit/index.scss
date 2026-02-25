@@ -1,29 +1,346 @@
+/**
+ * HotelEdit 页面样式
+ * Arctic Frost Theme - 北极霜雪主题
+ */
+
 .hotel-edit-page {
+  // 页面头部
   .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+      border-radius: 1px;
+    }
 
     h2 {
       margin: 0;
       font-size: 20px;
       font-weight: 600;
-      color: #1e293b;
+      color: #0c4a6e;
     }
 
     .ant-btn-primary {
-      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
     }
   }
 
+  // 表格样式
   .ant-table-thead > tr > th {
-    background: #f8fafc !important;
-    color: #334155;
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.06), rgba(255, 255, 255, 0)) !important;
+    color: #0c4a6e;
     font-weight: 600;
+    border-bottom: 2px solid rgba(14, 165, 233, 0.1);
   }
 
-  .ant-table-tbody > tr:hover > td {
-    background: #f8fafc !important;
+  .ant-table-tbody > tr {
+    transition: all 0.3s ease;
+
+    &:hover > td {
+      background: rgba(14, 165, 233, 0.04) !important;
+    }
+  }
+
+  // 操作按钮组
+  .ant-space-item {
+    .ant-btn-link {
+      color: #0ea5e9;
+
+      &:hover {
+        color: #38bdf8;
+      }
+    }
+  }
+}
+
+// ============================================
+// 表单样式 - 分组布局
+// ============================================
+
+.hotel-form {
+  // 拒绝原因提示
+  .form-rejection-notice {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.04));
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 12px;
+    border-left: 4px solid #ef4444;
+    animation: fadeInUp 0.4s ease-out;
+  }
+
+  .form-rejection-title {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+  }
+
+  .form-rejection-content {
+    font-size: 14px;
+    color: #b91c1c;
+    line-height: 1.6;
+  }
+
+  // 表单分组 - 冰蓝色背景卡片
+  .form-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(240, 249, 255, 0.9), rgba(224, 242, 254, 0.5));
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+
+    // 顶部装饰线
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .form-section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0c4a6e;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 16px;
+      background: linear-gradient(180deg, #0ea5e9, #38bdf8);
+      border-radius: 2px;
+    }
+  }
+
+  .form-section-content {
+    padding-left: 4px;
+  }
+
+  // 表单行（两列布局）
+  .form-row {
+    display: flex;
+    gap: 16px;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  .form-item-half {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // 表单项标签样式
+  .ant-form-item-label > label {
+    color: #334155;
+    font-weight: 500;
+    font-size: 13px;
+
+    &.ant-form-item-required::before {
+      color: #0ea5e9;
+    }
+  }
+
+  // 输入框样式
+  .ant-input,
+  .ant-input-affix-wrapper,
+  .ant-select-selector,
+  .ant-picker {
+    border-radius: 10px;
+    border-color: #e0f2fe;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: #bae6fd;
+    }
+  }
+
+  .ant-input:focus,
+  .ant-input-affix-wrapper-focused,
+  .ant-select-focused .ant-select-selector,
+  .ant-picker-focused {
+    border-color: #0ea5e9 !important;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1) !important;
+  }
+
+  .ant-input-textarea textarea {
+    border-radius: 10px;
+  }
+}
+
+// ============================================
+// 房型卡片样式
+// ============================================
+
+.room-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.room-type-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(14, 165, 233, 0.12);
+  border-radius: 14px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.06);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc);
+    opacity: 0.8;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(14, 165, 233, 0.2);
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.room-type-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+}
+
+.room-type-index {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0ea5e9;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(56, 189, 248, 0.05));
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.room-type-delete {
+  opacity: 0.6;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.room-type-fields {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+.room-type-field {
+  margin-bottom: 0 !important;
+
+  // 房型名称 - 较宽
+  &.room-type-field-name {
+    grid-column: span 1;
+    min-width: 100px;
+  }
+
+  // 床型 - 较宽
+  &.room-type-field-bed {
+    grid-column: span 1;
+    min-width: 100px;
+  }
+
+  // 小字段：面积、价格、人数
+  &.room-type-field-small {
+    min-width: 90px;
+  }
+
+  // 弹性字段：房间设施
+  &.room-type-field-flex {
+    grid-column: span 1;
+    min-width: 120px;
+  }
+
+  .ant-form-item-label {
+    padding-bottom: 4px;
+
+    > label {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+
+      &.ant-form-item-required::before {
+        color: #0ea5e9;
+      }
+    }
+  }
+
+  .ant-input {
+    border-radius: 8px;
+    font-size: 13px;
+    height: 32px;
+  }
+}
+
+.room-type-add {
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 2px dashed rgba(14, 165, 233, 0.3);
+  background: rgba(255, 255, 255, 0.6);
+  color: #0ea5e9;
+  transition: all 0.3s ease;
+  height: 48px;
+  font-weight: 500;
+
+  &:hover {
+    border-color: #0ea5e9;
+    border-style: solid;
+    background: rgba(255, 255, 255, 0.9);
+    color: #0284c7;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+    transform: translateY(-2px);
   }
 }
