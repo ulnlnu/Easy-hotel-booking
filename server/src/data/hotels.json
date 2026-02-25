@@ -1,744 +1,1287 @@
 [
   {
-    "id": "hotel-001",
+    "id": "hotel_001",
     "name": "北京王府井希尔顿酒店",
+    "starLevel": 5,
     "address": "北京市东城区王府井大街255号",
     "city": "北京",
-    "province": "北京",
-    "location": {
-      "lat": 39.9139,
-      "lng": 116.4103
-    },
+    "province": "北京市",
+    "location": { "lat": 39.9139, "lng": 116.4103 },
+    "description": "位于王府井商业区核心地段，毗邻故宫、天安门广场，步行可达购物天堂王府井步行街。酒店拥有豪华客房及套房，配备室内恒温泳池、健身中心、水疗中心等设施。",
     "images": [
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
-      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "洗衣服务"],
+    "tags": ["近故宫", "近地铁", "商业中心", "豪华"],
+    "openingDate": "2010-06-18",
+    "status": "approved",
+    "createdBy": "merchant_bj",
+    "roomTypes": [
+      { "id": "rt_001_1", "name": "豪华大床房", "price": 1288, "area": 38, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视", "迷你吧", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_001_2", "name": "行政双床房", "price": 1388, "area": 42, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视", "迷你吧", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_001_3", "name": "行政套房", "price": 2588, "area": 68, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "迷你吧", "含早餐", "客厅"], "maxOccupancy": 3 }
     ],
     "rating": 4.8,
-    "reviewCount": 1256,
-    "tags": [
-      "近地铁",
-      "含早餐",
-      "有泳池",
-      "五星级"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "迷你吧",
-      "保险箱",
-      "泳池",
-      "健身房",
-      "SPA",
-      "餐厅",
-      "停车场"
-    ],
-    "roomTypes": [
-      {
-        "id": "room-001-1",
-        "name": "豪华大床房",
-        "area": 45,
-        "price": 1288,
-        "bedType": "大床 2.0m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "迷你吧",
-          "保险箱"
-        ]
-      },
-      {
-        "id": "room-001-2",
-        "name": "行政套房",
-        "area": 75,
-        "price": 2388,
-        "bedType": "大床 2.0m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "迷你吧",
-          "保险箱",
-          "行政酒廊"
-        ]
-      },
-      {
-        "id": "room-001-3",
-        "name": "家庭房",
-        "area": 55,
-        "price": 1688,
-        "bedType": "双床 1.35m×2",
-        "maxOccupancy": 4,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "迷你吧"
-        ]
-      }
-    ],
-    "status": "approved",
-    "openingDate": "2018-06-01",
-    "starLevel": 5,
-    "createdBy": "user-hoteladmin001",
-    "createdAt": "2025-01-15T08:00:00.000Z",
-    "updatedAt": "2025-01-15T08:00:00.000Z"
+    "reviewCount": 2356,
+    "createdAt": "2025-01-05T08:00:00.000Z",
+    "updatedAt": "2025-01-15T10:30:00.000Z"
   },
   {
-    "id": "hotel-002",
-    "name": "上海外滩W酒店",
-    "address": "上海市黄浦区外滩66号",
+    "id": "hotel_002",
+    "name": "上海外滩华尔道夫酒店",
+    "starLevel": 5,
+    "address": "上海市黄浦区中山东一路2号",
     "city": "上海",
-    "province": "上海",
-    "location": {
-      "lat": 31.2397,
-      "lng": 121.4909
-    },
+    "province": "上海市",
+    "location": { "lat": 31.2397, "lng": 121.4909 },
+    "description": "坐落于上海外滩核心位置，可俯瞰黄浦江与陆家嘴天际线。酒店由历史建筑与当代塔楼组成，融合经典与现代设计，提供顶级奢华服务体验。",
     "images": [
       "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
       "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800"
     ],
-    "rating": 4.6,
-    "reviewCount": 892,
-    "tags": [
-      "江景房",
-      "近商圈",
-      "网红打卡",
-      "五星级"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "酒吧",
-      "健身房",
-      "餐厅",
-      "会议室",
-      "停车场"
-    ],
-    "roomTypes": [
-      {
-        "id": "room-002-1",
-        "name": "奇妙客房",
-        "area": 48,
-        "price": 1588,
-        "bedType": "大床 2.0m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "迷你吧"
-        ]
-      },
-      {
-        "id": "room-002-2",
-        "name": "外滩景观套房",
-        "area": 88,
-        "price": 3888,
-        "bedType": "大床 2.2m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "迷你吧",
-          "江景阳台"
-        ]
-      }
-    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "洗衣服务", "酒吧"],
+    "tags": ["外滩景观", "江景房", "历史建筑", "豪华"],
+    "openingDate": "2011-03-28",
     "status": "approved",
-    "openingDate": "2020-03-15",
-    "starLevel": 5,
-    "createdBy": "user-hoteladmin001",
-    "createdAt": "2025-01-20T10:30:00.000Z",
-    "updatedAt": "2025-01-20T10:30:00.000Z"
-  },
-  {
-    "id": "hotel-003",
-    "name": "杭州西湖国宾馆",
-    "address": "杭州市西湖区杨公堤18号",
-    "city": "杭州",
-    "province": "浙江",
-    "location": {
-      "lat": 30.2592,
-      "lng": 120.1494
-    },
-    "images": [
-      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800"
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_002_1", "name": "豪华江景房", "price": 2288, "area": 45, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "迷你吧", "含早餐", "江景"], "maxOccupancy": 2 },
+      { "id": "rt_002_2", "name": "外滩景观套房", "price": 4588, "area": 85, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "迷你吧", "含早餐", "客厅", "江景"], "maxOccupancy": 3 },
+      { "id": "rt_002_3", "name": "总统套房", "price": 18888, "area": 200, "bedType": "大床2.2m", "amenities": ["WiFi", "空调", "电视", "迷你吧", "含早餐", "客厅", "管家服务", "江景"], "maxOccupancy": 4 }
     ],
     "rating": 4.9,
-    "reviewCount": 2341,
-    "tags": [
-      "湖景房",
-      "近景区",
-      "园林风格",
-      "五星级"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "茶室",
-      "健身房",
-      "中餐厅",
-      "西餐厅",
-      "停车场",
-      "花园"
-    ],
-    "roomTypes": [
-      {
-        "name": "湖景大床房",
-        "area": 52,
-        "price": 1688,
-        "bedType": "大床 2.0m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "湖景阳台"
-        ],
-        "id": "room-003-1"
-      },
-      {
-        "name": "园景双床房",
-        "area": 48,
-        "price": 1388,
-        "bedType": "双床 1.2m×2",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视"
-        ],
-        "id": "room-003-2"
-      },
-      {
-        "name": "总统套房",
-        "area": 200,
-        "price": 8888,
-        "bedType": "大床 2.2m",
-        "maxOccupancy": 4,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "独立书房",
-          "私人管家"
-        ],
-        "id": "room-003-3"
-      }
-    ],
-    "status": "pending",
-    "openingDate": "2001-01-01",
-    "starLevel": 5,
-    "createdBy": "1771745408242-v173quq3w",
-    "createdAt": "2025-02-01T09:00:00.000Z",
-    "updatedAt": "2026-02-25T03:05:20.767Z"
+    "reviewCount": 1892,
+    "createdAt": "2025-01-06T09:00:00.000Z",
+    "updatedAt": "2025-01-18T14:20:00.000Z"
   },
   {
-    "id": "hotel-004",
-    "name": "成都宽窄巷子亚朵酒店",
-    "address": "成都市青羊区长顺上街88号",
-    "city": "成都",
-    "province": "四川",
-    "location": {
-      "lat": 30.6722,
-      "lng": 104.0576
-    },
+    "id": "hotel_003",
+    "name": "广州天河香格里拉大酒店",
+    "starLevel": 4,
+    "address": "广州市天河区林和中路8号",
+    "city": "广州",
+    "province": "广东省",
+    "location": { "lat": 23.1291, "lng": 113.3225 },
+    "description": "位于广州天河CBD核心区域，紧邻太古汇、正佳广场等购物中心，距广州东站仅5分钟步行。酒店以现代设计风格著称，提供贴心周到的服务。",
     "images": [
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "餐厅", "会议室"],
+    "tags": ["近地铁站", "商业中心", "近东站"],
+    "openingDate": "2015-08-08",
+    "status": "approved",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_003_1", "name": "高级大床房", "price": 688, "area": 32, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_003_2", "name": "豪华双床房", "price": 758, "area": 35, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_003_3", "name": "行政套房", "price": 1588, "area": 58, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "客厅"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.6,
+    "reviewCount": 3456,
+    "createdAt": "2025-01-07T10:00:00.000Z",
+    "updatedAt": "2025-01-20T09:15:00.000Z"
+  },
+  {
+    "id": "hotel_004",
+    "name": "成都春熙路亚朵酒店",
+    "starLevel": 3,
+    "address": "成都市锦江区春熙路南段88号",
+    "city": "成都",
+    "province": "四川省",
+    "location": { "lat": 30.6572, "lng": 104.0825 },
+    "description": "地处成都最繁华的春熙路商圈，周边商场林立，美食众多。酒店以阅读和摄影为主题，营造温馨舒适的住宿氛围，是商务出行和休闲旅游的理想之选。",
+    "images": [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800"
+    ],
+    "facilities": ["WiFi", "健身房", "餐厅", "洗衣服务"],
+    "tags": ["近春熙路", "美食街区", "阅读主题"],
+    "openingDate": "2019-05-01",
+    "status": "approved",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_004_1", "name": "标准大床房", "price": 358, "area": 25, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_004_2", "name": "几木大床房", "price": 428, "area": 28, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 }
     ],
     "rating": 4.5,
-    "reviewCount": 567,
-    "tags": [
-      "近景区",
-      "文化主题",
-      "含早餐",
-      "四星级"
+    "reviewCount": 5678,
+    "createdAt": "2025-01-08T11:00:00.000Z",
+    "updatedAt": "2025-01-22T16:45:00.000Z"
+  },
+  {
+    "id": "hotel_005",
+    "name": "三亚亚龙湾万豪度假酒店",
+    "starLevel": 5,
+    "address": "三亚市吉阳区亚龙湾国家旅游度假区",
+    "city": "三亚",
+    "province": "海南省",
+    "location": { "lat": 18.1912, "lng": 109.6426 },
+    "description": "坐落于亚龙湾绵长海岸线上，拥有私人沙滩和热带花园。酒店提供丰富的水上运动项目，是亲子度假和浪漫蜜月的绝佳选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
     ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "书吧",
-      "餐厅",
-      "停车场"
-    ],
-    "roomTypes": [
-      {
-        "id": "room-004-1",
-        "name": "几木大床房",
-        "area": 35,
-        "price": 458,
-        "bedType": "大床 1.8m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视"
-        ]
-      },
-      {
-        "id": "room-004-2",
-        "name": "几木双床房",
-        "area": 38,
-        "price": 498,
-        "bedType": "双床 1.2m×2",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视"
-        ]
-      },
-      {
-        "id": "room-004-3",
-        "name": "SA亲子房",
-        "area": 45,
-        "price": 628,
-        "bedType": "大床 1.8m + 单床 1.2m",
-        "maxOccupancy": 3,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "儿童设施"
-        ]
-      }
-    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "私人沙滩", "儿童俱乐部"],
+    "tags": ["私人沙滩", "海景房", "亲子度假", "蜜月推荐"],
+    "openingDate": "2008-12-18",
     "status": "approved",
-    "openingDate": "2021-05-20",
-    "starLevel": 4,
-    "createdBy": "user-hoteladmin001",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_005_1", "name": "豪华海景房", "price": 1588, "area": 48, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景", "阳台"], "maxOccupancy": 2 },
+      { "id": "rt_005_2", "name": "海景套房", "price": 2888, "area": 78, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景", "阳台", "客厅"], "maxOccupancy": 3 },
+      { "id": "rt_005_3", "name": "泳池别墅", "price": 6888, "area": 150, "bedType": "大床2.2m", "amenities": ["WiFi", "空调", "电视", "含早餐", "私人泳池", "花园", "管家服务"], "maxOccupancy": 4 }
+    ],
+    "rating": 4.7,
+    "reviewCount": 4123,
+    "createdAt": "2025-01-09T08:30:00.000Z",
+    "updatedAt": "2025-01-25T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_006",
+    "name": "北京三里屯如家快捷酒店",
+    "starLevel": 2,
+    "address": "北京市朝阳区工体北路甲2号",
+    "city": "北京",
+    "province": "北京市",
+    "location": { "lat": 39.9367, "lng": 116.4543 },
+    "description": "位于三里屯酒吧街附近，周边餐饮娱乐设施丰富，交通便利。酒店提供干净舒适的住宿环境，是经济型出行的好选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
+    ],
+    "facilities": ["WiFi", "洗衣服务"],
+    "tags": ["近三里屯", "经济实惠", "交通便利"],
+    "openingDate": "2016-03-15",
+    "status": "pending",
+    "createdBy": "merchant_bj",
+    "roomTypes": [
+      { "id": "rt_006_1", "name": "标准大床房", "price": 268, "area": 18, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_006_2", "name": "标准双床房", "price": 288, "area": 20, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.2,
+    "reviewCount": 8765,
     "createdAt": "2025-02-10T14:00:00.000Z",
     "updatedAt": "2025-02-10T14:00:00.000Z"
   },
   {
-    "id": "hotel-005",
-    "name": "三亚亚龙湾瑞吉度假酒店",
-    "address": "三亚市吉阳区亚龙湾国家旅游度假区",
-    "city": "三亚",
-    "province": "海南",
-    "location": {
-      "lat": 18.1912,
-      "lng": 109.6428
-    },
-    "images": [
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
-      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800"
-    ],
-    "rating": 4.7,
-    "reviewCount": 1876,
-    "tags": [
-      "海景房",
-      "私人沙滩",
-      "泳池别墅",
-      "五星级"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "私人沙滩",
-      "泳池",
-      "SPA",
-      "健身房",
-      "多风格餐厅",
-      "停车场",
-      "水上运动"
-    ],
-    "roomTypes": [
-      {
-        "id": "room-005-1",
-        "name": "海景豪华房",
-        "area": 68,
-        "price": 2888,
-        "bedType": "大床 2.0m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "海景阳台"
-        ]
-      },
-      {
-        "id": "room-005-2",
-        "name": "泳池别墅",
-        "area": 180,
-        "price": 8888,
-        "bedType": "大床 2.2m",
-        "maxOccupancy": 4,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "私人泳池",
-          "花园"
-        ]
-      },
-      {
-        "id": "room-005-3",
-        "name": "家庭海景套房",
-        "area": 120,
-        "price": 5688,
-        "bedType": "大床 1.8m + 双床 1.2m×2",
-        "maxOccupancy": 4,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "海景阳台",
-          "客厅"
-        ]
-      }
-    ],
-    "status": "approved",
-    "openingDate": "2016-11-08",
-    "starLevel": 5,
-    "createdBy": "1771745408242-v173quq3w",
-    "createdAt": "2025-02-15T11:00:00.000Z",
-    "updatedAt": "2025-02-15T11:00:00.000Z"
-  },
-  {
-    "id": "hotel-006",
-    "name": "西安钟楼美居酒店",
-    "address": "西安市莲湖区西大街126号",
-    "city": "西安",
-    "province": "陕西",
-    "location": {
-      "lat": 34.2609,
-      "lng": 108.9486
-    },
-    "images": [
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800"
-    ],
-    "rating": 4.3,
-    "reviewCount": 423,
-    "tags": [
-      "近钟楼",
-      "法式风格",
-      "近地铁",
-      "四星级"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "餐厅",
-      "停车场"
-    ],
-    "roomTypes": [
-      {
-        "id": "room-006-1",
-        "name": "高级大床房",
-        "area": 32,
-        "price": 388,
-        "bedType": "大床 1.8m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视"
-        ]
-      },
-      {
-        "id": "room-006-2",
-        "name": "豪华双床房",
-        "area": 36,
-        "price": 428,
-        "bedType": "双床 1.2m×2",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视"
-        ]
-      }
-    ],
-    "status": "pending",
-    "openingDate": "2022-09-01",
+    "id": "hotel_007",
+    "name": "深圳华侨城洲际大酒店",
     "starLevel": 4,
-    "createdBy": "user-hoteladmin001",
-    "createdAt": "2026-02-20T16:00:00.000Z",
-    "updatedAt": "2026-02-20T16:00:00.000Z"
-  },
-  {
-    "id": "hotel-007",
-    "name": "厦门鼓浪屿娜娜度假酒店",
-    "address": "厦门市思明区鼓浪屿龙头路1号",
-    "city": "厦门",
-    "province": "福建",
-    "location": {
-      "lat": 24.4478,
-      "lng": 118.0709
-    },
+    "address": "深圳市南山区华侨城深南大道9009号",
+    "city": "深圳",
+    "province": "广东省",
+    "location": { "lat": 22.5333, "lng": 113.9833 },
+    "description": "位于华侨城主题公园群内，毗邻世界之窗、欢乐谷等景点。酒店以西班牙风格设计，拥有美丽的花园和湖泊景观。",
     "images": [
-      "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800"
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800"
     ],
-    "rating": 4.4,
-    "reviewCount": 312,
-    "tags": [
-      "海岛风情",
-      "历史建筑",
-      "近景区",
-      "精品酒店"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "咖啡厅",
-      "花园"
-    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "洗衣服务"],
+    "tags": ["近欢乐谷", "主题公园", "花园景观"],
+    "openingDate": "2006-09-28",
+    "status": "approved",
+    "createdBy": "merchant_sh",
     "roomTypes": [
-      {
-        "id": "room-007-1",
-        "name": "园景大床房",
-        "area": 28,
-        "price": 568,
-        "bedType": "大床 1.8m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视"
-        ]
-      },
-      {
-        "id": "room-007-2",
-        "name": "海景阳台房",
-        "area": 35,
-        "price": 788,
-        "bedType": "大床 1.8m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "海景阳台"
-        ]
-      }
-    ],
-    "status": "pending",
-    "openingDate": "2019-04-15",
-    "starLevel": 3,
-    "createdBy": "1771745408242-v173quq3w",
-    "createdAt": "2026-02-21T09:30:00.000Z",
-    "updatedAt": "2026-02-21T09:30:00.000Z"
-  },
-  {
-    "id": "hotel-008",
-    "name": "广州天河CBD万豪酒店",
-    "address": "广州市天河区天河路228号",
-    "city": "广州",
-    "province": "广东",
-    "location": {
-      "lat": 23.1291,
-      "lng": 113.3229
-    },
-    "images": [
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
-    ],
-    "rating": 4.5,
-    "reviewCount": 1089,
-    "tags": [
-      "近商圈",
-      "商务首选",
-      "近地铁",
-      "五星级"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "行政酒廊",
-      "健身房",
-      "泳池",
-      "多风格餐厅",
-      "会议室",
-      "停车场"
-    ],
-    "roomTypes": [
-      {
-        "id": "room-008-1",
-        "name": "豪华大床房",
-        "area": 42,
-        "price": 1188,
-        "bedType": "大床 2.0m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "办公桌"
-        ]
-      },
-      {
-        "id": "room-008-2",
-        "name": "行政套房",
-        "area": 85,
-        "price": 2588,
-        "bedType": "大床 2.0m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "行政酒廊",
-          "客厅"
-        ]
-      }
-    ],
-    "status": "rejected",
-    "rejectionReason": "酒店资质证明文件不全，请补充营业执照和特种行业许可证后重新提交。",
-    "openingDate": "2015-08-01",
-    "starLevel": 5,
-    "createdBy": "user-hoteladmin001",
-    "createdAt": "2026-02-18T10:00:00.000Z",
-    "updatedAt": "2026-02-19T14:30:00.000Z"
-  },
-  {
-    "id": "hotel-009",
-    "name": "丽江古城花间堂客栈",
-    "address": "丽江市古城区五一街文治巷85号",
-    "city": "丽江",
-    "province": "云南",
-    "location": {
-      "lat": 26.8721,
-      "lng": 100.2333
-    },
-    "images": [
-      "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800"
+      { "id": "rt_007_1", "name": "豪华房", "price": 888, "area": 38, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_007_2", "name": "行政房", "price": 1088, "area": 45, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "行政酒廊"], "maxOccupancy": 2 },
+      { "id": "rt_007_3", "name": "亲子主题房", "price": 1288, "area": 52, "bedType": "大床1.8m+单人床", "amenities": ["WiFi", "空调", "电视", "含早餐", "儿童设施"], "maxOccupancy": 3 }
     ],
     "rating": 4.6,
-    "reviewCount": 678,
-    "tags": [
-      "古城内",
-      "纳西风格",
-      "庭院",
-      "精品民宿"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "茶室",
-      "书吧",
-      "花园"
-    ],
-    "roomTypes": [
-      {
-        "id": "room-009-1",
-        "name": "纳西风情大床房",
-        "area": 25,
-        "price": 468,
-        "bedType": "大床 1.8m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "纳西装饰"
-        ]
-      },
-      {
-        "id": "room-009-2",
-        "name": "庭院景观房",
-        "area": 35,
-        "price": 688,
-        "bedType": "大床 1.8m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "庭院景观"
-        ]
-      }
-    ],
-    "status": "offline",
-    "openingDate": "2017-03-08",
-    "starLevel": 3,
-    "createdBy": "1771745408242-v173quq3w",
-    "createdAt": "2025-12-01T08:00:00.000Z",
-    "updatedAt": "2026-01-15T11:00:00.000Z"
+    "reviewCount": 2134,
+    "createdAt": "2025-01-10T09:00:00.000Z",
+    "updatedAt": "2025-01-28T13:30:00.000Z"
   },
   {
-    "id": "hotel-010",
-    "name": "深圳南山科技园如家酒店",
-    "address": "深圳市南山区科技园南区高新南四道",
-    "city": "深圳",
-    "province": "广东",
-    "location": {
-      "lat": 22.5316,
-      "lng": 113.9489
-    },
+    "id": "hotel_008",
+    "name": "杭州西湖边汉庭酒店",
+    "starLevel": 3,
+    "address": "杭州市上城区南山路88号",
+    "city": "杭州",
+    "province": "浙江省",
+    "location": { "lat": 30.2427, "lng": 120.1478 },
+    "description": "紧邻美丽的西子湖畔，步行可至雷峰塔、苏堤等著名景点。酒店环境清幽，是游览杭州的理想下榻之所。",
+    "images": [
+      "https://images.unsplash.com/photo-1584132915807-fd1f5fbc078f?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "餐厅"],
+    "tags": ["近西湖", "风景优美", "近雷峰塔"],
+    "openingDate": "2017-04-20",
+    "status": "pending",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_008_1", "name": "标准房", "price": 328, "area": 22, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_008_2", "name": "湖景房", "price": 428, "area": 25, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视", "含早餐", "湖景"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.4,
+    "reviewCount": 3456,
+    "createdAt": "2025-02-12T10:00:00.000Z",
+    "updatedAt": "2025-02-12T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_009",
+    "name": "西安钟楼七天连锁酒店",
+    "starLevel": 2,
+    "address": "西安市莲湖区西大街126号",
+    "city": "西安",
+    "province": "陕西省",
+    "location": { "lat": 34.2600, "lng": 108.9470 },
+    "description": "位于西安市中心钟楼商圈，距回民街、鼓楼步行仅需5分钟。交通便利，价格实惠，适合背包客和学生群体。",
     "images": [
       "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
     ],
-    "rating": 4,
-    "reviewCount": 2341,
-    "tags": [
-      "近科技园",
-      "经济实惠",
-      "近地铁",
-      "商务出差"
-    ],
-    "facilities": [
-      "WiFi",
-      "空调",
-      "电视",
-      "停车场"
-    ],
+    "facilities": ["WiFi"],
+    "tags": ["近钟楼", "近回民街", "经济实惠"],
+    "openingDate": "2018-07-01",
+    "status": "rejected",
+    "rejectionReason": "酒店资质证件不全，消防验收未通过，请补充相关材料后重新提交审核。",
+    "createdBy": "merchant_xa",
     "roomTypes": [
-      {
-        "id": "room-010-1",
-        "name": "标准大床房",
-        "area": 22,
-        "price": 268,
-        "bedType": "大床 1.5m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视"
-        ]
-      },
-      {
-        "id": "room-010-2",
-        "name": "标准双床房",
-        "area": 25,
-        "price": 298,
-        "bedType": "双床 1.2m×2",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视"
-        ]
-      },
-      {
-        "id": "room-010-3",
-        "name": "商务大床房",
-        "area": 30,
-        "price": 358,
-        "bedType": "大床 1.8m",
-        "maxOccupancy": 2,
-        "amenities": [
-          "WiFi",
-          "空调",
-          "电视",
-          "办公桌"
-        ]
-      }
+      { "id": "rt_009_1", "name": "经济房", "price": 158, "area": 15, "bedType": "大床1.35m", "amenities": ["WiFi", "空调"], "maxOccupancy": 2 },
+      { "id": "rt_009_2", "name": "标准房", "price": 188, "area": 18, "bedType": "双床1.0m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 }
     ],
+    "rating": 3.9,
+    "reviewCount": 2345,
+    "createdAt": "2025-02-08T15:00:00.000Z",
+    "updatedAt": "2025-02-14T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_010",
+    "name": "上海迪士尼附近民宿",
+    "starLevel": 1,
+    "address": "上海市浦东新区川沙新镇华夏二路500号",
+    "city": "上海",
+    "province": "上海市",
+    "location": { "lat": 31.1914, "lng": 121.6544 },
+    "description": "距离上海迪士尼乐园仅10分钟车程，提供免费接送服务。房间温馨舒适，适合带小朋友的家庭入住。",
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800"
+    ],
+    "facilities": ["WiFi", "停车场"],
+    "tags": ["近迪士尼", "免费接送", "亲子"],
+    "openingDate": "2022-01-01",
+    "status": "offline",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_010_1", "name": "标准间", "price": 238, "area": 20, "bedType": "大床1.5m", "amenities": ["WiFi", "空调"], "maxOccupancy": 2 },
+      { "id": "rt_010_2", "name": "家庭房", "price": 358, "area": 28, "bedType": "大床1.5m+单人床", "amenities": ["WiFi", "空调", "含早餐"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.3,
+    "reviewCount": 1567,
+    "createdAt": "2025-01-15T08:00:00.000Z",
+    "updatedAt": "2025-02-18T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_011",
+    "name": "重庆解放碑威斯汀酒店",
+    "starLevel": 5,
+    "address": "重庆市渝中区青年路8号",
+    "city": "重庆",
+    "province": "重庆市",
+    "location": { "lat": 29.5585, "lng": 106.5773 },
+    "description": "位于重庆最繁华的解放碑商圈，俯瞰长江与嘉陵江交汇美景。酒店设计时尚现代，拥有无敌江景和无边泳池，是山城地标性酒店。",
+    "images": [
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "酒吧"],
+    "tags": ["近解放碑", "江景房", "无边泳池", "豪华"],
+    "openingDate": "2014-09-18",
     "status": "approved",
-    "openingDate": "2023-01-10",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_011_1", "name": "豪华大床房", "price": 1188, "area": 42, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "江景"], "maxOccupancy": 2 },
+      { "id": "rt_011_2", "name": "江景套房", "price": 2288, "area": 75, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "江景", "客厅"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.7,
+    "reviewCount": 2891,
+    "createdAt": "2025-01-11T10:00:00.000Z",
+    "updatedAt": "2025-01-30T15:00:00.000Z"
+  },
+  {
+    "id": "hotel_012",
+    "name": "厦门鼓浪屿海边民宿",
+    "starLevel": 3,
+    "address": "厦门市思明区鼓浪屿龙头路168号",
+    "city": "厦门",
+    "province": "福建省",
+    "location": { "lat": 24.4478, "lng": 118.0708 },
+    "description": "坐落於鼓浪屿岛上，步行可至日光岩、菽庄花园等景点。民宿保留南洋风格建筑特色，庭院花香四溢，是感受海岛慢生活的理想之所。",
+    "images": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+    ],
+    "facilities": ["WiFi", "花园"],
+    "tags": ["鼓浪屿", "海景", "南洋风情", "庭院"],
+    "openingDate": "2018-05-01",
+    "status": "approved",
+    "createdBy": "merchant_hz",
+    "roomTypes": [
+      { "id": "rt_012_1", "name": "海景大床房", "price": 488, "area": 28, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐", "海景"], "maxOccupancy": 2 },
+      { "id": "rt_012_2", "name": "庭院双床房", "price": 458, "area": 26, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "含早餐", "庭院景观"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.6,
+    "reviewCount": 1234,
+    "createdAt": "2025-01-12T09:00:00.000Z",
+    "updatedAt": "2025-02-01T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_013",
+    "name": "南京夫子庙全季酒店",
+    "starLevel": 3,
+    "address": "南京市秦淮区夫子庙贡院街88号",
+    "city": "南京",
+    "province": "江苏省",
+    "location": { "lat": 32.0408, "lng": 118.7969 },
+    "description": "位于南京历史文化核心区夫子庙，紧邻秦淮河畔。酒店以简约禅意风格为主，是体验六朝古都风韵的绝佳选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+    ],
+    "facilities": ["WiFi", "健身房", "餐厅"],
+    "tags": ["近夫子庙", "秦淮河畔", "历史文化"],
+    "openingDate": "2019-10-01",
+    "status": "approved",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_013_1", "name": "标准大床房", "price": 358, "area": 25, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_013_2", "name": "高级双床房", "price": 388, "area": 28, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.4,
+    "reviewCount": 4567,
+    "createdAt": "2025-01-13T08:00:00.000Z",
+    "updatedAt": "2025-02-03T14:00:00.000Z"
+  },
+  {
+    "id": "hotel_014",
+    "name": "苏州观前街布丁酒店",
     "starLevel": 2,
-    "createdBy": "user-hoteladmin001",
-    "createdAt": "2025-03-01T12:00:00.000Z",
-    "updatedAt": "2025-03-01T12:00:00.000Z"
+    "address": "苏州市姑苏区观前街188号",
+    "city": "苏州",
+    "province": "江苏省",
+    "location": { "lat": 31.3116, "lng": 120.6277 },
+    "description": "位于苏州繁华的观前街商业区，步行可达拙政园、狮子林等著名园林。酒店设计年轻时尚，价格亲民。",
+    "images": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
+    ],
+    "facilities": ["WiFi"],
+    "tags": ["近拙政园", "观前街", "经济实惠"],
+    "openingDate": "2020-06-01",
+    "status": "approved",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_014_1", "name": "Pod房", "price": 168, "area": 12, "bedType": "大床1.35m", "amenities": ["WiFi", "空调"], "maxOccupancy": 1 },
+      { "id": "rt_014_2", "name": "标准房", "price": 218, "area": 18, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.1,
+    "reviewCount": 6789,
+    "createdAt": "2025-01-14T11:00:00.000Z",
+    "updatedAt": "2025-02-05T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_015",
+    "name": "广州长隆熊猫酒店",
+    "starLevel": 4,
+    "address": "广州市番禺区汉溪大道东299号",
+    "city": "广州",
+    "province": "广东省",
+    "location": { "lat": 23.0315, "lng": 113.3513 },
+    "description": "紧邻长隆欢乐世界和野生动物世界，酒店以熊猫为主题设计，充满童趣。是亲子游玩长隆的首选酒店，提供园区免费穿梭巴士。",
+    "images": [
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "餐厅", "儿童俱乐部"],
+    "tags": ["近长隆", "亲子主题", "熊猫主题", "免费接送"],
+    "openingDate": "2019-01-18",
+    "status": "approved",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_015_1", "name": "熊猫大床房", "price": 988, "area": 38, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_015_2", "name": "亲子主题房", "price": 1288, "area": 48, "bedType": "大床1.8m+上下铺", "amenities": ["WiFi", "空调", "电视", "含早餐", "儿童设施"], "maxOccupancy": 4 },
+      { "id": "rt_015_3", "name": "熊猫套房", "price": 2188, "area": 72, "bedType": "大床2.0m+单人床", "amenities": ["WiFi", "空调", "电视", "含早餐", "客厅"], "maxOccupancy": 4 }
+    ],
+    "rating": 4.8,
+    "reviewCount": 5678,
+    "createdAt": "2025-01-15T09:00:00.000Z",
+    "updatedAt": "2025-02-08T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_016",
+    "name": "天津滨海喜来登酒店",
+    "starLevel": 4,
+    "address": "天津市滨海新区经济技术开发区第二大街50号",
+    "city": "天津",
+    "province": "天津市",
+    "location": { "lat": 39.0315, "lng": 117.7019 },
+    "description": "位于天津滨海新区核心地段，毗邻于家堡金融区。酒店拥有海景客房和完善的商务设施，是商务出行的理想选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室"],
+    "tags": ["滨海新区", "商务出行", "海景房"],
+    "openingDate": "2012-08-08",
+    "status": "pending",
+    "createdBy": "merchant_bj",
+    "roomTypes": [
+      { "id": "rt_016_1", "name": "豪华大床房", "price": 788, "area": 36, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_016_2", "name": "行政海景房", "price": 1088, "area": 45, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景", "行政酒廊"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.5,
+    "reviewCount": 1892,
+    "createdAt": "2025-02-15T10:00:00.000Z",
+    "updatedAt": "2025-02-15T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_017",
+    "name": "昆明翠湖边青旅",
+    "starLevel": 1,
+    "address": "昆明市五华区翠湖南路66号",
+    "city": "昆明",
+    "province": "云南省",
+    "location": { "lat": 25.0458, "lng": 102.7063 },
+    "description": "位于昆明市中心翠湖公园旁，环境清幽，交通便利。提供床位和独立房间，是背包客探索云南的绝佳落脚点。",
+    "images": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
+    ],
+    "facilities": ["WiFi", "洗衣服务", "公共厨房"],
+    "tags": ["近翠湖", "青旅", "背包客"],
+    "openingDate": "2017-03-15",
+    "status": "approved",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_017_1", "name": "六人间床位", "price": 58, "area": 6, "bedType": "单人床", "amenities": ["WiFi", "空调", "储物柜"], "maxOccupancy": 1 },
+      { "id": "rt_017_2", "name": "标准双人间", "price": 138, "area": 15, "bedType": "双床1.0m", "amenities": ["WiFi", "空调"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.2,
+    "reviewCount": 3456,
+    "createdAt": "2025-01-16T08:00:00.000Z",
+    "updatedAt": "2025-02-10T12:00:00.000Z"
+  },
+  {
+    "id": "hotel_018",
+    "name": "丽江古城客栈",
+    "starLevel": 3,
+    "address": "丽江市古城区七一街兴文巷38号",
+    "city": "丽江",
+    "province": "云南省",
+    "location": { "lat": 26.8721, "lng": 100.2340 },
+    "description": "坐落于丽江古城核心区域，纳西族传统建筑风格，庭院古朴典雅。客栈提供地道的纳西美食和火塘聚会，感受云南少数民族风情。",
+    "images": [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+      "https://images.unsplash.com/photo-1584132915807-fd1f5fbc078f?w=800"
+    ],
+    "facilities": ["WiFi", "花园", "餐厅"],
+    "tags": ["丽江古城", "纳西风情", "庭院"],
+    "openingDate": "2015-04-20",
+    "status": "approved",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_018_1", "name": "标准大床房", "price": 298, "area": 22, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_018_2", "name": "纳西风情套房", "price": 588, "area": 45, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "含早餐", "客厅", "庭院"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.7,
+    "reviewCount": 2134,
+    "createdAt": "2025-01-17T09:00:00.000Z",
+    "updatedAt": "2025-02-12T15:00:00.000Z"
+  },
+  {
+    "id": "hotel_019",
+    "name": "北京中关村宜必思酒店",
+    "starLevel": 2,
+    "address": "北京市海淀区中关村大街18号",
+    "city": "北京",
+    "province": "北京市",
+    "location": { "lat": 39.9842, "lng": 116.3074 },
+    "description": "位于中关村科技园区核心，周边高校林立，科技企业聚集。酒店设计简约现代，是商务出差和学术交流的性价比之选。",
+    "images": [
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
+    ],
+    "facilities": ["WiFi", "餐厅"],
+    "tags": ["中关村", "高校周边", "商务出行"],
+    "openingDate": "2018-09-01",
+    "status": "rejected",
+    "rejectionReason": "酒店装修图片与实际不符，存在虚假宣传嫌疑，请重新上传真实照片后提交审核。",
+    "createdBy": "merchant_bj",
+    "roomTypes": [
+      { "id": "rt_019_1", "name": "标准大床房", "price": 298, "area": 20, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_019_2", "name": "标准双床房", "price": 328, "area": 22, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.0,
+    "reviewCount": 4567,
+    "createdAt": "2025-02-05T14:00:00.000Z",
+    "updatedAt": "2025-02-16T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_020",
+    "name": "西安大雁塔悦椿温泉酒店",
+    "starLevel": 4,
+    "address": "西安市雁塔区曲江新区雁南五路188号",
+    "city": "西安",
+    "province": "陕西省",
+    "location": { "lat": 34.2134, "lng": 108.9643 },
+    "description": "位于西安曲江新区，毗邻大雁塔和大唐芙蓉园。酒店以唐风建筑为特色，拥有天然温泉泡池，体验盛唐皇家温泉文化。",
+    "images": [
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "水疗", "餐厅", "温泉"],
+    "tags": ["近大雁塔", "温泉", "唐风建筑"],
+    "openingDate": "2016-10-18",
+    "status": "offline",
+    "createdBy": "merchant_xa",
+    "roomTypes": [
+      { "id": "rt_020_1", "name": "温泉大床房", "price": 988, "area": 42, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "温泉"], "maxOccupancy": 2 },
+      { "id": "rt_020_2", "name": "唐风套房", "price": 1888, "area": 68, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "温泉", "客厅"], "maxOccupancy": 2 },
+      { "id": "rt_020_3", "name": "私汤别墅", "price": 3888, "area": 120, "bedType": "大床2.2m", "amenities": ["WiFi", "空调", "电视", "含早餐", "私人温泉", "花园"], "maxOccupancy": 4 }
+    ],
+    "rating": 4.8,
+    "reviewCount": 1567,
+    "createdAt": "2025-01-18T10:00:00.000Z",
+    "updatedAt": "2025-02-20T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_021",
+    "name": "深圳福田香格里拉大酒店",
+    "starLevel": 4,
+    "address": "深圳市福田区益田路4088号",
+    "city": "深圳",
+    "province": "广东省",
+    "location": { "lat": 22.5365, "lng": 114.0545 },
+    "description": "位于深圳福田CBD核心，毗邻会展中心，可俯瞰深圳湾美景。酒店提供顶级商务设施和米其林级餐饮体验，是商务精英的首选。",
+    "images": [
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "酒吧"],
+    "tags": ["福田CBD", "近会展中心", "商务出行"],
+    "openingDate": "2013-06-28",
+    "status": "approved",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_021_1", "name": "豪华大床房", "price": 1088, "area": 42, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_021_2", "name": "行政套房", "price": 2188, "area": 72, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "客厅", "行政酒廊"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.7,
+    "reviewCount": 3456,
+    "createdAt": "2025-01-19T09:00:00.000Z",
+    "updatedAt": "2025-02-15T14:00:00.000Z"
+  },
+  {
+    "id": "hotel_022",
+    "name": "杭州西子湖四季酒店",
+    "starLevel": 5,
+    "address": "杭州市西湖区灵隐路5号",
+    "city": "杭州",
+    "province": "浙江省",
+    "location": { "lat": 30.2549, "lng": 120.1342 },
+    "description": "坐落于西湖西北岸，被茶园和竹林环绕，融合江南园林与现代奢华。酒店拥有私人游船码头，可乘船游览西湖美景。",
+    "images": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "花园"],
+    "tags": ["西湖畔", "园林酒店", "私人游船"],
+    "openingDate": "2010-09-28",
+    "status": "approved",
+    "createdBy": "merchant_hz",
+    "roomTypes": [
+      { "id": "rt_022_1", "name": "园景房", "price": 2588, "area": 55, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "花园景观"], "maxOccupancy": 2 },
+      { "id": "rt_022_2", "name": "湖景套房", "price": 4888, "area": 95, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "湖景", "客厅"], "maxOccupancy": 3 },
+      { "id": "rt_022_3", "name": "别墅", "price": 12888, "area": 180, "bedType": "大床2.2m", "amenities": ["WiFi", "空调", "电视", "含早餐", "私人花园", "管家服务"], "maxOccupancy": 4 }
+    ],
+    "rating": 4.9,
+    "reviewCount": 1567,
+    "createdAt": "2025-01-20T08:00:00.000Z",
+    "updatedAt": "2025-02-18T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_023",
+    "name": "成都宽窄巷子民宿",
+    "starLevel": 3,
+    "address": "成都市青羊区宽窄巷子景区内井巷子12号",
+    "city": "成都",
+    "province": "四川省",
+    "location": { "lat": 30.6715, "lng": 104.0412 },
+    "description": "位于成都最具特色的宽窄巷子景区内，川西民居风格建筑，庭院茶座。体验地道成都慢生活，品尝正宗川菜美食。",
+    "images": [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+      "https://images.unsplash.com/photo-1584132915807-fd1f5fbc078f?w=800"
+    ],
+    "facilities": ["WiFi", "花园", "餐厅"],
+    "tags": ["宽窄巷子", "川西民居", "庭院"],
+    "openingDate": "2019-03-15",
+    "status": "pending",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_023_1", "name": "标准大床房", "price": 388, "area": 25, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_023_2", "name": "川西院落套房", "price": 688, "area": 48, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "含早餐", "庭院", "茶座"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.5,
+    "reviewCount": 876,
+    "createdAt": "2025-02-18T10:00:00.000Z",
+    "updatedAt": "2025-02-18T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_024",
+    "name": "上海静安铂尔曼酒店",
+    "starLevel": 4,
+    "address": "上海市静安区南京西路1038号",
+    "city": "上海",
+    "province": "上海市",
+    "location": { "lat": 31.2289, "lng": 121.4452 },
+    "description": "位于上海繁华的南京西路商圈，毗邻静安寺和久光百货。酒店设计时尚前卫，拥有高空无边泳池和全江景餐厅。",
+    "images": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "酒吧"],
+    "tags": ["南京西路", "近静安寺", "无边泳池"],
+    "openingDate": "2017-05-20",
+    "status": "rejected",
+    "rejectionReason": "酒店消防设施检验报告已过期，请更新最新检验报告后重新提交。",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_024_1", "name": "豪华大床房", "price": 988, "area": 38, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_024_2", "name": "行政套房", "price": 1888, "area": 65, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "客厅", "行政酒廊"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.5,
+    "reviewCount": 2134,
+    "createdAt": "2025-02-06T14:00:00.000Z",
+    "updatedAt": "2025-02-19T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_025",
+    "name": "广州北京路7天酒店",
+    "starLevel": 3,
+    "address": "广州市越秀区北京路328号",
+    "city": "广州",
+    "province": "广东省",
+    "location": { "lat": 23.1266, "lng": 113.2644 },
+    "description": "位于广州历史悠久的北京路步行街，周边商业繁华，美食云集。酒店干净整洁，性价比高，是探索广州老城区的理想落脚点。",
+    "images": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
+    ],
+    "facilities": ["WiFi", "洗衣服务"],
+    "tags": ["北京路步行街", "老城区", "美食街"],
+    "openingDate": "2018-11-01",
+    "status": "approved",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_025_1", "name": "经济房", "price": 228, "area": 18, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_025_2", "name": "标准双床房", "price": 268, "area": 22, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.2,
+    "reviewCount": 5678,
+    "createdAt": "2025-01-21T10:00:00.000Z",
+    "updatedAt": "2025-02-10T15:00:00.000Z"
+  },
+  {
+    "id": "hotel_026",
+    "name": "北京国贸汉庭酒店",
+    "starLevel": 3,
+    "address": "北京市朝阳区建国路88号",
+    "city": "北京",
+    "province": "北京市",
+    "location": { "lat": 39.9087, "lng": 116.4598 },
+    "description": "位于北京CBD核心区域，毗邻国贸中心和华贸中心。酒店交通便利，步行可达地铁站，是商务出行的经济实惠之选。",
+    "images": [
+      "https://images.unsplash.com/photo-1584132915807-fd1f5fbc078f?w=800"
+    ],
+    "facilities": ["WiFi", "健身房", "洗衣服务"],
+    "tags": ["国贸CBD", "近地铁", "商务出行"],
+    "openingDate": "2019-08-08",
+    "status": "approved",
+    "createdBy": "merchant_bj",
+    "roomTypes": [
+      { "id": "rt_026_1", "name": "标准大床房", "price": 398, "area": 24, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_026_2", "name": "高级双床房", "price": 428, "area": 28, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.3,
+    "reviewCount": 4567,
+    "createdAt": "2025-01-22T09:00:00.000Z",
+    "updatedAt": "2025-02-12T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_027",
+    "name": "三亚海棠湾艾迪逊酒店",
+    "starLevel": 5,
+    "address": "三亚市海棠区海棠北路100号",
+    "city": "三亚",
+    "province": "海南省",
+    "location": { "lat": 18.3025, "lng": 109.7523 },
+    "description": "位于海棠湾黄金海岸线，由传奇设计师伊恩·施拉格打造。酒店融合现代设计与热带风情，拥有私人沙滩和奢华水疗。",
+    "images": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "私人沙滩", "酒吧", "儿童俱乐部"],
+    "tags": ["海棠湾", "私人沙滩", "设计师酒店", "豪华"],
+    "openingDate": "2016-12-18",
+    "status": "approved",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_027_1", "name": "海景房", "price": 2688, "area": 55, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景"], "maxOccupancy": 2 },
+      { "id": "rt_027_2", "name": "泳池套房", "price": 5888, "area": 100, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "私人泳池", "海景"], "maxOccupancy": 3 },
+      { "id": "rt_027_3", "name": "总统别墅", "price": 28888, "area": 300, "bedType": "大床2.2m", "amenities": ["WiFi", "空调", "电视", "含早餐", "私人泳池", "管家服务"], "maxOccupancy": 6 }
+    ],
+    "rating": 4.9,
+    "reviewCount": 1234,
+    "createdAt": "2025-01-23T08:00:00.000Z",
+    "updatedAt": "2025-02-20T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_028",
+    "name": "西安小寨如家酒店",
+    "starLevel": 2,
+    "address": "西安市雁塔区小寨东路128号",
+    "city": "西安",
+    "province": "陕西省",
+    "location": { "lat": 34.2297, "lng": 108.9593 },
+    "description": "位于西安最繁华的小寨商圈，毗邻陕西历史博物馆和大雁塔。交通便利，周边美食购物一应俱全，是年轻游客的理想选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
+    ],
+    "facilities": ["WiFi", "洗衣服务"],
+    "tags": ["小寨商圈", "近历史博物馆", "经济实惠"],
+    "openingDate": "2017-06-01",
+    "status": "pending",
+    "createdBy": "merchant_xa",
+    "roomTypes": [
+      { "id": "rt_028_1", "name": "标准大床房", "price": 198, "area": 18, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_028_2", "name": "标准双床房", "price": 218, "area": 20, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.1,
+    "reviewCount": 3456,
+    "createdAt": "2025-02-19T14:00:00.000Z",
+    "updatedAt": "2025-02-19T14:00:00.000Z"
+  },
+  {
+    "id": "hotel_029",
+    "name": "重庆观音桥格林豪泰酒店",
+    "starLevel": 2,
+    "address": "重庆市江北区观音桥步行街88号",
+    "city": "重庆",
+    "province": "重庆市",
+    "location": { "lat": 29.5807, "lng": 106.5307 },
+    "description": "位于重庆最热门的观音桥商圈，周边商场林立，美食众多。酒店干净整洁，价格实惠，是游览重庆的经济之选。",
+    "images": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
+    ],
+    "facilities": ["WiFi"],
+    "tags": ["观音桥商圈", "经济实惠"],
+    "openingDate": "2018-03-15",
+    "status": "rejected",
+    "rejectionReason": "营业执照法人信息与提交人不符，请确认酒店经营权归属后重新提交。",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_029_1", "name": "标准房", "price": 188, "area": 18, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_029_2", "name": "商务房", "price": 238, "area": 22, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.0,
+    "reviewCount": 2345,
+    "createdAt": "2025-02-07T15:00:00.000Z",
+    "updatedAt": "2025-02-17T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_030",
+    "name": "厦门曾厝垵海边客栈",
+    "starLevel": 1,
+    "address": "厦门市思明区曾厝垵社520号",
+    "city": "厦门",
+    "province": "福建省",
+    "location": { "lat": 24.4367, "lng": 118.1156 },
+    "description": "位于厦门最具文艺气息的曾厝垵文创村，步行5分钟可达海滩。客栈装修小清新，是年轻人打卡拍照的热门民宿。",
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800"
+    ],
+    "facilities": ["WiFi", "花园"],
+    "tags": ["曾厝垵", "近海滩", "文艺民宿"],
+    "openingDate": "2020-05-01",
+    "status": "offline",
+    "createdBy": "merchant_hz",
+    "roomTypes": [
+      { "id": "rt_030_1", "name": "标准间", "price": 168, "area": 15, "bedType": "大床1.5m", "amenities": ["WiFi", "空调"], "maxOccupancy": 2 },
+      { "id": "rt_030_2", "name": "海景房", "price": 258, "area": 20, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐", "海景"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.4,
+    "reviewCount": 1234,
+    "createdAt": "2025-01-24T10:00:00.000Z",
+    "updatedAt": "2025-02-21T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_031",
+    "name": "南京新街口金鹰酒店",
+    "starLevel": 4,
+    "address": "南京市秦淮区汉中路89号",
+    "city": "南京",
+    "province": "江苏省",
+    "location": { "lat": 32.0456, "lng": 118.7845 },
+    "description": "位于南京新街口核心商圈，毗邻金鹰国际购物中心。酒店设计典雅，拥有高空泳池和日料餐厅，是商务休闲的理想之选。",
+    "images": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室"],
+    "tags": ["新街口商圈", "高空泳池", "商务出行"],
+    "openingDate": "2015-09-28",
+    "status": "approved",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_031_1", "name": "豪华大床房", "price": 788, "area": 38, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_031_2", "name": "行政套房", "price": 1488, "area": 62, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "客厅", "行政酒廊"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.5,
+    "reviewCount": 2345,
+    "createdAt": "2025-01-25T09:00:00.000Z",
+    "updatedAt": "2025-02-22T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_032",
+    "name": "天津海河悦榕庄",
+    "starLevel": 5,
+    "address": "天津市和平区张自忠路158号",
+    "city": "天津",
+    "province": "天津市",
+    "location": { "lat": 39.1189, "lng": 117.2012 },
+    "description": "坐落于海河畔，融合古典与现代设计。酒店拥有顶级水疗和米其林餐厅，是天津奢华酒店的标杆。",
+    "images": [
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "酒吧"],
+    "tags": ["海河畔", "米其林餐厅", "豪华"],
+    "openingDate": "2013-10-18",
+    "status": "approved",
+    "createdBy": "merchant_bj",
+    "roomTypes": [
+      { "id": "rt_032_1", "name": "河景大床房", "price": 1888, "area": 52, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "河景"], "maxOccupancy": 2 },
+      { "id": "rt_032_2", "name": "套房", "price": 3588, "area": 88, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "河景", "客厅"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.8,
+    "reviewCount": 1567,
+    "createdAt": "2025-01-26T08:00:00.000Z",
+    "updatedAt": "2025-02-23T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_033",
+    "name": "苏州同里古镇客栈",
+    "starLevel": 3,
+    "address": "苏州市吴江区同里古镇东溪街88号",
+    "city": "苏州",
+    "province": "江苏省",
+    "location": { "lat": 31.1523, "lng": 120.7234 },
+    "description": "位于江南水乡同里古镇内，临河而建，白墙黑瓦。客栈保留古镇原汁原味的水乡风情，体验江南慢生活。",
+    "images": [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+    ],
+    "facilities": ["WiFi", "花园", "餐厅"],
+    "tags": ["同里古镇", "临河", "江南水乡"],
+    "openingDate": "2016-04-08",
+    "status": "approved",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_033_1", "name": "临河大床房", "price": 388, "area": 25, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐", "河景"], "maxOccupancy": 2 },
+      { "id": "rt_033_2", "name": "水乡套房", "price": 688, "area": 48, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "含早餐", "河景", "庭院"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.6,
+    "reviewCount": 876,
+    "createdAt": "2025-01-27T10:00:00.000Z",
+    "updatedAt": "2025-02-24T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_034",
+    "name": "深圳蛇口海上世界酒店",
+    "starLevel": 3,
+    "address": "深圳市南山区蛇口望海路1128号",
+    "city": "深圳",
+    "province": "广东省",
+    "location": { "lat": 22.4798, "lng": 113.9234 },
+    "description": "位于深圳蛇口海上世界，可欣赏深圳湾海景。酒店设计现代时尚，周边餐饮娱乐设施丰富。",
+    "images": [
+      "https://images.unsplash.com/photo-1584132915807-fd1f5fbc078f?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "健身房", "餐厅"],
+    "tags": ["海上世界", "海景房", "蛇口"],
+    "openingDate": "2018-07-18",
+    "status": "approved",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_034_1", "name": "海景大床房", "price": 568, "area": 32, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景"], "maxOccupancy": 2 },
+      { "id": "rt_034_2", "name": "豪华套房", "price": 888, "area": 55, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景", "客厅"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.4,
+    "reviewCount": 1892,
+    "createdAt": "2025-01-28T09:00:00.000Z",
+    "updatedAt": "2025-02-25T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_035",
+    "name": "昆明大理古城民宿",
+    "starLevel": 2,
+    "address": "大理市古城区人民路456号",
+    "city": "昆明",
+    "province": "云南省",
+    "location": { "lat": 25.6989, "lng": 100.1678 },
+    "description": "位于大理古城内，白族传统建筑风格。民宿拥有美丽庭院，可远眺苍山洱海，感受云南风花雪月。",
+    "images": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
+    ],
+    "facilities": ["WiFi", "花园"],
+    "tags": ["大理古城", "白族建筑", "庭院"],
+    "openingDate": "2019-03-08",
+    "status": "approved",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_035_1", "name": "标准大床房", "price": 258, "area": 20, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_035_2", "name": "庭院房", "price": 358, "area": 28, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐", "庭院"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.3,
+    "reviewCount": 2345,
+    "createdAt": "2025-01-29T08:00:00.000Z",
+    "updatedAt": "2025-02-26T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_036",
+    "name": "北京望京智选假日酒店",
+    "starLevel": 2,
+    "address": "北京市朝阳区望京街9号",
+    "city": "北京",
+    "province": "北京市",
+    "location": { "lat": 39.9987, "lng": 116.4812 },
+    "description": "位于北京望京商务区，周边韩餐美食众多。酒店干净整洁，提供免费早餐，是商务出差的好选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "餐厅"],
+    "tags": ["望京商务区", "韩餐美食", "含早餐"],
+    "openingDate": "2020-01-08",
+    "status": "approved",
+    "createdBy": "merchant_bj",
+    "roomTypes": [
+      { "id": "rt_036_1", "name": "标准大床房", "price": 358, "area": 22, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 },
+      { "id": "rt_036_2", "name": "标准双床房", "price": 388, "area": 24, "bedType": "双床1.2m", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.2,
+    "reviewCount": 3456,
+    "createdAt": "2025-01-30T10:00:00.000Z",
+    "updatedAt": "2025-02-27T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_037",
+    "name": "上海外滩茂悦大酒店",
+    "starLevel": 5,
+    "address": "上海市黄浦区外滩虹口区黄浦路199号",
+    "city": "上海",
+    "province": "上海市",
+    "location": { "lat": 31.2456, "lng": 121.4978 },
+    "description": "位于北外滩，可270度俯瞰浦江两岸美景。酒店拥有高空泳池和多家特色餐厅，是外滩地段的奢华之选。",
+    "images": [
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "会议室", "酒吧"],
+    "tags": ["北外滩", "江景房", "高空泳池", "豪华"],
+    "openingDate": "2009-06-28",
+    "status": "approved",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_037_1", "name": "江景大床房", "price": 1888, "area": 48, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "江景"], "maxOccupancy": 2 },
+      { "id": "rt_037_2", "name": "茂悦套房", "price": 3588, "area": 85, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "江景", "客厅"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.7,
+    "reviewCount": 2891,
+    "createdAt": "2025-01-31T09:00:00.000Z",
+    "updatedAt": "2025-02-28T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_038",
+    "name": "广州珠江边民宿",
+    "starLevel": 1,
+    "address": "广州市海珠区滨江东路588号",
+    "city": "广州",
+    "province": "广东省",
+    "location": { "lat": 23.1123, "lng": 113.3167 },
+    "description": "位于珠江边，可欣赏广州塔夜景。民宿简单干净，价格实惠，适合背包客和预算有限的旅客。",
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800"
+    ],
+    "facilities": ["WiFi"],
+    "tags": ["珠江边", "广州塔夜景", "经济实惠"],
+    "openingDate": "2021-06-08",
+    "status": "approved",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_038_1", "name": "经济房", "price": 128, "area": 12, "bedType": "大床1.35m", "amenities": ["WiFi", "空调"], "maxOccupancy": 2 },
+      { "id": "rt_038_2", "name": "江景房", "price": 188, "area": 18, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "江景"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.0,
+    "reviewCount": 2345,
+    "createdAt": "2025-02-01T08:00:00.000Z",
+    "updatedAt": "2025-03-01T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_039",
+    "name": "成都文殊院附近客栈",
+    "starLevel": 1,
+    "address": "成都市青羊区文殊院街66号",
+    "city": "成都",
+    "province": "四川省",
+    "location": { "lat": 30.6789, "lng": 104.0612 },
+    "description": "位于成都文殊院附近，环境清幽。客栈简约干净，周边素食餐厅众多，适合寻求宁静的旅客。",
+    "images": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
+    ],
+    "facilities": ["WiFi", "花园"],
+    "tags": ["近文殊院", "环境清幽", "素食"],
+    "openingDate": "2020-09-08",
+    "status": "approved",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_039_1", "name": "经济房", "price": 98, "area": 10, "bedType": "大床1.2m", "amenities": ["WiFi", "空调"], "maxOccupancy": 1 },
+      { "id": "rt_039_2", "name": "标准房", "price": 138, "area": 14, "bedType": "大床1.35m", "amenities": ["WiFi", "空调"], "maxOccupancy": 2 }
+    ],
+    "rating": 3.9,
+    "reviewCount": 1567,
+    "createdAt": "2025-02-02T10:00:00.000Z",
+    "updatedAt": "2025-03-02T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_040",
+    "name": "西安华清池附近酒店",
+    "starLevel": 3,
+    "address": "西安市临潼区华清路88号",
+    "city": "西安",
+    "province": "陕西省",
+    "location": { "lat": 34.2389, "lng": 109.2012 },
+    "description": "毗邻华清池景区，以温泉为特色。酒店拥有天然温泉泡池，是游览兵马俑后放松身心的理想选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1584132915807-fd1f5fbc078f?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "水疗", "餐厅", "温泉"],
+    "tags": ["近华清池", "温泉", "近兵马俑"],
+    "openingDate": "2017-11-08",
+    "status": "approved",
+    "createdBy": "merchant_xa",
+    "roomTypes": [
+      { "id": "rt_040_1", "name": "温泉大床房", "price": 488, "area": 32, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "电视", "含早餐", "温泉"], "maxOccupancy": 2 },
+      { "id": "rt_040_2", "name": "温泉套房", "price": 888, "area": 58, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "温泉", "客厅"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.4,
+    "reviewCount": 2134,
+    "createdAt": "2025-02-03T09:00:00.000Z",
+    "updatedAt": "2025-03-03T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_041",
+    "name": "杭州千岛湖度假酒店",
+    "starLevel": 4,
+    "address": "杭州市淳安县千岛湖镇梦姑路88号",
+    "city": "杭州",
+    "province": "浙江省",
+    "location": { "lat": 29.6123, "lng": 119.0345 },
+    "description": "坐落于千岛湖畔，拥有绝佳湖景。酒店配备游艇码头和水上运动中心，是度假休闲的绝佳选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "私人沙滩"],
+    "tags": ["千岛湖", "湖景房", "度假休闲", "水上运动"],
+    "openingDate": "2014-05-18",
+    "status": "approved",
+    "createdBy": "merchant_hz",
+    "roomTypes": [
+      { "id": "rt_041_1", "name": "湖景大床房", "price": 888, "area": 42, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "湖景"], "maxOccupancy": 2 },
+      { "id": "rt_041_2", "name": "湖景套房", "price": 1688, "area": 72, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "湖景", "客厅"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.6,
+    "reviewCount": 1892,
+    "createdAt": "2025-02-04T08:00:00.000Z",
+    "updatedAt": "2025-03-04T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_042",
+    "name": "深圳东门老街经济酒店",
+    "starLevel": 2,
+    "address": "深圳市罗湖区东门中路1088号",
+    "city": "深圳",
+    "province": "广东省",
+    "location": { "lat": 22.5478, "lng": 114.1189 },
+    "description": "位于深圳最繁华的东门步行街，购物美食一应俱全。酒店干净实惠，适合年轻游客和购物达人。",
+    "images": [
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
+    ],
+    "facilities": ["WiFi", "洗衣服务"],
+    "tags": ["东门步行街", "购物天堂", "经济实惠"],
+    "openingDate": "2019-04-08",
+    "status": "approved",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_042_1", "name": "标准房", "price": 238, "area": 18, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_042_2", "name": "家庭房", "price": 328, "area": 26, "bedType": "大床1.5m+单人床", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.1,
+    "reviewCount": 4567,
+    "createdAt": "2025-02-09T10:00:00.000Z",
+    "updatedAt": "2025-03-05T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_043",
+    "name": "重庆磁器口古镇客栈",
+    "starLevel": 3,
+    "address": "重庆市沙坪坝区磁器口古镇金蓉正街88号",
+    "city": "重庆",
+    "province": "重庆市",
+    "location": { "lat": 29.5789, "lng": 106.4512 },
+    "description": "位于重庆著名景点磁器口古镇内，巴渝传统建筑风格。客栈临江而建，可品尝正宗重庆小吃。",
+    "images": [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+    ],
+    "facilities": ["WiFi", "花园", "餐厅"],
+    "tags": ["磁器口古镇", "临江", "巴渝风情"],
+    "openingDate": "2018-08-08",
+    "status": "approved",
+    "createdBy": "merchant_cd",
+    "roomTypes": [
+      { "id": "rt_043_1", "name": "江景大床房", "price": 358, "area": 25, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐", "江景"], "maxOccupancy": 2 },
+      { "id": "rt_043_2", "name": "古镇套房", "price": 558, "area": 45, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "含早餐", "江景", "庭院"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.5,
+    "reviewCount": 1567,
+    "createdAt": "2025-02-16T09:00:00.000Z",
+    "updatedAt": "2025-03-06T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_044",
+    "name": "南京中山陵附近民宿",
+    "starLevel": 2,
+    "address": "南京市玄武区中山门大街299号",
+    "city": "南京",
+    "province": "江苏省",
+    "location": { "lat": 32.0567, "lng": 118.8234 },
+    "description": "位于中山陵景区附近，环境清幽，空气清新。民宿温馨舒适，是游览南京名胜的理想住处。",
+    "images": [
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "花园"],
+    "tags": ["近中山陵", "环境清幽", "近景区"],
+    "openingDate": "2020-03-18",
+    "status": "approved",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_044_1", "name": "标准房", "price": 228, "area": 20, "bedType": "大床1.5m", "amenities": ["WiFi", "空调", "电视"], "maxOccupancy": 2 },
+      { "id": "rt_044_2", "name": "家庭房", "price": 328, "area": 28, "bedType": "大床1.5m+单人床", "amenities": ["WiFi", "空调", "电视", "含早餐"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.3,
+    "reviewCount": 1234,
+    "createdAt": "2025-02-17T08:00:00.000Z",
+    "updatedAt": "2025-03-07T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_045",
+    "name": "北京后海四合院酒店",
+    "starLevel": 4,
+    "address": "北京市西城区什刹海后海北沿18号",
+    "city": "北京",
+    "province": "北京市",
+    "location": { "lat": 39.9456, "lng": 116.3823 },
+    "description": "位于北京后海历史文化区，传统四合院建筑。酒店保留老北京风情，是体验胡同文化的绝佳选择。",
+    "images": [
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "水疗", "餐厅", "花园"],
+    "tags": ["后海", "四合院", "胡同文化", "老北京"],
+    "openingDate": "2012-09-08",
+    "status": "rejected",
+    "rejectionReason": "酒店卫生许可证已过期，请更新后重新提交审核。",
+    "createdBy": "merchant_bj",
+    "roomTypes": [
+      { "id": "rt_045_1", "name": "四合院客房", "price": 1288, "area": 45, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "庭院"], "maxOccupancy": 2 },
+      { "id": "rt_045_2", "name": "厢房套房", "price": 2188, "area": 72, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "客厅", "庭院"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.7,
+    "reviewCount": 876,
+    "createdAt": "2025-02-13T14:00:00.000Z",
+    "updatedAt": "2025-02-23T09:00:00.000Z"
+  },
+  {
+    "id": "hotel_046",
+    "name": "上海田子坊附近民宿",
+    "starLevel": 2,
+    "address": "上海市黄浦区泰康路288号",
+    "city": "上海",
+    "province": "上海市",
+    "location": { "lat": 31.2189, "lng": 121.4678 },
+    "description": "位于上海文艺地标田子坊附近，周边画廊咖啡店林立。民宿设计小资情调，适合文艺青年。",
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800"
+    ],
+    "facilities": ["WiFi"],
+    "tags": ["田子坊", "文艺", "咖啡店"],
+    "openingDate": "2021-02-08",
+    "status": "offline",
+    "createdBy": "merchant_sh",
+    "roomTypes": [
+      { "id": "rt_046_1", "name": "标准房", "price": 268, "area": 18, "bedType": "大床1.5m", "amenities": ["WiFi", "空调"], "maxOccupancy": 2 },
+      { "id": "rt_046_2", "name": "复式房", "price": 388, "area": 28, "bedType": "大床1.8m", "amenities": ["WiFi", "空调", "含早餐"], "maxOccupancy": 2 }
+    ],
+    "rating": 4.2,
+    "reviewCount": 987,
+    "createdAt": "2025-01-12T10:00:00.000Z",
+    "updatedAt": "2025-02-14T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_047",
+    "name": "三亚亚龙湾博彩度假村",
+    "starLevel": 5,
+    "address": "三亚市吉阳区亚龙湾国家旅游度假区博彩路1号",
+    "city": "三亚",
+    "province": "海南省",
+    "location": { "lat": 18.1876, "lng": 109.6512 },
+    "description": "位于亚龙湾核心位置，拥有私人海滩和高尔夫球场。酒店配备世界级水疗和多家米其林餐厅，是顶级度假胜地。",
+    "images": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "水疗", "餐厅", "私人沙滩", "酒吧", "高尔夫"],
+    "tags": ["亚龙湾", "私人沙滩", "高尔夫", "豪华"],
+    "openingDate": "2011-12-18",
+    "status": "offline",
+    "createdBy": "merchant_gz",
+    "roomTypes": [
+      { "id": "rt_047_1", "name": "海景房", "price": 2888, "area": 58, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景", "阳台"], "maxOccupancy": 2 },
+      { "id": "rt_047_2", "name": "泳池别墅", "price": 8888, "area": 150, "bedType": "大床2.2m", "amenities": ["WiFi", "空调", "电视", "含早餐", "私人泳池", "管家服务"], "maxOccupancy": 4 }
+    ],
+    "rating": 4.8,
+    "reviewCount": 2345,
+    "createdAt": "2025-01-08T08:00:00.000Z",
+    "updatedAt": "2025-02-10T10:00:00.000Z"
+  },
+  {
+    "id": "hotel_048",
+    "name": "厦门环岛路海边酒店",
+    "starLevel": 4,
+    "address": "厦门市思明区环岛南路668号",
+    "city": "厦门",
+    "province": "福建省",
+    "location": { "lat": 24.4456, "lng": 118.1234 },
+    "description": "位于厦门最美环岛路边，步行即达海滩。酒店设计现代简约，拥有无敌海景，是休闲度假的理想之选。",
+    "images": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
+    ],
+    "facilities": ["WiFi", "停车场", "游泳池", "健身房", "餐厅", "私人沙滩"],
+    "tags": ["环岛路", "海景房", "近海滩"],
+    "openingDate": "2016-08-08",
+    "status": "offline",
+    "createdBy": "merchant_hz",
+    "roomTypes": [
+      { "id": "rt_048_1", "name": "海景大床房", "price": 688, "area": 38, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景"], "maxOccupancy": 2 },
+      { "id": "rt_048_2", "name": "海景套房", "price": 1288, "area": 65, "bedType": "大床2.0m", "amenities": ["WiFi", "空调", "电视", "含早餐", "海景", "客厅"], "maxOccupancy": 3 }
+    ],
+    "rating": 4.5,
+    "reviewCount": 1892,
+    "createdAt": "2025-01-06T09:00:00.000Z",
+    "updatedAt": "2025-02-08T11:00:00.000Z"
   }
 ]
