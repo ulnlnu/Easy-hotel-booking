@@ -35,6 +35,12 @@ lerna-debug.log*
 # Taro
 .taro/
 
+# SWC 编译缓存
+.swc/
+
+# Windows 空设备文件
+nul
+
 # 小程序
 mini-project/
 
