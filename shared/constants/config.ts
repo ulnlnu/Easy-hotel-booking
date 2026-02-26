@@ -3,14 +3,16 @@
  * 通用配置（前后端共用）
  */
 
+// 声明浏览器环境全局变量（避免 TypeScript 在 Node.js 环境报错）
+declare const window: { location?: { hostname: string }; __API_BASE_URL__?: string } | undefined;
+
 /**
  * API配置
  * 注意：小程序无法访问 localhost，需要使用局域网 IP
  */
 const getBaseUrl = () => {
   // 浏览器环境：运行时检测 hostname
-  if (typeof window !== 'undefined') {
-    // @ts-ignore
+  if (typeof window !== 'undefined' && window.location) {
     const envUrl = window.__API_BASE_URL__;
     if (envUrl) return envUrl;
 
