@@ -31,8 +31,9 @@ const mockUsers = [
 
 // Mock酒店数据
 import type { Hotel, HotelQueryParams } from '@shared/types/hotel';
-import type { LoginRequest, RegisterRequest, SafeUser } from '@shared/types/user';
+import type { LoginRequest, SafeUser } from '@shared/types/user';
 import { HotelStatus } from '@shared/types/hotel';
+import { RoomStatus } from '@shared/types/room';
 
 const mockHotels: Hotel[] = [
   {
@@ -57,7 +58,7 @@ const mockHotels: Hotel[] = [
         bedType: '大床1.8m',
         maxGuests: 2,
         stock: 10,
-        status: 'available' as const,
+        status: RoomStatus.AVAILABLE,
         amenities: ['WiFi', '空调'],
       },
     ],
@@ -87,7 +88,7 @@ const mockHotels: Hotel[] = [
         bedType: '大床2.0m',
         maxGuests: 2,
         stock: 8,
-        status: 'available' as const,
+        status: RoomStatus.AVAILABLE,
         amenities: ['WiFi', '空调', '冰箱'],
       },
     ],
@@ -222,7 +223,7 @@ export const updateHotelApi = async (id: string, data: any) => {
 /**
  * 审核酒店
  */
-export const auditHotelApi = async (id: string, action: 'approve' | 'reject', reason?: string) => {
+export const auditHotelApi = async (id: string, action: 'approve' | 'reject', _reason?: string) => {
   await delay(300);
 
   const hotel = mockHotels.find(h => h.id === id);

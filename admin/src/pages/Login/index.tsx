@@ -14,7 +14,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/useAuthStore';
 import { loginApi, registerApi } from '@/services/api';
-import type { LoginRequest } from '@shared/types/user';
+import type { LoginRequest, LoginResponse } from '@shared/types/user';
+import type { ApiResponse } from '@shared/types';
 import type { UserRole } from '@shared/types/user';
 import './index.scss';
 
@@ -42,13 +43,13 @@ function Login() {
   const handleLogin = async (values: LoginRequest) => {
     setLoading(true);
     try {
-      const response = await loginApi(values);
+      const response = await loginApi(values) as ApiResponse<LoginResponse['data']>;
       if (response.success) {
         setAuth(response.data.user, response.data.token);
         message.success('登录成功');
         navigate('/hotels/edit');
       } else {
-        message.error(response.message);
+        message.error(response.message || '登录失败');
       }
     } catch (error: any) {
       message.error(error.message || '登录失败');

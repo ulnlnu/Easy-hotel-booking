@@ -16,7 +16,6 @@ import './index.scss';
 function AuditList() {
   const { user } = useAuthStore(); // ✅ 获取当前登录用户
   const [loading, setLoading] = useState(false);
-  const [hotels, setHotels] = useState<Hotel[]>([]);
   const [allHotels, setAllHotels] = useState<Hotel[]>([]);
   const [activeTab, setActiveTab] = useState('pending');
 
@@ -36,13 +35,6 @@ function AuditList() {
   const fetchHotels = async () => {
     setLoading(true);
     try {
-      const statusMap: Record<string, HotelStatus> = {
-        pending: HotelStatus.PENDING,
-        approved: HotelStatus.APPROVED,
-        rejected: HotelStatus.REJECTED,
-        offline: HotelStatus.OFFLINE,
-      };
-
       const params: any = {
         page: 1,
         pageSize: 100,
@@ -59,10 +51,6 @@ function AuditList() {
       if (response.success) {
         // 保存完整列表用于统计各状态数量
         setAllHotels(response.data);
-
-        // 根据当前标签页筛选展示数据
-        const filtered = response.data.filter(h => h.status === statusMap[activeTab]);
-        setHotels(filtered);
       }
     } catch (error: any) {
       message.error(error.message || '获取数据失败');

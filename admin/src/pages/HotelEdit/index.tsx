@@ -85,9 +85,9 @@ function HotelEdit() {
       // [数据转换] 将表单字符串格式转换为 API 需要的格式
       const formattedValues = {
         ...values,
-        tags: typeof values.tags === 'string' ? values.tags.split(',').map(t => t.trim()).filter(Boolean) : values.tags || [],
-        images: typeof values.images === 'string' ? values.images.split('\n').map(i => i.trim()).filter(Boolean) : values.images || [],
-        facilities: typeof values.facilities === 'string' ? values.facilities.split(',').map(f => f.trim()).filter(Boolean) : values.facilities || [],
+        tags: typeof values.tags === 'string' ? values.tags.split(',').map((t: string) => t.trim()).filter(Boolean) : values.tags || [],
+        images: typeof values.images === 'string' ? values.images.split('\n').map((i: string) => i.trim()).filter(Boolean) : values.images || [],
+        facilities: typeof values.facilities === 'string' ? values.facilities.split(',').map((f: string) => f.trim()).filter(Boolean) : values.facilities || [],
         location: {
           lat: Number(values.locationLat),
           lng: Number(values.locationLng),

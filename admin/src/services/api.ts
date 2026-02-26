@@ -10,7 +10,6 @@ import axios from 'axios';
 import type {
   LoginRequest,
   LoginResponse,
-  ApiResponse,
   ApiSuccess,
   HotelQueryParams,
   CreateHotelRequest,

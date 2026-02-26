@@ -22,7 +22,7 @@ import type { ColumnsType } from 'antd/es/table';
 import { useAuthStore } from '@/store/useAuthStore';
 import { getAllUsersApi, updateUserApi, deleteUserApi } from '@/services/api';
 import { registerApi } from '@/services/api';
-import type { SafeUser, UserRole } from '@shared/types/user';
+import type { SafeUser } from '@shared/types/user';
 import type { RegisterRequest } from '@shared/types/user';
 import './index.scss';
 

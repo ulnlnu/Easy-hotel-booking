@@ -69,7 +69,7 @@ const getMenuItems = (role: UserRole | null) => {
   return [...commonItems, ...adminItems, ...profileItems];
 };
 
-function Layout() {
+function Layout({ children }: { children?: React.ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, logout } = useAuthStore();
@@ -125,7 +125,7 @@ function Layout() {
         </Header>
         <Content className="content">
           <PageTransition pathname={location.pathname}>
-            <Outlet />
+            {children || <Outlet />}
           </PageTransition>
         </Content>
       </AntLayout>

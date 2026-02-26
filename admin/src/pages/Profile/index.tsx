@@ -5,11 +5,10 @@
 
 import { useState, useEffect } from 'react';
 import { Card, Descriptions, Button, Space, message, Modal, Form, Input, Popconfirm } from 'antd';
-import { UserOutlined, EditOutlined, LockOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { EditOutlined, LockOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/useAuthStore';
-import { getUserInfoApi, updateProfileApi, deleteAccountApi } from '@/services/api';
-import type { SafeUser } from '@shared/types/user';
+import { updateProfileApi, deleteAccountApi } from '@/services/api';
 import './index.scss';
 
 function Profile() {

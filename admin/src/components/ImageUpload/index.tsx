@@ -6,7 +6,6 @@
 import { useState } from 'react';
 import { Input, Button, Space, message } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
-import { parseImageUrls, toImageUrlsString } from '@/utils';
 import './index.scss';
 
 interface ImageUploadProps {
