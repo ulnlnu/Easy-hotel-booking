@@ -85,7 +85,7 @@
     "rating": 4.8,
     "reviewCount": 2356,
     "createdAt": "2025-01-05T08:00:00.000Z",
-    "updatedAt": "2025-01-15T10:30:00.000Z"
+    "updatedAt": "2026-02-26T01:48:51.192Z"
   },
   {
     "id": "hotel_002",
@@ -628,8 +628,8 @@
   },
   {
     "id": "hotel_009",
-    "name": "西安钟楼七天连锁酒店",
-    "starLevel": 2,
+    "name": "西安钟楼七天连锁酒店test",
+    "starLevel": 1,
     "address": "西安市莲湖区西大街126号",
     "city": "西安",
     "province": "陕西省",
@@ -651,39 +651,39 @@
     ],
     "openingDate": "2018-07-01",
     "status": "rejected",
-    "rejectionReason": "酒店资质证件不全，消防验收未通过，请补充相关材料后重新提交审核。",
     "createdBy": "merchant_xa",
     "roomTypes": [
       {
-        "id": "rt_009_1",
         "name": "经济房",
-        "price": 158,
         "area": 15,
+        "price": 158,
         "bedType": "大床1.35m",
+        "maxOccupancy": 2,
         "amenities": [
           "WiFi",
           "空调"
         ],
-        "maxOccupancy": 2
+        "id": "rt_009_1"
       },
       {
-        "id": "rt_009_2",
         "name": "标准房",
-        "price": 188,
         "area": 18,
+        "price": 188,
         "bedType": "双床1.0m",
+        "maxOccupancy": 2,
         "amenities": [
           "WiFi",
           "空调",
           "电视"
         ],
-        "maxOccupancy": 2
+        "id": "rt_009_2"
       }
     ],
     "rating": 3.9,
     "reviewCount": 2345,
     "createdAt": "2025-02-08T15:00:00.000Z",
-    "updatedAt": "2025-02-14T09:00:00.000Z"
+    "updatedAt": "2026-02-26T01:48:29.615Z",
+    "rejectionReason": "信息不全"
   },
   {
     "id": "hotel_010",
@@ -879,7 +879,7 @@
     "rating": 4.6,
     "reviewCount": 1234,
     "createdAt": "2025-01-12T09:00:00.000Z",
-    "updatedAt": "2025-02-01T11:00:00.000Z"
+    "updatedAt": "2026-02-26T01:33:04.781Z"
   },
   {
     "id": "hotel_013",
@@ -3299,7 +3299,7 @@
   },
   {
     "id": "hotel_049",
-    "name": "深圳华侨城洲际酒店",
+    "name": "深圳华侨城洲际酒店test",
     "starLevel": 5,
     "address": "深圳市南山区华侨城侨城路1号",
     "city": "深圳",
@@ -3334,11 +3334,11 @@
     "createdBy": "hotel_admin_test",
     "roomTypes": [
       {
-        "id": "rt_049_1",
         "name": "豪华大床房",
-        "price": 1088,
         "area": 42,
+        "price": 1088,
         "bedType": "大床2.0m",
+        "maxOccupancy": 2,
         "amenities": [
           "WiFi",
           "空调",
@@ -3346,14 +3346,14 @@
           "迷你吧",
           "含早餐"
         ],
-        "maxOccupancy": 2
+        "id": "rt_049_1"
       },
       {
-        "id": "rt_049_2",
         "name": "行政双床房",
-        "price": 1188,
         "area": 45,
+        "price": 1188,
         "bedType": "双床1.3m",
+        "maxOccupancy": 2,
         "amenities": [
           "WiFi",
           "空调",
@@ -3361,14 +3361,14 @@
           "迷你吧",
           "含早餐"
         ],
-        "maxOccupancy": 2
+        "id": "rt_049_2"
       },
       {
-        "id": "rt_049_3",
         "name": "洲际套房",
-        "price": 2888,
         "area": 85,
+        "price": 2888,
         "bedType": "大床2.2m",
+        "maxOccupancy": 3,
         "amenities": [
           "WiFi",
           "空调",
@@ -3378,13 +3378,13 @@
           "客厅",
           "行政酒廊"
         ],
-        "maxOccupancy": 3
+        "id": "rt_049_3"
       }
     ],
     "rating": 4.7,
     "reviewCount": 1856,
     "createdAt": "2025-02-26T08:00:00.000Z",
-    "updatedAt": "2025-02-26T08:00:00.000Z"
+    "updatedAt": "2026-02-26T01:37:58.691Z"
   },
   {
     "id": "hotel_050",
@@ -3748,5 +3748,174 @@
     "reviewCount": 1456,
     "createdAt": "2025-02-26T08:40:00.000Z",
     "updatedAt": "2025-02-26T08:40:00.000Z"
+  },
+  {
+    "id": "1772069631684-yauzowrzh",
+    "name": "1",
+    "address": "1",
+    "province": "1",
+    "city": "1",
+    "tags": [
+      "1"
+    ],
+    "images": [
+      "1"
+    ],
+    "facilities": [
+      "1"
+    ],
+    "openingDate": "2026-02-07",
+    "starLevel": 5,
+    "roomTypes": [
+      {
+        "name": "标准间",
+        "area": 25,
+        "price": 200,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调"
+        ],
+        "id": "1772069631684-q263iv3nm"
+      }
+    ],
+    "location": {
+      "lat": 1,
+      "lng": 1
+    },
+    "rating": 0,
+    "reviewCount": 0,
+    "status": "rejected",
+    "createdBy": "user-admin001",
+    "createdAt": "2026-02-26T01:33:51.684Z",
+    "updatedAt": "2026-02-26T01:34:16.942Z",
+    "rejectionReason": "信息错误"
+  },
+  {
+    "id": "1772069681952-wgrvd56u2",
+    "name": "2",
+    "address": "2",
+    "province": "2",
+    "city": "2",
+    "tags": [
+      "2"
+    ],
+    "images": [
+      "2"
+    ],
+    "facilities": [
+      "2"
+    ],
+    "starLevel": 4,
+    "roomTypes": [
+      {
+        "name": "标准间",
+        "area": 25,
+        "price": 200,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调"
+        ],
+        "id": "1772069681952-uy4419nb4"
+      }
+    ],
+    "location": {
+      "lat": 2,
+      "lng": 2
+    },
+    "rating": 0,
+    "reviewCount": 0,
+    "status": "approved",
+    "createdBy": "user-admin001",
+    "createdAt": "2026-02-26T01:34:41.952Z",
+    "updatedAt": "2026-02-26T01:34:49.637Z"
+  },
+  {
+    "id": "1772070135031-11v2ugwtw",
+    "name": "test",
+    "address": "test",
+    "province": "1",
+    "city": "2",
+    "tags": [
+      "1"
+    ],
+    "images": [
+      "1"
+    ],
+    "facilities": [
+      "1"
+    ],
+    "openingDate": "2026-02-27",
+    "starLevel": 5,
+    "roomTypes": [
+      {
+        "name": "标准间",
+        "area": 25,
+        "price": 200,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调"
+        ],
+        "id": "1772070135031-d6cck7o70"
+      }
+    ],
+    "location": {
+      "lat": 1,
+      "lng": 2
+    },
+    "rating": 0,
+    "reviewCount": 0,
+    "status": "rejected",
+    "createdBy": "user-admin001",
+    "createdAt": "2026-02-26T01:42:15.031Z",
+    "updatedAt": "2026-02-26T01:42:34.741Z",
+    "rejectionReason": "信息错误"
+  },
+  {
+    "id": "1772070562114-du62w9vsi",
+    "name": "1",
+    "address": "1",
+    "province": "1",
+    "city": "1",
+    "tags": [
+      "1"
+    ],
+    "images": [
+      "1"
+    ],
+    "facilities": [
+      "1"
+    ],
+    "openingDate": "2026-02-02",
+    "starLevel": 5,
+    "roomTypes": [
+      {
+        "name": "标准间",
+        "area": 25,
+        "price": 200,
+        "bedType": "大床 1.8m",
+        "maxOccupancy": 2,
+        "amenities": [
+          "WiFi",
+          "空调"
+        ],
+        "id": "1772070562114-uiacepux3"
+      }
+    ],
+    "location": {
+      "lat": 1,
+      "lng": 1
+    },
+    "rating": 0,
+    "reviewCount": 0,
+    "status": "approved",
+    "createdBy": "user-admin001",
+    "createdAt": "2026-02-26T01:49:22.114Z",
+    "updatedAt": "2026-02-26T01:49:35.643Z"
   }
 ]

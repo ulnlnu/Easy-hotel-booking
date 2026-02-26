@@ -44,7 +44,7 @@ export const hotelController = {
       }
 
       // ✅ 处理 includeAll 参数（将字符串转换为布尔值）
-      const includeAll = req.query.includeAll === 'true' || req.query.includeAll === true;
+      const includeAll = req.query.includeAll === 'true';
 
       const query: HotelQueryParams = {
         keyword: req.query.keyword as string,

@@ -7,6 +7,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { hashPassword } from '../utils/password';
 import type { User, RegisterRequest } from '../../../shared/types/user';
+import { UserRole } from '../../../shared/types/user';
 
 const DATA_DIR = path.join(process.cwd(), 'src/data');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
@@ -54,7 +55,7 @@ async function initializeDefaultAdmin(): Promise<User[]> {
     username: 'admin',
     password: hashedPassword,
     realName: '系统管理员',
-    role: 'admin',
+    role: UserRole.ADMIN,
     phone: '13800138000',
     email: 'admin@example.com',
     createdAt: new Date().toISOString(),
