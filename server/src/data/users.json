@@ -75,5 +75,16 @@
     "phone": "13800138006",
     "createdAt": "2025-01-01T00:00:00.000Z",
     "updatedAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "hotel_admin_test",
+    "username": "hoteladmin",
+    "password": "$2b$10$rLmqiUzhOfJFmlHaFGnGoeaSQuynqCQsK6y4PDsgrNxJ29RwqUTHS",
+    "realName": "酒店测试管理员",
+    "role": "hotel_admin",
+    "email": "hoteladmin@yisu.com",
+    "phone": "13800138999",
+    "createdAt": "2025-02-26T00:00:00.000Z",
+    "updatedAt": "2025-02-26T00:00:00.000Z"
   }
 ]

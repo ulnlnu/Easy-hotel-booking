@@ -22,7 +22,7 @@ const mockUsers = [
   {
     id: 'hotel-admin-001',
     username: 'hoteladmin',
-    password: 'password123',
+    password: 'hoteladmin123',
     realName: '酒店管理员',
     role: 'hotel_admin' as const,
     email: 'hotel@yisu.com',

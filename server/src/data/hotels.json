@@ -3296,5 +3296,457 @@
     "reviewCount": 1892,
     "createdAt": "2025-01-06T09:00:00.000Z",
     "updatedAt": "2025-02-08T11:00:00.000Z"
+  },
+  {
+    "id": "hotel_049",
+    "name": "深圳华侨城洲际酒店",
+    "starLevel": 5,
+    "address": "深圳市南山区华侨城侨城路1号",
+    "city": "深圳",
+    "province": "广东省",
+    "location": {
+      "lat": 22.5333,
+      "lng": 113.9833
+    },
+    "description": "坐落于深圳华侨城主题公园群内，毗邻世界之窗、欢乐谷，交通便利。酒店拥有豪华客房及套房，配备室外泳池、网球场、健身中心等设施，是商务出行与休闲度假的理想之选。",
+    "images": [
+      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800"
+    ],
+    "facilities": [
+      "WiFi",
+      "停车场",
+      "游泳池",
+      "健身房",
+      "网球场",
+      "餐厅",
+      "会议室",
+      "儿童乐园"
+    ],
+    "tags": [
+      "近主题公园",
+      "商务出行",
+      "豪华",
+      "亲子"
+    ],
+    "openingDate": "2012-09-28",
+    "status": "approved",
+    "createdBy": "hotel_admin_test",
+    "roomTypes": [
+      {
+        "id": "rt_049_1",
+        "name": "豪华大床房",
+        "price": 1088,
+        "area": 42,
+        "bedType": "大床2.0m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_049_2",
+        "name": "行政双床房",
+        "price": 1188,
+        "area": 45,
+        "bedType": "双床1.3m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_049_3",
+        "name": "洲际套房",
+        "price": 2888,
+        "area": 85,
+        "bedType": "大床2.2m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "客厅",
+          "行政酒廊"
+        ],
+        "maxOccupancy": 3
+      }
+    ],
+    "rating": 4.7,
+    "reviewCount": 1856,
+    "createdAt": "2025-02-26T08:00:00.000Z",
+    "updatedAt": "2025-02-26T08:00:00.000Z"
+  },
+  {
+    "id": "hotel_050",
+    "name": "南京金陵饭店",
+    "starLevel": 5,
+    "address": "南京市鼓楼区汉中路2号",
+    "city": "南京",
+    "province": "江苏省",
+    "location": {
+      "lat": 32.0603,
+      "lng": 118.7969
+    },
+    "description": "南京地标性酒店，位于新街口商业中心，交通便利。酒店融合中西文化精髓，拥有典雅客房及套房，配备室内恒温泳池、SPA、多个特色餐厅等设施。",
+    "images": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800"
+    ],
+    "facilities": [
+      "WiFi",
+      "停车场",
+      "游泳池",
+      "健身房",
+      "SPA",
+      "餐厅",
+      "会议室",
+      "商务中心"
+    ],
+    "tags": [
+      "市中心",
+      "地标酒店",
+      "近地铁",
+      "商务"
+    ],
+    "openingDate": "2008-05-18",
+    "status": "approved",
+    "createdBy": "hotel_admin_test",
+    "roomTypes": [
+      {
+        "id": "rt_050_1",
+        "name": "标准大床房",
+        "price": 688,
+        "area": 35,
+        "bedType": "大床1.8m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "含早餐"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_050_2",
+        "name": "商务双床房",
+        "price": 788,
+        "area": 38,
+        "bedType": "双床1.2m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "含早餐",
+          "办公桌"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_050_3",
+        "name": "金陵套房",
+        "price": 2188,
+        "area": 72,
+        "bedType": "大床2.0m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "客厅",
+          "会议室"
+        ],
+        "maxOccupancy": 3
+      }
+    ],
+    "rating": 4.6,
+    "reviewCount": 2134,
+    "createdAt": "2025-02-26T08:10:00.000Z",
+    "updatedAt": "2025-02-26T08:10:00.000Z"
+  },
+  {
+    "id": "hotel_051",
+    "name": "武汉光谷希尔顿酒店",
+    "starLevel": 5,
+    "address": "武汉市洪山区光谷大道77号",
+    "city": "武汉",
+    "province": "湖北省",
+    "location": {
+      "lat": 30.4658,
+      "lng": 114.4107
+    },
+    "description": "位于武汉东湖高新区核心地带，毗邻光谷步行街、华中科技大学。酒店设计现代时尚，拥有宽敞客房及套房，配备无边际泳池、健身中心、特色餐厅等设施。",
+    "images": [
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800"
+    ],
+    "facilities": [
+      "WiFi",
+      "停车场",
+      "游泳池",
+      "健身房",
+      "餐厅",
+      "会议室",
+      "商务中心",
+      "洗衣服务"
+    ],
+    "tags": [
+      "光谷核心",
+      "商务出行",
+      "近高校",
+      "现代"
+    ],
+    "openingDate": "2018-03-16",
+    "status": "approved",
+    "createdBy": "hotel_admin_test",
+    "roomTypes": [
+      {
+        "id": "rt_051_1",
+        "name": "豪华大床房",
+        "price": 758,
+        "area": 40,
+        "bedType": "大床2.0m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_051_2",
+        "name": "豪华双床房",
+        "price": 798,
+        "area": 42,
+        "bedType": "双床1.3m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_051_3",
+        "name": "行政套房",
+        "price": 1888,
+        "area": 68,
+        "bedType": "大床2.0m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "客厅",
+          "行政酒廊"
+        ],
+        "maxOccupancy": 3
+      }
+    ],
+    "rating": 4.5,
+    "reviewCount": 1567,
+    "createdAt": "2025-02-26T08:20:00.000Z",
+    "updatedAt": "2025-02-26T08:20:00.000Z"
+  },
+  {
+    "id": "hotel_052",
+    "name": "青岛海尔洲际酒店",
+    "starLevel": 5,
+    "address": "青岛市市南区澳门路98号",
+    "city": "青岛",
+    "province": "山东省",
+    "location": {
+      "lat": 36.0587,
+      "lng": 120.3826
+    },
+    "description": "坐落于青岛奥帆中心核心区域，拥有绝佳海景视野，步行可达五四广场、海信广场。酒店融合海洋元素设计，配备室内外泳池、海景餐厅、SPA等高端设施。",
+    "images": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800"
+    ],
+    "facilities": [
+      "WiFi",
+      "停车场",
+      "游泳池",
+      "健身房",
+      "SPA",
+      "餐厅",
+      "会议室",
+      "海景"
+    ],
+    "tags": [
+      "奥帆中心",
+      "海景房",
+      "近五四广场",
+      "度假"
+    ],
+    "openingDate": "2014-07-08",
+    "status": "approved",
+    "createdBy": "hotel_admin_test",
+    "roomTypes": [
+      {
+        "id": "rt_052_1",
+        "name": "海景大床房",
+        "price": 1188,
+        "area": 45,
+        "bedType": "大床2.0m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "海景"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_052_2",
+        "name": "海景双床房",
+        "price": 1288,
+        "area": 48,
+        "bedType": "双床1.3m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "海景"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_052_3",
+        "name": "洲际海景套房",
+        "price": 3288,
+        "area": 95,
+        "bedType": "大床2.2m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "客厅",
+          "海景",
+          "行政酒廊"
+        ],
+        "maxOccupancy": 3
+      }
+    ],
+    "rating": 4.8,
+    "reviewCount": 1923,
+    "createdAt": "2025-02-26T08:30:00.000Z",
+    "updatedAt": "2025-02-26T08:30:00.000Z"
+  },
+  {
+    "id": "hotel_053",
+    "name": "天津瑞吉金融街酒店",
+    "starLevel": 5,
+    "address": "天津市和平区张自忠路158号",
+    "city": "天津",
+    "province": "天津市",
+    "location": {
+      "lat": 39.1234,
+      "lng": 117.2015
+    },
+    "description": "天津地标性超五星级酒店，坐落于海河沿岸，拥有壮丽河景与城市天际线。酒店设计奢华典雅，配备米其林餐厅、高空无边际泳池、顶级SPA等世界级设施。",
+    "images": [
+      "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800",
+      "https://images.unsplash.com/photo-1555393670-9bc39c76c627?w=800"
+    ],
+    "facilities": [
+      "WiFi",
+      "停车场",
+      "游泳池",
+      "健身房",
+      "SPA",
+      "米其林餐厅",
+      "会议室",
+      "河景"
+    ],
+    "tags": [
+      "海河沿岸",
+      "地标酒店",
+      "奢华",
+      "米其林"
+    ],
+    "openingDate": "2011-10-01",
+    "status": "approved",
+    "createdBy": "hotel_admin_test",
+    "roomTypes": [
+      {
+        "id": "rt_053_1",
+        "name": "豪华大床房",
+        "price": 1588,
+        "area": 48,
+        "bedType": "大床2.0m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "河景"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_053_2",
+        "name": "行政双床房",
+        "price": 1688,
+        "area": 52,
+        "bedType": "双床1.3m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "河景",
+          "行政酒廊"
+        ],
+        "maxOccupancy": 2
+      },
+      {
+        "id": "rt_053_3",
+        "name": "瑞吉总统套房",
+        "price": 8888,
+        "area": 180,
+        "bedType": "大床2.4m",
+        "amenities": [
+          "WiFi",
+          "空调",
+          "电视",
+          "迷你吧",
+          "含早餐",
+          "客厅",
+          "河景",
+          "行政酒廊",
+          "管家服务"
+        ],
+        "maxOccupancy": 4
+      }
+    ],
+    "rating": 4.9,
+    "reviewCount": 1456,
+    "createdAt": "2025-02-26T08:40:00.000Z",
+    "updatedAt": "2025-02-26T08:40:00.000Z"
   }
 ]

@@ -134,7 +134,7 @@ function Login() {
                   <div className="demo-accounts">
                     <p>演示账号：</p>
                     <p>管理员：admin / admin123</p>
-                    <p>酒店管理员：hoteladmin / admin123</p>
+                    <p>酒店管理员：hoteladmin / hoteladmin123</p>
                   </div>
                 </Form>
               ),
