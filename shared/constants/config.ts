@@ -10,7 +10,7 @@
 const getBaseUrl = () => {
   // 生产环境（Node.js 环境优先检查）
   if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'production') {
-    return 'https://trip-server.onrender.com/api';
+    return 'https://easy-hotel-booking-server.onrender.com/api';
   }
 
   // 小程序环境使用局域网 IP
