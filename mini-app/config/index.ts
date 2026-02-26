@@ -41,6 +41,21 @@ const config = {
     webpackChain(chain) {
       chain.resolve.alias.set('@', path.resolve(__dirname, '..', 'src'));
       chain.resolve.alias.set('@shared', path.resolve(__dirname, '../../shared'));
+
+      // 让 webpack 处理 shared 目录中的 TypeScript 文件
+      chain.module.rule('shared-typescript')
+        .test(/\.(ts|tsx)$/)
+        .include.add(path.resolve(__dirname, '../../shared'))
+        .end()
+        .use('babel-loader')
+        .loader('babel-loader')
+        .options({
+          presets: [
+            ['@babel/preset-env', { targets: { browsers: ['> 1%', 'last 2 versions', 'not ie <= 11'] } }],
+            ['@babel/preset-react', { runtime: 'automatic' }],
+            '@babel/preset-typescript'
+          ]
+        });
     }
   },
   // H5端：禁用 pxtransform，直接使用标准 CSS 尺寸
@@ -77,6 +92,21 @@ const config = {
       chain.resolve.alias.set('@', path.resolve(__dirname, '..', 'src'));
       chain.resolve.alias.set('@shared', path.resolve(__dirname, '../../shared'));
 
+      // 让 webpack 处理 shared 目录中的 TypeScript 文件
+      chain.module.rule('shared-typescript')
+        .test(/\.(ts|tsx)$/)
+        .include.add(path.resolve(__dirname, '../../shared'))
+        .end()
+        .use('babel-loader')
+        .loader('babel-loader')
+        .options({
+          presets: [
+            ['@babel/preset-env', { targets: { browsers: ['> 1%', 'last 2 versions', 'not ie <= 11'] } }],
+            ['@babel/preset-react', { runtime: 'automatic' }],
+            '@babel/preset-typescript'
+          ]
+        });
+
       // 忽略 Taro 框架内部的 webpackExports 警告
       chain.set('ignoreWarnings', [
         /webpackExports/,
@@ -86,7 +116,7 @@ const config = {
 
       // React Refresh 热更新
       if (process.env.NODE_ENV === 'development') {
-        chain.plugin('reactRefresh').use(require('@pmmmwh/react-refresh-webpack-plugin'), [{
+        chain.plugin('react-refresh').use(require('@pmmmwh/react-refresh-webpack-plugin'), [{
           overlay: {
             entry: false,  // 禁用默认 overlay，使用 Taro 的
           }
