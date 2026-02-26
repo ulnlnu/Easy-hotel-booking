@@ -3,21 +3,22 @@
  * 通用配置（前后端共用）
  */
 
-// 声明浏览器环境全局变量（避免 TypeScript 在 Node.js 环境报错）
-declare const window: { location?: { hostname: string }; __API_BASE_URL__?: string } | undefined;
-
 /**
  * API配置
  * 注意：小程序无法访问 localhost，需要使用局域网 IP
  */
 const getBaseUrl = () => {
-  // 浏览器环境：运行时检测 hostname
-  if (typeof window !== 'undefined' && window.location) {
-    const envUrl = window.__API_BASE_URL__;
+  // 浏览器环境：通过 globalThis 检测（兼容所有环境）
+  // @ts-ignore
+  const g = typeof globalThis !== 'undefined' ? globalThis : {};
+  // @ts-ignore
+  if (g.window && g.window.location) {
+    // @ts-ignore
+    const envUrl = g.window.__API_BASE_URL__;
     if (envUrl) return envUrl;
 
-    // 如果不是 localhost，则认为是生产环境
-    const hostname = window.location.hostname;
+    // @ts-ignore
+    const hostname = g.window.location.hostname;
     if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
       return 'https://easy-hotel-booking-server.onrender.com/api';
     }
