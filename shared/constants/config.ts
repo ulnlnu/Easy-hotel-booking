@@ -8,7 +8,20 @@
  * 注意：小程序无法访问 localhost，需要使用局域网 IP
  */
 const getBaseUrl = () => {
-  // 生产环境（Node.js 环境优先检查）
+  // 浏览器环境：运行时检测 hostname
+  if (typeof window !== 'undefined') {
+    // @ts-ignore
+    const envUrl = window.__API_BASE_URL__;
+    if (envUrl) return envUrl;
+
+    // 如果不是 localhost，则认为是生产环境
+    const hostname = window.location.hostname;
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+      return 'https://easy-hotel-booking-server.onrender.com/api';
+    }
+  }
+
+  // Node.js 环境：生产环境检测
   if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'production') {
     return 'https://easy-hotel-booking-server.onrender.com/api';
   }
@@ -18,14 +31,7 @@ const getBaseUrl = () => {
     return 'http://192.168.1.133:3000/api';
   }
 
-  // 浏览器环境：检查 window 对象
-  if (typeof window !== 'undefined') {
-    // @ts-ignore
-    const envUrl = window.__API_BASE_URL__;
-    if (envUrl) return envUrl;
-  }
-
-  // H5 和其他环境使用 localhost
+  // 开发环境使用 localhost
   return 'http://localhost:3000/api';
 };
 
