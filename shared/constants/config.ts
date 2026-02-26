@@ -8,20 +8,24 @@
  * 注意：小程序无法访问 localhost，需要使用局域网 IP
  */
 const getBaseUrl = () => {
-  // 生产环境 fallback（Node.js 环境优先检查）
+  // 生产环境（Node.js 环境优先检查）
   if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'production') {
     return 'https://trip-server.onrender.com/api';
   }
 
-  // 小程序环境使用局域网 IP（微信开发者工具中可识别 TARO_ENV）
+  // 小程序环境使用局域网 IP
   if (typeof process !== 'undefined' && process.env && process.env.TARO_ENV === 'weapp') {
     return 'http://192.168.1.133:3000/api';
   }
 
-  // 浏览器环境：检查全局变量（Vercel 注入）
-  if (typeof window !== 'undefined') {
-    const envUrl = (window as any).__API_BASE_URL__;
-    if (envUrl) return envUrl;
+  // 浏览器环境：通过 globalThis 检查（兼容 Node.js 和浏览器）
+  if (typeof globalThis !== 'undefined') {
+    const g = globalThis as any;
+    // 检查是否存在 window 对象（浏览器环境）
+    if (typeof g.window !== 'undefined' && g.window) {
+      const envUrl = g.window.__API_BASE_URL__;
+      if (envUrl) return envUrl;
+    }
   }
 
   // H5 和其他环境使用 localhost
