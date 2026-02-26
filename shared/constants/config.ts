@@ -1,42 +1,65 @@
 /**
  * shared/constants/config.ts
  * 通用配置（前后端共用）
+ *
+ * 环境检测策略：
+ * 1. 浏览器 H5：运行时检测 hostname，非 localhost 使用生产 API
+ * 2. Node.js 后端：通过 process.env.NODE_ENV 检测
+ * 3. 小程序：使用局域网 IP（process.env.TARO_ENV）
  */
+
+/**
+ * 安全获取全局对象
+ */
+function getGlobal(): Record<string, unknown> {
+  // @ts-ignore - 兼容所有环境
+  if (typeof globalThis !== 'undefined') return globalThis;
+  // @ts-ignore
+  if (typeof global !== 'undefined') return global;
+  // @ts-ignore
+  if (typeof self !== 'undefined') return self;
+  return {};
+}
 
 /**
  * API配置
  * 注意：小程序无法访问 localhost，需要使用局域网 IP
  */
-const getBaseUrl = () => {
-  // 浏览器环境：通过 globalThis 检测（兼容所有环境）
-  // @ts-ignore
-  const g = typeof globalThis !== 'undefined' ? globalThis : {};
-  // @ts-ignore
-  if (g.window && g.window.location) {
-    // @ts-ignore
-    const envUrl = g.window.__API_BASE_URL__;
-    if (envUrl) return envUrl;
+function getBaseUrl(): string {
+  const g = getGlobal();
 
+  // 浏览器环境：运行时检测 hostname
+  // @ts-ignore
+  if (g.window && typeof g.window === 'object') {
     // @ts-ignore
-    const hostname = g.window.location.hostname;
-    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
-      return 'https://easy-hotel-booking-server.onrender.com/api';
+    const win = g.window;
+    // @ts-ignore
+    if (win.location && typeof win.location === 'object') {
+      // @ts-ignore
+      const hostname = win.location.hostname;
+      if (typeof hostname === 'string') {
+        // 如果不是 localhost，则认为是生产环境
+        if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+          return 'https://easy-hotel-booking-server.onrender.com/api';
+        }
+      }
     }
   }
 
   // Node.js 环境：生产环境检测
-  if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'production') {
-    return 'https://easy-hotel-booking-server.onrender.com/api';
-  }
-
-  // 小程序环境使用局域网 IP
-  if (typeof process !== 'undefined' && process.env && process.env.TARO_ENV === 'weapp') {
-    return 'http://192.168.1.133:3000/api';
+  if (typeof process !== 'undefined' && process.env) {
+    if (process.env.NODE_ENV === 'production') {
+      return 'https://easy-hotel-booking-server.onrender.com/api';
+    }
+    // 小程序环境使用局域网 IP
+    if (process.env.TARO_ENV === 'weapp') {
+      return 'http://192.168.1.133:3000/api';
+    }
   }
 
   // 开发环境使用 localhost
   return 'http://localhost:3000/api';
-};
+}
 
 export const API_CONFIG = {
   BASE_URL: getBaseUrl(),
