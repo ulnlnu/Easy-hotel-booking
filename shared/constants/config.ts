@@ -18,14 +18,11 @@ const getBaseUrl = () => {
     return 'http://192.168.1.133:3000/api';
   }
 
-  // 浏览器环境：通过 globalThis 检查（兼容 Node.js 和浏览器）
-  if (typeof globalThis !== 'undefined') {
-    const g = globalThis as any;
-    // 检查是否存在 window 对象（浏览器环境）
-    if (typeof g.window !== 'undefined' && g.window) {
-      const envUrl = g.window.__API_BASE_URL__;
-      if (envUrl) return envUrl;
-    }
+  // 浏览器环境：检查 window 对象
+  if (typeof window !== 'undefined') {
+    // @ts-ignore
+    const envUrl = window.__API_BASE_URL__;
+    if (envUrl) return envUrl;
   }
 
   // H5 和其他环境使用 localhost
