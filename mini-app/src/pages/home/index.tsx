@@ -137,7 +137,7 @@ function Home() {
       console.log('Preload failed:', error);
     }
 
-    Taro.navigateTo({ url: '/pages/list/index' });
+    Taro.switchTab({ url: '/pages/list/index' });
   };
 
   // 选择城市（打开城市选择器）
@@ -177,7 +177,7 @@ function Home() {
       console.log('Preload failed:', error);
     }
 
-    Taro.navigateTo({ url: '/pages/list/index' });
+    Taro.switchTab({ url: '/pages/list/index' });
   };
 
   // 快捷标签点击（带标签筛选跳转列表页）
@@ -201,7 +201,7 @@ function Home() {
       console.log('Preload failed:', error);
     }
 
-    Taro.navigateTo({ url: '/pages/list/index' });
+    Taro.switchTab({ url: '/pages/list/index' });
   };
 
   // 广告酒店点击

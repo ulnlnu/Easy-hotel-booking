@@ -3,9 +3,39 @@
  * 酒店搜索状态（Zustand）
  */
 
+import Taro from '@tarojs/taro';
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import type { HotelQueryParams, Hotel } from '@shared/types/hotel';
+
+/**
+ * 自定义存储引擎 - 适配微信小程序
+ * 使用 Taro 的同步存储 API 替代 localStorage
+ */
+const taroStorage = {
+  getItem: (name: string): string | null => {
+    try {
+      const value = Taro.getStorageSync(name);
+      return value || null;
+    } catch {
+      return null;
+    }
+  },
+  setItem: (name: string, value: string): void => {
+    try {
+      Taro.setStorageSync(name, value);
+    } catch {
+      // 忽略存储错误
+    }
+  },
+  removeItem: (name: string): void => {
+    try {
+      Taro.removeStorageSync(name);
+    } catch {
+      // 忽略删除错误
+    }
+  },
+};
 
 interface HotelState {
   // 搜索参数
@@ -97,6 +127,7 @@ export const useHotelStore = create<HotelState>()(
     }),
     {
       name: 'hotel-storage',
+      storage: createJSONStorage(() => taroStorage),
       // 迁移旧版本数据，清除无效的城市筛选
       migrate: (persistedState: any) => {
         if (persistedState?.state?.searchParams?.city) {
